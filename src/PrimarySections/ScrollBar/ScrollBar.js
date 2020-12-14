@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react'
 import $ from 'jquery'
 
-export default function ScrollBar() {
+function ScrollBar() {
     useEffect(() => {
         // get on top of the page after page loads
         (window).scrollTo(0,0)
@@ -31,3 +31,5 @@ export default function ScrollBar() {
                 </div>
     )
 }
+
+export default React.memo(ScrollBar)

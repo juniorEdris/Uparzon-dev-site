@@ -4,7 +4,7 @@ import { useStateValue } from '../../Utility/StateProvider'
 import { AnimatePresence, motion } from "framer-motion"
 import {Spring} from 'react-spring/renderprops'
 import './CartIcon.css'
-export default function CartIcon() {
+function CartIcon() {
     const [{basket,wishList,compareList}] = useStateValue()
 
     useEffect(()=>{
@@ -50,3 +50,4 @@ export default function CartIcon() {
         </AnimatePresence>
     )
 }
+export default React.memo(CartIcon)

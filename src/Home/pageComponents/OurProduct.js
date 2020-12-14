@@ -28,6 +28,7 @@ function OurProduct () {
   const [data,setData] = useState([])
   const [ready,setReady] = useState(false)
   const [state] = useStateValue()
+  console.log('Our Products',data);
 
   const options = {
     loop: false,

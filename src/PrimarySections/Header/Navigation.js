@@ -2,7 +2,7 @@ import React, { useState,useEffect } from 'react'
 import { Link } from 'react-router-dom';
 import './Navigation.css'
 
-export default function Navigation() {
+function Navigation() {
 
     //Stciky nav trigger
     const [stickyNav,setStickyNav] = useState(false)
@@ -161,3 +161,6 @@ export default function Navigation() {
         </div>
     )
 }
+
+
+export default React.memo(Navigation)

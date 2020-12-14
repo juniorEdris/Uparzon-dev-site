@@ -5,7 +5,7 @@ import 'owl.carousel/dist/assets/owl.theme.default.css';
 import './HomeSlider.css'
 import { Link } from 'react-router-dom';
 
-export default function HomeSlider() {
+function HomeSlider() {
 
     console.log('rendering agian and again');
 
@@ -55,3 +55,5 @@ export default function HomeSlider() {
         </div>
       );
 }
+
+export default React.memo(HomeSlider)

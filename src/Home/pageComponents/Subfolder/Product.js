@@ -6,7 +6,7 @@ import {  Truncate } from '../../../Data';
 import { useStateValue } from '../../../Utility/StateProvider';
 import $ from 'jquery'
 
-export default function Product(product) {
+function Product(product) {
   const [{ wishList, basket, compareList }, dispatch] = useStateValue()
   useEffect(() => {
     $('.action-links a').on('click', function (event) {
@@ -172,3 +172,5 @@ export default function Product(product) {
         </div>
     )
 }
+
+export default React.memo(Product)
