@@ -8,27 +8,19 @@ import { useState,useEffect } from 'react';
 import { useStateValue } from '../../Utility/StateProvider';
 import ModalSection from '../../PrimarySections/Modal/ModalSection';
 import Product from './Subfolder/Product';
-import { FetchData } from '../../PrimarySections/Connections/Axios';
-import {Request} from '../../PrimarySections/Connections/APILink';
-import {Link} from 'react-router-dom'
+import { connect } from 'react-redux';
+import {fetchHomeProds} from '../../Utility/Redux/Action/HomeProdAction'
 import { ProductLoader } from '../../PrimarySections/ReactPlaceHolder/ReactPlaceHolder';
 
 
 
-function OurProduct () {
+function OurProduct (props) {
 
   useEffect(() => {
-    FetchData(Request.AllProducts)
-      .then(res=>{
-        setData(res.data)
-        setReady(true)
-      })
-
+      props.fetchOurProds()
     }, [])
-  const [data,setData] = useState([])
-  const [ready,setReady] = useState(false)
+    
   const [state] = useStateValue()
-  console.log('Our Products',data);
 
   const options = {
     loop: false,
@@ -77,25 +69,25 @@ function OurProduct () {
           </div>
           
   {/* Slider starts here */}
+
+  {
+    props.loading ?
+      <ProductLoader className=''/>  
+      :
   <div className="tab-content">
   <div className="tab-pane fade show active" id="one">
     <div className="product-gallary-wrapper">
       <div className="product-gallary-active  product-spacing">
-        
-        {
-        !ready ?
-          <ProductLoader className=''/>  
-          :
-          <OwlCarousel
+        <OwlCarousel
               className="owl-theme"
               {...options}
             >
         {
-          data.map(product => (
+          props.products.map(product => (
             <Product key={product.id} {...product}/>
             ))
         }
-        </OwlCarousel>}
+        </OwlCarousel>
       </div>
     </div>
   </div>
@@ -110,13 +102,11 @@ function OurProduct () {
         className="owl-theme"
         {...options}
         >
-
         {
-          data.map(product =>(
+          props.products.map(product =>(
             <Product key={product.id} {...product}/>
           ))
         }
-        
     </OwlCarousel>
       </div>
     </div>
@@ -133,7 +123,7 @@ function OurProduct () {
         className="owl-theme"
         {...options}
         >
-        {data.map(product => (
+        {props.products.map(product => (
           <Product key={product.id} {...product}/>        
         ))}
     </OwlCarousel>
@@ -141,13 +131,20 @@ function OurProduct () {
     </div>
   </div>
 
-</div>
+</div>}
           {/* </Slider> */}
         </div>
          <ModalSection product={state.quickView}/>
         </div>
         )
     }
+const mapStateToProps = state=>({
+  products:state.homeProducts.ourProduct,
+  loading:state.homeProducts.loading,
+})
 
-
-export default OurProduct
+const mapDispatchToProps= dispatch=>( {
+    fetchOurProds:()=> dispatch(fetchHomeProds())
+   }
+  )
+export default connect(mapStateToProps,mapDispatchToProps)(OurProduct)

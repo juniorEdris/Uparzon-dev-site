@@ -23,7 +23,7 @@ function CartIcon() {
 
     return (
         <AnimatePresence>
-        <motion.div className='floating-basket'
+        <motion.div className='floating-basket d-none d-xl-block'
         initial={{x:100}}
         transition={{ ease: "easeIn", duration: 0.3, delay:1,type:"spring" }}
         animate={{x:0}}

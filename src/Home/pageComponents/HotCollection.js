@@ -7,21 +7,16 @@ import { useStateValue } from '../../Utility/StateProvider'
 import Product from './Subfolder/Product'
 import {Request} from '../../PrimarySections/Connections/APILink';
 import { ProductLoader } from '../../PrimarySections/ReactPlaceHolder/ReactPlaceHolder'
+import { connect } from 'react-redux'
+import { fetchHomeProds } from '../../Utility/Redux/Action/HomeProdAction'
 
-export default function HotCollection() {
+function HotCollection(props) {
   
   const [state] = useStateValue()
   useEffect(() => {
-    FetchData(Request.AllProducts)
-      .then(res=>{
-        setData(res.data)
-        setReady(true)
-      })
-
+      props.fetchHotCollection()
     }, [])
-  const [data,setData] = useState([])
-  const [ready,setReady] = useState(false)
- const Card = data.map(product =>(
+ const Card = props.hotCollection.map(product =>(
   <div className="col mb-30">
    <Product key={product.id} {...product}/>
   </div> /* single item end */
@@ -45,10 +40,13 @@ export default function HotCollection() {
         </ul>
       </div>
     </div>
-    <div className="tab-content">
+    
+    {
+      props.loading ? 
+        <ProductLoader className='product-item'/> 
+        :
+      <div className="tab-content">
       <div className="tab-pane fade show active" id="module-one">
-        {!ready ? 
-        <ProductLoader className='product-item'/> :
         <div className="module-four-wrapper custom-seven-column">
           {/* module-one starts here */}
 
@@ -68,7 +66,7 @@ export default function HotCollection() {
               <Link to='/shop' className="btn">See More</Link>
             </div>
           </div>
-        </div>}
+        </div>
       </div>
       {/* module-two starts here */}
       <div className="tab-pane fade" id="module-two">
@@ -115,7 +113,7 @@ export default function HotCollection() {
         </div>
       </div>
 
-    </div>
+    </div>}
   </div>
 
   <ModalSection product={state.singleProd}/>
@@ -123,3 +121,17 @@ export default function HotCollection() {
 
     )
 }
+
+
+const mapStateToProps= state=>({
+  hotCollection:state.homeProducts.ourProduct,
+  loading:state.homeProducts.loading,
+})
+
+const mapDispatchToProps = dispatch=>(
+  {
+    fetchHotCollection:()=>dispatch(fetchHomeProds())
+  }
+)
+
+export default connect(mapStateToProps,mapDispatchToProps)(HotCollection)

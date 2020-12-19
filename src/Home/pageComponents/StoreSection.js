@@ -1,30 +1,18 @@
 import React,{useState,useEffect} from 'react'
 import 'owl.carousel/dist/assets/owl.carousel.css';
 import 'owl.carousel/dist/assets/owl.theme.default.css';
-import { FetchData } from '../../PrimarySections/Connections/Axios'
-import { Request } from '../../PrimarySections/Connections/APILink'
 import { Truncate } from '../../Data'
 import './StoreSection.css'
 import { Link } from 'react-router-dom';
+import { connect } from 'react-redux';
+import {fetchHomeProds} from '../../Utility/Redux/Action/HomeProdAction'
 import { StoreLoader } from '../../PrimarySections/ReactPlaceHolder/ReactPlaceHolder';
 import { useStateValue } from '../../Utility/StateProvider';
 
-export default function StoreSection() {
-
+function StoreSection(props) {
     useEffect(() => {
-        FetchData(Request.HomeStores)
-          .then(res=>{
-            setShop(res.data)
-            setLink(res.links)
-            setMeta(res.meta)
-            setReady(true)
-          })
-    
+          props.fetchStroes()
         }, [])
-      const [shop,setShop] = useState([])
-      const [link,setLink] = useState([])
-      const [meta,setMeta] = useState([])
-      const [ready,setReady] = useState(false)
       const [,dispatch] = useStateValue()
       const VendorDetails=(id)=>{
           dispatch({type:'VENDOR_PAGE',payload:id})
@@ -40,10 +28,10 @@ export default function StoreSection() {
           <div className="row">
               <div className="col-12">
                 {
-                  !ready ?
+                  props.loading ?
                   <StoreLoader/>:
                   <div className=" d-flex flex-wrap justify-content-center"> 
-                  {shop.map(store=>(
+                  {props.store.map(store=>(
                         <Link to={`/vendor`} onClick={()=> VendorDetails(store.shop_id)}>
                           <div className="store-card mb-3 mr-3" key={store.shop_id}>
                                 <div className="store-thumb">
@@ -68,3 +56,15 @@ export default function StoreSection() {
       </div>         </>
     )
 }
+
+const mapStateToProps= state=>({
+  store:state.homeProducts.homeStores,
+  loading:state.homeProducts.loading,
+})
+
+const mapDispatchToProps = dispatch=>(
+  {
+    fetchStroes:()=>dispatch(fetchHomeProds())
+  }
+)
+export default connect(mapStateToProps,mapDispatchToProps)(StoreSection)

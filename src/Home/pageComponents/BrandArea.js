@@ -9,21 +9,16 @@ import ModalSection from '../../PrimarySections/Modal/ModalSection';
 import Product from './Subfolder/Product';
 import { FetchData } from '../../PrimarySections/Connections/Axios';
 import { ProductLoader } from '../../PrimarySections/ReactPlaceHolder/ReactPlaceHolder';
+import {connect} from 'react-redux'
+import { fetchHomeProds } from '../../Utility/Redux/Action/HomeProdAction';
 
-export default function BrandArea() {
+function BrandArea(props) {
 
 
   const [state] = useStateValue()
   useEffect(() => {
-    FetchData('api/uparzonapp/get_products?category_id=32&api_key=4e38d8be3269aa17280d0468b89caa4c7d39a699')
-      .then(res=>{
-        setData(res.data)
-        setReady(true)
-      })
-
+    props.fetchBrandProd()
     }, [])
-  const [data,setData] = useState([])
-  const [ready,setReady] = useState(false)
   const brandOptions = {
     loop: false,
     margin:10,
@@ -81,8 +76,7 @@ const options = {
             </div>
           </div>
           <div className="col-12">
-            <ul className="nav brand-active "> {/*owl-carousel */}
-                  {/* Brand slider starts here */}
+            <ul className="nav brand-active "> 
                   <OwlCarousel
                     className="owl-theme"
                     {...brandOptions}
@@ -122,37 +116,37 @@ const options = {
             </ul>
           </div>
           <div className="col-12">
+          {props.loading ? 
+        <ProductLoader className='product-item'/>:
             <div className="tab-content">
               <div className="tab-pane fade show active" id="brand-one">
-                {!ready ? 
-        <ProductLoader className='product-item'/>:
         <div className="product-gallary-wrapper brand-sale">
-                  <div className="product-gallary-active  sale-nav"> {/*owl-carousel owl-arrow-style */}
+                  <div className="product-gallary-active  sale-nav"> 
                   {/* product slider starts here */}
                     <OwlCarousel
                       className="owl-theme"
                       {...options}
                     >
                   {
-                    data.map(product =>(
+                    props.brandProducts.map(product =>(
                           <Product key={product.id} {...product}/>
                         ))
                   }
 
                   </OwlCarousel>
                   </div>
-                </div>}
+                </div>
               </div>
               <div className="tab-pane fade" id="brand-two">
                 <div className="product-gallary-wrapper brand-sale">
-                  <div className="product-gallary-active  sale-nav"> {/*owl-carousel owl-arrow-style */}
+                  <div className="product-gallary-active  sale-nav"> 
                   {/* product slider starts here */}
                     <OwlCarousel
                       className="owl-theme"
                       {...options}
                     >
                   {
-                    data.map(product =>(
+                    props.brandProducts.map(product =>(
                       <Product key={product.id} {...product}/>
                         ))
                   }
@@ -163,14 +157,14 @@ const options = {
               </div>
               <div className="tab-pane fade" id="brand-three">
                 <div className="product-gallary-wrapper brand-sale">
-                  <div className="product-gallary-active  sale-nav"> {/*owl-carousel owl-arrow-style */}
+                  <div className="product-gallary-active  sale-nav"> 
                   {/* product slider starts here */}
                     <OwlCarousel
                       className="owl-theme"
                       {...options}
                     >
                   {
-                    data.map(product =>(
+                    props.brandProducts.map(product =>(
                       <Product key={product.id} {...product}/>
                         ))
                   }
@@ -179,7 +173,7 @@ const options = {
                   </div>
                 </div>
               </div>
-            </div>
+            </div>}
           </div>
         </div>
       </div>
@@ -188,3 +182,16 @@ const options = {
 </div>
     )
 }
+
+
+const mapStateToProps= state=>({
+  brandProducts:state.homeProducts.ourProduct,
+  loading:state.homeProducts.loading,
+})
+
+const mapDispatchToProps = dispatch=>(
+  {
+    fetchBrandProd:()=>dispatch(fetchHomeProds())
+  }
+)
+export default connect(mapStateToProps,mapDispatchToProps)(BrandArea)
