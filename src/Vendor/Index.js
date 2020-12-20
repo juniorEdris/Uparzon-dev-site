@@ -7,8 +7,6 @@ import VendorProducts from './PageComponents/VendorProducts'
 import Pagination from './PageComponents/VendorPagination'
 import FilterControl from './PageComponents/VendorBarControl'
 import Profile from './PageComponents/VendorCard'
-import { ShopDetails } from '../PrimarySections/Connections/Axios'
-import { Request } from '../PrimarySections/Connections/APILink'
 import Search from './PageComponents/VendorSearch'
 import Modal from '../PrimarySections/Modal/ModalSection'
 import { useStateValue } from '../Utility/StateProvider'
@@ -22,13 +20,7 @@ const [sort,setSort] = useState('')
 const [limit,setLimit] = useState('')
 const [data,setData] = useState([])
 const [{quickView,shopId}] = useStateValue()
-const [ready,setReady]=useState(false)
     useEffect(() => {
-        ShopDetails(Request.VendorProducts,shopId)
-        .then(res=>{
-        setData(res.data)
-        setReady(true)
-        })
         localStorage.setItem('Shop Id', JSON.stringify(shopId))
     }, [shopId])
 
@@ -97,7 +89,7 @@ const [ready,setReady]=useState(false)
                                 </div>
                             </div>
                         </div>
-                        <VendorProducts data={data} ready={ready}/>
+                        <VendorProducts />
                         <Pagination/>
                     </div>
                 </div>

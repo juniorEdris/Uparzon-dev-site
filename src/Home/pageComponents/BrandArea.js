@@ -11,6 +11,7 @@ import { FetchData } from '../../PrimarySections/Connections/Axios';
 import { ProductLoader } from '../../PrimarySections/ReactPlaceHolder/ReactPlaceHolder';
 import {connect} from 'react-redux'
 import { fetchHomeProds } from '../../Utility/Redux/Action/HomeProdAction';
+import MoreBtn from '../../PrimarySections/Essentials/essentials';
 
 function BrandArea(props) {
 
@@ -132,7 +133,7 @@ const options = {
                           <Product key={product.id} {...product}/>
                         ))
                   }
-
+                  <MoreBtn route={'/shop'}/>
                   </OwlCarousel>
                   </div>
                 </div>
@@ -150,7 +151,7 @@ const options = {
                       <Product key={product.id} {...product}/>
                         ))
                   }
-
+                  <MoreBtn route={'/shop'}/>
                   </OwlCarousel>
                   </div>
                 </div>
@@ -168,7 +169,7 @@ const options = {
                       <Product key={product.id} {...product}/>
                         ))
                   }
-
+                  <MoreBtn route={'/shop'}/>
                   </OwlCarousel>
                   </div>
                 </div>

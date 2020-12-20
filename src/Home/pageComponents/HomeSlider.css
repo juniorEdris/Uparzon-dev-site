@@ -1,91 +1,85 @@
-:root{
-  --theme-color:#4f0f40;
-  --light-color:#fff;
+:root {
+  --theme-color: #4f0f40;
+  --light-color: #fff;
 }
 
 .container {
-    width: 100vw !important;
-    position: relative;
-  }
-  .single-slider{
-    width: 100%;
-    height: 350px !important;
-  }
+  width: 100vw !important;
+  position: relative;
+}
+.single-slider {
+  width: 100%;
+  height: 350px !important;
+}
 
-  
-  /* owl-carousel nav button styles */
-  .home_slider .owl-nav  button{
-    background:none;
-    border: none !important;
-    cursor: pointer;
-    left: 5px;
-    color:#333c4a !important;
-    line-height: 30px;
-    position: absolute;
-    text-align: center;
-    top: 50%;
-    -webkit-transform: translateY(-50%);
-    -ms-transform: translateY(-50%);
-    transform: translateY(-50%);
-    z-index: 9999;
-    opacity: 0;
-    visibility: visible;
-    width: 56px;
-    height: 56px;
-    -webkit-transition: 0.4s;
-    -moz-transition: 0.4s;
-    transition: 0.4s;
-    -webkit-box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.1);
-    box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.1);
-  
-  }
-  .home_slider .owl-carousel:hover .owl-nav button{
-    opacity: 1;
-  
-  }
-  .home_slider .owl-nav  button i{
-  
-    color: #333c4a;
-    font-size: 28px;
-  }
-.home_slider .owl-carousel .owl-nav  button:hover{
+/* owl-carousel nav button styles */
+.home_slider .owl-nav button {
+  background: none;
+  border: none !important;
+  cursor: pointer;
+  left: 5px;
+  color: #333c4a !important;
+  line-height: 30px;
+  position: absolute;
+  text-align: center;
+  top: 50%;
+  -webkit-transform: translateY(-50%);
+  -ms-transform: translateY(-50%);
+  transform: translateY(-50%);
+  z-index: 9999;
+  opacity: 0;
+  visibility: visible;
+  width: 56px;
+  height: 56px;
+  -webkit-transition: 0.4s;
+  -moz-transition: 0.4s;
+  transition: 0.4s;
+  -webkit-box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.1);
+  box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.1);
+}
+.home_slider .owl-carousel:hover .owl-nav button {
+  opacity: 1;
+}
+.home_slider .owl-nav button i {
+  color: #333c4a;
+  font-size: 28px;
+}
+.home_slider .owl-carousel .owl-nav button:hover {
   background-color: var(--theme-color) !important;
   transition: background-color 0.4s ease-in;
 }
-.home_slider .owl-carousel .owl-nav  button:hover i{
+.home_slider .owl-carousel .owl-nav button:hover i {
   color: #fff;
   transition: color 0.4s ease-in;
-
 }
-  .home_slider button.owl-prev {
-    border-radius: 50% !important;
-    right: auto;
-    left:15px;
-    background: #fff !important;
-  }
-  .home_slider button.owl-next {
-    border-radius: 50% !important;
-    left: auto;
-    right:15px;
-    background: #fff !important;
-  
-  }
-  
+.home_slider button.owl-prev {
+  border-radius: 50% !important;
+  right: auto;
+  left: 15px;
+  background: #fff !important;
+}
+.home_slider button.owl-next {
+  border-radius: 50% !important;
+  left: auto;
+  right: 15px;
+  background: #fff !important;
+}
+
 /* dots styles */
-.home_slider .owl-theme .owl-dots{
+.home_slider .owl-theme .owl-dots {
   position: absolute;
   bottom: 30px;
   right: 0;
   left: 0;
 }
-  .home_slider .owl-theme .owl-dots .owl-dot span{
-    width: 18px!important;
-    height: 18px!important;
-    background: none;
-    border: 2px solid var(--theme-color);
-    transition: background 0.2s ease-in;
-  }
-  
-.home_slider button.owl-dot.active span{
-    background-color: var(--theme-color) !important;
-  }
+.home_slider .owl-theme .owl-dots .owl-dot span {
+  width: 18px !important;
+  height: 18px !important;
+  background: none;
+  border: 2px solid var(--theme-color);
+  transition: background 0.2s ease-in;
+}
+
+.home_slider button.owl-dot.active span {
+  background-color: var(--theme-color) !important;
+}

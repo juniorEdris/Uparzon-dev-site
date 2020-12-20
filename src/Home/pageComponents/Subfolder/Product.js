@@ -71,7 +71,7 @@ function Product(product) {
     }
   }
 
-    return (
+  return (
         <div>
 
 

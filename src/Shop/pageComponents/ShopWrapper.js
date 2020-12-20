@@ -12,11 +12,14 @@ import Product from '../../Home/pageComponents/Subfolder/Product'
 import RightBarControl from './RightBarControl'
 import { FetchData } from '../../PrimarySections/Connections/Axios'
 import { ProductLoader } from '../../PrimarySections/ReactPlaceHolder/ReactPlaceHolder'
+import { connect } from 'react-redux'
+import { fetchShopProds } from '../../Utility/Redux/Action/ShopProductAction'
 
 
-export default function ShopWrapper() {
+function ShopWrapper(props) {
 
-    const [data,setData] = useState([])
+    console.log('shop',props);
+const [data,setData] = useState([])
 useEffect(() => {
 // product view mode change js
 $('.product-view-mode a').on('click', function(e){
@@ -29,18 +32,15 @@ $('.product-view-mode a').on('click', function(e){
     $(this).addClass('active');
     shopProductWrap.removeClass('grid list column_3').addClass(viewMode);
 })
-    FetchData('https://demostore.uparzon.com/api/uparzonapp/get_products?category_id=32&api_key=4e38d8be3269aa17280d0468b89caa4c7d39a699')
-    .then(res=>{
-    setData(res.data)
-    setReady(true)
-    })
-
 }, [])
+
+useEffect(()=>{
+    props.fetchShopProds()
+},[])
 
 const [state] = useStateValue()
 const [sort,setSort] = useState('')
 const [limit,setLimit] = useState('')
-const [ready,setReady] = useState(false)
 
     //Product sort function
     const ProductSort =(e)=>{
@@ -121,12 +121,12 @@ const [ready,setReady] = useState(false)
                         </div>
                         </div>
                     </div>
-                    {!ready ? 
-                    <div className="shop-product-wrap grid row">
-                        <ProductLoader/>
-                    </div>
+                    {props.loading ?
+                        <div className="shop-product-wrap grid row" >
+                            <ProductLoader key={data.id}/>
+                        </div>
                     :<div className="shop-product-wrap grid row">
-                        {data.map(data=>(
+                        {props.shopProduct.map(data=>(
                     <div className="col-lg-3 col-md-4 col-sm-6" key={data.id}>
                         {/* grid view starts here */}
                         <Product isGrid={true} key={data.id} {...data} />
@@ -165,3 +165,16 @@ const [ready,setReady] = useState(false)
         </div>
     )
 }
+
+const mapStateToProps=state=>(
+    {
+        shopProduct:state.shopProducts.shopProduct,
+        loading:state.shopProducts.loading,
+    }
+)
+const mapDispatchToProps =dispatch=>(
+    {
+        fetchShopProds:()=>dispatch(fetchShopProds())
+    }
+)
+export default  connect(mapStateToProps,mapDispatchToProps)(ShopWrapper)

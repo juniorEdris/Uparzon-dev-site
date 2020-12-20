@@ -11,6 +11,8 @@ import Product from './Subfolder/Product';
 import { connect } from 'react-redux';
 import {fetchHomeProds} from '../../Utility/Redux/Action/HomeProdAction'
 import { ProductLoader } from '../../PrimarySections/ReactPlaceHolder/ReactPlaceHolder';
+import { Link } from 'react-router-dom';
+import MoreBtn from '../../PrimarySections/Essentials/essentials';
 
 
 
@@ -46,6 +48,13 @@ function OurProduct (props) {
         
     },
 }
+
+// const more_btn = <div className="col mb-30">
+//   <div className="more__btn" style={{width:'175px',marginLeft:'-15px'}}>
+//     <p>1000+ Products Available</p>
+//     <Link to='/shop' className="btn" style={{margin:'1em 0em'}}>See More</Link>
+//   </div>
+// </div>
 
         return (
           
@@ -87,6 +96,7 @@ function OurProduct (props) {
             <Product key={product.id} {...product}/>
             ))
         }
+        <MoreBtn route={'/shop'}/>
         </OwlCarousel>
       </div>
     </div>
@@ -107,6 +117,7 @@ function OurProduct (props) {
             <Product key={product.id} {...product}/>
           ))
         }
+      <MoreBtn route={'/shop'}/>
     </OwlCarousel>
       </div>
     </div>
@@ -126,6 +137,7 @@ function OurProduct (props) {
         {props.products.map(product => (
           <Product key={product.id} {...product}/>        
         ))}
+      <MoreBtn route={'/shop'}/>
     </OwlCarousel>
       </div>
     </div>

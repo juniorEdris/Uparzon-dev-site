@@ -1,11 +1,9 @@
 /* eslint-disable jsx-a11y/anchor-is-valid */
 import React,{useState,useEffect} from 'react'
 import { Link } from 'react-router-dom'
-import { FetchData } from '../../PrimarySections/Connections/Axios'
 import ModalSection from '../../PrimarySections/Modal/ModalSection'
 import { useStateValue } from '../../Utility/StateProvider'
 import Product from './Subfolder/Product'
-import {Request} from '../../PrimarySections/Connections/APILink';
 import { ProductLoader } from '../../PrimarySections/ReactPlaceHolder/ReactPlaceHolder'
 import { connect } from 'react-redux'
 import { fetchHomeProds } from '../../Utility/Redux/Action/HomeProdAction'
@@ -60,8 +58,8 @@ function HotCollection(props) {
             </div>
           </div> {/* single item end */}
           {Card}
-          <div className="col mb-30 more__btn">
-            <div className="more__btn__child">
+          <div className="col mb-30">
+            <div className="more__btn">
               <p>1000+ Products Available in Hot Collection</p>
               <Link to='/shop' className="btn">See More</Link>
             </div>
@@ -81,8 +79,8 @@ function HotCollection(props) {
             </div>
           </div> {/* single item end */}
           {Card}
-          <div className="col mb-30 more__btn">
-            <div className="more__btn__child">
+          <div className="col mb-30">
+            <div className="more__btn">
               <p>1000+ Products Available in Hot Collection</p>
               <Link to='/shop' className="btn">See More</Link>
             </div>
@@ -104,8 +102,8 @@ function HotCollection(props) {
             </div>
           </div> {/* single item end */}
           { Card}
-          <div className="col mb-30 more__btn">
-            <div className="more__btn__child">
+          <div className="col mb-30">
+            <div className="more__btn">
               <p>1000+ Products Available in Hot Collection</p>
               <Link to='/shop' className="btn">See More</Link>
             </div>

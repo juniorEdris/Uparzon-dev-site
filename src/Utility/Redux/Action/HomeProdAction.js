@@ -28,6 +28,6 @@ export const fetchHomeProds = ()=>async(dispatch)=>{
     dispatch(fetchHomeProdsRequest())
     const prods = await Axios.get(Request.AllProducts)
     const stores = await Axios.get(Request.HomeStores)
-    dispatch(fetchHomeProdsSuccess(stores.data.data,prods.data.data))
-
+    console.log('prod Action',prods.status);
+        dispatch(fetchHomeProdsSuccess(stores.data.data,prods.data.data))
 }

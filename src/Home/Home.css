@@ -1,35 +1,31 @@
 .more__btn {
+  padding: 1em;
   border: 1px solid #f0f0f0;
   border-radius: 10px;
-  background-color: #f0f0f0;
+  text-align: center;
+}
+.more__btn p {
+  font-size: 18px;
+  line-height: 32px;
+  font-weight: 500;
+  padding: 17px;
 }
 .more__btn:hover {
-  border: 1px solid var(--theme-color);
+  border-color: var(--theme-color);
+  background-color: #f0f0f0;
 }
-.more__btn__child {
-  margin-top: 30%;
-}
-.more__btn__child p {
-  padding: 10px;
-  text-align: center;
-  font-size: 24px;
-  line-height: 40px;
-  font-weight: 500;
-}
-.more__btn__child a {
-  width: 80%;
+.more__btn a {
   background: var(--theme-color);
   border: medium none;
   border-radius: 25px;
   color: var(--light-color);
   cursor: pointer;
-  font-size: 18px;
-  line-height: 32px;
-  margin-top: 30px;
-  margin-left: 20px;
+  font-size: 14px;
+  line-height: 28px;
+  margin: 1em;
   padding: 5px 25px;
   text-transform: capitalize;
 }
-.more__btn__child a:hover {
+.more__btn a:hover {
   background-color: #111;
 }
