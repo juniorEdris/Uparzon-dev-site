@@ -7,16 +7,11 @@ import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 import {fetchHomeProds} from '../../Utility/Redux/Action/HomeProdAction'
 import { StoreLoader } from '../../PrimarySections/ReactPlaceHolder/ReactPlaceHolder';
-import { useStateValue } from '../../Utility/StateProvider';
 
 function StoreSection(props) {
     useEffect(() => {
           props.fetchStroes()
         }, [])
-      const [,dispatch] = useStateValue()
-      const VendorDetails=(id)=>{
-          dispatch({type:'VENDOR_PAGE',payload:id})
-      }
 
     return (
         <>
@@ -32,14 +27,14 @@ function StoreSection(props) {
                   <StoreLoader/>:
                   <div className=" d-flex flex-wrap justify-content-center"> 
                   {props.store.map(store=>(
-                        <Link to={`/vendor`} onClick={()=> VendorDetails(store.shop_id)}>
+                        <Link to={`/vendor?id=${store.shop_id}`} >
                           <div className="store-card mb-3 mr-3" key={store.shop_id}>
                                 <div className="store-thumb">
                                 <img src={`https:${store.logo.replace('demostore', 'store')}`} alt={store.shop_name} />
                                 </div>
 
                                 <div className="store-info">
-                                <h4 className="store-name mt-2 mb-2" title={store.shop_name}><Link to="/shop">{Truncate(store.shop_name,15)}</Link></h4>
+                                <h4 className="store-name mt-2 mb-2" title={store.shop_name}><Link to={`/vendor?id=${store.shop_id}`}>{Truncate(store.shop_name,15)}</Link></h4>
                                 </div>  
                           </div>
                         </Link>))} 

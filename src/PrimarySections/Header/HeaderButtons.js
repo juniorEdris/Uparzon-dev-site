@@ -42,10 +42,10 @@ export default function HeaderButtons() {
                             basket.map((prod) => (
                             <li className="mb-30">
                                 <div className="cart-img">
-                                    <a href="/"><img alt="" src={prod?.img2} /></a>
+                                    <Link to={`/productdetails?id=${prod.id}`}><img alt="" src={`https:${prod.photo.replace('demostore', 'store')}`} /></Link>
                                 </div>
                                 <div className="cart-info">
-                                        <h4><a href="/">{prod.name} </a></h4>
+                                        <h4><Link to={`/productdetails?id=${prod.id}`}>{prod.name} </Link></h4>
                                         <span> <span>{`${prod.count} x` }</span>{`£ ${prod.price}`}</span>
                                 </div>
                                 <div className="del-icon">

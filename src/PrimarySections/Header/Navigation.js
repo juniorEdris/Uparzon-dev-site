@@ -9,16 +9,16 @@ function Navigation() {
 
     useEffect(() => {
         window.addEventListener('scroll', () => {
-            if (window.scrollY > 200 ) {
+            if (window.scrollY > 500 ) {
                 setStickyNav(true)
             } else {
                 setStickyNav(false)
             }
         })
         return () => {
-           window.removeEventListener('scroll',()=>{})
+            window.removeEventListener('scroll',()=>{})
         }
-    }, [])
+    }, [stickyNav])
 
         //catagories menu dropdown
         const[isBrowsing,setBrowsing] = useState(false)
@@ -161,6 +161,5 @@ function Navigation() {
         </div>
     )
 }
-
 
 export default React.memo(Navigation)

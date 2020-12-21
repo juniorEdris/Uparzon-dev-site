@@ -6,7 +6,7 @@ export const initialState = {
   compareList:localStorage.getItem('Compare List') ? JSON.parse(localStorage.getItem('Compare List')) :[],
   user:true,
   productView:localStorage.getItem('Product Id') ? JSON.parse(localStorage.getItem('Product Id')) :'',
-  shopId:localStorage.getItem('Shop Id') ? JSON.parse(localStorage.getItem('Shop Id')) :''
+  // shopId:localStorage.getItem('Shop Id') ? JSON.parse(localStorage.getItem('Shop Id')) :''
 }
 
   export default function reducer (state,action){

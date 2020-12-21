@@ -8,10 +8,6 @@ import { connect } from 'react-redux'
 import { fetchShopList } from '../../../Utility/Redux/Action/ShopListAction'
 
 function ListBody(props) {
-    const [,dispatch] = useStateValue()
-    const VendorDetails=(id)=>{
-        dispatch({type:'VENDOR_PAGE',payload:id})
-    }
     useEffect(() => {
         props.fetchShopList()
     }, [])
@@ -26,10 +22,10 @@ function ListBody(props) {
             <div className="d-flex flex-wrap justify-content-center p-4">
             {
                 props.lists.map(store=>(
-            <Link to={`/shop`}>
+            <Link to={`/vendor?id=${store.shop_id}`}>
                 <div className="shop__card m-2" title={store.shop_name}>
                     <div className='shop__card__img'>
-                        <img src={`https:${store.logo.replace('demostore','store')}`} onClick={()=>VendorDetails(store.shop_id)} alt={store.shop_name}/>
+                        <img src={`https:${store.logo.replace('demostore','store')}`} alt={store.shop_name}/>
                     </div>
                     <div className='shop__card__details'>
                         <p className='shop__name' >{Truncate(store.shop_name,15)}</p>

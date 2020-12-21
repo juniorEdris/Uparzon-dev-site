@@ -3,12 +3,16 @@ import Product from './subFolder/Product'
 import { ProductLoader } from '../../PrimarySections/ReactPlaceHolder/ReactPlaceHolder';
 import { connect } from 'react-redux';
 import { fetchVendorProds } from '../../Utility/Redux/Action/VendorProductAction';
+import useQuery from '../../PrimarySections/Essentials/UrlParams';
 
 function VendorProducts(props) {
+    // Get id from url
+    const query = useQuery()
+    const VendorID = query.get('id')
 
     console.log('vendor',props);
     useEffect(() => {
-        props.fetchVendorProducts()
+        props.fetchVendorProducts(VendorID)
     }, [])
 
     return (
@@ -40,7 +44,7 @@ const mapStateToProps = state=>(
 
 const mapDispatchToProps = dispatch=>(
     {
-        fetchVendorProducts:()=> dispatch(fetchVendorProds())
+        fetchVendorProducts:(id)=> dispatch(fetchVendorProds(id))
     }
 )
 export default connect(mapStateToProps,mapDispatchToProps)(VendorProducts)

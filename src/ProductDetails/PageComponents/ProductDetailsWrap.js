@@ -3,16 +3,20 @@ import {  ProductDetails } from '../../PrimarySections/Connections/Axios'
 import {Request} from '../../PrimarySections/Connections/APILink'
 import Details from './SubFolder/Details'
 import Slider from './SubFolder/ProductSlider'
-import { useStateValue } from '../../Utility/StateProvider'
+import useQuery from '../../PrimarySections/Essentials/UrlParams'
 
 export default function ProductDetailsWrap() {
-  const [{productView}] = useStateValue()
-  console.log('view id',productView);
+  
+  // getting id from URL
+  const query = useQuery()
+  const prodID = query.get('id')
+  
   useEffect(() => {
-    ProductDetails(Request.ProductDetails,productView)
+    // get on top of the page after page loads
+    (window).scrollTo(0,0)
+    ProductDetails(Request.ProductDetails,prodID)
     .then(res=>setData(res.data))
-    localStorage.setItem('Product Id', JSON.stringify(productView))
-  }, [productView])
+  }, [prodID])
 
   const [data, setData] = useState()
   console.log('details',data);

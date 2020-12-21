@@ -25,9 +25,6 @@ function Product(product) {
   const quickView = () => {
     dispatch({ type: "QUICK_VIEW", payload: product })
   }
-  const ProductDetail = () => {
-    dispatch({ type: "PRODUCT_VIEW", payload: product.id })
-  }
   
   const addToCompare = () => {
     let exist = false
@@ -79,9 +76,9 @@ function Product(product) {
             product.isList ?  
             <div className="sinrato-list-item mb-30" id={product.id}>
             <div className="sinrato-thumb">
-            <Link to="/productdetails" onClick={()=>ProductDetail()}>
+            <Link to={`/productdetails?id=${product.id}`} >
                 <img  src={`https:${product.photo.replace('demostore', 'store')}`} className="pri-img" alt={product.name} />
-                {/* <img  src='https://uparzon.com.bd/assets/img/product/product-2.jpg' className="sec-img" alt={product.name} /> */}
+                <img  src={`https:${product.photo.replace('demostore', 'store')}`} className="sec-img" alt={product.name} />
             </Link>
             <div className="box-label">
                 <div className="label-product label_new">
@@ -126,7 +123,7 @@ function Product(product) {
             :
             <div className={`product-item ${product.isGrid && 'mb-30'}`} id={product.id}>
                   <div className="product-thumb">
-                    <Link to="/productdetails" onClick={()=>ProductDetail()}>
+                    <Link to={`/productdetails?id=${product.id}`} >
                       <img src={`https:${product.photo.replace('demostore', 'store')}`} className="pri-img" alt={product.name} />
                       {/* <img src='https://uparzon.com.bd/assets/img/product/product-2.jpg' className="sec-img" alt={product.name} /> */}
                     </Link>

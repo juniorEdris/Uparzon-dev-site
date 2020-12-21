@@ -21,9 +21,9 @@ const fetchVendorProdError = (error)=>{
     }
 }
 
-export const fetchVendorProds = ()=>async (dispatch)=>{
+export const fetchVendorProds = (id)=>async (dispatch)=>{
     dispatch(fetchVendorProdRequest())
-    await Axios.get(Request.VendorProducts)
+    await Axios.get(`${Request.VendorProducts}${id}`)
     .then(res=>{
         const prod = res.data.data
         dispatch(fetchVendorProdSuccess(prod))

@@ -19,10 +19,7 @@ export default function Index() {
 const [sort,setSort] = useState('')
 const [limit,setLimit] = useState('')
 const [data,setData] = useState([])
-const [{quickView,shopId}] = useStateValue()
-    useEffect(() => {
-        localStorage.setItem('Shop Id', JSON.stringify(shopId))
-    }, [shopId])
+const [{quickView}] = useStateValue()
 
     //Product sort function
     const ProductSort =(e)=>{
