@@ -11,6 +11,7 @@ export default function Shop() {
     const [show,setShow] = useState(false)
     const [{quickView}] = useStateValue()
     useEffect(()=>{
+        document.title = "Shop | Uparzon Ecommerce Online Shop"
         window.addEventListener('scroll', () => {
             if (window.scrollY > 300) {
               setShow(true)

@@ -21,6 +21,10 @@ import Store from './pageComponents/StoreSection'
 
 export default function HomeMainSection({show}) {
 
+    useEffect(()=>{
+        document.title = "Home | Uparzon Ecommerce Online Shop" 
+    },[])
+
 
     return (
         <div>

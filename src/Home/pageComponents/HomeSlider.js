@@ -16,10 +16,10 @@ function HomeSlider() {
             loop
             items={1}
             nav
-            autoplay
-            autoplayTimeout={10000}
-            autoplaySpeed={1000}
-            autoplayHoverPause
+            // autoplay
+            // autoplayTimeout={10000}
+            // autoplaySpeed={1000}
+            // autoplayHoverPause
             navSpeed={1000}
             navText={['<i class="fa fa-angle-left"></i>','<i class="fa fa-angle-right"></i>']}
           >

@@ -11,11 +11,21 @@ import Search from './PageComponents/VendorSearch'
 import Modal from '../PrimarySections/Modal/ModalSection'
 import { useStateValue } from '../Utility/StateProvider'
 import ScrollBar from '../PrimarySections/ScrollBar/ScrollBar'
+import { connect } from 'react-redux'
+import { fetchVendorProds } from '../Utility/Redux/Action/VendorProductAction'
+import useQuery from '../PrimarySections/Essentials/UrlParams'
 
 
 
-export default function Index() {
+function Index(props) {
+    // Get id from url
+    const query = useQuery()
+    const VendorID = query.get('id')
 
+    useEffect(() => {
+        document.title= `Uparzon E-commerce Shop` 
+        props.fetchVendorProducts(VendorID)
+    }, [])
 const [sort,setSort] = useState('')
 const [limit,setLimit] = useState('')
 const [data,setData] = useState([])
@@ -86,7 +96,7 @@ const [{quickView}] = useStateValue()
                                 </div>
                             </div>
                         </div>
-                        <VendorProducts />
+                        <VendorProducts loading={props.loading} products={props.products}/>
                         <Pagination/>
                     </div>
                 </div>
@@ -97,3 +107,18 @@ const [{quickView}] = useStateValue()
     </div>
     )
 }
+
+
+const mapStateToProps = state=>(
+    {
+        products: state.vendorProducts.vendorProduct,
+        loading: state.vendorProducts.loading,
+    }
+)
+
+const mapDispatchToProps = dispatch=>(
+    {
+        fetchVendorProducts:(id)=> dispatch(fetchVendorProds(id))
+    }
+)
+export default connect(mapStateToProps,mapDispatchToProps)(Index)

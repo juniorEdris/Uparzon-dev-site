@@ -8,6 +8,8 @@ export default function Contact() {
     useEffect(() => {
         // get on top of the page after page loads
         (window).scrollTo(0,0)
+        document.title = "Contact | Uparzon Ecommerce Online Shop"
+
     }, [])
     return (
         <div>

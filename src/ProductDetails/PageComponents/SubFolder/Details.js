@@ -9,11 +9,12 @@ export default function Details({data}) {
   const [{compareList},dispatch] = useStateValue()
 
   useEffect(() => {
+    document.title = data?.name || 'Uparzon E-commerce Store'
     //Anchore propagation off
     $('.useful-links a').on('click',function( event ) {
       event.preventDefault();
     });
-  }, [])
+  }, [data])
 
   const addToWishList = () => {
     dispatch({type:'ADD_TO_WISH_LIST',payload:data})
@@ -58,7 +59,7 @@ export default function Details({data}) {
             <div className="pro-details-list pt-20">
               <ul>
                 <li><span>Ex Tax :</span>£60.24</li>
-                <li><span>Brands :</span><Link to="#" >{data?.shop_name || "none"}</Link></li>
+                <li><span>Brands :</span><Link to={`/vendor?id=${data?.shop_id}`} >{data?.shop_name || "none"}</Link></li>
                 <li><span>Product Code :</span>Digital</li>
                 <li><span>Reward Points :</span>200</li>
                 <li><span>Availability :</span>{data?.id ? "In Stock" : "Out of Stock"}</li>

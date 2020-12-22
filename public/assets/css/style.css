@@ -1078,14 +1078,12 @@ ul.dropdown li span {
   position: relative;
   padding-left: 0px;
 }
-
 .product-thumb a {
   position: relative;
   display: block;
   border-radius: 10px;
   overflow: hidden;
 }
-
 .product-short .nice-select .list {
   right: 0;
   left: auto;

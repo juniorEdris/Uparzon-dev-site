@@ -2,6 +2,7 @@ import React from 'react'
 import img1 from '../../assets/img/testimonial/testimonial1.png'
 import './vendorCard.css'
 export default function VendorCard({data}) {
+    console.log('Vendor',data);
     return (
             <div className='container-fluid mb-20 '>
                 <div className="vendor__card col-md-12 col-12">

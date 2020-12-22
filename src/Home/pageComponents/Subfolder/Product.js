@@ -94,7 +94,7 @@ function Product(product) {
                 <span><Link to='/'>{product.brand}</Link></span>
             </div>
             <div className="sinrato-product-name">
-                <h4><a href="product-details.html" title={product.name}>{Truncate(product.name)}</a></h4>
+                <h4><Link to={`/productdetails?id=${product.id}`} title={product.name}>{Truncate(product.name)}</Link></h4>
             </div>
             <div className="sinrato-ratings mb-15">
                 <span><i className="fa fa-star" /></span>
@@ -110,7 +110,7 @@ function Product(product) {
             <div className="sinrato-box-action">
             <div className="price-box">
                 <span className="regular-price"><span className={` ${product.special && 'special-price'}`}>£{product.price}</span></span>
-                <span className="old-price"><del>{product.previous_price ? `£${product.previous_price}` : ''}</del></span>
+                <span className="old-price"><del>{product.previous_price ? ` &#2547;${product.previous_price}` : ''}</del></span>
             </div>
             <button className="btn-cart" type="button" onClick={()=> addToCart()} data-target="#cart_modal" data-toggle="modal">add to cart</button>
             <div className="action-links sinrat-list-icon">
@@ -144,10 +144,10 @@ function Product(product) {
                   </div>
                   <div className="product-caption">
                     <div className="manufacture-product">
-                      <p><Link to="/">{product.shop_name}</Link></p>
+                      <p><Link to={`/vendor?id=${product.id}`}>{product.shop_name}</Link></p>
                     </div>
                     <div className="product-name">
-                      <h4><Link to="/" title={product.name}>{Truncate(product.name,25) }</Link></h4>
+                      <h4><Link to={`/productdetails?id=${product.id}`} title={product.name}>{Truncate(product.name,25) }</Link></h4>
                     </div>
                     <div className="ratings">
                       <span className="purple"><i className="lnr lnr-star" /></span>
@@ -157,7 +157,7 @@ function Product(product) {
                       <span><i className="lnr lnr-star" /></span>
                     </div>
                     <div className="price-box">
-                      <span className="regular-price"><span className={` ${product.special && 'special-price'}`}>£{product.price}</span></span>
+                      <span className="regular-price"><span className={` ${product.special && 'special-price'}`}> &#2547; {product.price}</span></span>
                       <span className="old-price"><del>{product.previous_price ? `£${product.previous_price}` : ''}</del></span>
                     </div>
                     <button className="btn-cart" onClick={(e)=> addToCart()} type="button">add to cart</button>

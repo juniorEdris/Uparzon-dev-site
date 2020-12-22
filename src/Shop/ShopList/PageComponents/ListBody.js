@@ -3,12 +3,12 @@ import './ShopListBody.css'
 import { Link } from 'react-router-dom'
 import { Truncate } from '../../../Data'
 import { StoreLoader } from '../../../PrimarySections/ReactPlaceHolder/ReactPlaceHolder'
-import { useStateValue } from '../../../Utility/StateProvider'
 import { connect } from 'react-redux'
 import { fetchShopList } from '../../../Utility/Redux/Action/ShopListAction'
 
 function ListBody(props) {
     useEffect(() => {
+        document.title = 'Shop List | Uparzon E-commerce Store'
         props.fetchShopList()
     }, [])
     return (

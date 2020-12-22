@@ -158,3 +158,80 @@ CSS =========
 
 
       
+
+##      Navigation
+
+  <li><Link to="/all">Audio &amp; Home Theater <span className="lnr lnr-chevron-right" /></Link>
+                        <ul className="cat-submenu">
+                            <li><Link to="/homeaudio">Home Audio <span className="lnr lnr-chevron-right" /></Link>
+                            <ul className="cat-submenu">
+                                <li><Link to="/">CD Players &amp; Turntables</Link></li>
+                                <li><Link to="/">Home Theater Systems</Link></li>
+                                <li><Link to="/">Receivers &amp; Amplifiers</Link></li>
+                                <li><Link to="/">Speakers</Link></li>
+                                <li><Link to="/">Wireless  Audio</Link></li>
+                            </ul>
+                            </li>
+                            <li><Link to="/disk">Blu-ray Disc Players</Link></li>
+                            <li><Link to="/curvedtv">Curved TVs<span className="lnr lnr-chevron-right" /></Link>
+                            <ul className="cat-submenu">
+                                <li><Link to="/">CD Players &amp; Turntables</Link></li>
+                                <li><Link to="/">Home Theater Systems</Link></li>
+                                <li><Link to="/">Receivers &amp; Amplifiers</Link></li>
+                                <li><Link to="/">Speakers</Link></li>
+                                <li><Link to="/">Wireless  Audio</Link></li>
+                            </ul>
+                            </li>
+                            <li><Link to="/">Streaming Media Players</Link></li>
+                            <li><Link to="/">OLED TVs</Link></li>
+                            <li><Link to="/">LED &amp; LCD TVs</Link></li>
+                        </ul>
+                        </li>
+                        <li><Link to="/hometheatre">Video &amp; Home Theater<span className="lnr lnr-chevron-right" /></Link>
+                        <ul className="cat-submenu category-mega">
+                            <li className="cat-mega-title"><Link to="securitycamera">Security Cameras</Link>
+                            <ul>
+                                <li><Link to="/">DSLR Cameras</Link></li>
+                                <li><Link to="/">Lense Camera</Link></li>
+                                <li><Link to="/">Digital Cameras</Link></li>
+                                <li><Link to="/">Mirrorless Cameras</Link></li>
+                                <li><Link to="/">Point</Link></li>
+                            </ul>
+                            </li>
+                            <li className="cat-mega-title"><Link to="/mirrorlesscameras">Mirrorless Cameras</Link>
+                            <ul>
+                                <li><Link to="/">DSLR Cameras</Link></li>
+                                <li><Link to="/">Lense Camera</Link></li>
+                                <li><Link to="/">Digital Cameras</Link></li>
+                                <li><Link to="/">Mirrorless Cameras</Link></li>
+                                <li><Link to="/">Point</Link></li>
+                            </ul>
+                            </li>
+                            <li className="cat-mega-title"><Link to="/digitalcamera">Digital Cameras</Link>
+                            <ul>
+                                <li><Link to="/">DSLR Cameras</Link></li>
+                                <li><Link to="/">Lense Camera</Link></li>
+                                <li><Link to="/">Digital Cameras</Link></li>
+                                <li><Link to="/">Mirrorless Cameras</Link></li>
+                                <li><Link to="/">Point</Link></li>
+                            </ul>
+                            </li>
+                        </ul>
+                        </li>
+                        <li><Link to="/mobile">Cellphones &amp; Accessories<span className="lnr lnr-chevron-right" /></Link>
+                        <ul className="cat-submenu">
+                            <li><Link to="/">CD Players &amp; Turntables</Link></li>
+                            <li><Link to="/">Home Theater Systems</Link></li>
+                            <li><Link to="/">Receivers &amp; Amplifiers</Link></li>
+                            <li><Link to="/">Speakers</Link></li>
+                            <li><Link to="/">Wireless  Audio</Link></li>
+                        </ul>
+                        </li>
+                        <li><Link to="/">Top Item</Link></li>
+                        <li><Link to="/">Video Games Consoles</Link></li>
+                        <li><Link to="/">Business &amp; Office</Link></li>
+                        <li><Link to="/">Headphones &amp; Accessories</Link></li>
+                        <li><Link to="/">Quadcopters &amp; Accessories</Link></li>
+                        <li><Link to="/">Network Devices</Link></li>
+                        <li className={`category-item-parent hidden ${menuShow ? 'active':'inActive'} `}><a href="/">Smart Watches</a></li>
+                        <li className="category-item-parent"><a className={`more-btn ${menuShow ? 'minus':''}`} href="/"  onClick={moreMenu}>{btnName}</a></li>

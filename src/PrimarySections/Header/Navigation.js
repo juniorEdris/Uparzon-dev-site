@@ -1,8 +1,10 @@
 import React, { useState,useEffect } from 'react'
+import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
+import { fetchCategories, fetchSubCategory } from '../../Utility/Redux/Action/CategoriesAction';
 import './Navigation.css'
 
-function Navigation() {
+function Navigation(props) {
 
     //Stciky nav trigger
     const [stickyNav,setStickyNav] = useState(false)
@@ -19,6 +21,12 @@ function Navigation() {
             window.removeEventListener('scroll',()=>{})
         }
     }, [stickyNav])
+
+    useEffect(()=>{
+        props.fetchCategories()
+        // props.fetchSubCategories()
+    },[])
+    console.log('Navigation',props);
 
         //catagories menu dropdown
         const[isBrowsing,setBrowsing] = useState(false)
@@ -55,81 +63,13 @@ function Navigation() {
                     </div>
                     <nav className={`categorie-menus ha-dropdown ${isBrowsing ? 'active':'inActive'}`} >
                     <ul id="menu2">
-                        <li><Link to="/all">Audio &amp; Home Theater <span className="lnr lnr-chevron-right" /></Link>
-                        <ul className="cat-submenu">
-                            <li><Link to="/homeaudio">Home Audio <span className="lnr lnr-chevron-right" /></Link>
-                            <ul className="cat-submenu">
-                                <li><Link to="/">CD Players &amp; Turntables</Link></li>
-                                <li><Link to="/">Home Theater Systems</Link></li>
-                                <li><Link to="/">Receivers &amp; Amplifiers</Link></li>
-                                <li><Link to="/">Speakers</Link></li>
-                                <li><Link to="/">Wireless  Audio</Link></li>
-                            </ul>
-                            </li>
-                            <li><Link to="/disk">Blu-ray Disc Players</Link></li>
-                            <li><Link to="/curvedtv">Curved TVs<span className="lnr lnr-chevron-right" /></Link>
-                            <ul className="cat-submenu">
-                                <li><Link to="/">CD Players &amp; Turntables</Link></li>
-                                <li><Link to="/">Home Theater Systems</Link></li>
-                                <li><Link to="/">Receivers &amp; Amplifiers</Link></li>
-                                <li><Link to="/">Speakers</Link></li>
-                                <li><Link to="/">Wireless  Audio</Link></li>
-                            </ul>
-                            </li>
-                            <li><Link to="/">Streaming Media Players</Link></li>
-                            <li><Link to="/">OLED TVs</Link></li>
-                            <li><Link to="/">LED &amp; LCD TVs</Link></li>
-                        </ul>
-                        </li>
-                        <li><Link to="/hometheatre">Video &amp; Home Theater<span className="lnr lnr-chevron-right" /></Link>
-                        <ul className="cat-submenu category-mega">
-                            <li className="cat-mega-title"><Link to="securitycamera">Security Cameras</Link>
-                            <ul>
-                                <li><Link to="/">DSLR Cameras</Link></li>
-                                <li><Link to="/">Lense Camera</Link></li>
-                                <li><Link to="/">Digital Cameras</Link></li>
-                                <li><Link to="/">Mirrorless Cameras</Link></li>
-                                <li><Link to="/">Point</Link></li>
-                            </ul>
-                            </li>
-                            <li className="cat-mega-title"><Link to="/mirrorlesscameras">Mirrorless Cameras</Link>
-                            <ul>
-                                <li><Link to="/">DSLR Cameras</Link></li>
-                                <li><Link to="/">Lense Camera</Link></li>
-                                <li><Link to="/">Digital Cameras</Link></li>
-                                <li><Link to="/">Mirrorless Cameras</Link></li>
-                                <li><Link to="/">Point</Link></li>
-                            </ul>
-                            </li>
-                            <li className="cat-mega-title"><Link to="/digitalcamera">Digital Cameras</Link>
-                            <ul>
-                                <li><Link to="/">DSLR Cameras</Link></li>
-                                <li><Link to="/">Lense Camera</Link></li>
-                                <li><Link to="/">Digital Cameras</Link></li>
-                                <li><Link to="/">Mirrorless Cameras</Link></li>
-                                <li><Link to="/">Point</Link></li>
-                            </ul>
-                            </li>
-                        </ul>
-                        </li>
-                        <li><Link to="/mobile">Cellphones &amp; Accessories<span className="lnr lnr-chevron-right" /></Link>
-                        <ul className="cat-submenu">
-                            <li><Link to="/">CD Players &amp; Turntables</Link></li>
-                            <li><Link to="/">Home Theater Systems</Link></li>
-                            <li><Link to="/">Receivers &amp; Amplifiers</Link></li>
-                            <li><Link to="/">Speakers</Link></li>
-                            <li><Link to="/">Wireless  Audio</Link></li>
-                        </ul>
-                        </li>
-                        <li><Link to="/">Top Item</Link></li>
-                        <li><Link to="/">Video Games Consoles</Link></li>
-                        <li><Link to="/">Business &amp; Office</Link></li>
-                        <li><Link to="/">Headphones &amp; Accessories</Link></li>
-                        <li><Link to="/">Quadcopters &amp; Accessories</Link></li>
-                        <li><Link to="/">Network Devices</Link></li>
-                        <li className={`category-item-parent hidden ${menuShow ? 'active':'inActive'} `}><a href="/">Smart Watches</a></li>
-                        <li className="category-item-parent"><a className={`more-btn ${menuShow ? 'minus':''}`} href="/"  onClick={moreMenu}>{btnName}</a></li>
+                        {
+                            props.categories.map(cat =>(
+                                <li><Link to="/homeaudio">{cat.name}{cat.has_subcategory && <span className="lnr lnr-chevron-right" />}</Link></li>
+                            ))
+                        }
                     </ul>
+                    {/* ul ends here */}
                     </nav>
                         </div>
                         
@@ -161,5 +101,17 @@ function Navigation() {
         </div>
     )
 }
+const mapStateToProps = state=>(
+    {
+        categories:state.categories.categoryList,
+        // SubCategories:state.categories.subCategory,
+    }
+)
 
-export default React.memo(Navigation)
+const mapDispatchToProps = ()=>(dispatch)=>(
+    {
+        fetchCategories:()=>dispatch(fetchCategories()),
+        // fetchSubCategories:()=>dispatch(fetchSubCategory())
+    }
+)
+export default connect(mapStateToProps,mapDispatchToProps)(React.memo(Navigation))

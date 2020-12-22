@@ -26,8 +26,7 @@ const fetchHomeProdsError = (error)=>{
 
 export const fetchHomeProds = ()=>async(dispatch)=>{
     dispatch(fetchHomeProdsRequest())
-    const prods = await Axios.get(Request.AllProducts)
+    const prods = await Axios.get(Request.HomeProducts)
     const stores = await Axios.get(Request.HomeStores)
-    console.log('prod Action',prods.status);
         dispatch(fetchHomeProdsSuccess(stores.data.data,prods.data.data))
 }

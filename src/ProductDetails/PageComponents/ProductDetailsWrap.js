@@ -10,7 +10,7 @@ export default function ProductDetailsWrap() {
   // getting id from URL
   const query = useQuery()
   const prodID = query.get('id')
-  
+
   useEffect(() => {
     // get on top of the page after page loads
     (window).scrollTo(0,0)
@@ -18,8 +18,7 @@ export default function ProductDetailsWrap() {
     .then(res=>setData(res.data))
   }, [prodID])
 
-  const [data, setData] = useState()
-  console.log('details',data);
+  const [data, setData] = useState([])
     return (
         <div className="product-details-main-wrapper pb-50">
   <div className="container-fluid">

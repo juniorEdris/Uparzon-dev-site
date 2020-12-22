@@ -17,9 +17,6 @@ export default function Product(product) {
   const quickView = () => {
     dispatch({ type: "QUICK_VIEW", payload: product })
   }
-  const ProductDetail = () => {
-    dispatch({ type: "PRODUCT_VIEW", payload: product.id })
-  }
   
   const addToCompare = () => {
     let exist = false
@@ -71,7 +68,7 @@ export default function Product(product) {
             product.isList ?  
             <div className="sinrato-list-item mb-30" id={product.id}>
             <div className="sinrato-thumb">
-            <Link to="/productdetails" onClick={()=>ProductDetail()}>
+            <Link to={`/productdetails?id=${product.id}`} >
                 <img  src={`https:${product.photo.replace('demostore', 'store')}`} className="pri-img" alt={product.name} />
                 {/* <img  src='https://uparzon.com.bd/assets/img/product/product-2.jpg' className="sec-img" alt={product.name} /> */}
             </Link>
@@ -89,7 +86,7 @@ export default function Product(product) {
                 <span><Link to='/'>{product.brand}</Link></span>
             </div>
             <div className="sinrato-product-name">
-                <h4><a href="product-details.html" title={product.name}>{Truncate(product.name)}</a></h4>
+                <h4><Link to={`/productdetails?id=${product.id}`} title={product.name}>{Truncate(product.name)}</Link></h4>
             </div>
             <div className="sinrato-ratings mb-15">
                 <span><i className="fa fa-star" /></span>
@@ -118,7 +115,7 @@ export default function Product(product) {
             :
             <div className={`product-item ${product.isGrid && 'mb-30'}`} id={product.id}>
                   <div className="product-thumb">
-                    <Link to="/productdetails" onClick={()=>ProductDetail()}>
+                    <Link to={`/productdetails?id=${product.id}`} >
                       <img src={`https:${product.photo.replace('demostore', 'store')}`} className="pri-img" alt={product.name} />
                       {/* <img src='https://uparzon.com.bd/assets/img/product/product-2.jpg' className="sec-img" alt={product.name} /> */}
                     </Link>
@@ -142,7 +139,7 @@ export default function Product(product) {
                       <p><Link to="/">{product.shop_name}</Link></p>
                     </div>
                     <div className="product-name">
-                      <h4><Link to="/" title={product.name}>{Truncate(product.name,25) }</Link></h4>
+                      <h4><Link to={`/productdetails?id=${product.id}`} title={product.name}>{Truncate(product.name,25) }</Link></h4>
                     </div>
                     <div className="ratings">
                       <span className="purple"><i className="lnr lnr-star" /></span>
