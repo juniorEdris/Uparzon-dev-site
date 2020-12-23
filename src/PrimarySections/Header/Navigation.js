@@ -51,7 +51,7 @@ function Navigation(props) {
             <div className="row">
             <div className="col-lg-12">
                 <div className="top-main-menu">
-                <div className="categories-menu-bar">
+                <div className="categories-menu-bar" onPointerLeave={()=>setBrowsing(false)}>
                     <div onClick={browseCatalog} className={`categories-menu-btn`}  >
                     <div className="left">
                         <i className="lnr lnr-text-align-left" />
@@ -65,13 +65,25 @@ function Navigation(props) {
                     <ul id="menu2">
                         {
                             props.categories.map(cat =>(
-                                <li><Link to="/homeaudio">{cat.name}{cat.has_subcategory && <span className="lnr lnr-chevron-right" />}</Link></li>
+                                <li>
+                                    <Link to="/homeaudio" onMouseOver={()=>props.fetchCategories(cat.id)}>{cat.name}{cat.has_subcategory && <span className="lnr lnr-chevron-right" />}</Link>
+                                    {
+                                    cat.has_subcategory && 
+                                        <ul className="cat-submenu">
+                                            {
+                                            props.SubCategories?.map(x=>(
+                                                <li><Link to='#'>{x.name}</Link></li>
+                                            ))    
+                                            }
+                                        </ul>
+                                    }
+                                </li>
                             ))
                         }
                     </ul>
                     {/* ul ends here */}
                     </nav>
-                        </div>
+                    </div>
                         
                 <div className="ham-burger d-lg-none">
                     <Link class="mburger " to="#" onClick={(e)=> {e.preventDefault(); setMainMenu(!mainMenu)}}>
@@ -104,14 +116,14 @@ function Navigation(props) {
 const mapStateToProps = state=>(
     {
         categories:state.categories.categoryList,
-        // SubCategories:state.categories.subCategory,
+        SubCategories:state.categories.subCategory,
     }
 )
 
 const mapDispatchToProps = ()=>(dispatch)=>(
     {
-        fetchCategories:()=>dispatch(fetchCategories()),
-        // fetchSubCategories:()=>dispatch(fetchSubCategory())
+        fetchCategories:(id)=>dispatch(fetchCategories(id)),
+        // fetchSubCategories:(id)=>dispatch(fetchSubCategory(id))
     }
 )
 export default connect(mapStateToProps,mapDispatchToProps)(React.memo(Navigation))

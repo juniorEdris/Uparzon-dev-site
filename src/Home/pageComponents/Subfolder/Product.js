@@ -5,6 +5,7 @@ import { Link } from 'react-router-dom';
 import {  Truncate } from '../../../Data';
 import { useStateValue } from '../../../Utility/StateProvider';
 import $ from 'jquery'
+import './product.css'
 
 function Product(product) {
   const [{ wishList, basket, compareList }, dispatch] = useStateValue()
@@ -122,10 +123,10 @@ function Product(product) {
         </div>
             :
             <div className={`product-item ${product.isGrid && 'mb-30'}`} id={product.id}>
-                  <div className="product-thumb">
+                  <div className="product-thumb product">
                     <Link to={`/productdetails?id=${product.id}`} >
                       <img src={`https:${product.photo.replace('demostore', 'store')}`} className="pri-img" alt={product.name} />
-                      {/* <img src='https://uparzon.com.bd/assets/img/product/product-2.jpg' className="sec-img" alt={product.name} /> */}
+                      <img src={`https:${product.photo.replace('demostore', 'store')}`} className="sec-img" alt={product.name} />
                     </Link>
                     
                     <div className="box-label">

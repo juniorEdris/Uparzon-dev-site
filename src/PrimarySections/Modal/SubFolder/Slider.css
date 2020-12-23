@@ -18,6 +18,10 @@
 .modal-slider .carousel .thumbs-wrapper .control-next.control-arrow:before {
   border-left: 8px solid #4f0f40;
 }
+.modal_image {
+  height: 298px;
+  object-fit: cover;
+}
 /* img magnify CSS */
 .pro-large-img:hover img {
   transform: scale(1.6);

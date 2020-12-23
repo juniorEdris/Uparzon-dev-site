@@ -21,16 +21,16 @@ export default function CheckOutOrder() {
             
             basket?.map(product =>(
             <div className="product-list">
-                <div className="product-inner media align-items-center" id={product.d}>
+                <div className="product-inner media align-items-center" id={product.id}>
                     <div className="product-image mr-4 mr-sm-5 mr-md-4 mr-lg-5">
-                    <Link to="#">
-                        <img src={product.img1} alt={product.name} title={product.name} />
+                    <Link to={`/productdetails?id=${product.id}`}>
+                        <img style={{height:'120px',width:'120px',objectFit:'contain'}} src={`https:${product.photo.replace('demostore', 'store')}`} alt={product.name} title={product.name} />
                     </Link>
                     </div>
                     <div className="media-body">
                     <h5>{product.name}</h5>
-                    <p className="product-quantity">Quantity: 3</p>
-                    <p className="product-final-price">${product.price}</p>
+                    <p className="product-quantity">{product.count}</p>
+                    <p className="product-final-price">&#2547; {product.price}</p>
                     </div>
                 </div>
             </div>))
@@ -46,11 +46,11 @@ export default function CheckOutOrder() {
                 <tbody>
                 <tr className="cart-subtotal">
                     <th>Subtotal</th>
-                    <td className="text-center">${getSubTotal(basket).toFixed(2)}</td>
+                    <td className="text-center">&#2547; {getSubTotal(basket).toFixed(2)}</td>
                 </tr>            
                 <tr className="order-total">
                     <th>Total</th>
-                    <td className="text-center"><strong>${getSubTotal(basket).toFixed(2)}</strong></td>
+                    <td className="text-center"><strong>&#2547; {getSubTotal(basket).toFixed(2)}</strong></td>
                 </tr>
                 </tbody>
             </table>

@@ -38,8 +38,8 @@ export default function Driscription({product}) {
                 </ul>
             </div>
             <div className="price-box mb-15">
-                <span className="regular-price"><span className="special-price">{`$${product?.price}`}</span></span>
-                <span className="old-price"><del>{product?.previous_price ? `£${product.previous_price}` : ''}</del></span>
+                <span className="regular-price"><span className="special-price"> &#2547; {product?.price}</span></span>
+                <span className="old-price"><del>{product?.previous_price ? `${product.previous_price}` : ''}</del></span>
             </div>
             <div className="product-detail-sort-des pb-20">
             <p>{product?.description}</p>

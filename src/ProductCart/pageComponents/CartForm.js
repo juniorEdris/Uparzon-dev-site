@@ -79,8 +79,8 @@ export default function CartForm() {
                                 </span>
                                 </div>
                             </td>
-                            <td>${prod.price}</td>
-                            <td>${(prod.price*prod.count).toFixed(2)}</td>
+                            <td>&#2547; {prod.price}</td>
+                            <td>&#2547; {(prod.price*prod.count).toFixed(2)}</td>
                         </tr> 
                     </tbody>
                 </table>

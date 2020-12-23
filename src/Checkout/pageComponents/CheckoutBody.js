@@ -18,12 +18,12 @@ export default function CheckoutBody() {
                         <div className="row">
                             <CheckOutForm/>
                             <CheckOutOrder/>
-                        </div> {/* end of row */}
-                    </div> {/* end of checkout-area */}
-                    </main> {/* end of #primary */}
+                        </div> 
+                    </div> 
+                    </main> 
                 </div>
-                </div> {/* end of row */}
-            </div> {/* end of container */}
+                </div> 
+            </div> 
             </div>
             {/* End of Checkout Wrapper */}
 
