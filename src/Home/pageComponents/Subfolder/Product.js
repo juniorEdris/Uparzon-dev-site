@@ -145,7 +145,7 @@ function Product(product) {
                   </div>
                   <div className="product-caption">
                     <div className="manufacture-product">
-                      <p><Link to={`/vendor?id=${product.id}`}>{product.shop_name}</Link></p>
+                      <p><Link to={`/vendor?id=${product.id}`}>{Truncate(product.shop_name,15)}</Link></p>
                     </div>
                     <div className="product-name">
                       <h4><Link to={`/productdetails?id=${product.id}`} title={product.name}>{Truncate(product.name,25) }</Link></h4>
