@@ -4,8 +4,10 @@ import { useStateValue } from '../../Utility/StateProvider';
 import $ from 'jquery'
 import './CartForm.css'
 import {DelItem} from '../../Utility/PageAction'
+import { connect } from 'react-redux';
+import { RemoveBasketProd } from '../../Utility/Redux/Action/BasketAction';
 
-export default function CartForm() {
+function CartForm(props) {
     const [{basket}] = useStateValue();   
 
     useEffect(() => {
@@ -31,8 +33,8 @@ export default function CartForm() {
 
     return (
         <div className="">
-            {basket.length>0 ?        
-                basket.map(prod=>(
+            {props.basket.length>0 ?        
+                props.basket.map(prod=>(
                 <form action="#">
                 <div className="table-responsive mb-1">
                     <div className="col-12 d-flex flex-column flex-md-row justify-content-between align-items-center vendor__row">
@@ -75,7 +77,7 @@ export default function CartForm() {
                                 </div>
                                 <span className="input-group-btn">
                                     <button type="submit" className="btn btn-primary"><i className="fa fa-refresh" /></button>
-                                    <button type="button" className="btn btn-danger pull-right" onClick={()=>DelItem(prod,basket,'Cart List')}><i className="fa fa-times-circle" /></button>
+                                                    <button type="button" className="btn btn-danger pull-right" onClick={() =>props.removefromBasket(prod)}><i className="fa fa-times-circle" /></button>
                                 </span>
                                 </div>
                             </td>
@@ -94,3 +96,17 @@ export default function CartForm() {
         </div>
     )
 }
+
+const mapStateToProps = state => (
+    {
+        basket:state.basketProd.basket,
+    }
+)
+
+const mapDispatchToProps = dispatch => (
+    {
+        removefromBasket:(prod)=>dispatch(RemoveBasketProd(prod)),
+    }
+)
+
+export default connect(mapStateToProps,mapDispatchToProps)(CartForm)

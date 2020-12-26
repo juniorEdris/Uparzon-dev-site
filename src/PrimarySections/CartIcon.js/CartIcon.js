@@ -4,7 +4,8 @@ import { useStateValue } from '../../Utility/StateProvider'
 import { AnimatePresence, motion } from "framer-motion"
 import {Spring} from 'react-spring/renderprops'
 import './CartIcon.css'
-function CartIcon() {
+import { connect } from 'react-redux'
+function CartIcon(props) {
     const [{basket,wishList,compareList}] = useStateValue()
 
     useEffect(()=>{
@@ -30,16 +31,16 @@ function CartIcon() {
         exit={{x:100}}
         >
             <div className='compare'>
-            <span className="lnr lnr-sync" /><span className="count">{ compareList.length || 0 }</span>
+            <span className="lnr lnr-sync" /><span className="count">{ compareList.length}</span>
             </div>
             <div className='wish'>
-            <span className="lnr lnr-heart" /><span className="count">{ wishList.length || 0 }</span>
+            <span className="lnr lnr-heart" /><span className="count">{ wishList.length}</span>
             </div>
             <div className='cart'>
-                <span className="lnr lnr-cart" /><span className="count">{ basket.length || 0 }</span>
+                <span className="lnr lnr-cart" /><span className="count">{ props.basket.length}</span>
                 <Spring
                 from={{ number: 0 }}
-                to={{ number: getSubTotal(basket)}}
+                to={{ number: getSubTotal(props.basket)}}
                 >
                 {props => <p className='cart__amount'>{props.number.toFixed(2)}</p>}
                 </Spring>
@@ -50,4 +51,15 @@ function CartIcon() {
         </AnimatePresence>
     )
 }
-export default React.memo(CartIcon)
+
+const mapStateToProps = state => (
+    {
+        basket:state.basketProd.basket,
+    }
+)
+const mapDispatchToProps = dispatch => (
+    {
+
+    }
+)
+export default connect(mapStateToProps,mapDispatchToProps)(React.memo(CartIcon))

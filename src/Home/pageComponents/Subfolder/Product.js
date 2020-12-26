@@ -7,7 +7,7 @@ import { useStateValue } from '../../../Utility/StateProvider';
 import $ from 'jquery'
 import './product.css'
 import { connect } from 'react-redux';
-import {AddBasketProd} from '../../../Utility/Redux/Action/BasketAction'
+import {AddBasketProd, RemoveBasketProd} from '../../../Utility/Redux/Action/BasketAction'
 
 function Product(props) {
   const {isList,product,isGrid} = props
@@ -18,13 +18,13 @@ function Product(props) {
     });
   }, [])
 
-  useEffect(() => {
-    //Add every item to localStorage on every item click
-    localStorage.setItem('Wish List', JSON.stringify(wishList))
-    localStorage.setItem('Cart List', JSON.stringify(basket))
-    localStorage.setItem('Compare List', JSON.stringify(compareList))
+  // useEffect(() => {
+  //   //Add every item to localStorage on every item click
+  //   localStorage.setItem('Wish List', JSON.stringify(wishList))
+  //   localStorage.setItem('Cart List', JSON.stringify(props.basket))
+  //   localStorage.setItem('Compare List', JSON.stringify(compareList))
     
-  }, [wishList, basket, compareList])
+  // }, [wishList, props.basket, compareList])
    
   const quickView = () => {
     dispatch({ type: "QUICK_VIEW", payload: product })
@@ -45,7 +45,7 @@ function Product(props) {
 
   }
 
-  // addToCart dispatch 
+  // addToCart dispatch  
   const addToCart = () => {   
     let exist = false;
     const basketFull = [...basket]
@@ -164,7 +164,7 @@ function Product(props) {
                       <span className="regular-price"><span className={` ${product.special && 'special-price'}`}> &#2547; {product.price}</span></span>
                       <span className="old-price"><del>{product.previous_price ? `£${product.previous_price}` : ''}</del></span>
                     </div>
-                    <button className="btn-cart" onClick={(e)=> addToCart()} type="button">add to cart</button>
+                    <button className="btn-cart" onClick={(e)=> props.addToBasket(product)} type="button">add to cart</button>
                   </div>
                 
                 </div>
@@ -181,7 +181,8 @@ const mapStateToProps =state=>(
 )
 const mapDispatchToProps =dispatch=>(
   {
-    addToBasket:(prod)=>dispatch(AddBasketProd(prod)),
+    addToBasket: (prod) => dispatch(AddBasketProd(prod)),
+    removefromCart:(prod)=>dispatch(RemoveBasketProd(prod))
   }
 )
 

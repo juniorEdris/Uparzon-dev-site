@@ -2,6 +2,7 @@ import React,{useEffect,useState} from 'react'
 import { connect } from 'react-redux'
 import { Link } from 'react-router-dom'
 import { getSubTotal } from '../../Utility/Reducer'
+import { RemoveBasketProd } from '../../Utility/Redux/Action/BasketAction'
 import { useStateValue } from '../../Utility/StateProvider'
 import './HeaderButton.css'
 
@@ -37,20 +38,20 @@ function HeaderButtons(props) {
                 <Link className="ha-toggle" to='/wishlist'><span className="lnr lnr-heart" /><span className="count">{ wishList.length || 0 }</span></Link>
                 </li>
                 <li className="my-cart">
-                <Link className="ha-toggle" to="#" onClick={showCart}><span className="lnr lnr-cart" /><span className="count">{ basket.length }</span></Link>
+                <Link className="ha-toggle" to="#" onClick={showCart}><span className="lnr lnr-cart" /><span className="count">{ props.basket.length }</span></Link>
                 <ul className={`mini-cart-drop-down ha-dropdown ${isCartActive ? 'active':''}`} onPointerLeave={()=>setCartActive(false)}>
                         {
-                            basket.map((prod) => (
+                            props.basket.length>0 && props.basket.map((prod) => (
                             <li className="mb-30">
                                 <div className="cart-img">
                                     <Link to={`/productdetails?id=${prod.id}`}><img alt="" src={`https:${prod.photo.replace('demostore', 'store')}`} /></Link>
                                 </div>
                                 <div className="cart-info">
                                         <h4><Link to={`/productdetails?id=${prod.id}`}>{prod.name} </Link></h4>
-                                        <span> <span>{`${prod.count} x` }</span>{`£ ${prod.price}`}</span>
+                                        <span> <span>{`${prod.count} x` }</span>${prod.price}</span>
                                 </div>
                                 <div className="del-icon">
-                                    <i className="fa fa-times-circle" />
+                                        <i className="fa fa-times-circle" onClick={()=> props.removefromBasket(prod) }/>
                                 </div>
                             </li>
                                 ))
@@ -104,9 +105,11 @@ function HeaderButtons(props) {
     )
 }
 
-
+const mapDistpatchToProps = dispatch => ({
+    removefromBasket:(prod)=>dispatch(RemoveBasketProd(prod))
+})
 export default connect(state=>(
     {
         basket:state.basketProd.basket,
     }
-))(HeaderButtons)
+),mapDistpatchToProps)(HeaderButtons)
