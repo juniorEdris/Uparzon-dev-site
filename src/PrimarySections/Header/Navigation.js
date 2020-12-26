@@ -26,7 +26,6 @@ function Navigation(props) {
         props.fetchCategories()
         // props.fetchSubCategories()
     },[])
-    console.log('Navigation',props);
 
         //catagories menu dropdown
         const[isBrowsing,setBrowsing] = useState(false)

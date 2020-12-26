@@ -1,10 +1,11 @@
 import React,{useEffect,useState} from 'react'
+import { connect } from 'react-redux'
 import { Link } from 'react-router-dom'
 import { getSubTotal } from '../../Utility/Reducer'
 import { useStateValue } from '../../Utility/StateProvider'
 import './HeaderButton.css'
 
-export default function HeaderButtons() {
+function HeaderButtons(props) {
     //mycart menu dropdown
     const [isCartActive, setCartActive] = useState(false)
     const showCart = (e)=>{
@@ -36,7 +37,7 @@ export default function HeaderButtons() {
                 <Link className="ha-toggle" to='/wishlist'><span className="lnr lnr-heart" /><span className="count">{ wishList.length || 0 }</span></Link>
                 </li>
                 <li className="my-cart">
-                <Link className="ha-toggle" to="#" onClick={showCart}><span className="lnr lnr-cart" /><span className="count">{ basket.length || 0 }</span></Link>
+                <Link className="ha-toggle" to="#" onClick={showCart}><span className="lnr lnr-cart" /><span className="count">{ basket.length }</span></Link>
                 <ul className={`mini-cart-drop-down ha-dropdown ${isCartActive ? 'active':''}`} onPointerLeave={()=>setCartActive(false)}>
                         {
                             basket.map((prod) => (
@@ -102,3 +103,10 @@ export default function HeaderButtons() {
         </div>
     )
 }
+
+
+export default connect(state=>(
+    {
+        basket:state.basketProd.basket,
+    }
+))(HeaderButtons)

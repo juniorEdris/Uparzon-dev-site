@@ -1,7 +1,9 @@
 import React from 'react'
 import { FormControl, MenuItem, Select } from '@material-ui/core'
+import { connect } from 'react-redux'
+import { limitedProducts, sortProdsByPrice } from '../../Utility/Redux/Action/FilterProdsAction'
 
-export default function RightBarControl({sort,ProductSort,limit,ProductLimit}) {
+function RightBarControl(props) {
     return (
         <div className="top-bar-right">
         <div className="per-page">
@@ -10,8 +12,8 @@ export default function RightBarControl({sort,ProductSort,limit,ProductLimit}) {
         <Select 
         variant="outlined"
         id="grouped-select"
-        value={limit}
-        onChange={ProductLimit}
+        value={props.limit}
+        onChange={(e)=>props.FilterLimit(props.products,e.target.value)}
         >
             <MenuItem value={0}>All</MenuItem>
             <MenuItem value={5}>5</MenuItem>
@@ -28,8 +30,8 @@ export default function RightBarControl({sort,ProductSort,limit,ProductLimit}) {
         <Select 
         variant="outlined"
         id="grouped-select"
-        value={sort}
-        onChange={ProductSort}
+        value={props.price}
+        onChange={(e)=>props.FilterPrice(props.products,e.target.value)}
         >
             <MenuItem value=''>All</MenuItem>
             <MenuItem value="lowestPrice">Price (Low &gt; High)</MenuItem>
@@ -40,3 +42,16 @@ export default function RightBarControl({sort,ProductSort,limit,ProductLimit}) {
         </div>
     )
 }
+
+const mapDispatchToProps = dispatch=>(
+    {
+        FilterPrice:(prod,price)=>dispatch(sortProdsByPrice(prod,price)),
+        FilterLimit:(prod,limit)=>dispatch(limitedProducts(prod,limit)),
+    }
+)
+
+export default connect(state=>({
+    products:state.shopProducts.shopProduct,
+    price:state.shopProducts.price,
+    limit:state.shopProducts.limit
+}),mapDispatchToProps)(RightBarControl)

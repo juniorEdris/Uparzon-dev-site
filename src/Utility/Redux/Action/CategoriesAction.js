@@ -20,14 +20,12 @@ const fetchCategorySuccess = (category,subCategory) =>(
 export const fetchCategories = (id)=> async (dispatch)=>{
     const categories = await Axios.post(Request.Categories)
     .then(res=>{
-        console.log('Categories',res.data.data);
         return res.data.data
     })
     
     const url = `/api/uparzonapp/get_categories?api_key=4e38d8be3269aa17280d0468b89caa4c7d39a699&category_id=${id}&is_store=1`
     const subCategories= await Axios.post(url)
     .then((res)=>{
-        console.log('subcategories',res.data.data);
         return res.data.data
     })
     dispatch(fetchCategorySuccess(categories,subCategories))

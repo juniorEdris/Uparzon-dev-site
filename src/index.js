@@ -5,11 +5,15 @@ import App from './App';
 import * as serviceWorker from './serviceWorker';
 import { StateProvider } from './Utility/StateProvider';
 import reducer, { initialState } from './Utility/Reducer';
+import { Provider } from 'react-redux';
+import store from './Utility/Store/Store';
 
 ReactDOM.render(
   <React.StrictMode>
     <StateProvider reducer={reducer} initialState={initialState}>
+    <Provider store={store}>
       <App />
+    </Provider>
     </StateProvider>
   </React.StrictMode>,
   document.getElementById('root')

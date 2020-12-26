@@ -1,5 +1,4 @@
-/* eslint-disable jsx-a11y/anchor-is-valid */
-import React,{useEffect,useState} from 'react'
+import React from 'react'
 import OwlCarousel from 'react-owl-carousel';
 import 'owl.carousel/dist/assets/owl.carousel.css';
 import 'owl.carousel/dist/assets/owl.theme.default.css';
@@ -7,21 +6,13 @@ import Product from '../../Home/pageComponents/Subfolder/Product'
 import './ProductSuggestion.css'
 import { useStateValue } from '../../Utility/StateProvider';
 import ModalSection from '../../PrimarySections/Modal/ModalSection';
-import { FetchData } from '../../PrimarySections/Connections/Axios';
+import { connect } from 'react-redux';
 
-export default function ProductSuggestion() {
+function ProductSuggestion(props) {
     const [{quickView}] = useStateValue()
-    useEffect(() => {
-      FetchData('https://demostore.uparzon.com/api/uparzonapp/get_products?category_id=32&api_key=4e38d8be3269aa17280d0468b89caa4c7d39a699')
-        .then(res=>{
-          setData(res.data)
-        })
-  
-      }, [])
-    const [data,setData] = useState([])
 
     const options = {
-        loop: true,
+        loop: false,
         margin:10,
         nav:true,
         navText:['<i class="lnr lnr-arrow-left"></i>','<i class="lnr lnr-arrow-right"></i>'],
@@ -57,9 +48,9 @@ export default function ProductSuggestion() {
               {...options}
             >
           {
-              data.map(product =>(
+              props.suggestions.map(product =>(
           <div className="product-item mb-30">
-                <Product key={product.id} {...product}/>
+                <Product key={product.id} product={product}/>
           </div>
             ))  
           }
@@ -71,3 +62,7 @@ export default function ProductSuggestion() {
 </>
     )
 }
+
+export default connect(state=>({
+  suggestions:state.productSuggest.suggestion
+}))(ProductSuggestion)

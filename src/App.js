@@ -21,12 +21,14 @@ import './App.css';
 import DashBoard from './MyAccount/DashBoard/Index';
 import VendorPage from './Vendor/Index';
 import ShopList from './Shop/ShopList/ShopList';
-import {Provider} from 'react-redux'
 import {Loader, ProductLoader, StoreLoader} from './PrimarySections/ReactPlaceHolder/ReactPlaceHolder';
-import store from './Utility/Store/Store';
+import { connect } from 'react-redux';
+import { fetchHomeProds } from './Utility/Redux/Action/HomeProdAction';
+import { fetchShopProds } from './Utility/Redux/Action/ShopProductAction';
+import { FetchProductSuggetions } from './Utility/Redux/Action/ProdSuggestionAction';
 
 
-function App() {
+function App(props) {
   const [show,setShow] = useState(false)
     useEffect(()=>{
         window.addEventListener('scroll', () => {
@@ -39,10 +41,17 @@ function App() {
         return ()=>{
             window.removeEventListener('scroll',()=>{})
         }
+    },[])
+    useEffect(()=>{
+      props.fetchStroes()
+      props.fetchHotCollection()
+      props.fetchOurProds()
+      props.fetchBrandProd()
+      props.fetchShopProds()
+      props.fetchProdSuggestions()
     },[])   
     
-  return (
-    <Provider store={store}> 
+  return ( 
     <div className="app">
       <Router>
             <Header/>
@@ -96,8 +105,17 @@ function App() {
             <Footer/>
       </Router>
      </div>
-    </Provider>
   );
 }
 
-export default App;
+const mapDispatchToProps = dispatch=>(
+  {
+    fetchHotCollection:()=>dispatch(fetchHomeProds()),
+    fetchOurProds:()=> dispatch(fetchHomeProds()),
+    fetchBrandProd:()=>dispatch(fetchHomeProds()),
+    fetchStroes:()=>dispatch(fetchHomeProds()),
+    fetchShopProds:()=>dispatch(fetchShopProds()),
+    fetchProdSuggestions:()=>dispatch(FetchProductSuggetions()),
+  }
+)
+export default connect(state=>({}),mapDispatchToProps)(App);

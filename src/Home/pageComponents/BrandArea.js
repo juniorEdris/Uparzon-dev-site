@@ -7,19 +7,14 @@ import './BrandArea.css'
 import { useStateValue } from '../../Utility/StateProvider';
 import ModalSection from '../../PrimarySections/Modal/ModalSection';
 import Product from './Subfolder/Product';
-import { FetchData } from '../../PrimarySections/Connections/Axios';
 import { ProductLoader } from '../../PrimarySections/ReactPlaceHolder/ReactPlaceHolder';
 import {connect} from 'react-redux'
-import { fetchHomeProds } from '../../Utility/Redux/Action/HomeProdAction';
 import MoreBtn from '../../PrimarySections/Essentials/essentials';
 
 function BrandArea(props) {
 
 
   const [state] = useStateValue()
-  useEffect(() => {
-    props.fetchBrandProd()
-    }, [])
   const brandOptions = {
     loop: false,
     margin:10,
@@ -130,7 +125,7 @@ const options = {
                     >
                   {
                     props.brandProducts.map(product =>(
-                          <Product key={product.id} {...product}/>
+                          <Product key={product.id} product={product}/>
                         ))
                   }
                   <MoreBtn route={'/shop'}/>
@@ -148,7 +143,7 @@ const options = {
                     >
                   {
                     props.brandProducts.map(product =>(
-                      <Product key={product.id} {...product}/>
+                      <Product key={product.id} product={product}/>
                         ))
                   }
                   <MoreBtn route={'/shop'}/>
@@ -166,7 +161,7 @@ const options = {
                     >
                   {
                     props.brandProducts.map(product =>(
-                      <Product key={product.id} {...product}/>
+                      <Product key={product.id} product={product}/>
                         ))
                   }
                   <MoreBtn route={'/shop'}/>
@@ -190,9 +185,5 @@ const mapStateToProps= state=>({
   loading:state.homeProducts.loading,
 })
 
-const mapDispatchToProps = dispatch=>(
-  {
-    fetchBrandProd:()=>dispatch(fetchHomeProds())
-  }
-)
+const mapDispatchToProps = dispatch=>({})
 export default connect(mapStateToProps,mapDispatchToProps)(BrandArea)

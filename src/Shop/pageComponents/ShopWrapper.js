@@ -1,19 +1,17 @@
 /* eslint-disable no-unused-vars */
 import React,{ useEffect } from 'react'
-import $, { ready } from 'jquery'
+import $ from 'jquery'
 import { Link } from 'react-router-dom'
 import './ShopWrapper.css'
 import { useState } from 'react'
-import { AllProduct } from '../../Data'
 import { useStateValue } from '../../Utility/StateProvider'
 import ModalSection from '../../PrimarySections/Modal/ModalSection'
 import Sidebar from './ShopSidebar'
 import Product from '../../Home/pageComponents/Subfolder/Product'
-import RightBarControl from './RightBarControl'
+import Filter from './RightBarControl'
 import { FetchData } from '../../PrimarySections/Connections/Axios'
 import { ProductLoader } from '../../PrimarySections/ReactPlaceHolder/ReactPlaceHolder'
 import { connect } from 'react-redux'
-import { fetchShopProds } from '../../Utility/Redux/Action/ShopProductAction'
 
 
 function ShopWrapper(props) {
@@ -33,10 +31,6 @@ $('.product-view-mode a').on('click', function(e){
     shopProductWrap.removeClass('grid list column_3').addClass(viewMode);
 })
 }, [])
-
-useEffect(()=>{
-    props.fetchShopProds()
-},[])
 
 const [state] = useStateValue()
 const [sort,setSort] = useState('')
@@ -112,12 +106,7 @@ const [limit,setLimit] = useState('')
                             </div>
                         </div>
                         <div className="col-md-6">
-                            <RightBarControl 
-                            sort={sort} 
-                            ProductSort={ProductSort} 
-                            limit={limit}
-                            ProductLimit={ProductLimit}
-                            />
+                            <Filter/>
                         </div>
                         </div>
                     </div>
@@ -129,9 +118,9 @@ const [limit,setLimit] = useState('')
                         {props.shopProduct.map(data=>(
                     <div className="col-lg-3 col-md-4 col-sm-6" key={data.id}>
                         {/* grid view starts here */}
-                        <Product isGrid={true} key={data.id} {...data} />
+                        <Product isGrid={true} key={data.id} product={data} />
                         {/* List view starts here */}
-                        <Product key={data.id} {...data} isList={true}/>
+                        <Product key={data.id} product={data} isList={true}/>
                         </div>
                         ))}    
                     </div>}
@@ -172,9 +161,5 @@ const mapStateToProps=state=>(
         loading:state.shopProducts.loading,
     }
 )
-const mapDispatchToProps =dispatch=>(
-    {
-        fetchShopProds:()=>dispatch(fetchShopProds())
-    }
-)
+const mapDispatchToProps =dispatch=>({})
 export default  connect(mapStateToProps,mapDispatchToProps)(ShopWrapper)

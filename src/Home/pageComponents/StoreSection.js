@@ -5,13 +5,9 @@ import { Truncate } from '../../Data'
 import './StoreSection.css'
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
-import {fetchHomeProds} from '../../Utility/Redux/Action/HomeProdAction'
 import { StoreLoader } from '../../PrimarySections/ReactPlaceHolder/ReactPlaceHolder';
 
 function StoreSection(props) {
-    useEffect(() => {
-          props.fetchStroes()
-        }, [])
 
     return (
         <>
@@ -57,9 +53,5 @@ const mapStateToProps= state=>({
   loading:state.homeProducts.loading,
 })
 
-const mapDispatchToProps = dispatch=>(
-  {
-    fetchStroes:()=>dispatch(fetchHomeProds())
-  }
-)
+const mapDispatchToProps = dispatch=>({})
 export default connect(mapStateToProps,mapDispatchToProps)(StoreSection)

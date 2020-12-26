@@ -6,17 +6,12 @@ import { useStateValue } from '../../Utility/StateProvider'
 import Product from './Subfolder/Product'
 import { ProductLoader } from '../../PrimarySections/ReactPlaceHolder/ReactPlaceHolder'
 import { connect } from 'react-redux'
-import { fetchHomeProds } from '../../Utility/Redux/Action/HomeProdAction'
-
 function HotCollection(props) {
   
   const [state] = useStateValue()
-  useEffect(() => {
-      props.fetchHotCollection()
-    }, [])
  const Card = props.hotCollection.map(product =>(
   <div className="col mb-30">
-   <Product key={product.id} {...product}/>
+   <Product key={product.id} product={product}/>
   </div> /* single item end */
   ))
     return (
@@ -126,10 +121,6 @@ const mapStateToProps= state=>({
   loading:state.homeProducts.loading,
 })
 
-const mapDispatchToProps = dispatch=>(
-  {
-    fetchHotCollection:()=>dispatch(fetchHomeProds())
-  }
-)
+const mapDispatchToProps = dispatch=>({})
 
 export default connect(mapStateToProps,mapDispatchToProps)(HotCollection)

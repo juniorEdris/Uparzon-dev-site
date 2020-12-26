@@ -6,8 +6,11 @@ import {  Truncate } from '../../../Data';
 import { useStateValue } from '../../../Utility/StateProvider';
 import $ from 'jquery'
 import './product.css'
+import { connect } from 'react-redux';
+import {AddBasketProd} from '../../../Utility/Redux/Action/BasketAction'
 
-function Product(product) {
+function Product(props) {
+  const {isList,product,isGrid} = props
   const [{ wishList, basket, compareList }, dispatch] = useStateValue()
   useEffect(() => {
     $('.action-links a').on('click', function (event) {
@@ -74,7 +77,7 @@ function Product(product) {
 
 
           {
-            product.isList ?  
+          isList ?  
             <div className="sinrato-list-item mb-30" id={product.id}>
             <div className="sinrato-thumb">
             <Link to={`/productdetails?id=${product.id}`} >
@@ -113,7 +116,7 @@ function Product(product) {
                 <span className="regular-price"><span className={` ${product.special && 'special-price'}`}>£{product.price}</span></span>
                 <span className="old-price"><del>{product.previous_price ? ` &#2547;${product.previous_price}` : ''}</del></span>
             </div>
-            <button className="btn-cart" type="button" onClick={()=> addToCart()} data-target="#cart_modal" data-toggle="modal">add to cart</button>
+            <button className="btn-cart" type="button" onClick={(e)=> addToCart()} data-target="#cart_modal" data-toggle="modal">add to cart</button>
             <div className="action-links sinrat-list-icon">
                 <Link to='#' title="Wishlist" onClick={()=> addToWishList()}><i className="lnr lnr-heart" /></Link>
                 <Link to='#' title="Compare" onClick={()=>addToCompare()}><i className="lnr lnr-sync" /></Link>
@@ -122,7 +125,7 @@ function Product(product) {
             </div>
         </div>
             :
-            <div className={`product-item ${product.isGrid && 'mb-30'}`} id={product.id}>
+            <div className={`product-item ${isGrid && 'mb-30'}`} id={product.id}>
                   <div className="product-thumb product">
                     <Link to={`/productdetails?id=${product.id}`} >
                       <img src={`https:${product.photo.replace('demostore', 'store')}`} className="pri-img" alt={product.name} />
@@ -171,4 +174,15 @@ function Product(product) {
     )
 }
 
-export default React.memo(Product)
+const mapStateToProps =state=>(
+  {
+    basket:state.basketProd.basket,
+  }
+)
+const mapDispatchToProps =dispatch=>(
+  {
+    addToBasket:(prod)=>dispatch(AddBasketProd(prod)),
+  }
+)
+
+export default connect(mapStateToProps,mapDispatchToProps)(React.memo(Product))

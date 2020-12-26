@@ -9,18 +9,13 @@ import { useStateValue } from '../../Utility/StateProvider';
 import ModalSection from '../../PrimarySections/Modal/ModalSection';
 import Product from './Subfolder/Product';
 import { connect } from 'react-redux';
-import {fetchHomeProds} from '../../Utility/Redux/Action/HomeProdAction'
 import { ProductLoader } from '../../PrimarySections/ReactPlaceHolder/ReactPlaceHolder';
-import { Link } from 'react-router-dom';
 import MoreBtn from '../../PrimarySections/Essentials/essentials';
 
 
 
 function OurProduct (props) {
 
-  useEffect(() => {
-      props.fetchOurProds()
-    }, [])
     
   const [state] = useStateValue()
 
@@ -93,7 +88,7 @@ function OurProduct (props) {
             >
         {
           props.products.map(product => (
-            <Product key={product.id} {...product}/>
+            <Product key={product.id} product={product}/>
             ))
         }
         <MoreBtn route={'/shop'}/>
@@ -114,7 +109,7 @@ function OurProduct (props) {
         >
         {
           props.products.map(product =>(
-            <Product key={product.id} {...product}/>
+            <Product key={product.id} product={product}/>
           ))
         }
       <MoreBtn route={'/shop'}/>
@@ -135,7 +130,7 @@ function OurProduct (props) {
         {...options}
         >
         {props.products.map(product => (
-          <Product key={product.id} {...product}/>        
+          <Product key={product.id} product={product}/>        
         ))}
       <MoreBtn route={'/shop'}/>
     </OwlCarousel>
@@ -155,8 +150,5 @@ const mapStateToProps = state=>({
   loading:state.homeProducts.loading,
 })
 
-const mapDispatchToProps= dispatch=>( {
-    fetchOurProds:()=> dispatch(fetchHomeProds())
-   }
-  )
+const mapDispatchToProps= dispatch=>({})
 export default connect(mapStateToProps,mapDispatchToProps)(OurProduct)
