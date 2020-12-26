@@ -10,6 +10,9 @@
 .product-details-slider .thumbs-wrapper .thumb {
   border-radius: 0.3rem;
 }
+.product-details-slider .slider-wrapper {
+  margin-bottom: 10px;
+}
 .product-details-slider
   .carousel
   .thumbs-wrapper

@@ -1,4 +1,4 @@
-import React from 'react'
+import React,{useEffect} from 'react'
 import Breadcrumb from '../../PrimarySections/Breadcrumbs/Breadcrumb'
 import ScrollBar from '../../PrimarySections/ScrollBar/ScrollBar'
 import DashTable from './pageComponents/DashTable'
@@ -6,6 +6,10 @@ import UserInfo from './pageComponents/UserInfo'
 
 
 export default function Index() {
+
+    useEffect(() => {
+        document.title = 'Dashboard | Uparzon E-commerce Site'
+    }, [])
     return (
         <div>
             <Breadcrumb pageName={'Dashboard'} route={'/'} parent={'Home'}/>

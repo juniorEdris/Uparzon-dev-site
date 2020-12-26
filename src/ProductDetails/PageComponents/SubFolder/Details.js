@@ -9,7 +9,7 @@ export default function Details({data}) {
   const [{compareList},dispatch] = useStateValue()
 
   useEffect(() => {
-    document.title = data?.name || 'Uparzon E-commerce Store'
+    document.title = data? `${data?.name} | Uparzon E-commerce Store` : 'Uparzon E-commerce Store'
     //Anchore propagation off
     $('.useful-links a').on('click',function( event ) {
       event.preventDefault();
@@ -50,15 +50,15 @@ export default function Details({data}) {
               </ul>
             </div>
             <div className="price-box mb-15">
-              <span className="regular-price"><span className="special-price">£{data?.price || 0}</span></span>
-              <span className="old-price"><del>£{data?.previous_price || 0}</del></span>
+              <span className="regular-price"><span className="special-price">&#2547; {data?.price || ''}</span></span>
+              <span className="old-price"><del>{data?.previous_price || ''}</del></span>
             </div>
             <div className="product-detail-sort-des pb-20">
               <p>{data?.description || ""}</p>
             </div>
             <div className="pro-details-list pt-20">
               <ul>
-                <li><span>Ex Tax :</span>£60.24</li>
+                <li><span>Ex Tax :</span>&#2547; 60.24</li>
                 <li><span>Brands :</span><Link to={`/vendor?id=${data?.shop_id}`} >{data?.shop_name || "none"}</Link></li>
                 <li><span>Product Code :</span>Digital</li>
                 <li><span>Reward Points :</span>200</li>

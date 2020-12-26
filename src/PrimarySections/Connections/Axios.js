@@ -11,7 +11,6 @@ return data
 
 // Fetch Product deails
 export const ProductDetails = async (url,id)=>{
-    console.log(url,id);
     const data = await axios.post(`${url}${id}`)
      .then(res=>res.data)
      .catch(err=>err)

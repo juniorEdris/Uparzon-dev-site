@@ -24,7 +24,6 @@ function Navigation(props) {
 
     useEffect(()=>{
         props.fetchCategories()
-        // props.fetchSubCategories()
     },[])
 
         //catagories menu dropdown
@@ -85,7 +84,7 @@ function Navigation(props) {
                     </div>
                         
                 <div className="ham-burger d-lg-none">
-                    <Link class="mburger " to="#" onClick={(e)=> {e.preventDefault(); setMainMenu(!mainMenu)}}>
+                    <Link className="mburger " to="#" onClick={(e)=> {e.preventDefault(); setMainMenu(!mainMenu)}}>
                         <b></b>
                         <b></b>
                         <b></b>
@@ -122,7 +121,6 @@ const mapStateToProps = state=>(
 const mapDispatchToProps = ()=>(dispatch)=>(
     {
         fetchCategories:(id)=>dispatch(fetchCategories(id)),
-        // fetchSubCategories:(id)=>dispatch(fetchSubCategory(id))
     }
 )
 export default connect(mapStateToProps,mapDispatchToProps)(React.memo(Navigation))

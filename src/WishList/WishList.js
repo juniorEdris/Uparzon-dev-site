@@ -7,6 +7,7 @@ export default function WishList() {
     useEffect(() => {
         // get on top of the page after page loads
         (window).scrollTo(0,0)
+        document.title = 'Wishlist | Uparzon E-commerce Site'
     }, [])
     return (
         <div>

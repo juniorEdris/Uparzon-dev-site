@@ -30,7 +30,7 @@ function StoreSection(props) {
                                 </div>
 
                                 <div className="store-info">
-                                <h4 className="store-name mt-2 mb-2" title={store.shop_name}><Link to={`/vendor?id=${store.shop_id}`}>{Truncate(store.shop_name,15)}</Link></h4>
+                                <h4 className="store-name mt-2 mb-2" title={store.shop_name}><Link to={`/vendor?id=${store.shop_id}`} >{Truncate(store.shop_name,15)}</Link></h4>
                                 </div>  
                           </div>
                         </Link>))} 
