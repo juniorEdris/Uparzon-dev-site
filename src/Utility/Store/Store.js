@@ -2,11 +2,13 @@ import {createStore,applyMiddleware ,combineReducers,compose} from 'redux'
 import thunk from 'redux-thunk'
 import { AddBasketReducer } from '../Redux/Reducer/BasketReducer';
 import { CategoriesReducer } from '../Redux/Reducer/CategoriesReducer';
+import { AddCompareReducer } from '../Redux/Reducer/CompareReducer';
 import { HomeReducer } from '../Redux/Reducer/HomeReducer'
 import { ProdSuggestionReducer } from '../Redux/Reducer/ProdSuggestionReducer';
 import { ShopListReducer } from '../Redux/Reducer/ShopListReducer';
 import { ShopReducer } from '../Redux/Reducer/ShopReducer';
 import { VendorReducer } from '../Redux/Reducer/VendorReducer';
+import { AddWishReducer } from '../Redux/Reducer/WishListReducer';
 
 export const initialState={
     loading:true,
@@ -33,6 +35,8 @@ const store = createStore(
         storeList: ShopListReducer,
         categories: CategoriesReducer,
         basketProd: AddBasketReducer,
+        wishListProd: AddWishReducer,
+        compareListProd: AddCompareReducer,
         productSuggest: ProdSuggestionReducer
     }),
     initialState,

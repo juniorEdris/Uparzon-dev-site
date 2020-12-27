@@ -35,7 +35,7 @@ function HeaderButtons(props) {
                 </li>
                 
                 <li className="wishlist">
-                <Link className="ha-toggle" to='/wishlist'><span className="lnr lnr-heart" /><span className="count">{ wishList.length || 0 }</span></Link>
+                <Link className="ha-toggle" to='/wishlist'><span className="lnr lnr-heart" /><span className="count">{ props.wishList.length }</span></Link>
                 </li>
                 <li className="my-cart">
                 <Link className="ha-toggle" to="#" onClick={showCart}><span className="lnr lnr-cart" /><span className="count">{ props.basket.length }</span></Link>
@@ -111,5 +111,7 @@ const mapDistpatchToProps = dispatch => ({
 export default connect(state=>(
     {
         basket:state.basketProd.basket,
+        compare:state.compareListProd.compareList,
+        wishList:state.wishListProd.wishList,
     }
 ),mapDistpatchToProps)(HeaderButtons)

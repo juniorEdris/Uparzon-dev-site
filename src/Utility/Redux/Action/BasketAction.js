@@ -33,7 +33,7 @@ export const AddBasketProd = (product) => (dispatch,getState) => {
     localStorage.setItem('Cart List', JSON.stringify(cartItems))
 }
 export const RemoveBasketProd = (product) => (dispatch,getState) => {
-    const cartItems = getState().basketProd.basket.slice().slice().filter(x =>x.id !== product.id)
+    const cartItems = getState().basketProd.basket.slice().filter(x =>x.id !== product.id)
     dispatch( removeProdBasket(cartItems) )
     // dispatch({cartItems})
     localStorage.setItem('Cart List', JSON.stringify(cartItems))

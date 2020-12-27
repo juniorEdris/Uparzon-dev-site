@@ -7,7 +7,9 @@ import { useStateValue } from '../../../Utility/StateProvider';
 import $ from 'jquery'
 import './product.css'
 import { connect } from 'react-redux';
-import {AddBasketProd, RemoveBasketProd} from '../../../Utility/Redux/Action/BasketAction'
+import {AddBasketProd} from '../../../Utility/Redux/Action/BasketAction'
+import { AddCompareProd } from '../../../Utility/Redux/Action/CompareListAction';
+import { AddWishProd } from '../../../Utility/Redux/Action/WishListAction';
 
 function Product(props) {
   const {isList,product,isGrid} = props
@@ -116,10 +118,10 @@ function Product(props) {
                 <span className="regular-price"><span className={` ${product.special && 'special-price'}`}>£{product.price}</span></span>
                 <span className="old-price"><del>{product.previous_price ? ` &#2547;${product.previous_price}` : ''}</del></span>
             </div>
-            <button className="btn-cart" type="button" onClick={(e)=> addToCart()} data-target="#cart_modal" data-toggle="modal">add to cart</button>
+            <button className="btn-cart" type="button" onClick={(e)=> props.addToBasket(product)} data-target="#cart_modal" data-toggle="modal">add to cart</button>
             <div className="action-links sinrat-list-icon">
-                <Link to='#' title="Wishlist" onClick={()=> addToWishList()}><i className="lnr lnr-heart" /></Link>
-                <Link to='#' title="Compare" onClick={()=>addToCompare()}><i className="lnr lnr-sync" /></Link>
+                <Link to='#' title="Wishlist" onClick={()=> props.addToWish(product)}><i className="lnr lnr-heart" /></Link>
+                <Link to='#' title="Compare" onClick={()=>props.addToWish(product)}><i className="lnr lnr-sync" /></Link>
                 <Link to='#' title="Quick view" onClick={()=>quickView()} data-target="#quickk_view" data-toggle="modal"><i className="lnr lnr-magnifier" /></Link>
             </div>
             </div>
@@ -141,8 +143,8 @@ function Product(props) {
                       </div>
                     </div>
                     <div className="action-links">
-                      <Link to="#" title="Wishlist" onClick={()=> addToWishList()}><i className="lnr lnr-heart" /></Link>
-                      <Link to="#" title="Compare" onClick={()=>addToCompare()}><i className="lnr lnr-sync" /></Link>
+                      <Link to="#" title="Wishlist" onClick={()=> props.addToWish(product)}><i className="lnr lnr-heart" /></Link>
+                      <Link to="#" title="Compare" onClick={()=>props.addToCompare(product)}><i className="lnr lnr-sync" /></Link>
                       <Link to="#" title="Quick view" onClick={()=>quickView()} data-target="#quickk_view" data-toggle="modal"><i className="lnr lnr-magnifier" /></Link>
                     </div> 
                   </div>
@@ -182,7 +184,8 @@ const mapStateToProps =state=>(
 const mapDispatchToProps =dispatch=>(
   {
     addToBasket: (prod) => dispatch(AddBasketProd(prod)),
-    removefromCart:(prod)=>dispatch(RemoveBasketProd(prod))
+    addToCompare:(prod)=>dispatch(AddCompareProd(prod)),
+    addToWish:(prod)=>dispatch(AddWishProd(prod)),
   }
 )
 

@@ -1,12 +1,16 @@
 /* eslint-disable jsx-a11y/img-redundant-alt */
 // If wishList length is greater than 0 then form will render
 import React from 'react'
+import { connect } from 'react-redux'
 import { Link } from 'react-router-dom'
 import { DelItem } from '../../Utility/PageAction'
+import { AddBasketProd} from '../../Utility/Redux/Action/BasketAction'
+import { RemoveWishProd } from '../../Utility/Redux/Action/WishListAction'
 import { useStateValue, } from '../../Utility/StateProvider'
 import './WishlistBody.css'
 
-export default function WishListBody() {
+function WishListBody(props) {
+    console.log('wishList',props);
 
     const [{wishList},dispatch] = useStateValue()
 
@@ -35,7 +39,7 @@ export default function WishListBody() {
                             <h3>Wishlist</h3>
                             </div>
                     {// Turnery render here
-                        wishList.length > 0 ?      
+                        props.wishList.length > 0 ?      
                             <form action="#">
                             <div className="table-responsive text-center wishlist-style">
                                 <table className="table table-bordered">
@@ -51,7 +55,7 @@ export default function WishListBody() {
                                 </thead>
                                 <tbody>
                                     {                                       
-                                        wishList?.map(prod =>(
+                                        props.wishList?.map(prod =>(
                                             <tr id={prod.id}>
                                             <td>
                                                 <Link to="product-details.html"><img className='wish__thumb' src={`https:${prod.photo.replace('demostore','store')}`} alt="Wishlist Product Image" title={prod.name} /></Link>
@@ -65,8 +69,8 @@ export default function WishListBody() {
                                                 <div className="price"><small><del>{prod.previous_price || ''}</del></small> <strong>{prod.price}</strong></div>
                                             </td>
                                             <td>
-                                                <button type='button'  className="btn btn-primary" onClick={()=>addToCart(prod)}><i className="fa fa-shopping-cart" /></button>
-                                                <button type='button'  className="btn btn-danger" onClick={()=>DelItem(prod,wishList,'Wish List')}><i className="fa fa-times" /></button>
+                                                <button type='button'  className="btn btn-primary" onClick={()=>props.addToBasket(prod)}><i className="fa fa-shopping-cart" /></button>
+                                                <button type='button'  className="btn btn-danger" onClick={()=>props.removefromWish(prod)}><i className="fa fa-times" /></button>
                                             </td>
                                             </tr>
 
@@ -92,3 +96,18 @@ export default function WishListBody() {
         </div>
     )
 }
+
+const mapStateToProps = state=>(
+    {
+      wishList:state.wishListProd.wishList
+    }
+  )
+  
+  const mapDispatchToProps=dispatch=>(
+    {
+      addToBasket:(prod)=>dispatch(AddBasketProd(prod)),
+      removefromWish:(prod)=>dispatch(RemoveWishProd(prod))
+    }
+  )
+
+export default connect(mapStateToProps,mapDispatchToProps)(WishListBody)

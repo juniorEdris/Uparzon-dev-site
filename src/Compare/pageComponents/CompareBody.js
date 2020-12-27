@@ -1,17 +1,12 @@
 //Showing data from compareList array in reducer component.
 
 import React from 'react'
+import { connect } from 'react-redux'
 import { Link } from 'react-router-dom'
-import { DelItem } from '../../Utility/PageAction'
-import { useStateValue } from '../../Utility/StateProvider'
+import { AddBasketProd } from '../../Utility/Redux/Action/BasketAction'
+import { RemoveCompareProd } from '../../Utility/Redux/Action/CompareListAction'
 
-export default function CompareBody() {
-  const [{compareList},dispatch] = useStateValue()
-
-  // Adding to cart from Compare body is not working(it need to return object singley)
-  const addToCart = (item) => {
-    dispatch({type:"ADD_TO_CART",payload:item})
-    }
+function CompareBody(props) {
 
     return (
 <div className="comparison-wrapper pb-50">
@@ -27,7 +22,7 @@ export default function CompareBody() {
                 </div>
                 {
                   
-                compareList.length > 0 ? 
+                props.compareList.length > 0 ? 
                 <form action="#">
                   <div className="table-responsive  text-center">
                     <table className="table table-bordered compare-style">
@@ -40,7 +35,7 @@ export default function CompareBody() {
                         <tr>
                           <td className="product-title">Product Name</td>
                           {
-                            compareList.map(item=>(
+                            props.compareList.map(item=>(
                             <td id={item.id}><Link to="product-details.html"><strong>{item.name}</strong></Link></td>
                             ))
                           }
@@ -48,7 +43,7 @@ export default function CompareBody() {
                         <tr>
                           <td className="product-title">Image</td>
                           {
-                            compareList.map(item=>(
+                            props.compareList.map(item=>(
                               <td> <img src={'https://uparzon.com.bd/assets/img/product/product-8.jpg'} alt={item.name} className='img-thumbnail' style={{width:'250px'}}/> </td>
                             ))
                           }
@@ -57,7 +52,7 @@ export default function CompareBody() {
                         <tr>
                           <td className="product-title">Price</td>
                           {
-                            compareList.map(item=>(
+                            props.compareList.map(item=>(
                               <td> <del>{item.previous_price ?`$${item.previous_price}` : '' }</del> <span>${item.price}</span></td>
                             ))
                           }
@@ -65,7 +60,7 @@ export default function CompareBody() {
                         <tr>
                           <td className="product-title">Model</td>
                           {
-                            compareList.map(item=>(
+                            props.compareList.map(item=>(
                               <td>2</td>
                             ))
                           }
@@ -73,7 +68,7 @@ export default function CompareBody() {
                         <tr>
                           <td className="product-title">Brands</td>
                           {
-                            compareList.map(item=>(
+                            props.compareList.map(item=>(
                               <td><Link className="text-color" to="#">{item.shop_name}</Link></td>
                             ))
                           }
@@ -81,7 +76,7 @@ export default function CompareBody() {
                         <tr>
                           <td className="product-title">Availability</td>
                           {
-                            compareList.map(item=>(
+                            props.compareList.map(item=>(
                               <td>{item.is_grocery ? 'In Stock' : 'Out of Stock'}</td>
                             ))
                           }
@@ -89,8 +84,8 @@ export default function CompareBody() {
                         <tr>
                           <td className="product-title">Rating</td>
                               
-                                {compareList &&
-                                  compareList.map(item=>(
+                                {props.compareList &&
+                                  props.compareList.map(item=>(
                               <td>
                                     <div className="product-ratings d-flex justify-content-center mb-2">
                                       <ul className="rating d-flex">
@@ -113,7 +108,7 @@ export default function CompareBody() {
                         <tr>
                           <td className="product-title">Summary</td>
                           {
-                            compareList.map(item=>
+                            props.compareList.map(item=>
                               (
                               <td className="description" style={{textAlign:'justify'}}>{item?.description}</td>
                             ))
@@ -123,10 +118,10 @@ export default function CompareBody() {
                         <tr>
                           <td className="product-title">Actions</td>
                           {
-                            compareList.map(item=>(
+                            props.compareList.map(item=>(
                           <td>
-                            <Link to="#" className="btn btn-secondary mb-2 mb-lg-0 mr-xl-2" onClick={()=>addToCart(item)}>Add to Cart</Link>
-                            <Link to="#" className="btn btn-secondary" onClick={()=>DelItem(item,compareList,'Compare List')}>Remove</Link>
+                            <Link to="#" className="btn btn-secondary mb-2 mb-lg-0 mr-xl-2" onClick={()=>props.addToBasket(item)}>Add to Cart</Link>
+                            <Link to="#" className="btn btn-secondary" onClick={()=>props.removefromCompare(item)}>Remove</Link>
                           </td>
 
                             ))
@@ -148,3 +143,18 @@ export default function CompareBody() {
 </div>
     )
 }
+
+const mapStateToProps = state=>(
+  {
+    compareList:state.compareListProd.compare
+  }
+)
+
+const mapDispatchToProps=dispatch=>(
+  {
+    addToBasket:(prod)=>dispatch(AddBasketProd(prod)),
+    removefromCompare:(prod)=>dispatch(RemoveCompareProd(prod)),
+  }
+)
+
+export default connect(mapStateToProps,mapDispatchToProps)(CompareBody)

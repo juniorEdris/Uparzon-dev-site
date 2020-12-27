@@ -5,7 +5,7 @@ import { fetchCategories, fetchSubCategory } from '../../Utility/Redux/Action/Ca
 import './Navigation.css'
 
 function Navigation(props) {
-
+    console.log('navigation',props.categories);
     //Stciky nav trigger
     const [stickyNav,setStickyNav] = useState(false)
 
@@ -23,7 +23,7 @@ function Navigation(props) {
     }, [stickyNav])
 
     useEffect(()=>{
-        props.fetchCategories()
+        props.fetchCategory()
     },[])
 
         //catagories menu dropdown
@@ -64,7 +64,7 @@ function Navigation(props) {
                         {
                             props.categories.map(cat =>(
                                 <li>
-                                    <Link to="/homeaudio" onMouseOver={()=>props.fetchCategories(cat.id)}>{cat.name}{cat.has_subcategory && <span className="lnr lnr-chevron-right" />}</Link>
+                                    <Link to="/homeaudio" onMouseOver={()=>props.fetchCategory(cat.id)}>{cat.name}{cat.has_subcategory && <span className="lnr lnr-chevron-right" />}</Link>
                                     {
                                     cat.has_subcategory && 
                                         <ul className="cat-submenu">
@@ -120,7 +120,7 @@ const mapStateToProps = state=>(
 
 const mapDispatchToProps = ()=>(dispatch)=>(
     {
-        fetchCategories:(id)=>dispatch(fetchCategories(id)),
+        fetchCategory:(id)=>dispatch(fetchCategories(id)),
     }
 )
 export default connect(mapStateToProps,mapDispatchToProps)(React.memo(Navigation))
