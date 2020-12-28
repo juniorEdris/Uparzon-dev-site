@@ -146,7 +146,7 @@ function CompareBody(props) {
 
 const mapStateToProps = state=>(
   {
-    compareList:state.compareListProd.compare
+    compareList:state.compareListProd.compareList
   }
 )
 

@@ -14,7 +14,7 @@ const removeProdCompare =(product)=>(
 )
 
 export const AddCompareProd = (product) => (dispatch,getState) => {
-    const compareItems = getState().compareListProd.compare.slice()
+    const compareItems = getState().compareListProd.compareList.slice()
     let exist=false;
         compareItems.forEach(x => {
             if (x.id===product.id) {
@@ -29,7 +29,7 @@ export const AddCompareProd = (product) => (dispatch,getState) => {
     localStorage.setItem('Compare List', JSON.stringify(compareItems))
 }
 export const RemoveCompareProd = (product) => (dispatch,getState) => {
-    const compareItems = getState().compareListProd.compare.slice().filter(x =>x.id !== product.id)
+    const compareItems = getState().compareListProd.compareList.slice().filter(x =>x.id !== product.id)
     dispatch( removeProdCompare(compareItems) )
     localStorage.setItem('Compare List', JSON.stringify(compareItems))
 }
