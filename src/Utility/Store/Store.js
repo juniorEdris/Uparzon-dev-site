@@ -5,6 +5,7 @@ import { CategoriesReducer } from '../Redux/Reducer/CategoriesReducer';
 import { AddCompareReducer } from '../Redux/Reducer/CompareReducer';
 import { HomeReducer } from '../Redux/Reducer/HomeReducer'
 import { ProdSuggestionReducer } from '../Redux/Reducer/ProdSuggestionReducer';
+import { QuickViewReducer } from '../Redux/Reducer/QuickViewReducer';
 import { ShopListReducer } from '../Redux/Reducer/ShopListReducer';
 import { ShopReducer } from '../Redux/Reducer/ShopReducer';
 import { VendorReducer } from '../Redux/Reducer/VendorReducer';
@@ -37,7 +38,8 @@ const store = createStore(
         basketProd: AddBasketReducer,
         wishListProd: AddWishReducer,
         compareListProd: AddCompareReducer,
-        productSuggest: ProdSuggestionReducer
+        productSuggest: ProdSuggestionReducer,
+        productView: QuickViewReducer,
     }),
     initialState,
     composeEnhancers(applyMiddleware(thunk))

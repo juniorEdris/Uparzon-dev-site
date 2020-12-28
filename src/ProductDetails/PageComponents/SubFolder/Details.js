@@ -1,35 +1,22 @@
 import { Link } from 'react-router-dom'
 import React,{useEffect} from 'react'
 import $ from 'jquery'
-import { useStateValue } from '../../../Utility/StateProvider'
 import './Details.css'
+import { connect } from 'react-redux'
+import { AddBasketProd } from '../../../Utility/Redux/Action/BasketAction'
+import { AddCompareProd } from '../../../Utility/Redux/Action/CompareListAction'
+import { AddWishProd } from '../../../Utility/Redux/Action/WishListAction'
 
-
-export default function Details({data}) {
-  const [{compareList},dispatch] = useStateValue()
+function Details(props) {
+  const {data} = props
 
   useEffect(() => {
     document.title = data? `${data?.name} | Uparzon E-commerce Store` : 'Uparzon E-commerce Store'
-    //Anchore propagation off
-    $('.useful-links a').on('click',function( event ) {
-      event.preventDefault();
-    });
+        $('.useful-links a').on('click',function( event ) {
+          event.preventDefault();
+        });
   }, [data])
 
-  const addToWishList = () => {
-    dispatch({type:'ADD_TO_WISH_LIST',payload:data})
-  }
-  const addToCompare = () => {
-    if(compareList.length === 3 ){
-      return  
-    }
-      dispatch({type:"COMPARE_PRODUCTS",payload:data})
-
-  }
-  const addToCart= ()=>{
-    // addToCart dispatch 
-    dispatch({type:"ADD_TO_CART",payload:data})
-    }
   return (
         <div className="col-lg-7">
         <div className="product-details-inner">
@@ -84,16 +71,16 @@ export default function Details({data}) {
               <div className="qty-boxx">
               <label>qty :</label>
                 <input type="text" placeholder={0} />
-              <button className="btn-cart lg-btn" onClick={ ()=>addToCart()}>add to cart</button>
+              <button className="btn-cart lg-btn" onClick={ ()=>props.addToBasket(data)}>add to cart</button>
               </div>
             </div>
             <div className="useful-links mb-20">
               <ul>
                 <li>
-                  <Link to="#" onClick={ ()=>addToWishList()}><i className="fa fa-heart-o" />add to wish list</Link>
+                  <Link to="#" onClick={ ()=>props.addToWish(data)}><i className="fa fa-heart-o" />add to wish list</Link>
                 </li>
                 <li>
-                <Link to="#" onClick={ ()=>addToCompare()}><i className="fa fa-refresh" />compare this product</Link>
+                <Link to="#" onClick={ ()=>props.addToCompare(data)}><i className="fa fa-refresh" />compare this product</Link>
                 </li>
               </ul>
             </div>
@@ -130,3 +117,15 @@ export default function Details({data}) {
       </div>
         )
 }
+
+
+const mapStateToProps = state=>({})
+const mapDispatchToProps=dispatch=>(
+  {
+  addToBasket: (prod) => dispatch(AddBasketProd(prod)),
+  addToCompare:(prod)=>dispatch(AddCompareProd(prod)),
+  addToWish:(prod)=>dispatch(AddWishProd(prod)),
+  }
+)
+
+export default connect(mapStateToProps,mapDispatchToProps)(Details)

@@ -2,8 +2,9 @@ import React from "react";
 import "react-responsive-carousel/lib/styles/carousel.min.css";
 import { Carousel } from 'react-responsive-carousel';
 import './Slider.css'
+import { connect } from "react-redux";
 
-function Slider ({product}) {
+function Slider (props) {
         return (
             <div className='col-lg-5 modal-slider'>
                 <Carousel 
@@ -16,7 +17,7 @@ function Slider ({product}) {
                     {
                        
                     <div className='pro-large-img'>
-                        <img className='modal-image' src={`https:${product?.photo?.replace('demostore', 'store')}`} alt='' />
+                        <img className='modal-image' src={`https:${props.modalProd?.photo?.replace('demostore', 'store')}`} alt='' />
                     </div>
     
                     }
@@ -25,4 +26,7 @@ function Slider ({product}) {
         )
 }
 
-export default Slider;
+const mapStateToProps = state=>({
+    modalProd:state.productView.quickView,
+})
+export default connect(mapStateToProps)(Slider);

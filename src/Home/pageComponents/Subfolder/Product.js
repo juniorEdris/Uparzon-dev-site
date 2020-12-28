@@ -9,6 +9,7 @@ import { connect } from 'react-redux';
 import {AddBasketProd} from '../../../Utility/Redux/Action/BasketAction'
 import { AddCompareProd } from '../../../Utility/Redux/Action/CompareListAction';
 import { AddWishProd } from '../../../Utility/Redux/Action/WishListAction';
+import { ShowQuickDes } from '../../../Utility/Redux/Action/QuickViewAction';
 
 function Product(props) {
   const {isList,product,isGrid} = props
@@ -69,7 +70,7 @@ function Product(props) {
             <div className="action-links sinrat-list-icon">
                 <Link to='#' title="Wishlist" onClick={()=> props.addToWish(product)}><i className="lnr lnr-heart" /></Link>
                 <Link to='#' title="Compare" onClick={()=>props.addToWish(product)}><i className="lnr lnr-sync" /></Link>
-                <Link to='#' title="Quick view" onClick={()=>quickView()} data-target="#quickk_view" data-toggle="modal"><i className="lnr lnr-magnifier" /></Link>
+                <Link to='#' title="Quick view" onClick={()=>props.showProductDes(product)} data-target="#quickk_view" data-toggle="modal"><i className="lnr lnr-magnifier" /></Link>
             </div>
             </div>
         </div>
@@ -92,7 +93,7 @@ function Product(props) {
                     <div className="action-links">
                       <Link to="#" title="Wishlist" onClick={()=> props.addToWish(product)}><i className="lnr lnr-heart" /></Link>
                       <Link to="#" title="Compare" onClick={()=>props.addToCompare(product)}><i className="lnr lnr-sync" /></Link>
-                      <Link to="#" title="Quick view" onClick={()=>quickView()} data-target="#quickk_view" data-toggle="modal"><i className="lnr lnr-magnifier" /></Link>
+                      <Link to="#" title="Quick view" onClick={()=>props.showProductDes(product)} data-target="#quickk_view" data-toggle="modal"><i className="lnr lnr-magnifier" /></Link>
                     </div> 
                   </div>
                   <div className="product-caption">
@@ -133,6 +134,7 @@ const mapDispatchToProps =dispatch=>(
     addToBasket: (prod) => dispatch(AddBasketProd(prod)),
     addToCompare:(prod)=>dispatch(AddCompareProd(prod)),
     addToWish:(prod)=>dispatch(AddWishProd(prod)),
+    showProductDes:(prod)=>dispatch(ShowQuickDes(prod))
   }
 )
 

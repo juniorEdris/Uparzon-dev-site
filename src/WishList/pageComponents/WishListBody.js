@@ -3,26 +3,12 @@
 import React from 'react'
 import { connect } from 'react-redux'
 import { Link } from 'react-router-dom'
-import { DelItem } from '../../Utility/PageAction'
 import { AddBasketProd} from '../../Utility/Redux/Action/BasketAction'
 import { RemoveWishProd } from '../../Utility/Redux/Action/WishListAction'
 import { useStateValue, } from '../../Utility/StateProvider'
 import './WishlistBody.css'
 
 function WishListBody(props) {
-    console.log('wishList',props);
-
-    const [{wishList},dispatch] = useStateValue()
-
-    const addToCart=(item)=>{
-        console.log('add wish item',item);
-        dispatch({type:"ADD_TO_CART",payload:item})
-    }
-    // const DelItem = (item)=>{
-    //     const filtered = wishList.filter(prod => prod.id !== item.id)
-    //     localStorage.setItem('Wish List',JSON.stringify(filtered))
-    //     window.location.reload(false);
-    // }
 
     return (
         <div>
@@ -66,7 +52,7 @@ function WishListBody(props) {
                                             <td>null</td>
                                             <td>{prod.is_grocery ? 'In stock' : 'Out of stock'}</td>
                                             <td>
-                                                <div className="price"><small><del>{prod.previous_price || ''}</del></small> <strong>{prod.price}</strong></div>
+                                                <div className="price"><small><del>&#2547; {prod.previous_price? prod.previous_price : ' '}</del></small> <strong>&#2547; {prod.price}</strong></div>
                                             </td>
                                             <td>
                                                 <button type='button'  className="btn btn-primary" onClick={()=>props.addToBasket(prod)}><i className="fa fa-shopping-cart" /></button>

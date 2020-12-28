@@ -1,9 +1,9 @@
 import React from 'react'
 import Slider from './SubFolder/ModalSlider'
-import Description from './SubFolder/Driscription'
+import Description from './SubFolder/Description'
 import './ModalSection.css'
 
-export default function ModalSection({product}){
+export default function ModalSection(){
     
     return (
         <div>
@@ -17,8 +17,8 @@ export default function ModalSection({product}){
                     </div>
                 <div className="modal-body">
                 <div className="row">
-                        <Slider product={product}/>
-                        <Description product={product}/>
+                        <Slider />
+                        <Description/>
                     </div>
                     </div>    
                 </div>
