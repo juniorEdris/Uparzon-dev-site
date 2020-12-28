@@ -36,7 +36,7 @@ function CompareBody(props) {
                           <td className="product-title">Product Name</td>
                           {
                             props.compareList.map(item=>(
-                            <td id={item.id}><Link to="product-details.html"><strong>{item.name}</strong></Link></td>
+                            <td id={item.id}><Link to={`/productdetails?id=${item.id}`}><strong>{item.name}</strong></Link></td>
                             ))
                           }
                         </tr>
@@ -44,7 +44,7 @@ function CompareBody(props) {
                           <td className="product-title">Image</td>
                           {
                             props.compareList.map(item=>(
-                              <td> <img src={'https://uparzon.com.bd/assets/img/product/product-8.jpg'} alt={item.name} className='img-thumbnail' style={{width:'250px'}}/> </td>
+                              <td> <img src={`https:${item.photo.replace('demostore', 'store')}`} alt={item.name} className='img-thumbnail' style={{width:'250px'}}/> </td>
                             ))
                           }
                          
@@ -53,7 +53,7 @@ function CompareBody(props) {
                           <td className="product-title">Price</td>
                           {
                             props.compareList.map(item=>(
-                              <td> <del>{item.previous_price ?`$${item.previous_price}` : '' }</del> <span>${item.price}</span></td>
+                              <td>  {item.previous_price ?<del>&#2547; {item.previous_price}</del> : '' } <span>&#2547; {item.price}</span></td>
                             ))
                           }
                         </tr>

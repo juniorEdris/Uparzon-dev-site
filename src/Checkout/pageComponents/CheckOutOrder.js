@@ -1,13 +1,12 @@
 // If cart length is greater than 0 then product will display
 import React from 'react'
+import { connect } from 'react-redux'
 import { Link } from 'react-router-dom'
 import { getSubTotal } from '../../Utility/Reducer'
-import { useStateValue } from '../../Utility/StateProvider'
 
 
-export default function CheckOutOrder() {
+function CheckOutOrder(props) {
 
-    const[{basket}] = useStateValue()
 
     return (
         <div className="col-12 col-sm-12 col-md-6 col-lg-5">
@@ -17,9 +16,9 @@ export default function CheckOutOrder() {
         </div>
         <div className="product-container">
             {
-                basket.length>0 ? 
+                props.basket.length>0 ? 
             
-            basket?.map(product =>(
+            props.basket?.map(product =>(
             <div className="product-list">
                 <div className="product-inner media align-items-center" id={product.id}>
                     <div className="product-image mr-4 mr-sm-5 mr-md-4 mr-lg-5">
@@ -46,11 +45,11 @@ export default function CheckOutOrder() {
                 <tbody>
                 <tr className="cart-subtotal">
                     <th>Subtotal</th>
-                    <td className="text-center">&#2547; {getSubTotal(basket).toFixed(2)}</td>
+                    <td className="text-center">&#2547; {getSubTotal(props.basket).toFixed(2)}</td>
                 </tr>            
                 <tr className="order-total">
                     <th>Total</th>
-                    <td className="text-center"><strong>&#2547; {getSubTotal(basket).toFixed(2)}</strong></td>
+                    <td className="text-center"><strong>&#2547; {getSubTotal(props.basket).toFixed(2)}</strong></td>
                 </tr>
                 </tbody>
             </table>
@@ -102,3 +101,8 @@ export default function CheckOutOrder() {
     </div>
     )
 }
+
+
+export default connect(state=>({
+    basket:state.basketProd.basket,
+}))(CheckOutOrder)

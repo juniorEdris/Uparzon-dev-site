@@ -1,4 +1,4 @@
-import React,{useEffect,useState} from 'react'
+import React,{useState} from 'react'
 import { connect } from 'react-redux'
 import { Link } from 'react-router-dom'
 import { getSubTotal } from '../../Utility/Reducer'
@@ -21,11 +21,11 @@ function HeaderButtons(props) {
         setIsAccActive(!isAccActive);
         setCartActive(false);
     }
-    const[{basket,wishList,user,}] = useStateValue()
+    const[{user}] = useStateValue()
     // Total Amount (inc vat & eco) 
-    const eco_tax = getSubTotal(basket) / 1.51
-    const vat_amount = getSubTotal(basket) / 0.20 
-    const get_total = getSubTotal(basket) + eco_tax + vat_amount
+    const eco_tax = getSubTotal(props.basket) / 1.51
+    const vat_amount = getSubTotal(props.basket) / 0.20 
+    const get_total = getSubTotal(props.basket) + eco_tax + vat_amount
     return (
         <div className="col-lg-4 col-md-8 col-12 col-sm-8 order-lg-last">
             <div className="mini-cart-option">
@@ -48,7 +48,7 @@ function HeaderButtons(props) {
                                 </div>
                                 <div className="cart-info">
                                         <h4><Link to={`/productdetails?id=${prod.id}`}>{prod.name} </Link></h4>
-                                        <span> <span>{`${prod.count} x` }</span>${prod.price}</span>
+                                        <span> <span>{`${prod.count} x` }</span>&#2547; {prod.price}</span>
                                 </div>
                                 <div className="del-icon">
                                         <i className="fa fa-times-circle" onClick={()=> props.removefromBasket(prod) }/>
@@ -59,19 +59,19 @@ function HeaderButtons(props) {
 
                     <li>
                     <div className="subtotal-text">Sub-total: </div>
-                    <div className="subtotal-price">${getSubTotal(basket).toFixed(2)}</div>
+                    <div className="subtotal-price">&#2547; {getSubTotal(props.basket).toFixed(2)}</div>
                     </li>
                     <li>
                     <div className="subtotal-text">Eco Tax (-2.00): </div>
-                    <div className="subtotal-price">${eco_tax.toFixed(2)}</div>
+                    <div className="subtotal-price">&#2547; {eco_tax.toFixed(2)}</div>
                     </li>
                     <li>
                     <div className="subtotal-text">Vat (20%): </div>
-                    <div className="subtotal-price">${vat_amount.toFixed(2)}</div>
+                    <div className="subtotal-price">&#2547; {vat_amount.toFixed(2)}</div>
                     </li>
                     <li>
                     <div className="subtotal-text">Total: </div>
-                    <div className="subtotal-price"><span>${get_total.toFixed(2)}</span></div>
+                    <div className="subtotal-price"><span>&#2547; {get_total.toFixed(2)}</span></div>
                     </li>
                     <li className="mt-30">
                     <Link className="cart-button" to="/cart">view cart</Link>

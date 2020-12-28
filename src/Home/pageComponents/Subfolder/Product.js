@@ -4,7 +4,6 @@ import React,{useEffect} from 'react'
 import { Link } from 'react-router-dom';
 import {  Truncate } from '../../../Data';
 import { useStateValue } from '../../../Utility/StateProvider';
-import $ from 'jquery'
 import './product.css'
 import { connect } from 'react-redux';
 import {AddBasketProd} from '../../../Utility/Redux/Action/BasketAction'
@@ -13,66 +12,14 @@ import { AddWishProd } from '../../../Utility/Redux/Action/WishListAction';
 
 function Product(props) {
   const {isList,product,isGrid} = props
-  const [{ wishList, basket, compareList }, dispatch] = useStateValue()
-  useEffect(() => {
-    $('.action-links a').on('click', function (event) {
-      event.preventDefault();
-    });
-  }, [])
+  const [, dispatch] = useStateValue()
 
-  // useEffect(() => {
-  //   //Add every item to localStorage on every item click
-  //   localStorage.setItem('Wish List', JSON.stringify(wishList))
-  //   localStorage.setItem('Cart List', JSON.stringify(props.basket))
-  //   localStorage.setItem('Compare List', JSON.stringify(compareList))
-    
-  // }, [wishList, props.basket, compareList])
    
   const quickView = () => {
     dispatch({ type: "QUICK_VIEW", payload: product })
   }
   
-  const addToCompare = () => {
-    let exist = false
-    const compare =[...compareList]
-    compare.forEach(x => {
-      if (x.id === product.id) {
-        exist = true;
-        return
-      }
-    })
-    if (!exist) {
-      dispatch({ type: "COMPARE_PRODUCTS", payload: product })
-    }
 
-  }
-
-  // addToCart dispatch  
-  const addToCart = () => {   
-    let exist = false;
-    const basketFull = [...basket]
-    basketFull.forEach(x => {
-      if (x.id === product.id) {
-        x.count++;
-        exist = true;
-      }
-    })
-    if (!exist) {dispatch({ type: "ADD_TO_CART", payload: { ...product, count: 1 } })}
-  }
-
-  const addToWishList= ()=>{
-    let exist = false
-    const wish =[...wishList]
-    wish.forEach(x => {
-      if (x.id === product.id) {
-        exist = true;
-        return
-      }
-    })
-    if(!exist){
-      dispatch({type:"ADD_TO_WISH_LIST",payload:product})
-    }
-  }
 
   return (
         <div>

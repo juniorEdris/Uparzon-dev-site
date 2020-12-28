@@ -1,11 +1,10 @@
 import React, { useState,useEffect } from 'react'
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
-import { fetchCategories, fetchSubCategory } from '../../Utility/Redux/Action/CategoriesAction';
+import { fetchCategories} from '../../Utility/Redux/Action/CategoriesAction';
 import './Navigation.css'
 
 function Navigation(props) {
-    console.log('navigation',props.categories);
     //Stciky nav trigger
     const [stickyNav,setStickyNav] = useState(false)
 

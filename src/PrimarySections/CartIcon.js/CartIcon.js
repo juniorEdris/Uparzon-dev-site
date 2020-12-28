@@ -1,12 +1,11 @@
 import React,{useEffect} from 'react'
 import { getSubTotal } from '../../Utility/Reducer'
-import { useStateValue } from '../../Utility/StateProvider'
 import { AnimatePresence, motion } from "framer-motion"
 import {Spring} from 'react-spring/renderprops'
 import './CartIcon.css'
 import { connect } from 'react-redux'
 function CartIcon(props) {
-    const [{basket,wishList,compareList}] = useStateValue()
+
 
     useEffect(()=>{
         const basket = document.querySelector('.floating-basket');
@@ -31,10 +30,10 @@ function CartIcon(props) {
         exit={{x:100}}
         >
             <div className='compare'>
-            <span className="lnr lnr-sync" /><span className="count">{ compareList.length}</span>
+            <span className="lnr lnr-sync" /><span className="count">{ props.compare.length}</span>
             </div>
             <div className='wish'>
-            <span className="lnr lnr-heart" /><span className="count">{ wishList.length}</span>
+            <span className="lnr lnr-heart" /><span className="count">{ props.wish.length}</span>
             </div>
             <div className='cart'>
                 <span className="lnr lnr-cart" /><span className="count">{ props.basket.length}</span>
@@ -54,6 +53,8 @@ function CartIcon(props) {
 
 const mapStateToProps = state => (
     {
+        compare:state.compareListProd.compareList,
+        wish:state.wishListProd.wishList,
         basket:state.basketProd.basket,
     }
 )
