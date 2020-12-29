@@ -1,5 +1,7 @@
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+This project was bootstrapped with REACT Framework.
 
-## Available Scripts
+NOTICE:
 
-In the project directory, you can run:
+## All the items are comming from local NODE JS API.
+
+## TO Check With DemoStore API Please Pull From past PUSH

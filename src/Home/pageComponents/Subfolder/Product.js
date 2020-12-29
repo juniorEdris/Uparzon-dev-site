@@ -1,9 +1,8 @@
 // Our Product,Hot Collection,Brand Sale,Shop(short-cirtuit evaluation to show grid and list view) product component
 
-import React,{useEffect} from 'react'
+import React from 'react'
 import { Link } from 'react-router-dom';
 import {  Truncate } from '../../../Data';
-import { useStateValue } from '../../../Utility/StateProvider';
 import './product.css'
 import { connect } from 'react-redux';
 import {AddBasketProd} from '../../../Utility/Redux/Action/BasketAction'
@@ -16,15 +15,14 @@ function Product(props) {
 
   return (
         <div>
-
-
           {
           isList ?  
             <div className="sinrato-list-item mb-30" id={product.id}>
             <div className="sinrato-thumb">
             <Link to={`/productdetails?id=${product.id}`} >
-                <img  src={`https:${product.photo.replace('demostore', 'store')}`} className="pri-img" alt={product.name} />
-                <img  src={`https:${product.photo.replace('demostore', 'store')}`} className="sec-img" alt={product.name} />
+                {/* <img  src={`https:${product.photo.replace('demostore', 'store')}`} className="pri-img" alt={product.name} />
+                <img  src={`https:${product.photo.replace('demostore', 'store')}`} className="sec-img" alt={product.name} /> */}
+                <img  src={`https://uparzon.com.bd/assets/img/product/product-10.jpg`} className="pri-img" alt={product.name} />
             </Link>
             <div className="box-label">
                 <div className="label-product label_new">
@@ -55,8 +53,8 @@ function Product(props) {
             </div>
             <div className="sinrato-box-action">
             <div className="price-box">
-                <span className="regular-price"><span className={` ${product.special && 'special-price'}`}>£{product.price}</span></span>
-                <span className="old-price"><del>{product.previous_price ? ` &#2547;${product.previous_price}` : ''}</del></span>
+                <span className="regular-price"><span className={` ${product.special && 'special-price'}`}>&#2547;{product.price}</span></span>
+                <span className="old-price"><del>&#2547;{product.previous_price ? `${product.previous_price}` : 0}</del></span>
             </div>
             <button className="btn-cart" type="button" onClick={(e)=> props.addToBasket(product)} data-target="#cart_modal" data-toggle="modal">add to cart</button>
             <div className="action-links sinrat-list-icon">
@@ -70,8 +68,9 @@ function Product(props) {
             <div className={`product-item ${isGrid && 'mb-30'}`} id={product.id}>
                   <div className="product-thumb product">
                     <Link to={`/productdetails?id=${product.id}`} >
-                      <img src={`https:${product.photo.replace('demostore', 'store')}`} className="pri-img" alt={product.name} />
-                      <img src={`https:${product.photo.replace('demostore', 'store')}`} className="sec-img" alt={product.name} />
+                      {/* <img src={`https:${product.photo.replace('demostore', 'store')}`} className="pri-img" alt={product.name} />
+                      <img src={`https:${product.photo.replace('demostore', 'store')}`} className="sec-img" alt={product.name} /> */}
+                      <img src={'https://uparzon.com.bd/assets/img/product/product-10.jpg'} className="pri-img" alt={product.name} />
                     </Link>
                     
                     <div className="box-label">
@@ -103,8 +102,8 @@ function Product(props) {
                       <span><i className="lnr lnr-star" /></span>
                     </div>
                     <div className="price-box">
-                      <span className="regular-price"><span className={` ${product.special && 'special-price'}`}> &#2547; {product.price}</span></span>
-                      <span className="old-price"><del>{product.previous_price ? `£${product.previous_price}` : ''}</del></span>
+                      <span className="regular-price"><span className={` ${product.special && 'special-price'}`}> &#2547;{product.price}</span></span>
+                      <span className="old-price"><del>&#2547;{product.previous_price ? `${product.previous_price}` : 0}</del></span>
                     </div>
                     <button className="btn-cart" onClick={(e)=> props.addToBasket(product)} type="button">add to cart</button>
                   </div>

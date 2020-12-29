@@ -45,7 +45,7 @@ function Description(props) {
                 <h3>Available Options</h3>
                 <div className="color-optionn">
                 <h4><sup>*</sup>color</h4>
-                <ul>
+                {/* <ul>
                 
                 {
                     props.modalProd?.color.map(color =>{return(
@@ -54,7 +54,7 @@ function Description(props) {
                     </li>  
                     )})
                 }
-                </ul>
+                </ul> */}
                 </div>
             </div>
             <div className="pro-quantity-box mb-30">
