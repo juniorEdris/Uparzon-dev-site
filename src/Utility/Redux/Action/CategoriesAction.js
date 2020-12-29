@@ -18,27 +18,16 @@ const fetchCategorySuccess = (category,subCategory) =>(
 // )
 
 export const fetchCategories = (id)=> async (dispatch)=>{
-    const categories = await Axios.post(Request.Categories)
+    const categories = await Axios.get(Request.Categories)
     .then(res=>{
-        return res.data.data
+        return res.data
     }).catch((error)=>{
         console.log(error);
     })
-    
-    const url = `https://demostore.uparzon.com/api/uparzonapp/get_categories?api_key=4e38d8be3269aa17280d0468b89caa4c7d39a699&category_id=${id}&is_store=1`
-    const subCategories= await Axios.post(url)
+    // Fetch sub categories
+    const subCategories= await Axios.get(Request.SubCategory)
     .then((res)=>{
-        return res.data.data
+        return res.data
     })
     dispatch(fetchCategorySuccess(categories,subCategories))
 }
-
-// export const fetchSubCategory=(id=33)=>async dispatch=>{ 
-//     console.log('catID',id)
-//     const url = `/api/uparzonapp/get_categories?api_key=4e38d8be3269aa17280d0468b89caa4c7d39a699&category_id=${id}&is_store=1`
-//     await Axios.post(url)
-//     .then((res)=>{
-//         console.log('subcategories',res.data);
-//         dispatch(fetchSubCategorySuccess(res.data))
-//     })
-// }

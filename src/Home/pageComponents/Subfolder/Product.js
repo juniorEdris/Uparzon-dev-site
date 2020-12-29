@@ -13,14 +13,6 @@ import { ShowQuickDes } from '../../../Utility/Redux/Action/QuickViewAction';
 
 function Product(props) {
   const {isList,product,isGrid} = props
-  const [, dispatch] = useStateValue()
-
-   
-  const quickView = () => {
-    dispatch({ type: "QUICK_VIEW", payload: product })
-  }
-  
-
 
   return (
         <div>

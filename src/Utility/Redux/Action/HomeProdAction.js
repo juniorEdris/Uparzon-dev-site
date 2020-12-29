@@ -7,12 +7,12 @@ const fetchHomeProdsRequest = ()=>{
         type: FETCH_PRODUCTS_REQUEST,
     }
 }
-const fetchHomeProdsSuccess = (store,product)=>{
+const fetchHomeProdsSuccess = (store,product,banner)=>{
     return{
         type: FETCH_PRODUCTS_SUCCESS,
         store,
         product,
-
+        banner,
 
     }
 }
@@ -27,6 +27,10 @@ const fetchHomeProdsError = (error)=>{
 export const fetchHomeProds = ()=>async(dispatch)=>{
     dispatch(fetchHomeProdsRequest())
     const prods = await Axios.get(Request.AllProducts)
+    const homeBanner = await Axios.get(Request.HomeBanner)
+    console.log('====================================');
+    console.log('home banner',homeBanner.data);
+    console.log('====================================');
     const stores = await Axios.get(Request.HomeStores)
-        dispatch(fetchHomeProdsSuccess(stores.data.data,prods.data.data))
+    dispatch(fetchHomeProdsSuccess(stores.data,prods.data,homeBanner.data))
 }

@@ -1,4 +1,4 @@
-import React,{useState,useEffect} from 'react'
+import React,{useEffect} from 'react'
 import HomeSlider from './pageComponents/HomeSlider'
 import FeatureArea from './pageComponents/FeatureArea'
 import OurProduct from './pageComponents/OurProduct'

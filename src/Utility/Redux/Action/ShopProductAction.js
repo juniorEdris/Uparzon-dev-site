@@ -25,7 +25,7 @@ export const fetchShopProds = ()=>async (dispatch)=>{
     dispatch(fetchShopProdRequset())
     await Axios.get(Request.ShopProducts)
     .then(res=>{
-        const prod = res.data.data
+        const prod = res.data
         dispatch(fetchShopProdSuccess(prod))
     })
     .catch(err=>{

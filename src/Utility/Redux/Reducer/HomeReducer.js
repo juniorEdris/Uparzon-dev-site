@@ -12,6 +12,7 @@ export const HomeReducer = (state=initialState,action)=>{
             return{    
                 ...state,
                 loading:false,
+                homeBanner:action.banner,
                 ourProduct:action.product,
                 homeStores:action.store,
                 error:'',

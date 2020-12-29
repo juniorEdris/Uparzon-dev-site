@@ -2,6 +2,7 @@ import React, { useState,useEffect } from 'react'
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
 import { fetchCategories} from '../../Utility/Redux/Action/CategoriesAction';
+import { GetSubCategory } from '../../Utility/Redux/Action/GetSubCategoryAction';
 import './Navigation.css'
 
 function Navigation(props) {
@@ -61,18 +62,18 @@ function Navigation(props) {
                     <nav className={`categorie-menus ha-dropdown ${isBrowsing ? 'active':'inActive'}`} >
                     <ul id="menu2">
                         {
-                            props.categories.map(cat =>(
+                            props.categories?.map(cat =>(
                                 <li>
-                                    <Link to="/homeaudio" onMouseOver={()=>props.fetchCategory(cat.id)}>{cat.name}{cat.has_subcategory && <span className="lnr lnr-chevron-right" />}</Link>
+                                    <Link to="/homeaudio" onMouseOver={()=>props.getSubCat(cat.id)}>{cat.name}{cat.has_subcategory === 1 ? <span className="lnr lnr-chevron-right" />: ''}</Link>
                                     {
-                                    cat.has_subcategory && 
+                                    cat.has_subcategory === 1 ? 
                                         <ul className="cat-submenu">
                                             {
                                             props.SubCategories?.map(x=>(
-                                                <li><Link to='#'>{x.name}</Link></li>
+                                                <li><Link to='#'>{x.subcategory_name}</Link></li>
                                             ))    
                                             }
-                                        </ul>
+                                        </ul>: ''
                                     }
                                 </li>
                             ))
@@ -113,13 +114,14 @@ function Navigation(props) {
 const mapStateToProps = state=>(
     {
         categories:state.categories.categoryList,
-        SubCategories:state.categories.subCategory,
+        SubCategories:state.getSubCat.SubCat,
     }
 )
 
 const mapDispatchToProps = ()=>(dispatch)=>(
     {
-        fetchCategory:(id)=>dispatch(fetchCategories(id)),
+        fetchCategory:()=>dispatch(fetchCategories()),
+        getSubCat:(id)=>dispatch(GetSubCategory(id))
     }
 )
 export default connect(mapStateToProps,mapDispatchToProps)(React.memo(Navigation))

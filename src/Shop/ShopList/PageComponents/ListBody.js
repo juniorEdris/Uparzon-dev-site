@@ -11,6 +11,7 @@ function ListBody(props) {
         document.title = 'Shop List | Uparzon E-commerce Store'
         props.fetchShopList()
     }, [])
+    console.log(props.lists);
     return (
         <>
         {props.loading ?
@@ -21,7 +22,7 @@ function ListBody(props) {
         <div className='container'>
             <div className="d-flex flex-wrap justify-content-center p-4">
             {
-                props.lists.map(store=>(
+                props.lists?.map(store=>(
             <Link to={`/vendor?id=${store.shop_id}`}>
                 <div className="shop__card m-2" title={store.shop_name}>
                     <div className='shop__card__img'>

@@ -8,11 +8,13 @@ import { ProdSuggestionReducer } from '../Redux/Reducer/ProdSuggestionReducer';
 import { QuickViewReducer } from '../Redux/Reducer/QuickViewReducer';
 import { ShopListReducer } from '../Redux/Reducer/ShopListReducer';
 import { ShopReducer } from '../Redux/Reducer/ShopReducer';
+import { subcategoryReducer } from '../Redux/Reducer/SubCategoryReducer';
 import { VendorReducer } from '../Redux/Reducer/VendorReducer';
 import { AddWishReducer } from '../Redux/Reducer/WishListReducer';
 
 export const initialState={
     loading:true,
+    homeBanner:[],
     homeStores:[],
     ourProduct:[],
     shopProduct:[],
@@ -40,6 +42,7 @@ const store = createStore(
         compareListProd: AddCompareReducer,
         productSuggest: ProdSuggestionReducer,
         productView: QuickViewReducer,
+        getSubCat: subcategoryReducer,
     }),
     initialState,
     composeEnhancers(applyMiddleware(thunk))

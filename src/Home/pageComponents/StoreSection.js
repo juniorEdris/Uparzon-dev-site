@@ -23,10 +23,10 @@ function StoreSection(props) {
                   <StoreLoader/>:
                   <div className=" d-flex flex-wrap justify-content-center"> 
                   {props.store.map(store=>(
-                        <Link to={`/vendor?id=${store.shop_id}`} >
+                        <Link to={`/vendor?id=${store.id}`} >
                           <div className="store-card mb-3 mr-3" key={store.shop_id}>
                                 <div className="store-thumb">
-                                <img src={`https:${store.logo.replace('demostore', 'store')}`} alt={store.shop_name} />
+                                <img src={`https://images.unsplash.com/photo-1534723452862-4c874018d66d?ixid=MXwxMjA3fDB8MHxzZWFyY2h8NHx8c3RvcmV8ZW58MHx8MHw%3D&ixlib=rb-1.2.1&w=1000&q=80`} alt={store.shop_name} />
                                 </div>
 
                                 <div className="store-info">
