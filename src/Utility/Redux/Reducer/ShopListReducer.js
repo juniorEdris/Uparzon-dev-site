@@ -16,10 +16,9 @@ export const ShopListReducer = (state=initialState,action)=>{
                 error:'',
             }
         case FETCH_SHOP_LIST_ERROR:
-            console.log('error',action.error);
             return{    
                 ...state,
-                loading:false,
+                loading:true,
                 shopList:[],
                 error:action.error,
             }

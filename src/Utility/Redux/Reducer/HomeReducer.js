@@ -18,7 +18,6 @@ export const HomeReducer = (state=initialState,action)=>{
                 error:'',
             }
         case FETCH_PRODUCTS_ERROR:
-            console.log(action.error);
             return{    
                 ...state,
                 loading:false,

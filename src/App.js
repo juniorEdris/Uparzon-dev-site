@@ -26,6 +26,7 @@ import { connect } from 'react-redux';
 import { fetchHomeProds } from './Utility/Redux/Action/HomeProdAction';
 import { fetchShopProds } from './Utility/Redux/Action/ShopProductAction';
 import { FetchProductSuggetions } from './Utility/Redux/Action/ProdSuggestionAction';
+import { fetchShopList } from './Utility/Redux/Action/ShopListAction';
 
 
 function App(props) {
@@ -49,6 +50,7 @@ function App(props) {
       props.fetchBrandProd()
       props.fetchShopProds()
       props.fetchProdSuggestions()
+      props.fetchShopList()
     },[])   
     
   return ( 
@@ -116,6 +118,7 @@ const mapDispatchToProps = dispatch=>(
     fetchStroes:()=>dispatch(fetchHomeProds()),
     fetchShopProds:()=>dispatch(fetchShopProds()),
     fetchProdSuggestions:()=>dispatch(FetchProductSuggetions()),
+    fetchShopList:()=>dispatch(fetchShopList())
   }
 )
 export default connect(state=>({}),mapDispatchToProps)(App);

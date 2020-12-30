@@ -24,11 +24,10 @@ const fetchShopListErorr =(error)=>{
 
 
 export const fetchShopList = () => async dispatch=>{
-    console.log('list page action');
     dispatch(fetchShopListRequest())
-    await Axios.get(Request.StorePage2)
+    await Axios.get(Request.StorePage1)
     .then(res=>{
-        const lists = res.data.data
+        const lists = res.data
         dispatch(fetchShopListSuccess(lists))
     })
     .catch(err=>{

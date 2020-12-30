@@ -3,13 +3,11 @@ import Breadcrumb from '../PrimarySections/Breadcrumbs/Breadcrumb'
 import CartIcon from '../PrimarySections/CartIcon.js/CartIcon'
 import ModalSection from '../PrimarySections/Modal/ModalSection'
 import ScrollBar from '../PrimarySections/ScrollBar/ScrollBar'
-import { useStateValue } from '../Utility/StateProvider'
 import ShopWrapper from './pageComponents/ShopWrapper'
 
 export default function Shop() {
 
     const [show,setShow] = useState(false)
-    const [{quickView}] = useStateValue()
     useEffect(()=>{
         document.title = "Shop | Uparzon Ecommerce Online Shop"
         window.addEventListener('scroll', () => {
@@ -29,7 +27,7 @@ export default function Shop() {
             <ShopWrapper/>
             <ScrollBar/>
             {show && <CartIcon />}
-            <ModalSection product={quickView}/>
+            <ModalSection/>
         </div>
     )
 }

@@ -3,62 +3,17 @@
 import React,{useEffect} from 'react'
 import { Link } from 'react-router-dom';
 import {  Truncate } from '../../../Data';
-import { useStateValue } from '../../../Utility/StateProvider';
 import $ from 'jquery'
 
 export default function Product(product) {
-  const [{ wishList, basket, compareList }, dispatch] = useStateValue()
+
   useEffect(() => {
     $('.action-links a').on('click', function (event) {
       event.preventDefault();
     });
   }, [])
-   
-  const quickView = () => {
-    dispatch({ type: "QUICK_VIEW", payload: product })
-  }
   
-  const addToCompare = () => {
-    let exist = false
-    const compare =[...compareList]
-    compare.forEach(x => {
-      if (x.id === product.id) {
-        exist = true;
-        return
-      }
-    })
-    if (!exist) {
-      dispatch({ type: "COMPARE_PRODUCTS", payload: product })
-    }
 
-  }
-
-  // addToCart dispatch 
-  const addToCart = () => {   
-    let exist = false;
-    const basketFull = [...basket]
-    basketFull.forEach(x => {
-      if (x.id === product.id) {
-        x.count++;
-        exist = true;
-      }
-    })
-    if (!exist) {dispatch({ type: "ADD_TO_CART", payload: { ...product, count: 1 } })}
-  }
-
-  const addToWishList= ()=>{
-    let exist = false
-    const wish =[...wishList]
-    wish.forEach(x => {
-      if (x.id === product.id) {
-        exist = true;
-        return
-      }
-    })
-    if(!exist){
-      dispatch({type:"ADD_TO_WISH_LIST",payload:product})
-    }
-  }
 
     return (
         <div>
@@ -69,8 +24,8 @@ export default function Product(product) {
             <div className="sinrato-list-item mb-30" id={product.id}>
             <div className="sinrato-thumb">
             <Link to={`/productdetails?id=${product.id}`} >
-                <img  src={`https:${product.photo.replace('demostore', 'store')}`} className="pri-img" alt={product.name} />
-                {/* <img  src='https://uparzon.com.bd/assets/img/product/product-2.jpg' className="sec-img" alt={product.name} /> */}
+                {/* <img  src={`https:${product.photo.replace('demostore', 'store')}`} className="pri-img" alt={product.name} /> */}
+                <img  src='https://uparzon.com.bd/assets/img/product/product-2.jpg' className="pri-img" alt={product.name} />
             </Link>
             <div className="box-label">
                 <div className="label-product label_new">
@@ -86,7 +41,7 @@ export default function Product(product) {
                 <span><Link to='/'>{product.brand}</Link></span>
             </div>
             <div className="sinrato-product-name">
-                <h4><Link to={`/productdetails?id=${product.id}`} title={product.name}>{Truncate(product.name)}</Link></h4>
+                <h4><Link to={`/productdetails?id=${product.id}`} title={product.product_name}>{Truncate(product.name)}</Link></h4>
             </div>
             <div className="sinrato-ratings mb-15">
                 <span><i className="fa fa-star" /></span>
@@ -104,11 +59,11 @@ export default function Product(product) {
                 <span className="regular-price"><span className={` ${product.special && 'special-price'}`}>£{product.price}</span></span>
                 <span className="old-price"><del>{product.previous_price ? `£${product.previous_price}` : ''}</del></span>
             </div>
-            <button className="btn-cart" type="button" onClick={()=> addToCart()} data-target="#cart_modal" data-toggle="modal">add to cart</button>
+            <button className="btn-cart" type="button"  data-target="#cart_modal" data-toggle="modal">add to cart</button>
             <div className="action-links sinrat-list-icon">
-                <Link to='#' title="Wishlist" onClick={()=> addToWishList()}><i className="lnr lnr-heart" /></Link>
-                <Link to='#' title="Compare" onClick={()=>addToCompare()}><i className="lnr lnr-sync" /></Link>
-                <Link to='#' title="Quick view" onClick={()=>quickView()} data-target="#quickk_view" data-toggle="modal"><i className="lnr lnr-magnifier" /></Link>
+                <Link to='#' title="Wishlist" ><i className="lnr lnr-heart" /></Link>
+                <Link to='#' title="Compare" ><i className="lnr lnr-sync" /></Link>
+                <Link to='#' title="Quick view" data-target="#quickk_view" data-toggle="modal"><i className="lnr lnr-magnifier" /></Link>
             </div>
             </div>
         </div>
@@ -116,8 +71,8 @@ export default function Product(product) {
             <div className={`product-item ${product.isGrid && 'mb-30'}`} id={product.id}>
                   <div className="product-thumb">
                     <Link to={`/productdetails?id=${product.id}`} >
-                      <img src={`https:${product.photo.replace('demostore', 'store')}`} className="pri-img" alt={product.name} />
-                      {/* <img src='https://uparzon.com.bd/assets/img/product/product-2.jpg' className="sec-img" alt={product.name} /> */}
+                      {/* <img src={`https:${product.photo.replace('demostore', 'store')}`} className="pri-img" alt={product.name} /> */}
+                      <img src='https://uparzon.com.bd/assets/img/product/product-2.jpg' className="pri-img" alt={product.name} />
                     </Link>
                     
                     <div className="box-label">
@@ -129,9 +84,9 @@ export default function Product(product) {
                       </div>
                     </div>
                     <div className="action-links">
-                      <Link to="#" title="Edit details" onClick={()=> addToWishList()}><i className="lnr lnr-heart" /></Link>
-                      <Link to="#" title="Mark as sold" onClick={()=>addToCompare()}><i className="lnr lnr-sync" /></Link>
-                      <Link to="#" title="Quick view" onClick={()=>quickView()} data-target="#quickk_view" data-toggle="modal"><i className="lnr lnr-magnifier" /></Link>
+                      <Link to="#" title="Edit details" ><i className="lnr lnr-heart" /></Link>
+                      <Link to="#" title="Mark as sold" ><i className="lnr lnr-sync" /></Link>
+                      <Link to="#" title="Quick view" data-target="#quickk_view" data-toggle="modal"><i className="lnr lnr-magnifier" /></Link>
                     </div> 
                   </div>
                   <div className="product-caption">
@@ -139,7 +94,7 @@ export default function Product(product) {
                       <p><Link to="/">{product.shop_name}</Link></p>
                     </div>
                     <div className="product-name">
-                      <h4><Link to={`/productdetails?id=${product.id}`} title={product.name}>{Truncate(product.name,25) }</Link></h4>
+                      <h4><Link to={`/productdetails?id=${product.id}`} title={product.product_name}>{Truncate(product.product_name,25) }</Link></h4>
                     </div>
                     <div className="ratings">
                       <span className="purple"><i className="lnr lnr-star" /></span>
@@ -152,7 +107,7 @@ export default function Product(product) {
                       <span className="regular-price"><span className={` ${product.special && 'special-price'}`}>£{product.price}</span></span>
                       <span className="old-price"><del>{product.previous_price ? `£${product.previous_price}` : ''}</del></span>
                     </div>
-                    <button className="btn-cart" onClick={(e)=> addToCart()} type="button">Mark as out of Stock</button>
+                    <button className="btn-cart"  type="button">Mark as out of Stock</button>
                   </div>
                 
                 </div>

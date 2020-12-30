@@ -21,14 +21,17 @@ const fetchVendorProdError = (error)=>{
     }
 }
 
+
 export const fetchVendorProds = (id)=>async (dispatch)=>{
     dispatch(fetchVendorProdRequest())
-    await Axios.get(`${Request.VendorProducts}${id}`)
+    // /api/uparzon_store_react/vendordetails/:id
+    await Axios.get(`${Request.VendorProducts}/${id}`)
     .then(res=>{
-        const prod = res.data.data
+        const prod = res.data
         dispatch(fetchVendorProdSuccess(prod))
     })
     .catch(err=>{
         dispatch(fetchVendorProdError(err.message))
     })
 }
+

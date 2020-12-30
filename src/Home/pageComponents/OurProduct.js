@@ -4,8 +4,6 @@ import OwlCarousel from 'react-owl-carousel';
 import 'owl.carousel/dist/assets/owl.carousel.css';
 import 'owl.carousel/dist/assets/owl.theme.default.css';
 import './OurProduct.css'
-import { useState,useEffect } from 'react';
-import { useStateValue } from '../../Utility/StateProvider';
 import ModalSection from '../../PrimarySections/Modal/ModalSection';
 import Product from './Subfolder/Product';
 import { connect } from 'react-redux';
@@ -17,7 +15,6 @@ import MoreBtn from '../../PrimarySections/Essentials/essentials';
 function OurProduct (props) {
 
     
-  const [state] = useStateValue()
 
   const options = {
     loop: false,
@@ -44,12 +41,6 @@ function OurProduct (props) {
     },
 }
 
-// const more_btn = <div className="col mb-30">
-//   <div className="more__btn" style={{width:'175px',marginLeft:'-15px'}}>
-//     <p>1000+ Products Available</p>
-//     <Link to='/shop' className="btn" style={{margin:'1em 0em'}}>See More</Link>
-//   </div>
-// </div>
 
         return (
           
@@ -141,7 +132,7 @@ function OurProduct (props) {
 </div>}
           {/* </Slider> */}
         </div>
-         <ModalSection product={state.quickView}/>
+         <ModalSection />
         </div>
         )
     }

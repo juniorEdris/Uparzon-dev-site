@@ -9,7 +9,7 @@ import { QuickViewReducer } from '../Redux/Reducer/QuickViewReducer';
 import { ShopListReducer } from '../Redux/Reducer/ShopListReducer';
 import { ShopReducer } from '../Redux/Reducer/ShopReducer';
 import { subcategoryReducer } from '../Redux/Reducer/SubCategoryReducer';
-import { VendorReducer } from '../Redux/Reducer/VendorReducer';
+import { VendorDetailsReducer, VendorReducer } from '../Redux/Reducer/VendorReducer';
 import { AddWishReducer } from '../Redux/Reducer/WishListReducer';
 
 export const initialState={
@@ -19,6 +19,7 @@ export const initialState={
     ourProduct:[],
     shopProduct:[],
     vendorProduct:[],
+    vendorDetail:[],
     shopList:[],
     categoryList:[],
     subCategory:[],
@@ -34,6 +35,7 @@ const store = createStore(
     combineReducers({
         homeProducts: HomeReducer,
         shopProducts: ShopReducer,
+        vendorDetails: VendorDetailsReducer,
         vendorProducts: VendorReducer,
         storeList: ShopListReducer,
         categories: CategoriesReducer,
@@ -43,6 +45,7 @@ const store = createStore(
         productSuggest: ProdSuggestionReducer,
         productView: QuickViewReducer,
         getSubCat: subcategoryReducer,
+
     }),
     initialState,
     composeEnhancers(applyMiddleware(thunk))

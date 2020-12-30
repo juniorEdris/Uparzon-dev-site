@@ -1,14 +1,12 @@
 /* eslint-disable jsx-a11y/anchor-is-valid */
-import React,{useState,useEffect} from 'react'
+import React from 'react'
 import { Link } from 'react-router-dom'
 import ModalSection from '../../PrimarySections/Modal/ModalSection'
-import { useStateValue } from '../../Utility/StateProvider'
 import Product from './Subfolder/Product'
 import { ProductLoader } from '../../PrimarySections/ReactPlaceHolder/ReactPlaceHolder'
 import { connect } from 'react-redux'
 function HotCollection(props) {
   
-  const [state] = useStateValue()
  const Card = props.hotCollection.map(product =>(
   <div className="col mb-30">
    <Product key={product.id} product={product}/>
@@ -109,7 +107,7 @@ function HotCollection(props) {
     </div>}
   </div>
 
-  <ModalSection product={state.singleProd}/>
+  <ModalSection/>
 </div>
 
     )

@@ -3,21 +3,14 @@ import React,{ useEffect } from 'react'
 import $ from 'jquery'
 import { Link } from 'react-router-dom'
 import './ShopWrapper.css'
-import { useState } from 'react'
-import { useStateValue } from '../../Utility/StateProvider'
-import ModalSection from '../../PrimarySections/Modal/ModalSection'
 import Sidebar from './ShopSidebar'
 import Product from '../../Home/pageComponents/Subfolder/Product'
 import Filter from './RightBarControl'
-import { FetchData } from '../../PrimarySections/Connections/Axios'
 import { ProductLoader } from '../../PrimarySections/ReactPlaceHolder/ReactPlaceHolder'
 import { connect } from 'react-redux'
 
 
 function ShopWrapper(props) {
-
-    console.log('shop',props);
-const [data,setData] = useState([])
 useEffect(() => {
 // product view mode change js
 $('.product-view-mode a').on('click', function(e){
@@ -32,51 +25,6 @@ $('.product-view-mode a').on('click', function(e){
 })
 }, [])
 
-const [state] = useStateValue()
-const [sort,setSort] = useState('')
-const [limit,setLimit] = useState('')
-
-    //Product sort function
-    const ProductSort =(e)=>{
-        setSort(e.target.value)
-        const slicedProds = [...data]
-        if(e.target.value === 'lowestPrice'){
-            const lowestProd = slicedProds.sort((a,b)=>(a.price > b.price ? 1:-1))
-            setData(lowestProd)
-        }else if(e.target.value === 'highestPrice'){
-            const highestProd = slicedProds.sort((a,b)=>(a.price < b.price ? 1:-1))
-            setData(highestProd)
-        }else{
-            const allprod = slicedProds.sort((a,b)=>(a.id > b.id ? 1:-1))
-            setData(allprod)
-        }
-    }
-
-    //Product show function
-    const ProductLimit =(e)=>{
-        setLimit(e.target.value)
-        const slicedProds = data
-        if(e.target.value === 5){
-            const limitedProds = slicedProds.slice(0,e.target.value)
-            setData(limitedProds)
-            console.log('limit 5',limitedProds);
-        }else if(e.target.value === 10){
-            const limitedProds = slicedProds.slice(0,e.target.value)
-            console.log('limit 10',limitedProds);
-            setData(limitedProds)
-        }else if(e.target.value === 15){
-            const limitedProds = slicedProds.slice(0,e.target.value)
-            console.log('limit 15',limitedProds);
-            setData(limitedProds)
-        }else if(e.target.value === 20){
-            const limitedProds = slicedProds.slice(0,e.target.value)
-            console.log('limit 20',limitedProds);
-            setData(limitedProds)
-        }else if(e.target.value === 0){
-            setData(data)
-        }
-        setSort('')
-    }
     return (
         <div>
             
@@ -112,7 +60,7 @@ const [limit,setLimit] = useState('')
                     </div>
                     {props.loading ?
                         <div className="shop-product-wrap grid row" >
-                            <ProductLoader key={data.id}/>
+                            <ProductLoader/>
                         </div>
                     :<div className="shop-product-wrap grid row">
                         {props.shopProduct.map(data=>(
@@ -150,7 +98,6 @@ const [limit,setLimit] = useState('')
                 </div>
             </div>
             </div>
-            <ModalSection product={state.quickView}/>
         </div>
     )
 }

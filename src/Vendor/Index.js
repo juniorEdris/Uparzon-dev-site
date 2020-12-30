@@ -14,6 +14,7 @@ import ScrollBar from '../PrimarySections/ScrollBar/ScrollBar'
 import { connect } from 'react-redux'
 import { fetchVendorProds } from '../Utility/Redux/Action/VendorProductAction'
 import useQuery from '../PrimarySections/Essentials/UrlParams'
+import { fetchVendorDetails } from '../Utility/Redux/Action/VendorDetailsAction'
 
 
 
@@ -24,58 +25,14 @@ function Index(props) {
 
     useEffect(() => {
         document.title= `Uparzon E-commerce Shop` 
-        props.fetchVendorProducts(VendorID)
+        props.VendorDetails(VendorID)
+        props.VendorProducts(VendorID)
     }, [])
-const [sort,setSort] = useState('')
-const [limit,setLimit] = useState('')
-const [data,setData] = useState([])
-const [{quickView}] = useStateValue()
 
-    //Product sort function
-    const ProductSort =(e)=>{
-        setSort(e.target.value)
-        const slicedProds = [...data]
-        if(e.target.value === 'lowestPrice'){
-            const lowestProd = slicedProds.sort((a,b)=>(a.price > b.price ? 1:-1))
-            setData(lowestProd)
-        }else if(e.target.value === 'highestPrice'){
-            const highestProd = slicedProds.sort((a,b)=>(a.price < b.price ? 1:-1))
-            setData(highestProd)
-        }else{
-            const allprod = slicedProds.sort((a,b)=>(a.id > b.id ? 1:-1))
-            setData(allprod)
-        }
-    }
-
-    //Product show function
-    const ProductLimit =(e)=>{
-        setLimit(e.target.value)
-        const slicedProds = data
-        if(e.target.value === 5){
-            const limitedProds = slicedProds.slice(0,e.target.value)
-            setData(limitedProds)
-            console.log('limit 5',limitedProds);
-        }else if(e.target.value === 10){
-            const limitedProds = slicedProds.slice(0,e.target.value)
-            console.log('limit 10',limitedProds);
-            setData(limitedProds)
-        }else if(e.target.value === 15){
-            const limitedProds = slicedProds.slice(0,e.target.value)
-            console.log('limit 15',limitedProds);
-            setData(limitedProds)
-        }else if(e.target.value === 20){
-            const limitedProds = slicedProds.slice(0,e.target.value)
-            console.log('limit 20',limitedProds);
-            setData(limitedProds)
-        }else if(e.target.value === 0){
-            setData(data)
-        }
-        setSort('')
-    }
     return (
         <div className="main-wrapper">
             <Banner/>
-            <Profile data={data}/>
+            <Profile details={props.details} loading={props.dloading}/>
             <Search/>
         <div className="container-fluid">
             <div className="row">
@@ -87,23 +44,18 @@ const [{quickView}] = useStateValue()
                                 {/* <View/> */}
                                 
                                 <div className="col-md-6">
-                                    <FilterControl 
-                                    sort={sort} 
-                                    ProductSort={ProductSort} 
-                                    limit={limit}
-                                    ProductLimit={ProductLimit}
-                                    />
+                                    <FilterControl/>
                                 </div>
                             </div>
                         </div>
-                        <VendorProducts loading={props.loading} products={props.products}/>
+                        <VendorProducts loading={props.ploading} products={props.products}/>
                         <Pagination/>
                     </div>
                 </div>
             </div>
     </div>
     <ScrollBar/>
-    <Modal product={quickView}/>
+    <Modal/>
     </div>
     )
 }
@@ -111,14 +63,17 @@ const [{quickView}] = useStateValue()
 
 const mapStateToProps = state=>(
     {
+        ploading: state.vendorProducts.loading,
         products: state.vendorProducts.vendorProduct,
-        loading: state.vendorProducts.loading,
+        dloading: state.vendorProducts.loading,
+        details: state.vendorDetails.vendorDetail,
     }
 )
 
 const mapDispatchToProps = dispatch=>(
     {
-        fetchVendorProducts:(id)=> dispatch(fetchVendorProds(id))
+        VendorProducts:(id)=> dispatch(fetchVendorProds(id)),
+        VendorDetails:(id)=> dispatch(fetchVendorDetails(id)),
     }
 )
 export default connect(mapStateToProps,mapDispatchToProps)(Index)

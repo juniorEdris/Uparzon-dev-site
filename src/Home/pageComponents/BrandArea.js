@@ -1,10 +1,9 @@
 /* eslint-disable jsx-a11y/anchor-is-valid */
-import React,{useState,useEffect} from 'react'
+import React from 'react'
 import OwlCarousel from 'react-owl-carousel';
 import 'owl.carousel/dist/assets/owl.carousel.css';
 import 'owl.carousel/dist/assets/owl.theme.default.css';
 import './BrandArea.css'
-import { useStateValue } from '../../Utility/StateProvider';
 import ModalSection from '../../PrimarySections/Modal/ModalSection';
 import Product from './Subfolder/Product';
 import { ProductLoader } from '../../PrimarySections/ReactPlaceHolder/ReactPlaceHolder';
@@ -14,7 +13,6 @@ import MoreBtn from '../../PrimarySections/Essentials/essentials';
 function BrandArea(props) {
 
 
-  const [state] = useStateValue()
   const brandOptions = {
     loop: false,
     margin:10,
@@ -174,7 +172,7 @@ const options = {
         </div>
       </div>
 </div>
-  <ModalSection product={state.singleProd}/>
+  <ModalSection/>
 </div>
     )
 }

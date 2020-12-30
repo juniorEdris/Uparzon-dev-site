@@ -5,9 +5,10 @@ export const Request ={
     ComputerProducts:'/api/uparzon_store_react/get_computer_products',
     ShopProducts:`/api/uparzon_store_react/get_shop_products`,
     Categories:`/api/uparzon_store_react/get_homefeaturedcategories`,
-    StorePage1:`https://demostore.uparzon.com/api/uparzonapp/get_shop_list?api_key=4e38d8be3269aa17280d0468b89caa4c7d39a699&page=1`,
-    StorePage2:`https://demostore.uparzon.com/api/uparzonapp/get_shop_list?api_key=4e38d8be3269aa17280d0468b89caa4c7d39a699`,
-    VendorProducts:`https://demostore.uparzon.com/api/uparzonbusiness/get_products?api_key=4e38d8be3269aa17280d0468b89caa4c7d39a699&user_id=`,
+    StorePage1:`/api/uparzon_store_react/get_shops_list_page=1`,
+    StorePage2:`---------`,
+    VendorProducts:`/api/uparzon_store_react/vendorproducts`,
+    VendorDetails:`/api/uparzon_store_react/vendordetails`,
     ProductDetails:`https://demostore.uparzon.com/api/uparzonapp/get_single_product?api_key=4e38d8be3269aa17280d0468b89caa4c7d39a699&product_id=`,
     SubCategory:`/api/uparzon_store_react/get_subcategories`,
 }
