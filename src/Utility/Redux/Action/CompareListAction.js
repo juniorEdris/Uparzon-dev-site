@@ -1,5 +1,6 @@
 import { ADD_TO_COMPARE, REMOVE_FROM_COMPARE } from "../Types";
 
+
 const addProdCompare =(product)=>(
     {
         type: ADD_TO_COMPARE,
@@ -23,7 +24,7 @@ export const AddCompareProd = (product) => (dispatch,getState) => {
             }
         });
     if (!exist) {
-            compareItems.push({...product})//,count:1
+            compareItems.push({...product})
         }
         dispatch(addProdCompare(compareItems))
     localStorage.setItem('Compare List', JSON.stringify(compareItems))

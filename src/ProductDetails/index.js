@@ -14,7 +14,7 @@ export default function Index() {
             <Review/>
             <CartIcon/>
             <ScrollBar/>
-            <Suggestions/>
+            {/* <Suggestions/> */}
         </div>
         )
 }

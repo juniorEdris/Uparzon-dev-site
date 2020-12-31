@@ -1,15 +1,12 @@
-import React,{useEffect,useState} from 'react'
-import { Link } from 'react-router-dom'
+import React,{useEffect} from 'react'
 import Banner from './PageComponents/VendorBanner'
 import Sidebar from './PageComponents/VendorSidebar'
-import View from './PageComponents/VendorView'
 import VendorProducts from './PageComponents/VendorProducts'
 import Pagination from './PageComponents/VendorPagination'
 import FilterControl from './PageComponents/VendorBarControl'
 import Profile from './PageComponents/VendorCard'
 import Search from './PageComponents/VendorSearch'
 import Modal from '../PrimarySections/Modal/ModalSection'
-import { useStateValue } from '../Utility/StateProvider'
 import ScrollBar from '../PrimarySections/ScrollBar/ScrollBar'
 import { connect } from 'react-redux'
 import { fetchVendorProds } from '../Utility/Redux/Action/VendorProductAction'
@@ -24,7 +21,7 @@ function Index(props) {
     const VendorID = query.get('id')
 
     useEffect(() => {
-        document.title= `Uparzon E-commerce Shop` 
+        document.title = `Uparzon E-commerce Shop` 
         props.VendorDetails(VendorID)
         props.VendorProducts(VendorID)
     }, [])

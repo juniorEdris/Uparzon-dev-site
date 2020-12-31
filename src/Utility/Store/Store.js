@@ -5,6 +5,7 @@ import { CategoriesReducer } from '../Redux/Reducer/CategoriesReducer';
 import { AddCompareReducer } from '../Redux/Reducer/CompareReducer';
 import { HomeReducer } from '../Redux/Reducer/HomeReducer'
 import { ProdSuggestionReducer } from '../Redux/Reducer/ProdSuggestionReducer';
+import { ProductDetailsReducer } from '../Redux/Reducer/ProductsDetailsReducer';
 import { QuickViewReducer } from '../Redux/Reducer/QuickViewReducer';
 import { ShopListReducer } from '../Redux/Reducer/ShopListReducer';
 import { ShopReducer } from '../Redux/Reducer/ShopReducer';
@@ -24,6 +25,7 @@ export const initialState={
     categoryList:[],
     subCategory:[],
     suggestion:[],
+    product:'',
     basket:localStorage.getItem('Cart List') ? JSON.parse(localStorage.getItem('Cart List')) :[],
     wishList:localStorage.getItem('Wish List') ? JSON.parse(localStorage.getItem('Wish List')) :[],
     compareList:localStorage.getItem('Compare List') ? JSON.parse(localStorage.getItem('Compare List')) :[],
@@ -45,7 +47,7 @@ const store = createStore(
         productSuggest: ProdSuggestionReducer,
         productView: QuickViewReducer,
         getSubCat: subcategoryReducer,
-
+        productDetails: ProductDetailsReducer,
     }),
     initialState,
     composeEnhancers(applyMiddleware(thunk))

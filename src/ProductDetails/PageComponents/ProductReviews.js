@@ -1,6 +1,7 @@
 import React from 'react'
+import { connect } from 'react-redux'
 
-export default function ProductReviews() {
+function ProductReviews(props) {
     return (
         <div className="product-details-reviews pb-30">
   <div className="container-fluid">
@@ -17,7 +18,7 @@ export default function ProductReviews() {
           </ul>
           <div className="tab-content">
             <div className="tab-pane fade show active" id="tab_description" role="tabpanel" aria-labelledby="nav_desctiption">
-              <p>Studio Design' PolyFaune collection features classic products with colorful patterns, inspired by the traditional japanese origamis. To wear with a chino or jeans. The sublimation textile printing process provides an exceptional color rendering and a color, guaranteed overtime. Regular fit, round neckline, long sleeves. 100% cotton, brushed inner side for extra comfort.</p>
+              <p>{props.details.details}</p>
             </div>
             <div className="tab-pane fade" id="tab_review" role="tabpanel" aria-labelledby="nav_review">
               <div className="product-review">
@@ -91,3 +92,18 @@ export default function ProductReviews() {
 
     )
 }
+const mapStateToProps = state=>(
+  {
+    loading:state.productDetails.loading,
+    details:state.productDetails.product,
+  }
+)
+
+const mapDispatchToProps = dispatch =>(
+  {
+    // getProdDetails:(id)=>GetProductDetails(id),
+  }
+)
+
+
+export default connect(mapStateToProps,mapDispatchToProps)(ProductReviews)
