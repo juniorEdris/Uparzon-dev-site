@@ -9,6 +9,7 @@ import { ProductDetailsReducer } from '../Redux/Reducer/ProductsDetailsReducer';
 import { QuickViewReducer } from '../Redux/Reducer/QuickViewReducer';
 import { ShopListReducer } from '../Redux/Reducer/ShopListReducer';
 import { ShopReducer } from '../Redux/Reducer/ShopReducer';
+import { SignUpReducer } from '../Redux/Reducer/SignUpReducer';
 import { subcategoryReducer } from '../Redux/Reducer/SubCategoryReducer';
 import { VendorDetailsReducer, VendorReducer } from '../Redux/Reducer/VendorReducer';
 import { AddWishReducer } from '../Redux/Reducer/WishListReducer';
@@ -48,6 +49,7 @@ const store = createStore(
         productView: QuickViewReducer,
         getSubCat: subcategoryReducer,
         productDetails: ProductDetailsReducer,
+        signUp: SignUpReducer,
     }),
     initialState,
     composeEnhancers(applyMiddleware(thunk))

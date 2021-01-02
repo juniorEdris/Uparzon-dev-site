@@ -1,7 +1,9 @@
 import React,{useState} from 'react'
+import { connect } from 'react-redux'
 import { Link } from 'react-router-dom'
+import { SignUpAction } from '../../../Utility/Redux/Action/SignUpAction'
 
-export default function RegisterBody() {
+function RegisterBody(props) {
 
     const [gender, setGender] = useState('')
     const [firstName, setFirstName] = useState('')
@@ -30,7 +32,9 @@ export default function RegisterBody() {
             email,
             newPassword,
             birthDate,
+            gender
         }
+        props.registerUser(user)
         console.log('====================================');
         console.log(gender,firstName,lastName,email,newPassword,birthDate);
         console.log('====================================');
@@ -159,3 +163,10 @@ export default function RegisterBody() {
         </div>
     )
 }
+
+const mapStateToProps = state=>({})
+const mapDispatchToProps = dispatch=>({
+    registerUser:(user)=>dispatch(SignUpAction(user)),
+})
+
+export default connect(mapStateToProps,mapDispatchToProps)(RegisterBody)
