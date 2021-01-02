@@ -1,7 +1,16 @@
-import React from 'react'
+import React,{useState} from 'react'
 import { Link } from 'react-router-dom'
 
 export default function LoginBody() {
+
+    const [email, setEmail] = useState('')
+    const [password, setPassword] = useState('')
+    const [showValue, setShowValue] = useState(false)
+
+    const showPass = (e)=>{
+        e.preventDefault()
+        setShowValue(!showValue)
+    }
     return (
         <div>
             {/* Start of Login Wrapper */}
@@ -25,14 +34,14 @@ export default function LoginBody() {
                                 <div className="form-group row align-items-center mb-4">
                                 <label htmlFor="email" className="col-12 col-sm-12 col-md-4 col-form-label">Email address</label>
                                 <div className="col-12 col-sm-12 col-md-8">
-                                    <input type="text" className="form-control" id="email" placeholder="Email" required />
+                                    <input type="text" className="form-control" id="email" placeholder="Email" value={email} onChange={(e)=>setEmail(e.target.value)}  required />
                                 </div>
                                 </div>
                                 <div className="form-group row align-items-center mb-4">
                                 <label htmlFor="c-password" className="col-12 col-sm-12 col-md-4 col-form-label">Password</label>
                                 <div className="col-12 col-sm-12 col-md-8">
-                                    <input type="password" className="form-control" id="c-password" placeholder="Password" required />
-                                    <button className="pass-show-btn" type="button">Show</button>
+                                    <input type={showValue ? "text" : "password"} className="form-control" id="c-password" placeholder="Password" required value={password} onChange={(e)=>setPassword(e.target.value)} />
+                                    <button className="pass-show-btn" type="button" onClick={showPass}>Show</button>
                                 </div>
                                 </div>
                                 <div className="login-box mt-5 text-center">
