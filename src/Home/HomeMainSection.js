@@ -29,7 +29,7 @@ export default function HomeMainSection({show}) {
     return (
         <div>
             <HomeSlider/>
-            <Store/>
+            {/* <Store/> */}
             <OurProduct/>
             <HomeBanner/>
             <FeaturedCategory/>

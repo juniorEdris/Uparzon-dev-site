@@ -23,7 +23,7 @@ function Navigation(props) {
     }, [stickyNav])
 
     useEffect(()=>{
-        props.fetchCategory()
+        // props.fetchCategory()
     },[])
 
         //catagories menu dropdown
@@ -64,9 +64,9 @@ function Navigation(props) {
                         {
                             props.categories?.map(cat =>(
                                 <li>
-                                    <Link to="/homeaudio" onMouseOver={()=>props.getSubCat(cat.id)}>{cat.name}{cat.has_subcategory === 1 ? <span className="lnr lnr-chevron-right" />: ''}</Link>
+                                    <Link to="/homeaudio" >{cat.name}{cat.Subcategory ? <span className="lnr lnr-chevron-right" />: ''} </Link> {/*onMouseOver={()=>props.getSubCat(cat.id)}*/}
                                     {
-                                    cat.has_subcategory === 1 ? 
+                                    cat.Subcategory ? 
                                         <ul className="cat-submenu">
                                             {
                                             props.SubCategories?.map(x=>(
@@ -113,7 +113,7 @@ function Navigation(props) {
 }
 const mapStateToProps = state=>(
     {
-        categories:state.categories.categoryList,
+        categories:state.homeProducts.categoryList,
         SubCategories:state.getSubCat.SubCat,
     }
 )

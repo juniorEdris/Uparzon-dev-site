@@ -12,9 +12,11 @@ export const HomeReducer = (state=initialState,action)=>{
             return{    
                 ...state,
                 loading:false,
+                categoryList:action.category,
                 homeBanner:action.banner,
-                ourProduct:action.product,
                 homeStores:action.store,
+                ourProduct:action.ourProduct,
+                featuredProduct:action.featuredProduct,
                 error:'',
             }
         case FETCH_PRODUCTS_ERROR:
