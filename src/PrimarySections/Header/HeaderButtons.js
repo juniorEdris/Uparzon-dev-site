@@ -4,6 +4,7 @@ import { Link } from 'react-router-dom'
 import { getSubTotal } from '../../Utility/Reducer'
 import { RemoveBasketProd } from '../../Utility/Redux/Action/BasketAction'
 import { useStateValue } from '../../Utility/StateProvider'
+import { currToFixed } from '../Essentials/CurrencyFormat'
 import './HeaderButton.css'
 
 function HeaderButtons(props) {
@@ -44,11 +45,12 @@ function HeaderButtons(props) {
                             props.basket.length>0 && props.basket.map((prod) => (
                             <li className="mb-30">
                                 <div className="cart-img">
-                                    <Link to={`/productdetails?id=${prod.id}`}><img alt="" src={`https:${prod.photo.replace('demostore', 'store')}`} /></Link>
+                                    {/* <Link to={`/productdetails?id=${prod.id}`}><img alt="" src={`https:${prod.photo.replace('demostore', 'store')}`} /></Link> */}
+                                    <Link to={`/productdetails?id=${prod.id}`}><img alt="" src={`https://uparzon.com.bd/assets/img/product/product-4.jpg`} /></Link>
                                 </div>
                                 <div className="cart-info">
                                         <h4><Link to={`/productdetails?id=${prod.id}`}>{prod.name} </Link></h4>
-                                        <span> <span>{`${prod.count} x` }</span>&#2547; {prod.price}</span>
+                                        <span> <span>{`${prod.count} x` }</span>&#2547; {currToFixed(prod.price)}</span>
                                 </div>
                                 <div className="del-icon">
                                         <i className="fa fa-times-circle" onClick={()=> props.removefromBasket(prod) }/>
@@ -59,19 +61,19 @@ function HeaderButtons(props) {
 
                     <li>
                     <div className="subtotal-text">Sub-total: </div>
-                    <div className="subtotal-price">&#2547; {getSubTotal(props.basket).toFixed(2)}</div>
+                    <div className="subtotal-price">&#2547; {currToFixed(getSubTotal(props.basket))}</div>
                     </li>
                     <li>
                     <div className="subtotal-text">Eco Tax (-2.00): </div>
-                    <div className="subtotal-price">&#2547; {eco_tax.toFixed(2)}</div>
+                    <div className="subtotal-price">&#2547; {currToFixed(eco_tax)}</div>
                     </li>
                     <li>
                     <div className="subtotal-text">Vat (20%): </div>
-                    <div className="subtotal-price">&#2547; {vat_amount.toFixed(2)}</div>
+                    <div className="subtotal-price">&#2547; {currToFixed(vat_amount)}</div>
                     </li>
                     <li>
                     <div className="subtotal-text">Total: </div>
-                    <div className="subtotal-price"><span>&#2547; {get_total.toFixed(2)}</span></div>
+                    <div className="subtotal-price"><span>&#2547; {currToFixed(get_total)}</span></div>
                     </li>
                     <li className="mt-30">
                     <Link className="cart-button" to="/cart">view cart</Link>

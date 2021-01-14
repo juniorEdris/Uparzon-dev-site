@@ -64,13 +64,24 @@ function Navigation(props) {
                         {
                             props.categories?.map(cat =>(
                                 <li>
-                                    <Link to="/homeaudio" >{cat.name}{cat.Subcategory ? <span className="lnr lnr-chevron-right" />: ''} </Link> {/*onMouseOver={()=>props.getSubCat(cat.id)}*/}
+                                    <Link to="/homeaudio" >{cat.name}{cat.Subcategories?.length > 0 ? <span className="lnr lnr-chevron-right" />: ''} </Link> {/*onMouseOver={()=>props.getSubCat(cat.id)}*/}
                                     {
-                                    cat.Subcategory ? 
+                                    cat.Subcategories?.length > 0 ? 
                                         <ul className="cat-submenu">
                                             {
-                                            props.SubCategories?.map(x=>(
-                                                <li><Link to='#'>{x.subcategory_name}</Link></li>
+                                            cat.Subcategories?.map(x=>(
+                                                <li><Link to='#'>{x.name}{x.Childcategories?.length > 0 ? <span className="lnr lnr-chevron-right" />: ''}</Link>
+                                                    {
+                                                    x.Childcategories?.length > 0? 
+                                                    <ul className="cat-submenu">
+                                                        {
+                                                        x.Childcategories?.map(x=>(
+                                                            <li><Link to="/">{x.name}</Link></li>
+                                                            ))
+                                                        }
+                                                    </ul>:''
+                                                    }
+                                                </li>
                                             ))    
                                             }
                                         </ul>: ''

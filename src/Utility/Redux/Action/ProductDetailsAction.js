@@ -22,11 +22,12 @@ const showProductDetailsError = (error)=>(
 )
 
 
-export const GetProductDetails = (id) => async dispatch=>{
+export const GetProductDetails = (id) => (dispatch,getState)=>{
     dispatch(showProductDetailsRequest())
-    await Axios.get(`${Request.ProductDetails}${id}`)
-    .then(res=>{
-        dispatch(showProductDetailsSuccess(res.data[0]))
-    })
-    .catch(error=> dispatch(showProductDetailsError(error)))
+    const allProducts = getState().homeProducts.ourProduct.slice()
+    const details = allProducts.filter(x=>x.id === id)
+    console.log('det',details,id);
+    
+        dispatch(showProductDetailsSuccess(details))
+        // dispatch(showProductDetailsError(error))
 }

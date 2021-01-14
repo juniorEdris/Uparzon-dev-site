@@ -53,8 +53,8 @@ function Product(props) {
             </div>
             <div className="sinrato-box-action">
             <div className="price-box">
-                <span className="regular-price"><span className={` ${product.special && 'special-price'}`}>&#2547;{product.price}</span></span>
-                <span className="old-price"><del>&#2547;{product.previous_price ? `${product.previous_price}` : 0}</del></span>
+                <span className="regular-price"><span className={` ${product.special && 'special-price'}`}>&#2547;{product.price.toFixed(2)}</span></span>
+                <span className="old-price"><del>&#2547;{product.previous_price ? `${product.previous_price.toFixed(2)}` : 0}</del></span>
             </div>
             <button className="btn-cart" type="button" onClick={(e)=> props.addToBasket(product)} data-target="#cart_modal" data-toggle="modal">add to cart</button>
             <div className="action-links sinrat-list-icon">
@@ -102,8 +102,8 @@ function Product(props) {
                       <span><i className="lnr lnr-star" /></span>
                     </div>
                     <div className="price-box">
-                      <span className="regular-price"><span className={` ${product.special && 'special-price'}`}> &#2547;{product.price}</span></span>
-                      <span className="old-price"><del>&#2547;{product.previous_price ? `${product.previous_price}` : 0}</del></span>
+                      <span className="regular-price"><span className={` ${product.special && 'special-price'}`}> &#2547;{product.price.toFixed(2)}</span></span>
+                      <span className="old-price"><del>&#2547;{product.previous_price ? `${product.previous_price.toFixed(2)}` : 0}</del></span>
                     </div>
                     <button className="btn-cart" onClick={(e)=> props.addToBasket(product)} type="button">add to cart</button>
                   </div>

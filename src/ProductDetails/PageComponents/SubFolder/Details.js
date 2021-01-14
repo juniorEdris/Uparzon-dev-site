@@ -15,6 +15,7 @@ function Details(props) {
         $('.useful-links a').on('click',function( event ) {
           event.preventDefault();
         });
+        props.getProdDetails(props.prod_id)
   }, [])
 
 
