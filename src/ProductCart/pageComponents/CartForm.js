@@ -6,6 +6,7 @@ import './CartForm.css'
 import {DelItem} from '../../Utility/PageAction'
 import { connect } from 'react-redux';
 import { RemoveBasketProd } from '../../Utility/Redux/Action/BasketAction';
+import {currToFixed} from '../../PrimarySections/Essentials/CurrencyFormat'
 
 function CartForm(props) {
     const [{basket}] = useStateValue();   
@@ -39,9 +40,9 @@ function CartForm(props) {
                 <div className="table-responsive mb-1">
                     <div className="col-12 d-flex flex-column flex-md-row justify-content-between align-items-center vendor__row">
                         <div className="vendor__name">
-                           <h3>Shop:  <Link to='/shop'><span>{prod.shop_name}</span></Link></h3>
-                           <p>Phone:  {prod.phone || 'none'}</p>
-                           <p>Address:  {prod.shop_address || 'none'}</p>
+                           <h3>Shop:  <Link to='/shop'><span>{prod.Vendor.shop_name}</span></Link></h3>
+                           <p>Phone:  {prod.Vendor.phone || 'none'}</p>
+                           <p>Address:  {prod.Vendor.shop_address || 'none'}</p>
                         </div>
                         <div className="vendor__alt__text">
                             <small className='text-muted'>Minimum 500tk product purchaseable from single Shop</small>
@@ -81,8 +82,8 @@ function CartForm(props) {
                                 </span>
                                 </div>
                             </td>
-                            <td>&#2547; {prod.price}</td>
-                            <td>&#2547; {(prod.price*prod.count).toFixed(2)}</td>
+                            <td>&#2547; {currToFixed(prod.price)}</td>
+                            <td>&#2547; {currToFixed(prod.price*prod.count)}</td>
                         </tr> 
                     </tbody>
                 </table>

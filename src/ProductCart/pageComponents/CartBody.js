@@ -4,6 +4,7 @@ import { getSubTotal } from '../../Utility/Reducer';
 import { useStateValue } from '../../Utility/StateProvider'
 import CartAccordion from './CartAccordion';
 import CartForm from './CartForm';
+import {currToFixed} from '../../PrimarySections/Essentials/CurrencyFormat'
 
 export default function CartBody() {
     const [{basket,user}] = useStateValue();
@@ -30,11 +31,11 @@ export default function CartBody() {
                                     <tbody>
                                     <tr>
                                         <td><strong>Sub-Total:</strong></td>
-                                        <td>&#2547; {getSubTotal(basket).toFixed(2)}</td>
+                                        <td>&#2547; {currToFixed(getSubTotal(basket))}</td>
                                     </tr>
                                     <tr>
                                         <td><strong>Total:</strong></td>
-                                        <td><span className="color-primary">&#2547; {getSubTotal(basket).toFixed(2)}</span></td>
+                                        <td><span className="color-primary">&#2547; {currToFixed(getSubTotal(basket))}</span></td>
                                     </tr>
                                     </tbody>
                                 </table>
