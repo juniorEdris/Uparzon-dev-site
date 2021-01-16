@@ -1,5 +1,6 @@
 import React from 'react'
 import { connect } from 'react-redux'
+const dateFormat = require("dateformat");
 
 function ProductReviews(props) {
     return (
@@ -13,7 +14,7 @@ function ProductReviews(props) {
               <a className="nav-link active" id="nav_desctiption" data-toggle="pill" href="#tab_description" role="tab" aria-controls="tab_description" aria-selected="true">Description</a>
             </li>
             <li className="nav-item">
-              <a className="nav-link" id="nav_review" data-toggle="pill" href="#tab_review" role="tab" aria-controls="tab_review" aria-selected="false">Reviews (1)</a>
+              <a className="nav-link" id="nav_review" data-toggle="pill" href="#tab_review" role="tab" aria-controls="tab_review" aria-selected="false">Reviews ({props.details?.Ratings?.length})</a>
             </li>
           </ul>
           <div className="tab-content">
@@ -22,16 +23,17 @@ function ProductReviews(props) {
             </div>
             <div className="tab-pane fade" id="tab_review" role="tabpanel" aria-labelledby="nav_review">
               <div className="product-review">
+                {props.details?.Ratings?.map(x=>(
                 <div className="customer-review">
                   <table className="table table-striped table-bordered">
                     <tbody>
                       <tr>
-                        <td><strong>Sinrato Themes</strong></td>
-                        <td className="text-right">09/04/2019</td>
+                        <td><strong>{x.User.name}</strong></td>
+                        <td className="text-right">{dateFormat(x.review_date,"dddd, mmmm dS, yyyy, h:MM:ss TT")}</td>
                       </tr>
                       <tr>
                         <td colSpan={2}>
-                          <p>It’s both good and bad. If Nikon had achieved a high-quality wide lens camera with a 1 inch sensor, that would have been a very competitive product. So in that sense, it’s good for us. But actually, from the perspective of driving the 1 inch sensor market, we want to stimulate this market and that means multiple manufacturers.</p>
+                          <p>{x.review}</p>
                           <div className="product-ratings">
                             <ul className="ratting d-flex mt-2">
                               <li><i className="fa fa-star" /></li>
@@ -45,7 +47,8 @@ function ProductReviews(props) {
                       </tr>
                     </tbody>
                   </table>
-                </div> {/* end of customer-review */}
+                </div> 
+                ))}{/* end of customer-review */}
                 <form action="#" className="review-form">
                   <h2>Write a review</h2>
                   <div className="form-group row">

@@ -29,7 +29,6 @@ export const fetchHomeProds = ()=>async(dispatch)=>{
     dispatch(fetchHomeProdsRequest())
     await Axios.get(Request.Homepage)
         .then(res=>{
-            console.log('Action fist',res.data);
             dispatch(fetchHomeProdsSuccess(res.data))  
         }).catch(err=>{
             dispatch(fetchHomeProdsError(err))  

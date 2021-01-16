@@ -12,8 +12,8 @@ const getProductSuggestfailed=(error)=>({
     error,
 })
 
-export const FetchProductSuggetions=()=>dispatch=>{
-    Axios.get(Request.AllProducts)
+export const FetchProductSuggetions=(id)=>dispatch=>{
+    Axios.get(`${Request.ProductSuggest}${id}`)
         .then(res=>{
             dispatch(getProductSuggest(res.data.data))
         })

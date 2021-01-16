@@ -1,6 +1,4 @@
 import React,{useEffect,useState} from 'react'
-import {  ProductDetails } from '../../PrimarySections/Connections/Axios'
-import {Request} from '../../PrimarySections/Connections/APILink'
 import Details from './SubFolder/Details'
 import Slider from './SubFolder/ProductSlider'
 import useQuery from '../../PrimarySections/Essentials/UrlParams'

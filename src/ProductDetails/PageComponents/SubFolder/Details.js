@@ -7,24 +7,29 @@ import { AddBasketProd } from '../../../Utility/Redux/Action/BasketAction'
 import { AddCompareProd } from '../../../Utility/Redux/Action/CompareListAction'
 import { AddWishProd } from '../../../Utility/Redux/Action/WishListAction'
 import { GetProductDetails } from '../../../Utility/Redux/Action/ProductDetailsAction'
+import { currToFixed } from '../../../PrimarySections/Essentials/CurrencyFormat'
+import { FetchProductSuggetions } from '../../../Utility/Redux/Action/ProdSuggestionAction'
 
 function Details(props) {
 
   useEffect(() => {
-    document.title = props.details ? `${props.details?.name} | Uparzon E-commerce Store` : 'Uparzon E-commerce Store'
+        // get on top of the page after page loads
+        (window).scrollTo(0,0)
         $('.useful-links a').on('click',function( event ) {
           event.preventDefault();
         });
-        props.getProdDetails(props.prod_id)
-  }, [])
-
+        props.fetchSuggestions(props.details?.category_id)        
+      },[])
+      useEffect(() => {
+        document.title = props.details ? `${props.details?.name} | Uparzon E-commerce Store` : 'Uparzon E-commerce Store'
+      }) 
 
   return (
         <div className="col-lg-7">
         <div className="product-details-inner">
           <div className="product-details-contentt">
             <div className="pro-details-name mb-10">
-            <h3>{props.details?.name || undefined}</h3>
+            <h3>{props.details?.name}</h3>
             </div>
             {props.details?.reviews &&
             <div className="pro-details-review mb-20">
@@ -41,8 +46,8 @@ function Details(props) {
             </div>
             }
             <div className="price-box mb-15">
-              <span className="regular-price"><span className="special-price">&#2547;{props.details?.price || ''}</span></span>
-              <span className="old-price"><del>&#2547;{props.details?.previous_price || ''}</del></span>
+              <span className="regular-price"><span className="special-price">&#2547;{ currToFixed( props.details?.price) || ''}</span></span>
+              {props.details?.previous_price ? <span className="old-price"><del>&#2547;{currToFixed(props.details?.previous_price) || ''}</del></span> : ''}
             </div>
             <div className="product-detail-sort-des pb-20">
               <p>{props.details?.description || ""}</p>
@@ -56,21 +61,21 @@ function Details(props) {
                 <li><span>Availability :</span>{props.details?.stock === null ? "Out of Stock" : props.details?.stock}</li>
               </ul>
             </div>
-            {/* <div className="product-availabily-option mt-15 mb-15">
+            <div className="product-availabily-option mt-15 mb-15">
               <h3>Available Options</h3>
               <div className="color-optionn">
                 <h4><sup>*</sup>color</h4>
                 <ul>
                   {
-                    props.details?.color.map(color=>(
+                    props.details?.colors?.split(',').map(color=>(
                   <li>
-                    <Link className="c-black" href="#" title="Black" style={{backgroundColor:'#000'}} />
+                    <Link className="c-black" href="#" title="Black" style={{backgroundColor: color}} />
                   </li>
                     ))
                   }
                 </ul> 
               </div>
-            </div> */}
+            </div>
             <div className="pro-quantity-box mb-30">
               <div className="qty-boxx">
               <label>qty :</label>
@@ -90,8 +95,7 @@ function Details(props) {
             </div>
             <div className="tag-line mb-20">
               <label>tag :</label>
-              <Link to="/">{props.details?.tags}</Link>,
-              <Link to="/">omega</Link>
+              {props.details?.tags?.split(',').map(x=><Link to="/">{x + ','}</Link>)}
             </div>
             <div className="pro-social-sharing">
               <label>share :</label>
@@ -135,6 +139,7 @@ const mapDispatchToProps=dispatch=>(
   addToCompare:(prod)=>dispatch(AddCompareProd(prod)),
   addToWish:(prod)=>dispatch(AddWishProd(prod)),
   getProdDetails:(id)=>dispatch(GetProductDetails(id)),
+  fetchSuggestions:(id)=>dispatch(FetchProductSuggetions(id)),
   }
 )
 

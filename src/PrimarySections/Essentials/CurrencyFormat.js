@@ -1,3 +1,3 @@
-export const currToFixed =(a)=>(
-    a.toFixed(2)
+export const currToFixed =(x)=>(
+    Number.parseFloat(x).toFixed(2)
 )

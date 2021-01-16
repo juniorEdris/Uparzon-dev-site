@@ -12,7 +12,7 @@ import { FetchProductSuggetions } from '../../Utility/Redux/Action/ProdSuggestio
 function ProductSuggestion(props) {
     const [{quickView}] = useStateValue()
     useEffect(() => {
-      props.fetchSuggestions()
+      props.fetchSuggestions(props.details?.category_id)
     }, [])
 
     const options = {
@@ -68,7 +68,8 @@ function ProductSuggestion(props) {
 }
 
 export default connect(state=>({
+  details:state.productDetails.product,
   suggestions:state.productSuggest.suggestion
 }),dispatch=>({
-  fetchSuggestions:()=>dispatch(FetchProductSuggetions())
+  fetchSuggestions:(id)=>dispatch(FetchProductSuggetions(id))
 }))(ProductSuggestion)
