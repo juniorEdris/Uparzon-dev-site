@@ -8,7 +8,7 @@ import ModalSection from '../../PrimarySections/Modal/ModalSection';
 import Product from './Subfolder/Product';
 import { ProductLoader } from '../../PrimarySections/ReactPlaceHolder/ReactPlaceHolder';
 import {connect} from 'react-redux'
-import MoreBtn from '../../PrimarySections/Essentials/essentials';
+import MoreBtn from '../../PrimarySections/Essentials/MoreBtn';
 
 function BrandArea(props) {
 
@@ -179,7 +179,7 @@ const options = {
 
 
 const mapStateToProps= state=>({
-  brandProducts:state.homeProducts.ourProduct,
+  brandProducts:state.homeProducts.hotCollection,
   loading:state.homeProducts.loading,
 })
 

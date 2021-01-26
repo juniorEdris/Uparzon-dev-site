@@ -12,18 +12,23 @@ import { ShowQuickDes } from '../../../Utility/Redux/Action/QuickViewAction';
 
 function Product(props) {
   const {isList,product,isGrid} = props
-
+  const word = 'store'
   return (
         <div>
           {
           isList ?  
             <div className="sinrato-list-item mb-30" id={product.id}>
+              
             <div className="sinrato-thumb">
+            {product.photo ? 
             <Link to={`/productdetails?id=${product.id}`} >
-                {/* <img  src={`https:${product.photo.replace('demostore', 'store')}`} className="pri-img" alt={product.name} />
-                <img  src={`https:${product.photo.replace('demostore', 'store')}`} className="sec-img" alt={product.name} /> */}
-                <img  src={`https://uparzon.com.bd/assets/img/product/product-10.jpg`} className="pri-img" alt={product.name} />
+                <img  src={`https:${product.photo.replace('demostore', 'store')}`} className="pri-img" alt={product.name} />
+                <img  src={`https:${product.thumbnail.replace('demostore', 'store')}`} className="sec-img" alt={product.name} />
+            </Link> :
+            <Link to={`/productdetails?id=${product.id}`} >
+                 <img  src='./assets/img/uparzon_placeholder' className="" alt={product.name} />
             </Link>
+            }
             <div className="box-label">
                 <div className="label-product label_new">
                     <span>{product.latest ? 'new': ''}</span>
@@ -54,7 +59,7 @@ function Product(props) {
             <div className="sinrato-box-action">
             <div className="price-box">
                 <span className="regular-price"><span className={` ${product.special && 'special-price'}`}>&#2547;{product.price.toFixed(2)}</span></span>
-                <span className="old-price"><del>&#2547;{product.previous_price ? `${product.previous_price.toFixed(2)}` : 0}</del></span>
+                {product.previous_price && <span className="old-price"><del>&#2547;{product.previous_price.toFixed(2)}</del></span>}
             </div>
             <button className="btn-cart" type="button" onClick={(e)=> props.addToBasket(product)} data-target="#cart_modal" data-toggle="modal">add to cart</button>
             <div className="action-links sinrat-list-icon">
@@ -68,9 +73,9 @@ function Product(props) {
             <div className={`product-item ${isGrid && 'mb-30'}`} id={product.id}>
                   <div className="product-thumb product">
                     <Link to={`/productdetails?id=${product.id}`} >
-                      {/* <img src={`https:${product.photo.replace('demostore', 'store')}`} className="pri-img" alt={product.name} />
-                      <img src={`https:${product.photo.replace('demostore', 'store')}`} className="sec-img" alt={product.name} /> */}
-                      <img src={'https://uparzon.com.bd/assets/img/product/product-10.jpg'} className="pri-img" alt={product.name} />
+                    <img  src={`https:${product.photo.replace('demostore', 'store')}`} className="pri-img" alt={product.name} />
+                <img  src={`https:${product.thumbnail.replace('demostore', 'store')}`} className="sec-img" alt={product.name} />
+                      {/* <img src={'https://uparzon.com.bd/assets/img/product/product-10.jpg'} className="pri-img" alt={product.name} /> */}
                     </Link>
                     
                     <div className="box-label">
@@ -103,7 +108,7 @@ function Product(props) {
                     </div>
                     <div className="price-box">
                       <span className="regular-price"><span className={` ${product.special && 'special-price'}`}> &#2547;{product.price.toFixed(2)}</span></span>
-                      <span className="old-price"><del>&#2547;{product.previous_price ? `${product.previous_price.toFixed(2)}` : 0}</del></span>
+                      { product.previous_price && <span className="old-price"><del>&#2547;{product.previous_price.toFixed(2)}</del></span>}
                     </div>
                     <button className="btn-cart" onClick={(e)=> props.addToBasket(product)} type="button">add to cart</button>
                   </div>

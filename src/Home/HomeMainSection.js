@@ -27,7 +27,7 @@ export default function HomeMainSection({show}) {
 
 
     return (
-        <div>
+        <div style={{position:'relative'}}>
             <HomeSlider/>
             {/* <Store/> */}
             <OurProduct/>

@@ -18,17 +18,17 @@ function HomeSlider(props) {
             navSpeed={1000}
             navText={['<i class="fa fa-angle-left"></i>','<i class="fa fa-angle-right"></i>']}
           >
-              {props.banners.map(banner=>(
+              {props.banners.length > 0 && props.banners.map(banner=>(
                 <div className="slider-area">
-                        <div className="single-slider d-flex align-items-center" style={{backgroundImage: 'url(https://uparzon.com.bd/assets/img/slider/slider2-home1.jpg)'}}>
+                        <div className="single-slider d-flex align-items-center" style={{backgroundImage: `url(https:${banner.image})`}}> {/* .replace('demostore', 'store') assets/img/slider/slider1-home1.jpg*/}
                             <div className="container-fluid">
                             <div className="row">
                                 <div className="col-sm-6 col-sm-8">
-                                <div className="slider-text">
+                                {/* <div className="slider-text">
                                     <h1>{banner.title}</h1>
                                     <p>{banner.subtitle}</p>
                                     <Link className="btn-1 home-btn" to="/details">shop now</Link>
-                                </div>
+                                </div> */}
                                 </div>
                             </div>
                             </div>
@@ -44,7 +44,7 @@ function HomeSlider(props) {
 
 const mapStateToProps = state=>(
     {
-        banners:state.homeProducts.homeBanner,
+        banners:state.homeProducts.homeSliders,
     }
 )
 

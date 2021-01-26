@@ -9,14 +9,18 @@ export const HomeReducer = (state=initialState,action)=>{
                 loading:true
             }
         case FETCH_PRODUCTS_SUCCESS:
+            console.log('====================================');
+            console.log('homereducer',action.hotCollection,action.slider);
+            console.log('====================================');
             return{    
                 ...state,
                 loading:false,
-                categoryList:action.category,
-                homeBanner:action.banner,
-                homeStores:action.store,
-                ourProduct:action.ourProduct,
-                featuredProduct:action.featuredProduct,
+                // categoryList:action.category,
+                homeSliders:action.slider,
+                // homeStores:action.store,
+                // ourProduct:action.ourProduct,
+                hotCollection:action.hotCollection,
+                // featuredProduct:action.featuredProduct,
                 error:'',
             }
         case FETCH_PRODUCTS_ERROR:

@@ -45,8 +45,8 @@ function HeaderButtons(props) {
                             props.basket.length>0 && props.basket.map((prod) => (
                             <li className="mb-30">
                                 <div className="cart-img">
-                                    {/* <Link to={`/productdetails?id=${prod.id}`}><img alt="" src={`https:${prod.photo.replace('demostore', 'store')}`} /></Link> */}
-                                    <Link to={`/productdetails?id=${prod.id}`}><img alt="" src={`https://uparzon.com.bd/assets/img/product/product-4.jpg`} /></Link>
+                                    <Link to={`/productdetails?id=${prod.id}`}><img alt="" src={`https:${prod.photo.replace('demostore', 'store')}`} /></Link>
+                                    {/* <Link to={`/productdetails?id=${prod.id}`}><img alt="" src={`https://uparzon.com.bd/assets/img/product/product-4.jpg`} /></Link> */}
                                 </div>
                                 <div className="cart-info">
                                         <h4><Link to={`/productdetails?id=${prod.id}`}>{prod.name} </Link></h4>

@@ -16,9 +16,10 @@ import { AddWishReducer } from '../Redux/Reducer/WishListReducer';
 
 export const initialState={
     loading:true,
-    homeBanner:[],
+    homeSliders:[],
     homeStores:[],
     ourProduct:[],
+    hotCollection:[],
     shopProduct:[],
     vendorProduct:[],
     vendorDetail:[],

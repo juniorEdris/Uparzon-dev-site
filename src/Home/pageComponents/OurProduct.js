@@ -1,5 +1,5 @@
 /* eslint-disable jsx-a11y/anchor-is-valid */
-import React from 'react'
+import React,{useState} from 'react'
 import OwlCarousel from 'react-owl-carousel';
 import 'owl.carousel/dist/assets/owl.carousel.css';
 import 'owl.carousel/dist/assets/owl.theme.default.css';
@@ -8,13 +8,28 @@ import ModalSection from '../../PrimarySections/Modal/ModalSection';
 import Product from './Subfolder/Product';
 import { connect } from 'react-redux';
 import { ProductLoader } from '../../PrimarySections/ReactPlaceHolder/ReactPlaceHolder';
-import MoreBtn from '../../PrimarySections/Essentials/essentials';
+import MoreBtn from '../../PrimarySections/Essentials/MoreBtn';
+import { Link } from 'react-router-dom';
 
 
 
 function OurProduct (props) {
-
-    
+  const [Tab, setTab] = useState('Camera, Photo & Video')
+  console.log(Tab)
+  const tabs =[
+    {
+      id:1,
+      tab_name:'Camera, Photo & Video',
+    },
+    {
+      id:2,
+      tab_name:'Audio & Home Theater',
+    },
+    {
+      id:3,
+      tab_name:'Cellphones & Accessories',
+    },
+  ]
 
   const options = {
     loop: false,
@@ -50,15 +65,11 @@ function OurProduct (props) {
             <h3><span>our</span> product</h3>
             <div className="boxx-tab">
               <ul className="nav my-tab">
-                <li>
-                  <a className="active" data-toggle="tab" href="#one">Camera, Photo &amp; Video</a>
-                </li>
-                <li>
-                  <a data-toggle="tab" href="#two">Audio &amp; Home Theater</a>
-                </li>
-                <li>
-                  <a data-toggle="tab" href="#three">Cellphones &amp; Accessories</a>
-                </li>
+                {tabs.map(tab=>(
+                  <li key={tab.id}>
+                    <Link className={`${Tab===tab.tab_name && 'active'}`}  to="#" onClick={()=>setTab(tab.tab_name)}>{tab.tab_name}</Link>
+                  </li>
+                ))}
               </ul>
             </div>
           </div>
@@ -70,7 +81,9 @@ function OurProduct (props) {
       <ProductLoader className=''/>  
       :
   <div className="tab-content">
-  <div className="tab-pane fade show active" id="one">
+  {
+    Tab === 'Camera, Photo & Video' &&
+    (<div className={`${Tab === 'Camera, Photo & Video' && 'show active'}tab-pane fade`} id="one">
     <div className="product-gallary-wrapper">
       <div className="product-gallary-active  product-spacing">
         <OwlCarousel
@@ -86,11 +99,13 @@ function OurProduct (props) {
         </OwlCarousel>
       </div>
     </div>
-  </div>
+  </div>)}
   
   
 
-  <div className="tab-pane fade" id="two">
+  {
+    Tab === 'Audio & Home Theater' &&
+    (<div className={`${Tab === 'Audio & Home Theater' && 'show active'}tab-pane fade`} id="two">
     <div className="product-gallary-wrapper">
  
       <div className="product-gallary-active  product-spacing">
@@ -107,12 +122,13 @@ function OurProduct (props) {
     </OwlCarousel>
       </div>
     </div>
-  </div>
+  </div>)}
   
 
 
-  <div className="tab-pane fade" id="three">
-
+  {
+    Tab === 'Cellphones & Accessories' && (
+    <div className={`${Tab === 'Cellphones & Accessories' && 'show active'}tab-pane fade`} id="three">
     <div className="product-gallary-wrapper">
 
       <div className="product-gallary-active  product-spacing">
@@ -127,7 +143,7 @@ function OurProduct (props) {
     </OwlCarousel>
       </div>
     </div>
-  </div>
+  </div>)}
 
 </div>}
           {/* </Slider> */}
@@ -137,7 +153,7 @@ function OurProduct (props) {
         )
     }
 const mapStateToProps = state=>({
-  products:state.homeProducts.ourProduct,
+  products:state.homeProducts.hotCollection,
   loading:state.homeProducts.loading,
 })
 

@@ -115,7 +115,7 @@ function HotCollection(props) {
 
 
 const mapStateToProps= state=>({
-  hotCollection:state.homeProducts.ourProduct,
+  hotCollection:state.homeProducts.hotCollection,
   loading:state.homeProducts.loading,
 })
 

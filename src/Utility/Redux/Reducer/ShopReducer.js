@@ -3,11 +3,15 @@ import { FETCH_SHOP_PRODUCTS_ERROR, FETCH_SHOP_PRODUCTS_REQUEST, FETCH_SHOP_PROD
 
 export const ShopReducer = (state=initialState,action)=>{
     switch(action.type){
+        
         case FETCH_SHOP_PRODUCTS_REQUEST:
             return{
                 loading:true,
             }
         case FETCH_SHOP_PRODUCTS_SUCCESS:
+        console.log('====================================');
+        console.log('shopreducer',action.product);
+        console.log('====================================');
             return{
                 loading:false,
                 shopProduct:action.product,
