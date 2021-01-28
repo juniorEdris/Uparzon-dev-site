@@ -12,7 +12,7 @@ function HotCollection(props) {
   const tabs =['Featured Products','On sale Products','Best sellers Products',]
   
   // Mapping All products in a varriables
- const Card = props.hotCollection.map(product =>(
+ const Card = props.hotCollection?.map(product =>(
   <div className="col mb-30">
    <Product key={product.id} product={product}/>
   </div> /* single item end */

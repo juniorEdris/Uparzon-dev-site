@@ -10,7 +10,7 @@ function CartForm(props) {
 
     useEffect(() => {
         //Product Quantity 
-		$('.product-qty').append('<span class="dec qtybtn"><i class="fa fa-minus"></i></span><span class="inc qtybtn"><i class="fa fa-plus"></i></span>');
+		$('.product-qty').append(`<span class="dec qtybtn"><i class="fa fa-minus"></i></span><span class="inc qtybtn"><i class="fa fa-plus"></i></span>`);
 		$('.qtybtn').on('click', function() {
             var $button = $(this);
             var oldValue = $button.parent().find('input').val();

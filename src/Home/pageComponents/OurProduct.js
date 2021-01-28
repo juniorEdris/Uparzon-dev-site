@@ -89,7 +89,7 @@ function OurProduct (props) {
               {...options}
             >
         {
-          props.products.map(product => (
+          props.products?.map(product => (
             <Product key={product.id} product={product}/>
             ))
         }
@@ -110,7 +110,7 @@ function OurProduct (props) {
         {...options}
         >
         {
-          props.products.map(product =>(
+          props.products?.map(product =>(
             <Product key={product.id} product={product}/>
           ))
         }
@@ -131,7 +131,7 @@ function OurProduct (props) {
         className="owl-theme"
         {...options}
         >
-        {props.products.map(product => (
+        {props.products?.map(product => (
           <Product key={product.id} product={product}/>        
         ))}
       <MoreBtn route={'/shop'}/>

@@ -3,35 +3,7 @@ import { Link } from 'react-router-dom'
 import './MenuSidebar.css'
 
 function MenuSideBar({open,setOpen}) {
-    console.log('hambergur');
-    const toggleHamburger = useCallback(
-        () => {
-            setOpen(!open)
-        },
-        [open,setOpen],
-    )
-    const routes=[
-        {
-            id:1,
-            pathName:'home',
-            path:'/',
-        },
-        {
-            id:2,
-            pathName:'shop',
-            path:'/shop',
-        },
-        {
-            id:3,
-            pathName:'blog',
-            path:'/blog',
-        },
-        {
-            id:4,
-            pathName:'contact us',
-            path:'/contact',
-        },
-    ]
+
     return (
         <aside className={`${open && 'sidebar_open'} sidebar_menu d-lg-none`}>
             <div className='sidebar_close_btn pl-3 pr-3' onClick={toggleHamburger}><span class="lnr lnr-cross"></span></div>

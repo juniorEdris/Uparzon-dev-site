@@ -4,8 +4,9 @@ import { Link } from 'react-router-dom';
 import { fetchCategories} from '../../Utility/Redux/Action/CategoriesAction';
 import { GetSubCategory } from '../../Utility/Redux/Action/GetSubCategoryAction';
 import MainMenu from './MainMenu';
-import MenuSidebar from './MenuSidebar';
+// import MenuSidebar from './MenuSidebar';
 import './Navigation.css'
+import SideBarMenu from './SideBarMenu';
 
 function Navigation(props) {
     //Stciky nav trigger
@@ -24,9 +25,6 @@ function Navigation(props) {
         }
     }, [stickyNav])
 
-    useEffect(()=>{
-        // props.fetchCategory()
-    },[])
 
         //catagories menu dropdown
         const[isBrowsing,setBrowsing] = useState(false)
@@ -43,15 +41,7 @@ function Navigation(props) {
             e.preventDefault();
             setMenuShow(!menuShow)
         }
-        //main menu set
-        const [mainMenu, setMainMenu] = useState(false)
-        const openSidebar = ()=>{
-            // e.preventDefault();
-            setMainMenu(!mainMenu)
-        }
-        console.log('====================================');
-        console.log(mainMenu);
-        console.log('====================================');
+
     return (
         <div className={`header-top-menu theme-bg sticker ${stickyNav && 'sticky'} `}>
         <div className="container-fluid">
@@ -102,14 +92,7 @@ function Navigation(props) {
                     {/* ul ends here */}
                     </nav>
                     </div>
-                        
-                {!mainMenu &&<div className="ham-burger d-lg-none">
-                    <Link className="mburger " to="#" onClick={openSidebar}>
-                        <b></b>
-                        <b></b>
-                        <b></b>
-                    </Link>           
-                </div>}
+                <SideBarMenu/>
                 <MainMenu/>
                 <div className="header-call-action">
                     <p><span className="lnr lnr-phone" />Hotline : <strong>1-001-234-5678</strong></p>
@@ -119,7 +102,6 @@ function Navigation(props) {
             <div className="col-12 d-block d-lg-none"><div className="mobile-menu" /></div>
             </div>
         </div>
-        {mainMenu && <MenuSidebar open={mainMenu} setOpen={openSidebar}/>}
         </div>
     )
 }

@@ -14,6 +14,8 @@ const removeProdBasket =(product)=>(
 )
 
 export const AddBasketProd = (product) => (dispatch,getState) => {
+    // return action if its null
+    if(product === null) return;
     const cartItems = getState().basketProd.basket.slice()
     let exist=false;
         cartItems.forEach(x => {
@@ -26,10 +28,6 @@ export const AddBasketProd = (product) => (dispatch,getState) => {
             cartItems.push({...product,count:1})
         }
         dispatch(addProdBasket(cartItems))
-    // dispatch({
-    //     type: ADD_TO_BASKET,
-    //     payload:{cartItems}
-    // })
     localStorage.setItem('Cart List', JSON.stringify(cartItems))
 }
 export const RemoveBasketProd = (product) => (dispatch,getState) => {

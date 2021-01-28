@@ -132,7 +132,7 @@ const options = {
                       {...options}
                     >
                   {
-                    props.brandProducts.map(product =>(
+                    props.brandProducts?.map(product =>(
                           <Product key={product.id} product={product}/>
                         ))
                   }
@@ -150,7 +150,7 @@ const options = {
                       {...options}
                     >
                   {
-                    props.brandProducts.map(product =>(
+                    props.brandProducts?.map(product =>(
                       <Product key={product.id} product={product}/>
                         ))
                   }
@@ -168,7 +168,7 @@ const options = {
                       {...options}
                     >
                   {
-                    props.brandProducts.map(product =>(
+                    props.brandProducts?.map(product =>(
                       <Product key={product.id} product={product}/>
                         ))
                   }

@@ -18,7 +18,7 @@ function HomeSlider(props) {
             navSpeed={1000}
             navText={['<i class="fa fa-angle-left"></i>','<i class="fa fa-angle-right"></i>']}
           >
-              {props.banners.length > 0 && props.banners.map(banner=>(
+              {props.banners?.length > 0 && props.banners?.map(banner=>(
                 <div className="slider-area">
                         <div className="single-slider d-flex align-items-center" style={{backgroundImage: `url(https:${banner.image})`}}> {/* .replace('demostore', 'store') assets/img/slider/slider1-home1.jpg*/}
                             <div className="container-fluid">
