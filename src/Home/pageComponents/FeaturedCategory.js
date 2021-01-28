@@ -7,6 +7,20 @@ import { Link } from 'react-router-dom';
 
 
 export default function FearuredCategory() {
+  const featuredCategoryOne = [
+    {
+      id:1,
+      category_name:'Audio & Home Theater',
+      product_count: 9,
+    },
+  ]
+  const featuredCategoryTwo = [
+    {
+      id:1,
+      category_name:'Cellphones & Accessories',
+      product_count: 6,
+    },
+  ]
   const options = {
     loop: false,
     margin:10,
@@ -43,94 +57,35 @@ export default function FearuredCategory() {
                   className="owl-theme"
                   {...options}
                 >
-                <div className="pro-layout-two-single-item">
-                  <div className="product-layout-two mb-30">
+                
+                  <div className="pro-layout-two-single-item">
+                  { featuredCategoryOne.map((product,id)=>(
+                  <div key={id} className="product-layout-two mb-30">
                     <div className="product-layout-info">
-                      <h4 className="pro-name"><Link to="/">Audio &amp; Home Theater</Link></h4>
-                      <p className="total-items"> 9 products </p>
+                      <h4 className="pro-name"><Link to="/">{product.category_name}</Link></h4>
+                      <p className="total-items"> {product.product_count} products </p>
                       <Link to="/" className="shop-btn">+ shop now</Link>
                     </div>
                     <div className="product-layout-thumb">
                       <Link to="/details"><img src="https://uparzon.com.bd/assets/img/product/pro-layout-img3.jpg" alt="" /></Link>
                     </div>
                   </div>
+                  ))}
+
+                  { featuredCategoryTwo.map((product,id)=>(
                   <div className="product-layout-two mb-30">
                     <div className="product-layout-info">
-                      <h4 className="pro-name"><Link to="/">Cellphones &amp; Accessories</Link></h4>
-                      <p className="total-items"> 6 products </p>
+                      <h4 className="pro-name"><Link to="/">{product.category_name}</Link></h4>
+                      <p className="total-items"> {product.product_count} products </p>
                       <Link to="/details" className="shop-btn">+ shop now</Link>
                     </div>
                     <div className="product-layout-thumb">
                       <Link to="/"><img src="https://uparzon.com.bd/assets/img/product/pro-layout-img5.jpg" alt="" /></Link>
                     </div>
                   </div>
-                </div> {/* </ end single item */}
-                <div className="pro-layout-two-single-item">
-                  <div className="product-layout-two mb-30">
-                    <div className="product-layout-info">
-                      <h4 className="pro-name"><a href="shop-grid-left-sidebar.html">Audio &amp; Home Theater</a></h4>
-                      <p className="total-items"> 9 products </p>
-                      <a href="shop-grid-left-sidebar.html" className="shop-btn">+ shop now</a>
-                    </div>
-                    <div className="product-layout-thumb">
-                      <a href="shop-grid-left-sidebar.html"><img src="https://uparzon.com.bd/assets/img/product/pro-layout-img3.jpg" alt="" /></a>
-                    </div>
-                  </div>
-                  <div className="product-layout-two mb-30">
-                    <div className="product-layout-info">
-                      <h4 className="pro-name"><a href="shop-grid-left-sidebar.html">Cellphones &amp; Accessories</a></h4>
-                      <p className="total-items"> 6 products </p>
-                      <a href="shop-grid-left-sidebar.html" className="shop-btn">+ shop now</a>
-                    </div>
-                    <div className="product-layout-thumb">
-                      <a href="shop-grid-left-sidebar.html"><img src="https://uparzon.com.bd/assets/img/product/pro-layout-img5.jpg" alt="" /></a>
-                    </div>
-                  </div>
-                </div> {/* </ end single item */}
-                <div className="pro-layout-two-single-item">
-                  <div className="product-layout-two mb-30">
-                    <div className="product-layout-info">
-                      <h4 className="pro-name"><a href="shop-grid-left-sidebar.html">Audio &amp; Home Theater</a></h4>
-                      <p className="total-items"> 9 products </p>
-                      <a href="shop-grid-left-sidebar.html" className="shop-btn">+ shop now</a>
-                    </div>
-                    <div className="product-layout-thumb">
-                      <a href="shop-grid-left-sidebar.html"><img src="https://uparzon.com.bd/assets/img/product/pro-layout-img3.jpg" alt="" /></a>
-                    </div>
-                  </div>
-                  <div className="product-layout-two mb-30">
-                    <div className="product-layout-info">
-                      <h4 className="pro-name"><a href="shop-grid-left-sidebar.html">Cellphones &amp; Accessories</a></h4>
-                      <p className="total-items"> 6 products </p>
-                      <a href="shop-grid-left-sidebar.html" className="shop-btn">+ shop now</a>
-                    </div>
-                    <div className="product-layout-thumb">
-                      <a href="shop-grid-left-sidebar.html"><img src="https://uparzon.com.bd/assets/img/product/pro-layout-img5.jpg" alt="" /></a>
-                    </div>
-                  </div>
-                </div> {/* </ end single item */}
-                <div className="pro-layout-two-single-item">
-                  <div className="product-layout-two mb-30">
-                    <div className="product-layout-info">
-                      <h4 className="pro-name"><a href="shop-grid-left-sidebar.html">Audio &amp; Home Theater</a></h4>
-                      <p className="total-items"> 9 products </p>
-                      <a href="shop-grid-left-sidebar.html" className="shop-btn">+ shop now</a>
-                    </div>
-                    <div className="product-layout-thumb">
-                      <a href="shop-grid-left-sidebar.html"><img src="https://uparzon.com.bd/assets/img/product/pro-layout-img3.jpg" alt="" /></a>
-                    </div>
-                  </div>
-                  <div className="product-layout-two mb-30">
-                    <div className="product-layout-info">
-                      <h4 className="pro-name"><a href="shop-grid-left-sidebar.html">Cellphones &amp; Accessories</a></h4>
-                      <p className="total-items"> 6 products </p>
-                      <a href="shop-grid-left-sidebar.html" className="shop-btn">+ shop now</a>
-                    </div>
-                    <div className="product-layout-thumb">
-                      <a href="shop-grid-left-sidebar.html"><img src="https://uparzon.com.bd/assets/img/product/pro-layout-img5.jpg" alt="" /></a>
-                    </div>
-                  </div>
-                </div> {/* </ end single item */}
+                  ))}
+                </div>
+                 {/* </ end single item */}
                 </OwlCarousel>
               </div>
             </div>

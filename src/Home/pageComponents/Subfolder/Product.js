@@ -12,7 +12,6 @@ import { ShowQuickDes } from '../../../Utility/Redux/Action/QuickViewAction';
 
 function Product(props) {
   const {isList,product,isGrid} = props
-  const word = 'store'
   return (
         <div>
           {

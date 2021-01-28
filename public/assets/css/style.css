@@ -1084,6 +1084,9 @@ ul.dropdown li span {
   border-radius: 10px;
   overflow: hidden;
 }
+.product-thumb a img {
+  width: 100%; /*can be changed*/
+}
 .product-short .nice-select .list {
   right: 0;
   left: auto;
