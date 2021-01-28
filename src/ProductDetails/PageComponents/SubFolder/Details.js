@@ -13,8 +13,6 @@ import { FetchProductSuggetions } from '../../../Utility/Redux/Action/ProdSugges
 function Details(props) {
 
   useEffect(() => {
-        // get on top of the page after page loads
-        (window).scrollTo(0,0)
         $('.useful-links a').on('click',function( event ) {
           event.preventDefault();
         });

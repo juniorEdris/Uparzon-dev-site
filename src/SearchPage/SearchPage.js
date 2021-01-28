@@ -4,10 +4,10 @@ import CartIcon from '../PrimarySections/CartIcon.js/CartIcon'
 import useDocTitle from '../PrimarySections/CustomHooks/DocTitle'
 import ModalSection from '../PrimarySections/Modal/ModalSection'
 import ScrollBar from '../PrimarySections/ScrollBar/ScrollBar'
-import ShopWrapper from './pageComponents/ShopWrapper'
+import SearchWrapper from './PageComponent/SearchWrapper'
 
-export default function Shop() {
 
+function SearchPage() {
     const [show,setShow] = useState(false)
     useEffect(()=>{
         window.addEventListener('scroll', () => {
@@ -22,14 +22,16 @@ export default function Shop() {
         }
     },[])
     // Document Title Update
-    useDocTitle('Shop')
+    useDocTitle('Search product')
     return (
         <div>
-            <Breadcrumb pageName={'Shop'} route={'/'} parent={'Home'}/>
-            <ShopWrapper/>
+            <Breadcrumb pageName={'Search products'} route={'/'} parent={'Home'}/>
+            <SearchWrapper/>
             <ScrollBar/>
             {show && <CartIcon />}
             <ModalSection/>
         </div>
     )
 }
+
+export default SearchPage

@@ -1,5 +1,5 @@
 /* eslint-disable jsx-a11y/anchor-is-valid */
-import React from 'react'
+import React,{useState} from 'react'
 import OwlCarousel from 'react-owl-carousel';
 import 'owl.carousel/dist/assets/owl.carousel.css';
 import 'owl.carousel/dist/assets/owl.theme.default.css';
@@ -9,10 +9,44 @@ import Product from './Subfolder/Product';
 import { ProductLoader } from '../../PrimarySections/ReactPlaceHolder/ReactPlaceHolder';
 import {connect} from 'react-redux'
 import MoreBtn from '../../PrimarySections/Essentials/MoreBtn';
+import { Link } from 'react-router-dom';
 
 function BrandArea(props) {
 
-
+  const brands =[
+      {
+          id:1,
+          brand_name:'brand 1',
+          brand_img:'assets/img/brand/brand1.png',
+        },
+        {
+            id:2,
+            brand_name:'brand 2',
+            brand_img:'assets/img/brand/brand2.png',
+          },
+          {
+              id:3,
+              brand_name:'brand 3',
+      brand_img:'assets/img/brand/brand3.png',
+    },
+    {
+        id:4,
+        brand_name:'brand 1',
+        brand_img:'assets/img/brand/brand4.png',
+      },
+      {
+          id:5,
+          brand_name:'brand 2',
+          brand_img:'assets/img/brand/brand5.png',
+        },
+        {
+            id:6,
+            brand_name:'brand 3',
+            brand_img:'assets/img/brand/brand6.png',
+          },
+        ]
+        const [Tab, setTab] = useState(brands[0].brand_name)
+        console.log(Tab)
   const brandOptions = {
     loop: false,
     margin:10,
@@ -76,36 +110,12 @@ const options = {
                     {...brandOptions}
                   >
 
-              <li>
-                <a className="active" href="#brand-one" data-toggle="tab">
-                  <img src="assets/img/brand/brand1.png" alt="" />
-                </a>
-              </li>
-              <li>
-                <a href="#brand-two" data-toggle="tab">
-                  <img src="assets/img/brand/brand2.png" alt="" />
-                </a>
-              </li>
-              <li>
-                <a href="#brand-three" data-toggle="tab">
-                  <img src="assets/img/brand/brand3.png" alt="" />
-                </a>
-              </li>
-              <li>
-                <a href="#brand-one" data-toggle="tab">
-                  <img src="assets/img/brand/brand4.png" alt="" />
-                </a>
-              </li>
-              <li>
-                <a href="#brand-two" data-toggle="tab">
-                  <img src="assets/img/brand/brand5.png" alt="" />
-                </a>
-              </li>
-              <li>
-                <a href="#brand-three" data-toggle="tab">
-                  <img src="assets/img/brand/brand6.png" alt="" />
-                </a>
-              </li>
+              {brands.map((brand,id)=>(<li>
+                <Link key={id} className={Tab === brand.brand_name && `active`} onClick={()=> setTab(brand.brand_name)}>
+                  <img src={brand.brand_img ? brand.brand_img: 'assets/img/uparzon_placeholder.png'} alt={brand.brand_name} />
+                </Link>
+              </li>))}
+              
               </OwlCarousel>
             </ul>
           </div>
@@ -113,7 +123,7 @@ const options = {
           {props.loading ? 
         <ProductLoader className='product-item'/>:
             <div className="tab-content">
-              <div className="tab-pane fade show active" id="brand-one">
+              <div className={` tab-pane fade ${Tab === 'brand 1' && `show active`}`} id="brand-one">
         <div className="product-gallary-wrapper brand-sale">
                   <div className="product-gallary-active  sale-nav"> 
                   {/* product slider starts here */}
@@ -131,7 +141,7 @@ const options = {
                   </div>
                 </div>
               </div>
-              <div className="tab-pane fade" id="brand-two">
+              <div className={` tab-pane fade ${Tab === 'brand 2' && `show active`}`} id="brand-two">
                 <div className="product-gallary-wrapper brand-sale">
                   <div className="product-gallary-active  sale-nav"> 
                   {/* product slider starts here */}
@@ -149,7 +159,7 @@ const options = {
                   </div>
                 </div>
               </div>
-              <div className="tab-pane fade" id="brand-three">
+              <div className={` tab-pane fade ${Tab === 'brand 3' && `show active`}`} id="brand-three">
                 <div className="product-gallary-wrapper brand-sale">
                   <div className="product-gallary-active  sale-nav"> 
                   {/* product slider starts here */}

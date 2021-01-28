@@ -81,9 +81,7 @@ function OurProduct (props) {
       <ProductLoader className=''/>  
       :
   <div className="tab-content">
-  {
-    Tab === 'Camera, Photo & Video' &&
-    (<div className={`${Tab === 'Camera, Photo & Video' && 'show active'}tab-pane fade`} id="one">
+  <div className={`${Tab === 'Camera, Photo & Video' && 'show active'} tab-pane fade`} id="one">
     <div className="product-gallary-wrapper">
       <div className="product-gallary-active  product-spacing">
         <OwlCarousel
@@ -99,13 +97,11 @@ function OurProduct (props) {
         </OwlCarousel>
       </div>
     </div>
-  </div>)}
+  </div>
   
   
 
-  {
-    Tab === 'Audio & Home Theater' &&
-    (<div className={`${Tab === 'Audio & Home Theater' && 'show active'}tab-pane fade`} id="two">
+  <div className={`${Tab === 'Audio & Home Theater' && 'show active'} tab-pane fade`} id="two">
     <div className="product-gallary-wrapper">
  
       <div className="product-gallary-active  product-spacing">
@@ -122,13 +118,12 @@ function OurProduct (props) {
     </OwlCarousel>
       </div>
     </div>
-  </div>)}
+  </div>
   
 
 
-  {
-    Tab === 'Cellphones & Accessories' && (
-    <div className={`${Tab === 'Cellphones & Accessories' && 'show active'}tab-pane fade`} id="three">
+  
+    <div className={`${Tab === 'Cellphones & Accessories' && 'show active'} tab-pane fade`} id="three">
     <div className="product-gallary-wrapper">
 
       <div className="product-gallary-active  product-spacing">
@@ -143,7 +138,7 @@ function OurProduct (props) {
     </OwlCarousel>
       </div>
     </div>
-  </div>)}
+  </div>
 
 </div>}
           {/* </Slider> */}

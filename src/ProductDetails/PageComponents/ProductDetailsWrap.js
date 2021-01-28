@@ -4,6 +4,7 @@ import Slider from './SubFolder/ProductSlider'
 import useQuery from '../../PrimarySections/Essentials/UrlParams'
 import { connect } from 'react-redux'
 import { GetProductDetails } from '../../Utility/Redux/Action/ProductDetailsAction'
+import usePageTop from '../../PrimarySections/CustomHooks/GetTopofPage'
 
 function ProductDetailsWrap(props) {
   
@@ -11,10 +12,12 @@ function ProductDetailsWrap(props) {
   const query = useQuery()
   const prodID = query.get('id')
 
-  useEffect(() => {
-    // get on top of the page after page loads
-    (window).scrollTo(0,0)
-  }, [])
+  // useEffect(() => {
+  //   // get on top of the page after page loads
+  //   (window).scrollTo(0,0)
+  // }, [])
+  // get on top of the page after page loads
+  usePageTop()
 
     return (
         <div className="product-details-main-wrapper pb-50">

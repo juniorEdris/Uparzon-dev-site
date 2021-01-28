@@ -1,12 +1,17 @@
 /* eslint-disable jsx-a11y/anchor-is-valid */
-import React from 'react'
+import React,{useState} from 'react'
 import { Link } from 'react-router-dom'
 import ModalSection from '../../PrimarySections/Modal/ModalSection'
 import Product from './Subfolder/Product'
 import { ProductLoader } from '../../PrimarySections/ReactPlaceHolder/ReactPlaceHolder'
 import { connect } from 'react-redux'
 function HotCollection(props) {
+
+  const [Tab, setTab] = useState('Featured Products')
+  console.log(Tab)
+  const tabs =['Featured Products','On sale Products','Best sellers Products',]
   
+  // Mapping All products in a varriables
  const Card = props.hotCollection.map(product =>(
   <div className="col mb-30">
    <Product key={product.id} product={product}/>
@@ -19,15 +24,11 @@ function HotCollection(props) {
       <h3><span>Hot</span> Collection</h3>
       <div className="boxx-tab">
         <ul className="nav my-tab">
-          <li>
-            <a className="active" data-toggle="tab" href="#module-one">Featured Products</a>
-          </li>
-          <li>
-            <a data-toggle="tab" href="#module-two">On sale Products</a>
-          </li>
-          <li>
-            <a data-toggle="tab" href="#module-three">Best sellers Products</a>
-          </li>
+          {tabs.map((tab,id)=>(
+            <li>
+              <Link to='#' key={id} className={Tab === tab && 'active'} onClick={()=>setTab(tab)}>{tab}</Link>
+            </li>
+          ))}
         </ul>
       </div>
     </div>
@@ -37,9 +38,10 @@ function HotCollection(props) {
         <ProductLoader className='product-item'/> 
         :
       <div className="tab-content">
-      <div className="tab-pane fade show active" id="module-one">
+      
+      {/* module-one starts here */}
+      <div className={`tab-pane fade ${Tab === 'Featured Products' && "show active"}`} id="module-one">
         <div className="module-four-wrapper custom-seven-column">
-          {/* module-one starts here */}
 
           <div className="col col-2 mb-30">
             <div className="product-item">
@@ -60,7 +62,7 @@ function HotCollection(props) {
         </div>
       </div>
       {/* module-two starts here */}
-      <div className="tab-pane fade" id="module-two">
+      <div className={`tab-pane fade ${Tab === 'On sale Products' && "show active"}`} id="module-two">
         <div className="module-four-wrapper custom-seven-column">
         <div className="col col-2 mb-30">
             <div className="product-item">
@@ -82,7 +84,7 @@ function HotCollection(props) {
       </div>
 
       {/* module-three id starts here */}
-      <div className="tab-pane fade" id="module-three">
+      <div className={`tab-pane fade ${Tab === 'Best sellers Products' && "show active"}`} id="module-three">
         <div className="module-four-wrapper custom-seven-column">
 
           <div className="col col-2 mb-30">

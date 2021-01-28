@@ -1,5 +1,6 @@
-import React,{useEffect} from 'react'
+import React from 'react'
 import Breadcrumb from '../../PrimarySections/Breadcrumbs/Breadcrumb'
+import useDocTitle from '../../PrimarySections/CustomHooks/DocTitle'
 import ScrollBar from '../../PrimarySections/ScrollBar/ScrollBar'
 import DashTable from './pageComponents/DashTable'
 import UserInfo from './pageComponents/UserInfo'
@@ -7,9 +8,8 @@ import UserInfo from './pageComponents/UserInfo'
 
 export default function Index() {
 
-    useEffect(() => {
-        document.title = 'Dashboard | Uparzon E-commerce Site'
-    }, [])
+     // Document Title Update
+     useDocTitle('Dashboard')
     return (
         <div>
             <Breadcrumb pageName={'Dashboard'} route={'/'} parent={'Home'}/>

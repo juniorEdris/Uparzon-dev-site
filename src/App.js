@@ -27,6 +27,7 @@ import { fetchHomeProds } from './Utility/Redux/Action/HomeProdAction';
 import { fetchShopProds } from './Utility/Redux/Action/ShopProductAction';
 import { FetchProductSuggetions } from './Utility/Redux/Action/ProdSuggestionAction';
 import { fetchShopList } from './Utility/Redux/Action/ShopListAction';
+import SearchPage from './SearchPage/SearchPage';
 
 
 function App(props) {
@@ -96,6 +97,9 @@ function App(props) {
           </Route>
           <Route path='/register'>
             <Register/>
+          </Route>
+          <Route path='/search'>
+            <SearchPage/>
           </Route>
           <Route path='/login'>
             <Login/>

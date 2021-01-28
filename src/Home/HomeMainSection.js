@@ -1,4 +1,4 @@
-import React,{useEffect} from 'react'
+import React from 'react'
 import HomeSlider from './pageComponents/HomeSlider'
 import FeatureArea from './pageComponents/FeatureArea'
 import OurProduct from './pageComponents/OurProduct'
@@ -15,17 +15,16 @@ import ScrollBar from '../PrimarySections/ScrollBar/ScrollBar'
 import CartIcon from '../PrimarySections/CartIcon.js/CartIcon'
 import './Home.css'
 import Store from './pageComponents/StoreSection'
+import useDocTitle from '../PrimarySections/CustomHooks/DocTitle'
 
 
 
 
 export default function HomeMainSection({show}) {
-
-    useEffect(()=>{
-        document.title = "Home | Uparzon Ecommerce Online Shop" 
-    },[])
-
-
+    
+    // Document Title Update
+    useDocTitle('Home')
+    
     return (
         <div style={{position:'relative'}}>
             <HomeSlider/>

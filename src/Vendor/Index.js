@@ -12,6 +12,7 @@ import { connect } from 'react-redux'
 import { fetchVendorProds } from '../Utility/Redux/Action/VendorProductAction'
 import useQuery from '../PrimarySections/Essentials/UrlParams'
 import { fetchVendorDetails } from '../Utility/Redux/Action/VendorDetailsAction'
+import useDocTitle from '../PrimarySections/CustomHooks/DocTitle'
 
 
 
@@ -21,10 +22,12 @@ function Index(props) {
     const VendorID = query.get('id')
 
     useEffect(() => {
-        document.title = `Uparzon E-commerce Shop` 
         props.VendorDetails(VendorID)
         props.VendorProducts(VendorID)
     }, [])
+
+    // Document Title Update
+    useDocTitle()
 
     return (
         <div className="main-wrapper">

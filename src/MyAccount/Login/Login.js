@@ -1,13 +1,13 @@
-import React,{useEffect} from 'react'
+import React from 'react'
 import Body from './pageComponents/LoginBody'
 import ScrollBar from '../../PrimarySections/ScrollBar/ScrollBar'
 import  Breadcrumbs  from '../../PrimarySections/Breadcrumbs/Breadcrumb'
+import useDocTitle from '../../PrimarySections/CustomHooks/DocTitle'
 
 
 export default function Login() {
-    useEffect(() => {
-        document.title = `Log in | Uparzon e-commerce site`
-    }, [])
+     // Document Title Update
+     useDocTitle('Login')
     return (
         <div>
             <Breadcrumbs pageName={'Login'} route={'/home'} parent={'Home'}/>

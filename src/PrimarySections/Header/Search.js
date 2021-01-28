@@ -1,8 +1,18 @@
 import { FormControl, ListSubheader, MenuItem, Select } from '@material-ui/core'
-import React from 'react'
+import React,{useState} from 'react'
+import { useHistory } from 'react-router-dom'
 import './Search.css'
 
-export default function Search() {
+ function Search() {
+     const [input, setInput] = useState('')
+    const history = useHistory()
+    console.log('====================================');
+    console.log('history',history);
+    console.log('====================================');
+    const routeChange = (e)=>{
+        const state = history.push("/search");
+        console.log(state);
+    }
     return (
         <div className="col-lg-6 col-md-12 col-12 order-sm-last">
         <div className="header-middle-inner">
@@ -36,10 +46,12 @@ export default function Search() {
             </div>
             </div>
         {/* <form action="method"> */}
-            <input type="text" className="top-cat-field" placeholder="Search entire store here" />
+            <input type="text" className="top-cat-field" onInput={routeChange} onChange={e=>setInput(e.target.value)} placeholder="Search entire store here" />
             <input type="button" className="top-search-btn" defaultValue="Search" />
         {/* </form> */}
         </div>
     </div>
     )
 }
+
+export default React.memo(Search)

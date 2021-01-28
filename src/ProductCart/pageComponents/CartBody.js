@@ -5,9 +5,10 @@ import { useStateValue } from '../../Utility/StateProvider'
 import CartAccordion from './CartAccordion';
 import CartForm from './CartForm';
 import {currToFixed} from '../../PrimarySections/Essentials/CurrencyFormat'
+import { connect } from 'react-redux';
 
-export default function CartBody() {
-    const [{basket,user}] = useStateValue();
+function CartBody(props) {
+    const [{user}] = useStateValue();
     return (
         <div>
             {/* Start cart Wrapper */}
@@ -31,11 +32,11 @@ export default function CartBody() {
                                     <tbody>
                                     <tr>
                                         <td><strong>Sub-Total:</strong></td>
-                                        <td>&#2547; {currToFixed(getSubTotal(basket))}</td>
+                                        <td>&#2547; {currToFixed(getSubTotal(props.basket))}</td>
                                     </tr>
                                     <tr>
                                         <td><strong>Total:</strong></td>
-                                        <td><span className="color-primary">&#2547; {currToFixed(getSubTotal(basket))}</span></td>
+                                        <td><span className="color-primary">&#2547; {currToFixed(getSubTotal(props.basket))}</span></td>
                                     </tr>
                                     </tbody>
                                 </table>
@@ -59,3 +60,11 @@ export default function CartBody() {
         </div>
     )
 }
+const mapStateToProps = state => (
+    {
+        basket:state.basketProd.basket,
+    }
+)
+
+const mapDispatchToProps = dispatch => ({})
+export default connect(mapStateToProps,mapDispatchToProps)(CartBody)

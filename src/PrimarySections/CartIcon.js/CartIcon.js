@@ -58,9 +58,5 @@ const mapStateToProps = state => (
         basket:state.basketProd.basket,
     }
 )
-const mapDispatchToProps = dispatch => (
-    {
-
-    }
-)
+const mapDispatchToProps = dispatch => ({})
 export default connect(mapStateToProps,mapDispatchToProps)(React.memo(CartIcon))
