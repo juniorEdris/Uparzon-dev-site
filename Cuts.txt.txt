@@ -50,6 +50,10 @@ HeaderBtn cuts jsx css >
     both;
   animation: scale-out-ver-top 0.5s cubic-bezier(0.47, 0, 0.745, 0.715) both;
 }
+
+=============================== input validation
+https://stackoverflow.com/questions/41296668/reactjs-form-input-validation
+===============================
 ===============================
 
 Will be added to component css 
