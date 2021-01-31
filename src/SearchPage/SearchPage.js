@@ -1,4 +1,5 @@
 import React,{useEffect,useState} from 'react'
+import { connect } from 'react-redux'
 import Breadcrumb from '../PrimarySections/Breadcrumbs/Breadcrumb'
 import CartIcon from '../PrimarySections/CartIcon.js/CartIcon'
 import useDocTitle from '../PrimarySections/CustomHooks/DocTitle'
@@ -33,5 +34,10 @@ function SearchPage() {
         </div>
     )
 }
-
-export default SearchPage
+const mapStateToProps = state=>(
+    {
+        loading:state.loading,
+        results: state.SearchEngine.searchedResponse
+    }
+)
+export default connect(mapStateToProps)(SearchPage)

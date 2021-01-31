@@ -1,14 +1,16 @@
 import React from 'react'
-import { Link } from 'react-router-dom'
+import { Link, useHistory } from 'react-router-dom'
 import { getSubTotal } from '../../Utility/Reducer';
-import { useStateValue } from '../../Utility/StateProvider'
 import CartAccordion from './CartAccordion';
 import CartForm from './CartForm';
 import {currToFixed} from '../../PrimarySections/Essentials/CurrencyFormat'
 import { connect } from 'react-redux';
 
 function CartBody(props) {
-    const [{user}] = useStateValue();
+    const deef = useHistory()
+    console.log('====================================');
+    console.log('deef',deef);
+    console.log('====================================');
     return (
         <div>
             {/* Start cart Wrapper */}
@@ -45,7 +47,7 @@ function CartBody(props) {
                             </div>
                             <div className="cart-button-wrapper d-flex justify-content-between mt-4">
                             <Link to="/shop" className="btn btn-secondary">Continue Shopping</Link>
-                            <Link to={!user ? "#": "/checkout"} className="btn btn-secondary dark align-self-end" data-target={!user && "#login_modal"} data-toggle={!user && "modal"}>Checkout</Link>
+                            <Link to={!props.user ? "#": "/checkout"} className="btn btn-secondary dark align-self-end" data-target={!props.user && "#login_modal"} data-toggle={!props.user && "modal"}>Checkout</Link>
                             </div>
                         </div>
                         </div>
@@ -63,6 +65,7 @@ function CartBody(props) {
 const mapStateToProps = state => (
     {
         basket:state.basketProd.basket,
+        user:state.Users.user,
     }
 )
 

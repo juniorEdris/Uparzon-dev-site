@@ -1,10 +1,9 @@
 import { Link } from 'react-router-dom'
 import React from 'react'
-import { useStateValue } from '../../../Utility/StateProvider'
+import { connect } from 'react-redux'
 
 
-export default function UserInfo() {
-    const [{basket}] = useStateValue()
+function UserInfo(props) {
     return (
         <div className="user-info mb-30">
         <div className="row align-items-center no-gutters">
@@ -25,10 +24,16 @@ export default function UserInfo() {
           </div>
           <div className="col-12 col-sm-12 col-md-6 col-lg-2 col-xl-3">
             <div className="single-info justify-content-lg-center">
-              <Link to={basket.length > 0 && "/cart"} className="btn btn-secondary" >View Cart</Link>
+              <Link to={props.basket.length > 0 && "/cart"} className="btn btn-secondary" >View Cart</Link>
             </div>
           </div>
         </div> 
       </div> 
     )
 }
+const mapStateToProps = state=>(
+  {
+    basket:state.basketProd.basket
+  }
+)
+export default connect(mapStateToProps)(UserInfo)

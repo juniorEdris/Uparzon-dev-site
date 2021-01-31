@@ -28,6 +28,7 @@ import { fetchShopProds } from './Utility/Redux/Action/ShopProductAction';
 import { FetchProductSuggetions } from './Utility/Redux/Action/ProdSuggestionAction';
 import { fetchShopList } from './Utility/Redux/Action/ShopListAction';
 import SearchPage from './SearchPage/SearchPage';
+import LoadAllData from './PrimarySections/CustomHooks/DataLoadingHooks';
 
 
 function App(props) {
@@ -52,7 +53,8 @@ function App(props) {
       props.fetchShopProds()
       props.fetchProdSuggestions()
       props.fetchShopList()
-    },[])   
+    },[])
+    // LoadAllData()   
     
   return ( 
     <div className="app">

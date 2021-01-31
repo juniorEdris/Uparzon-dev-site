@@ -22,7 +22,7 @@ function SearchWrapper(props) {
                             <div className="col-md-6">
                                 <div className="top-bar-left">
                                     <div className="product-page">
-                                        <p className=''>About {props.shopProduct?.length || 0} products matched...</p>
+                                        <p className=''>About {props.results?.length || 0} products matched...</p>
                                     </div>
                                 </div>
                             </div>
@@ -36,7 +36,7 @@ function SearchWrapper(props) {
                                 <ProductLoader/>
                             </div>
                         :<div className="shop-product-wrap grid row">
-                            {props.shopProduct.map(data=>(
+                            {props.results?.map(data=>(
                         <div className="col-lg-3 col-md-4 col-sm-6" key={data.id}>
                             {/* grid view starts here */}
                             <Product isGrid={true} key={data.id} product={data} />
@@ -75,8 +75,8 @@ function SearchWrapper(props) {
     
     const mapStateToProps=state=>(
         {
-            shopProduct:state.shopProducts.shopProduct,
-            loading:state.shopProducts.loading,
+            loading:state.loading,
+            results: state.SearchEngine.searchedResponse
         }
     )
     const mapDispatchToProps =dispatch=>({})

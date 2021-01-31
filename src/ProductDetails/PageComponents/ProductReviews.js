@@ -1,8 +1,10 @@
 import React from 'react'
 import { connect } from 'react-redux'
+import { renderHTML } from '../../PrimarySections/Essentials';
 const dateFormat = require("dateformat");
 
 function ProductReviews(props) {
+
     return (
         <div className="product-details-reviews pb-30">
   <div className="container-fluid">
@@ -14,12 +16,12 @@ function ProductReviews(props) {
               <a className="nav-link active" id="nav_desctiption" data-toggle="pill" href="#tab_description" role="tab" aria-controls="tab_description" aria-selected="true">Description</a>
             </li>
             <li className="nav-item">
-              <a className="nav-link" id="nav_review" data-toggle="pill" href="#tab_review" role="tab" aria-controls="tab_review" aria-selected="false">Reviews ({props.details?.Ratings?.length})</a>
+              <a className="nav-link" id="nav_review" data-toggle="pill" href="#tab_review" role="tab" aria-controls="tab_review" aria-selected="false">Reviews ({props.details?.Ratings?.length || 0})</a>
             </li>
           </ul>
           <div className="tab-content">
             <div className="tab-pane fade show active" id="tab_description" role="tabpanel" aria-labelledby="nav_desctiption">
-              <p>{props.details.details}</p>
+              {renderHTML(props.details.details)}
             </div>
             <div className="tab-pane fade" id="tab_review" role="tabpanel" aria-labelledby="nav_review">
               <div className="product-review">

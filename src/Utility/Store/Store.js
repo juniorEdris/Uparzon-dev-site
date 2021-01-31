@@ -7,10 +7,12 @@ import { HomeReducer } from '../Redux/Reducer/HomeReducer'
 import { ProdSuggestionReducer } from '../Redux/Reducer/ProdSuggestionReducer';
 import { ProductDetailsReducer } from '../Redux/Reducer/ProductsDetailsReducer';
 import { QuickViewReducer } from '../Redux/Reducer/QuickViewReducer';
+import { SearchReducer } from '../Redux/Reducer/SearchReducer';
 import { ShopListReducer } from '../Redux/Reducer/ShopListReducer';
 import { ShopReducer } from '../Redux/Reducer/ShopReducer';
 import { SignUpReducer } from '../Redux/Reducer/SignUpReducer';
 import { subcategoryReducer } from '../Redux/Reducer/SubCategoryReducer';
+import { UserReducer } from '../Redux/Reducer/UserReducer';
 import { VendorDetailsReducer, VendorReducer } from '../Redux/Reducer/VendorReducer';
 import { AddWishReducer } from '../Redux/Reducer/WishListReducer';
 
@@ -19,6 +21,7 @@ export const initialState={
     homeSliders:[],
     homeStores:[],
     ourProduct:[],
+    featuredProduct:[],
     hotCollection:[],
     shopProduct:[],
     vendorProduct:[],
@@ -27,11 +30,13 @@ export const initialState={
     categoryList:[],
     subCategory:[],
     suggestion:[],
+    searchedResponse:[],
     product:'',
     basket:localStorage.getItem('Cart List') ? JSON.parse(localStorage.getItem('Cart List')) :[],
     wishList:localStorage.getItem('Wish List') ? JSON.parse(localStorage.getItem('Wish List')) :[],
     compareList:localStorage.getItem('Compare List') ? JSON.parse(localStorage.getItem('Compare List')) :[],
     error:'',
+    user:true,
 }
 
 const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
@@ -51,6 +56,8 @@ const store = createStore(
         getSubCat: subcategoryReducer,
         productDetails: ProductDetailsReducer,
         signUp: SignUpReducer,
+        SearchEngine: SearchReducer,
+        Users: UserReducer,
     }),
     initialState,
     composeEnhancers(applyMiddleware(thunk))

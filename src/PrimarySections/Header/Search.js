@@ -1,11 +1,16 @@
 import { FormControl, ListSubheader, MenuItem, Select } from '@material-ui/core'
-import React,{useState} from 'react'
+import React,{useState,useEffect} from 'react'
+import { connect } from 'react-redux'
 import { useHistory } from 'react-router-dom'
+import { fetchSearchProducts } from '../../Utility/Redux/Action/SearchAction'
 import './Search.css'
 
- function Search() {
+ function Search(props) {
      const [input, setInput] = useState('')
-    const history = useHistory()
+     useEffect(() => {
+         props.fetchSearchResult(input)
+        }, [input])
+        const history = useHistory()
     console.log('====================================');
     console.log('history',history);
     console.log('====================================');
@@ -54,4 +59,9 @@ import './Search.css'
     )
 }
 
-export default React.memo(Search)
+const mapDispatchToProps = (dispatch)=>(
+    {
+        fetchSearchResult:(keywords)=>dispatch(fetchSearchProducts(keywords))
+    }
+)
+export default connect(state=>({}),mapDispatchToProps)(React.memo(Search))

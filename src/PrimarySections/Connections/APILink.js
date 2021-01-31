@@ -27,8 +27,12 @@
 // }
 
 import { DOMAIN } from "./WebDomain";
+const APIKEY = '4e38d8be3269aa17280d0468b89caa4c7d39a699'
 
 export const Request ={
-    HotCollection:`${DOMAIN}api/uparzonweb/get_hot_products?api_key=4e38d8be3269aa17280d0468b89caa4c7d39a699`,
     Sliders:`${DOMAIN}api/uparzonweb/get_home_sliders`,
+    HotCollection:`${DOMAIN}api/uparzonweb/get_hot_products?api_key=${APIKEY}`,
+    FeaturedCategory:`${DOMAIN}api/uparzonweb/get_feature_products`,
+    SearchAPI:`${DOMAIN}api/uparzonweb/search_products?keyword=`,
+    ProductDetails:`${DOMAIN}api/uparzonweb/get_product_details?product_id=`,
 }

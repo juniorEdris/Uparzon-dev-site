@@ -1,4 +1,4 @@
-import React,{useEffect,useState} from 'react'
+import React from 'react'
 import Details from './SubFolder/Details'
 import Slider from './SubFolder/ProductSlider'
 import useQuery from '../../PrimarySections/Essentials/UrlParams'
@@ -12,10 +12,6 @@ function ProductDetailsWrap(props) {
   const query = useQuery()
   const prodID = query.get('id')
 
-  // useEffect(() => {
-  //   // get on top of the page after page loads
-  //   (window).scrollTo(0,0)
-  // }, [])
   // get on top of the page after page loads
   usePageTop()
 

@@ -19,7 +19,7 @@ function Details(props) {
         props.fetchSuggestions(props.details?.category_id)        
       },[])
       useEffect(() => {
-        document.title = props.details ? `${props.details?.name} | Uparzon E-commerce Store` : 'Uparzon E-commerce Store'
+        document.title = props.details?.name ? `${props.details?.name} | Uparzon E-commerce Store` : 'Uparzon E-commerce Store'
       }) 
 
   return (
@@ -93,7 +93,7 @@ function Details(props) {
             </div>
             <div className="tag-line mb-20">
               <label>tag :</label>
-              {props.details?.tags?.split(',').map(x=><Link to="/">{x + ','}</Link>)}
+              {props.details?.tags?.split(',').map(x=><Link to="/">{x}</Link>)}
             </div>
             <div className="pro-social-sharing">
               <label>share :</label>

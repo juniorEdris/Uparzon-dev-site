@@ -21,8 +21,8 @@ function Product(props) {
             <div className="sinrato-thumb">
             {product.photo ? 
             <Link to={`/productdetails?id=${product.id}`} >
-                <img  src={`https:${product.photo.replace('demostore', 'store')}`} className="pri-img" alt={product.name} />
-                <img  src={`https:${product.thumbnail.replace('demostore', 'store')}`} className="sec-img" alt={product.name} />
+                <img  src={`https:${product.photo}`} className="pri-img" alt={product.name} />
+                <img  src={`https:${product.thumbnail}`} className="sec-img" alt={product.name} />
             </Link> :
             <Link to={`/productdetails?id=${product.id}`} >
                  <img  src='./assets/img/uparzon_placeholder' className="" alt={product.name} />
@@ -72,8 +72,8 @@ function Product(props) {
             <div className={`product-item ${isGrid && 'mb-30'}`} id={product.id}>
                   <div className="product-thumb product">
                     <Link to={`/productdetails?id=${product.id}`} >
-                    <img  src={`https:${product.photo.replace('demostore', 'store')}`} className="pri-img" alt={product.name} />
-                <img  src={`https:${product.thumbnail.replace('demostore', 'store')}`} className="sec-img" alt={product.name} />
+                    <img  src={`https:${product.photo}`} className="pri-img" alt={product.name} />
+                <img  src={`https:${product.thumbnail}`} className="sec-img" alt={product.name} />
                       {/* <img src={'https://uparzon.com.bd/assets/img/product/product-10.jpg'} className="pri-img" alt={product.name} /> */}
                     </Link>
                     

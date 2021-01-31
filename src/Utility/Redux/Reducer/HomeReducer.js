@@ -9,9 +9,6 @@ export const HomeReducer = (state=initialState,action)=>{
                 loading:true
             }
         case FETCH_PRODUCTS_SUCCESS:
-            console.log('====================================');
-            console.log('homereducer',action.hotCollection,action.slider);
-            console.log('====================================');
             return{    
                 ...state,
                 loading:false,
@@ -20,7 +17,7 @@ export const HomeReducer = (state=initialState,action)=>{
                 // homeStores:action.store,
                 // ourProduct:action.ourProduct,
                 hotCollection:action.hotCollection,
-                // featuredProduct:action.featuredProduct,
+                featuredProduct:action.featuredProduct,
                 error:'',
             }
         case FETCH_PRODUCTS_ERROR:

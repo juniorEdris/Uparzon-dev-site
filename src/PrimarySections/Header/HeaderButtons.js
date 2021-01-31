@@ -3,7 +3,6 @@ import { connect } from 'react-redux'
 import { Link } from 'react-router-dom'
 import { getSubTotal } from '../../Utility/Reducer'
 import { RemoveBasketProd } from '../../Utility/Redux/Action/BasketAction'
-import { useStateValue } from '../../Utility/StateProvider'
 import { currToFixed } from '../Essentials/CurrencyFormat'
 import './HeaderButton.css'
 
@@ -22,7 +21,6 @@ function HeaderButtons(props) {
         setIsAccActive(!isAccActive);
         setCartActive(false);
     }
-    const[{user}] = useStateValue()
     // Total Amount (inc vat & eco) 
     const eco_tax = getSubTotal(props.basket) / 1.51
     const vat_amount = getSubTotal(props.basket) / 0.20 
@@ -79,14 +77,14 @@ function HeaderButtons(props) {
                     <Link className="cart-button" to="/cart">view cart</Link>
                     </li>
                     <li>
-                    <Link className="cart-button" to={!user ? "#": "/checkout"} data-target={!user && "#login_modal"} data-toggle={!user && "modal"}>checkout</Link>
+                    <Link className="cart-button" to={!props.user ? "#": "/checkout"} data-target={!props.user && "#login_modal"} data-toggle={!props.user && "modal"}>checkout</Link>
                     </li>
                 </ul>
                 </li>
                 <li className="compare user-cart"> 
-                    <Link onClick={AccBtn} className="ha-toggle" to={!user ? "#": "/dashboard"} ><span className="lnr lnr-user" /></Link>
+                    <Link onClick={AccBtn} className="ha-toggle" to={!props.user ? "#": "/dashboard"} ><span className="lnr lnr-user" /></Link>
                     {
-                        user ?
+                        props.user ?
                     <ul className={`box-dropdown ha-dropdown ${isAccActive ? 'active':''}`} onPointerLeave={()=>setIsAccActive(false)}>
                         <li><Link to="/dashboard">Dashboard</Link></li>
                         <li><Link to="/vendor">My store</Link></li>
@@ -115,5 +113,6 @@ export default connect(state=>(
         basket:state.basketProd.basket,
         compare:state.compareListProd.compareList,
         wishList:state.wishListProd.wishList,
+        user:state.Users.user,
     }
 ),mapDistpatchToProps)(HeaderButtons)
