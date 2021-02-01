@@ -189,7 +189,8 @@ img,
 .newsletter-btn,
 .footer-useful-link li a,
 .filter-attribute-container ul li a::after,
-.img-view {
+.img-view,
+.cart_added_animation {
   -webkit-transition: all 0.4s ease 0s;
   -moz-transition: all 0.4s ease 0s;
   -ms-transition: all 0.4s ease 0s;

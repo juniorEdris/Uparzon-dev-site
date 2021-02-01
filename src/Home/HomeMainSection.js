@@ -16,17 +16,20 @@ import CartIcon from '../PrimarySections/CartIcon.js/CartIcon'
 import './Home.css'
 import Store from './pageComponents/StoreSection'
 import useDocTitle from '../PrimarySections/CustomHooks/DocTitle'
+import CartAnimation from '../PrimarySections/CartAddAnime/CartAddanime'
+import { connect } from 'react-redux'
 
 
 
 
-export default function HomeMainSection({show}) {
-    
+ function HomeMainSection(props) {    
     // Document Title Update
     useDocTitle('Home')
     
     return (
         <div style={{position:'relative'}}>
+            <CartAnimation/>
+            {/* {props.cartState && <CartAnimation/>} */}
             <HomeSlider/>
             {/* <Store/> */}
             <OurProduct/>
@@ -41,7 +44,9 @@ export default function HomeMainSection({show}) {
             <BrandArea/>
             <FeatureArea/>
             <ScrollBar/>
-            {show && <CartIcon/>}
+            {/* {show && <CartIcon/>} */}
         </div>
     )
 }
+
+export default connect(state=>({ cartState:state.CartAnimation.productAdded}))(HomeMainSection)

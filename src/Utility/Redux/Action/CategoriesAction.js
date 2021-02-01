@@ -2,32 +2,19 @@ import Axios from 'axios';
 import {Request} from '../../../PrimarySections/Connections/APILink'
 import { FETCH_CATEGORIES } from '../Types';
 
-const fetchCategorySuccess = (category,subCategory) =>(
+const fetchCategorySuccess = (category) =>(
     {
         type: FETCH_CATEGORIES,
         category,
-        subCategory,
     }
 )
 
-// const fetchSubCategorySuccess = (subCategory) =>(
-//     {
-//         type: FETCH_CATEGORIES,
-//         subCategory,
-//     }
-// )
 
-export const fetchCategories = (id)=> async (dispatch)=>{
-    const categories = await Axios.get(Request.Categories)
+export const fetchCategories = ()=> async (dispatch)=>{
+    await Axios.post(Request.Categories)
     .then(res=>{
-        return res.data
+        dispatch(fetchCategorySuccess(res.data.data))
     }).catch((error)=>{
-        console.log(error);
+        console.log(error.message);
     })
-    // Fetch sub categories
-    const subCategories= await Axios.get(Request.SubCategory)
-    .then((res)=>{
-        return res.data
-    })
-    dispatch(fetchCategorySuccess(categories,subCategories))
 }

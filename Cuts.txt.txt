@@ -239,3 +239,12 @@ CSS =========
                         <li><Link to="/">Network Devices</Link></li>
                         <li className={`category-item-parent hidden ${menuShow ? 'active':'inActive'} `}><a href="/">Smart Watches</a></li>
                         <li className="category-item-parent"><a className={`more-btn ${menuShow ? 'minus':''}`} href="/"  onClick={moreMenu}>{btnName}</a></li>
+
+
+
+
+                        ## 01-02-2021   Monday
+
+                        > Add to compare/cart/wishlist animated.
+                        > Search functionality working.
+                        > Category/SubCategory/ChildCategory shown.

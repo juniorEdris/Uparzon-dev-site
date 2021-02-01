@@ -2,9 +2,11 @@ import {createStore,applyMiddleware ,combineReducers,compose} from 'redux'
 import thunk from 'redux-thunk'
 import { AddBasketReducer } from '../Redux/Reducer/BasketReducer';
 import { CategoriesReducer } from '../Redux/Reducer/CategoriesReducer';
+import { childCategoryReducer } from '../Redux/Reducer/ChildCategoryReducer';
 import { AddCompareReducer } from '../Redux/Reducer/CompareReducer';
 import { HomeReducer } from '../Redux/Reducer/HomeReducer'
 import { ProdSuggestionReducer } from '../Redux/Reducer/ProdSuggestionReducer';
+import { CartAnimationReducer } from '../Redux/Reducer/ProductAddedReducer';
 import { ProductDetailsReducer } from '../Redux/Reducer/ProductsDetailsReducer';
 import { QuickViewReducer } from '../Redux/Reducer/QuickViewReducer';
 import { SearchReducer } from '../Redux/Reducer/SearchReducer';
@@ -28,7 +30,8 @@ export const initialState={
     vendorDetail:[],
     shopList:[],
     categoryList:[],
-    subCategory:[],
+    subCategoryList:[],
+    childCategoryList:[],
     suggestion:[],
     searchedResponse:[],
     product:'',
@@ -36,7 +39,9 @@ export const initialState={
     wishList:localStorage.getItem('Wish List') ? JSON.parse(localStorage.getItem('Wish List')) :[],
     compareList:localStorage.getItem('Compare List') ? JSON.parse(localStorage.getItem('Compare List')) :[],
     error:'',
-    user:true,
+    user:false,
+    productAdded:false,
+    tab:'', //connected to the addition animation
 }
 
 const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
@@ -47,17 +52,19 @@ const store = createStore(
         vendorDetails: VendorDetailsReducer,
         vendorProducts: VendorReducer,
         storeList: ShopListReducer,
-        categories: CategoriesReducer,
         basketProd: AddBasketReducer,
         wishListProd: AddWishReducer,
         compareListProd: AddCompareReducer,
         productSuggest: ProdSuggestionReducer,
         productView: QuickViewReducer,
-        getSubCat: subcategoryReducer,
+        categories: CategoriesReducer,
+        subCategories: subcategoryReducer,
+        childCategories: childCategoryReducer,
         productDetails: ProductDetailsReducer,
         signUp: SignUpReducer,
         SearchEngine: SearchReducer,
         Users: UserReducer,
+        CartAnimation: CartAnimationReducer,
     }),
     initialState,
     composeEnhancers(applyMiddleware(thunk))

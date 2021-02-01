@@ -27,6 +27,7 @@ import { fetchHomeProds } from './Utility/Redux/Action/HomeProdAction';
 import { fetchShopProds } from './Utility/Redux/Action/ShopProductAction';
 import { FetchProductSuggetions } from './Utility/Redux/Action/ProdSuggestionAction';
 import { fetchShopList } from './Utility/Redux/Action/ShopListAction';
+import { fetchCategories } from './Utility/Redux/Action/CategoriesAction';
 import SearchPage from './SearchPage/SearchPage';
 import LoadAllData from './PrimarySections/CustomHooks/DataLoadingHooks';
 
@@ -53,6 +54,7 @@ function App(props) {
       props.fetchShopProds()
       props.fetchProdSuggestions()
       props.fetchShopList()
+      props.fetchCategory()
     },[])
     // LoadAllData()   
     
@@ -79,6 +81,9 @@ function App(props) {
           <Route path='/productdetails'>
             <Details/>
           </Route>
+          {/* <Route path='/product/:id'>
+            <Details/>
+          </Route> */}
           <Route path='/blog'>
             <Blog/>
           </Route>
@@ -106,8 +111,11 @@ function App(props) {
           <Route path='/login'>
             <Login/>
           </Route>
-          <Route path='/'>
+          <Route exact path='/'>
             <Home show={show}/>
+          </Route>
+          <Route path='*'>
+            <h1>No Pages Found : ERROR 404</h1>
           </Route>
         </Switch>
             <Footer/>
@@ -124,7 +132,8 @@ const mapDispatchToProps = dispatch=>(
     fetchStroes:()=>dispatch(fetchHomeProds()),
     fetchShopProds:()=>dispatch(fetchShopProds()),
     fetchProdSuggestions:()=>dispatch(FetchProductSuggetions()),
-    fetchShopList:()=>dispatch(fetchShopList())
+    fetchShopList:()=>dispatch(fetchShopList()),
+    fetchCategory:()=>dispatch(fetchCategories())
   }
 )
 export default connect(state=>({}),mapDispatchToProps)(App);

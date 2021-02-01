@@ -28,9 +28,6 @@ export const fetchSearchProducts = (keywords)=> async (dispatch)=>{
     const Qry = `${Request.SearchAPI}${keywords}`
     await Axios.get(Qry)
     .then(res=>{
-        console.log('===========Search Action=========================');
-        console.log(res);
-        console.log('====================================');
         dispatch(searchProductsSuccess(res.data))
     }).catch((error)=>{
         dispatch(searchProductsError(error))

@@ -8,7 +8,7 @@ import { connect } from 'react-redux'
 function HotCollection(props) {
 
   const [Tab, setTab] = useState('Featured Products')
-  console.log(Tab)
+
   const tabs =['Featured Products','On sale Products','Best sellers Products',]
   
   // Mapping All products in a varriables

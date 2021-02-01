@@ -1,10 +1,10 @@
 import React from 'react'
 import Details from './SubFolder/Details'
 import Slider from './SubFolder/ProductSlider'
-import useQuery from '../../PrimarySections/Essentials/UrlParams'
 import { connect } from 'react-redux'
 import { GetProductDetails } from '../../Utility/Redux/Action/ProductDetailsAction'
 import usePageTop from '../../PrimarySections/CustomHooks/GetTopofPage'
+import useQuery from '../../PrimarySections/Essentials/UrlParams'
 
 function ProductDetailsWrap(props) {
   

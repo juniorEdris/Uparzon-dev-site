@@ -37,9 +37,7 @@ function SideBarMenu() {
             path:'/contact',
         },
     ]
-    console.log('====================================');
-    console.log(mainMenu);
-    console.log('====================================');
+
     return (
         <div>
                {!mainMenu &&<div className="ham-burger d-lg-none">

@@ -2,6 +2,6 @@ This project was bootstrapped with REACT Framework.
 
 NOTICE:
 
-## All the items are comming from local NODE JS API.
+## All the items are coming through Laravel API.
 
-## TO Check With DemoStore API Please Pull From past PUSH (SHA NO. 937e9e3f197cd49cabcb5b0ff46fb5808e49071e)
+## Pull repo and install the required packages using 'npm install' also 'npm install dateformat'(required) then start the server with 'npm start'

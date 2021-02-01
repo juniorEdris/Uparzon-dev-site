@@ -26,9 +26,6 @@ export const fetchShopProds = ()=>async (dispatch)=>{
     dispatch(fetchShopProdRequset())
     await Axios.get(Request.HotCollection)
     .then(res=>{
-        console.log('====================================');
-        console.log('shopaction',res);
-        console.log('====================================');
         dispatch(fetchShopProdSuccess(res.data))
     })
     .catch(err=>{

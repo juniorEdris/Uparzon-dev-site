@@ -9,9 +9,6 @@ export const ShopReducer = (state=initialState,action)=>{
                 loading:true,
             }
         case FETCH_SHOP_PRODUCTS_SUCCESS:
-        console.log('====================================');
-        console.log('shopreducer',action.product);
-        console.log('====================================');
             return{
                 loading:false,
                 shopProduct:action.product,

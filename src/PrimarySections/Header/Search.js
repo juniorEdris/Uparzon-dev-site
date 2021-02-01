@@ -11,12 +11,8 @@ import './Search.css'
          props.fetchSearchResult(input)
         }, [input])
         const history = useHistory()
-    console.log('====================================');
-    console.log('history',history);
-    console.log('====================================');
     const routeChange = (e)=>{
-        const state = history.push("/search");
-        console.log(state);
+        history.push("/search");
     }
     return (
         <div className="col-lg-6 col-md-12 col-12 order-sm-last">
@@ -50,10 +46,8 @@ import './Search.css'
             </FormControl>
             </div>
             </div>
-        {/* <form action="method"> */}
             <input type="text" className="top-cat-field" onInput={routeChange} onChange={e=>setInput(e.target.value)} placeholder="Search entire store here" />
             <input type="button" className="top-search-btn" defaultValue="Search" />
-        {/* </form> */}
         </div>
     </div>
     )

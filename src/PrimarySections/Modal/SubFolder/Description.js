@@ -6,6 +6,7 @@ import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
 import { AddBasketProd } from '../../../Utility/Redux/Action/BasketAction';
 import { AddCompareProd } from '../../../Utility/Redux/Action/CompareListAction';
+import { productAddAnimation } from '../../../Utility/Redux/Action/ProductAddedAction';
 import { AddWishProd } from '../../../Utility/Redux/Action/WishListAction';
 
 function Description(props) {
@@ -61,7 +62,7 @@ function Description(props) {
                 <div className="qty-boxx">
                 <label>qty :</label>
                 <input type="text" className='qty-input' placeholder={0} />
-                <button className="btn-cart lg-btn" onClick={()=>props.addToBasket(props.modalProd)}>add to cart</button>
+                <button className="btn-cart lg-btn" onClick={()=>{props.addToBasket(props.modalProd); props.cartAnimation('basket');}}>add to cart</button>
                 </div>
             </div>
             <div className="pro-social-sharing">
@@ -101,6 +102,7 @@ const mapDispatchToProps=dispatch=>(
     addToBasket: (prod) => dispatch(AddBasketProd(prod)),
     addToCompare:(prod)=>dispatch(AddCompareProd(prod)),
     addToWish:(prod)=>dispatch(AddWishProd(prod)),
+    cartAnimation:(x)=>dispatch(productAddAnimation(x)),
     }
 )
 

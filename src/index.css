@@ -10,3 +10,29 @@ body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
+
+/*----------------------
+  cart_added_animation css
+  ----------------------*/
+.cart_added_animation {
+  position: fixed;
+  top: 80px;
+  right: -500px;
+  z-index: 2000;
+  background: var(--theme-color);
+  color: var(--light-color);
+  padding: 0.6em 1.2em;
+  display: flex;
+  align-items: center;
+}
+.animation_active {
+  right: 20px;
+}
+.cart_added_animation .lnr {
+  margin-right: 0.6em;
+  font-size: 1.1rem;
+  font-weight: 500;
+}
+.cart_added_animation h3 {
+  text-transform: capitalize;
+}

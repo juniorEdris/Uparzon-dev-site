@@ -19,12 +19,7 @@ const fetchHomeProdsSuccess = (res)=>{
         featuredProduct:res.featuredCategories,
     }
 }
-const fetchHomeProdsError = (error)=>{
-    return{
-        type: FETCH_PRODUCTS_ERROR,
-        error,
-    }
-}
+
 
 
 export const fetchHomeProds = ()=>async(dispatch)=>{
@@ -46,9 +41,6 @@ export const fetchHomeProds = ()=>async(dispatch)=>{
     // Featured Categories
      const featuredCategories = await Axios.get(Request.FeaturedCategory)
     .then(res=>{
-        console.log('====================================');
-        console.log('fetured',res.data);
-        console.log('====================================');
         return res.data
     }).catch(err=>{
         return err

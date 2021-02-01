@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
 import { fetchCategories} from '../../Utility/Redux/Action/CategoriesAction';
 import { GetSubCategory } from '../../Utility/Redux/Action/GetSubCategoryAction';
+import { GetChildCategory } from '../../Utility/Redux/Action/GetChildCategoriesAction';
 import MainMenu from './MainMenu';
 // import MenuSidebar from './MenuSidebar';
 import './Navigation.css'
@@ -62,20 +63,20 @@ function Navigation(props) {
                     <ul id="menu2">
                         {
                             props.categories?.map(cat =>(
-                                <li>
-                                    <Link to="/homeaudio" >{cat.name}{cat.Subcategories?.length > 0 ? <span className="lnr lnr-chevron-right" />: ''} </Link> {/*onMouseOver={()=>props.getSubCat(cat.id)}*/}
+                                <li key={cat.id}>
+                                    <Link to="/homeaudio" onMouseOver={()=>props.getSubCat(cat.id)}>{cat.name}{cat.has_subcategory && <span className="lnr lnr-chevron-right" />} </Link> {/**/}
                                     {
-                                    cat.Subcategories?.length > 0 ? 
+                                    props.subcategories?.length > 0 ? 
                                         <ul className="cat-submenu">
                                             {
-                                            cat.Subcategories?.map(x=>(
-                                                <li><Link to='#'>{x.name}{x.Childcategories?.length > 0 ? <span className="lnr lnr-chevron-right" />: ''}</Link>
+                                            props.subcategories?.map(x=>(
+                                                <li key={x.id}><Link to='#' onMouseOver={()=>props.getChildCat(x.id)}>{x.name}{x.has_childcategory && <span className="lnr lnr-chevron-right" />}</Link>
                                                     {
-                                                    x.Childcategories?.length > 0? 
+                                                    props.childcategories?.length > 0 ?  
                                                     <ul className="cat-submenu">
                                                         {
-                                                        x.Childcategories?.map(x=>(
-                                                            <li><Link to="/">{x.name}</Link></li>
+                                                        props.childcategories?.map(x=>(
+                                                            <li key={x.id}><Link to="/">{x.name}</Link></li>
                                                             ))
                                                         }
                                                     </ul>:''
@@ -107,15 +108,17 @@ function Navigation(props) {
 }
 const mapStateToProps = state=>(
     {
-        categories:state.homeProducts.categoryList,
-        SubCategories:state.getSubCat.SubCat,
+        categories:state.categories.categoryList,
+        subcategories:state.subCategories.subCategoryList,
+        childcategories:state.childCategories.childCategoryList,
     }
 )
 
 const mapDispatchToProps = ()=>(dispatch)=>(
     {
         fetchCategory:()=>dispatch(fetchCategories()),
-        getSubCat:(id)=>dispatch(GetSubCategory(id))
+        getSubCat:(id)=>dispatch(GetSubCategory(id)),
+        getChildCat:(id)=>dispatch(GetChildCategory(id)),
     }
 )
 export default connect(mapStateToProps,mapDispatchToProps)(React.memo(Navigation))

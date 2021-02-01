@@ -35,4 +35,9 @@ export const Request ={
     FeaturedCategory:`${DOMAIN}api/uparzonweb/get_feature_products`,
     SearchAPI:`${DOMAIN}api/uparzonweb/search_products?keyword=`,
     ProductDetails:`${DOMAIN}api/uparzonweb/get_product_details?product_id=`,
+    Categories:`${DOMAIN}api/uparzonweb/get_categories`,
+    SubCategory:`${DOMAIN}api/uparzonweb/get_categories?category_id=`,
+    ChildCategory:`${DOMAIN}api/uparzonweb/get_categories?subcategory_id=`,
+    // ProductSuggest:`api/uparzon_store/productsuggestions/`,
+    // AllVendors:`api/uparzon_store/allvendors`,
 }

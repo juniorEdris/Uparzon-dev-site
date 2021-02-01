@@ -6,7 +6,7 @@ export const subcategoryReducer=(state=initialState,action)=>{
         case GET_SUB_CATEGORY:
             return{
                 ...state,
-                SubCat:action.payload
+                subCategoryList:action.payload
             }
         default:
             return state

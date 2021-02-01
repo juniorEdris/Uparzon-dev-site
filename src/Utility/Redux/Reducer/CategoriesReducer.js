@@ -7,7 +7,6 @@ export const CategoriesReducer = (state=initialState,action) =>{
             return {
                 ...state,
                 categoryList:action.category,
-                subCategory:action.subCategory,
             }
         default:
             return state

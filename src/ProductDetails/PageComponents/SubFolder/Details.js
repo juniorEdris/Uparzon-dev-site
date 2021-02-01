@@ -9,6 +9,7 @@ import { AddWishProd } from '../../../Utility/Redux/Action/WishListAction'
 import { GetProductDetails } from '../../../Utility/Redux/Action/ProductDetailsAction'
 import { currToFixed } from '../../../PrimarySections/Essentials/CurrencyFormat'
 import { FetchProductSuggetions } from '../../../Utility/Redux/Action/ProdSuggestionAction'
+import { productAddAnimation } from '../../../Utility/Redux/Action/ProductAddedAction'
 
 function Details(props) {
 
@@ -78,16 +79,16 @@ function Details(props) {
               <div className="qty-boxx">
               <label>qty :</label>
                 <input type="text" placeholder={0} />
-              <button className="btn-cart lg-btn" onClick={ ()=>props.addToBasket(props.details)}>add to cart</button>
+              <button className="btn-cart lg-btn" onClick={ ()=>{props.addToBasket(props.details); props.cartAnimation('basket')}}>add to cart</button>
               </div>
             </div>
             <div className="useful-links mb-20">
               <ul>
                 <li>
-                  <Link to="#" onClick={ ()=>props.addToWish(props.details)}><i className="fa fa-heart-o" />add to wish list</Link>
+                  <Link to="#" onClick={ ()=>{props.addToWish(props.details); props.cartAnimation('wish list')}}><i className="fa fa-heart-o" />add to wish list</Link>
                 </li>
                 <li>
-                <Link to="#" onClick={ ()=>props.addToCompare(props.details)}><i className="fa fa-refresh" />compare this product</Link>
+                <Link to="#" onClick={ ()=>{props.addToCompare(props.details); props.cartAnimation('product compare')}}><i className="fa fa-refresh" />compare this product</Link>
                 </li>
               </ul>
             </div>
@@ -138,6 +139,7 @@ const mapDispatchToProps=dispatch=>(
   addToWish:(prod)=>dispatch(AddWishProd(prod)),
   getProdDetails:(id)=>dispatch(GetProductDetails(id)),
   fetchSuggestions:(id)=>dispatch(FetchProductSuggetions(id)),
+  cartAnimation:(x)=>dispatch(productAddAnimation(x)),
   }
 )
 

@@ -46,7 +46,6 @@ function BrandArea(props) {
           },
         ]
         const [Tab, setTab] = useState(brands[0].brand_name)
-        console.log(Tab)
   const brandOptions = {
     loop: false,
     margin:10,

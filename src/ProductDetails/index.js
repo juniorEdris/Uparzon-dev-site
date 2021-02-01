@@ -1,7 +1,7 @@
 import React from 'react'
 import { connect } from 'react-redux'
 import Breadcrumb from '../PrimarySections/Breadcrumbs/Breadcrumb'
-import CartIcon from '../PrimarySections/CartIcon.js/CartIcon'
+import CartAddanime from '../PrimarySections/CartAddAnime/CartAddanime'
 import ScrollBar from '../PrimarySections/ScrollBar/ScrollBar'
 import { FetchProductSuggetions } from '../Utility/Redux/Action/ProdSuggestionAction'
 import Details from './PageComponents/ProductDetailsWrap'
@@ -14,7 +14,7 @@ function Index(props) {
             <Breadcrumb pageName={'Product details'} route={'/shop'} parent={'Shop'}/>
             <Details/>
             <Review/>
-            <CartIcon/>
+            <CartAddanime/>
             <ScrollBar/>
             {props.suggestions?.length > 0 && <Suggestions/>}
         </div>

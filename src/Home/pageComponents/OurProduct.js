@@ -15,7 +15,7 @@ import { Link } from 'react-router-dom';
 
 function OurProduct (props) {
   const [Tab, setTab] = useState('Camera, Photo & Video')
-  console.log(Tab)
+
   const tabs =[
     {
       id:1,
