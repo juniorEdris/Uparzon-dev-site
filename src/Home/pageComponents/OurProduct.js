@@ -148,7 +148,7 @@ function OurProduct (props) {
         )
     }
 const mapStateToProps = state=>({
-  products:state.homeProducts.hotCollection,
+  products:state.homeProducts.ourProduct,
   loading:state.homeProducts.loading,
 })
 

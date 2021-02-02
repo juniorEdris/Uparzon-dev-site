@@ -23,9 +23,9 @@ const searchProductsRequest = () =>(
     }
 )
 
-export const fetchSearchProducts = (keywords)=> async (dispatch)=>{
+export const fetchSearchProducts = (category_id=null,keywords=null)=> async (dispatch)=>{
     dispatch(searchProductsRequest())
-    const Qry = `${Request.SearchAPI}${keywords}`
+    const Qry = `${Request.SearchAPI}?keyword=${keywords}&category_id=${category_id}`
     await Axios.get(Qry)
     .then(res=>{
         dispatch(searchProductsSuccess(res.data))

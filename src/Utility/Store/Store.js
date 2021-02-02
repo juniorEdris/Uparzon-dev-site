@@ -39,7 +39,7 @@ export const initialState={
     wishList:localStorage.getItem('Wish List') ? JSON.parse(localStorage.getItem('Wish List')) :[],
     compareList:localStorage.getItem('Compare List') ? JSON.parse(localStorage.getItem('Compare List')) :[],
     error:'',
-    user:false,
+    user:localStorage.getItem('user') ? JSON.parse(localStorage.getItem('user')) : null,
     productAdded:false,
     tab:'', //connected to the addition animation
 }

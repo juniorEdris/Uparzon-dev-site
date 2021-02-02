@@ -8,13 +8,12 @@ const fetchHomeProdsRequest = ()=>{
     }
 }
 const fetchHomeProdsSuccess = (res)=>{
-
     return{
         type: FETCH_PRODUCTS_SUCCESS,
         // category:res.categories,
         slider:res.sliders,
         // store:res.store,
-        // ourProduct:res.ourProducts,
+        ourProduct:res.ourProducts,
         hotCollection: res.hotCollection,
         featuredProduct:res.featuredCategories,
     }
@@ -31,6 +30,13 @@ export const fetchHomeProds = ()=>async(dispatch)=>{
     }).catch(err=>{
         return err.message
     })
+    // Our Products
+     const ourProd = await Axios.get(Request.OurProducts)
+    .then(res=>{
+        return res.data
+    }).catch(err=>{
+        return err
+    })
     // Hot collections
      const hotCollection = await Axios.get(Request.HotCollection)
     .then(res=>{
@@ -38,17 +44,19 @@ export const fetchHomeProds = ()=>async(dispatch)=>{
     }).catch(err=>{
         return err
     })
-    // Featured Categories
-     const featuredCategories = await Axios.get(Request.FeaturedCategory)
+    // Featured Products
+     const featuredProduct = await Axios.get(Request.FeaturedProducts)
     .then(res=>{
         return res.data
     }).catch(err=>{
         return err
     })
+    
     const results={
         hotCollection: hotCollection.data,
         sliders: sliders.data,
-        featuredCategories: featuredCategories.data,
+        featuredCategories: featuredProduct.data,
+        ourProducts:ourProd.data,
     }
     dispatch(fetchHomeProdsSuccess(results)) 
 }

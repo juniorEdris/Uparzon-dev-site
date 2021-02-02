@@ -7,9 +7,10 @@ import './Search.css'
 
  function Search(props) {
      const [input, setInput] = useState('')
+     const [select,setSelect] = useState('')
      useEffect(() => {
-         props.fetchSearchResult(input)
-        }, [input])
+         props.fetchSearchResult(select,input)
+        }, [select,input])
         const history = useHistory()
     const routeChange = (e)=>{
         history.push("/search");
@@ -26,22 +27,18 @@ import './Search.css'
                 defaultValue="" 
                 id="grouped-select"
                 displayEmpty
+                value={select}
+                onChange={(e)=>setSelect(e.target.value)}
                 >
                     <MenuItem value="">
                         Category
                     </MenuItem>
-                    <ListSubheader>Electronics</ListSubheader>
-                    <MenuItem value={1}>Laptop</MenuItem>
-                    <MenuItem value={2}>Watch</MenuItem>
-                    <MenuItem value={3}>air cooler</MenuItem>
-                    <MenuItem value={4}>audio</MenuItem>
-                    <MenuItem value={5}>speakers</MenuItem>
-                    <ListSubheader>Fashion</ListSubheader>
-                    <MenuItem value={6}>Womens tops</MenuItem>
-                    <MenuItem value={7}>Jeans</MenuItem>
-                    <MenuItem value={8}>Shirt</MenuItem>
-                    <MenuItem value={9}>Pant</MenuItem>
-                    <MenuItem value={10}>Watch</MenuItem>
+                    {/* <ListSubheader>Electronics</ListSubheader> */}
+                    {props.category?.map(cat=>(
+                        <MenuItem value={cat.id}>
+                            {cat.name}
+                        </MenuItem>
+                    ))}
                 </Select>
             </FormControl>
             </div>
@@ -53,9 +50,16 @@ import './Search.css'
     )
 }
 
-const mapDispatchToProps = (dispatch)=>(
+
+const mapStateToProps = state=>(
     {
-        fetchSearchResult:(keywords)=>dispatch(fetchSearchProducts(keywords))
+    category:state.categories.categoryList
     }
 )
-export default connect(state=>({}),mapDispatchToProps)(React.memo(Search))
+
+const mapDispatchToProps = (dispatch)=>(
+    {
+        fetchSearchResult:(select,keywords)=>dispatch(fetchSearchProducts(select,keywords))
+    }
+)
+export default connect(mapStateToProps,mapDispatchToProps)(React.memo(Search))

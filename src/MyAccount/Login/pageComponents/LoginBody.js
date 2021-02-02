@@ -1,9 +1,11 @@
 import React,{useState} from 'react'
+import { connect } from 'react-redux'
 import { Link } from 'react-router-dom'
+import { LoginAction } from '../../../Utility/Redux/Action/loginAction'
 
-export default function LoginBody() {
+function LoginBody(props) {
 
-    const [number, setNumber] = useState('88')
+    const [number, setNumber] = useState('')
     const [password, setPassword] = useState('')
     const [showValue, setShowValue] = useState(false)
     const [error, setError] = useState({})
@@ -13,26 +15,33 @@ export default function LoginBody() {
         e.preventDefault()
         setShowValue(!showValue)
     }
-    const signIn = ()=>{
+    const signIn = (e)=>{
+
+        e.preventDefault()
         const exp = new RegExp(/[0-9]/)
         const parsedNum =parseInt(number)
-        if(!parsedNum || parsedNum.toString().length < 13){
+        if(!parsedNum){ //|| parsedNum.toString().length <= 10
             setError({number:'Exp:01846029691'})
         }else if(!exp.test(parsedNum)){
             setError({number:'You need to provide number to login.'})
             console.log('exp');
         }else if(!password){
             setError({password:'You need to provide password to login.'})
-        }else if(!password.length >= 8){
+        }else if(password.toString().length < 8){
             setError({password:'password length is null.'})
         }else{
-            setNumber('88')
+            // setting error msg to empty string
+            setError({password:'',number:''})
+
+            const data = {
+                phone: number,
+                pass: password,
+            }
+            props.login(data)
+            setNumber('')
             setPassword('')
         }
-
-
-        console.log(parsedNum,password,typeof(password));
-
+        
     }
     return (
         <div>
@@ -91,3 +100,9 @@ export default function LoginBody() {
         </div>
     )
 }
+const mapStateToProps = state=>({})
+
+const mapDispatchToProps = dispatch=>({
+    login:(data)=>dispatch(LoginAction(data))
+})
+export default  connect(mapStateToProps,mapDispatchToProps)(LoginBody)
