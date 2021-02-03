@@ -8,9 +8,11 @@ import Product from '../../Home/pageComponents/Subfolder/Product'
 import Filter from './RightBarControl'
 import { ProductLoader } from '../../PrimarySections/ReactPlaceHolder/ReactPlaceHolder'
 import { connect } from 'react-redux'
+import { renderHTML } from '../../PrimarySections/Essentials'
 
 
 function ShopWrapper(props) {
+    // console.log('shop pages',props.pages)
 useEffect(() => {
 // product view mode change js
 $('.product-view-mode a').on('click', function(e){
@@ -49,7 +51,7 @@ $('.product-view-mode a').on('click', function(e){
                                 <Link to='#' data-target="list"><span>list</span></Link>
                             </div>
                             <div className="product-page">
-                                <p>Showing 1 to 9 of 9 (1 Pages)</p>
+                                {props.pages && <p>Showing {props.pages?.current_page} of {props.pages?.last_page} ({props.pages.links?.length} Pages)</p>}
                             </div>
                             </div>
                         </div>
@@ -63,7 +65,7 @@ $('.product-view-mode a').on('click', function(e){
                             <ProductLoader/>
                         </div>
                     :<div className="shop-product-wrap grid row">
-                        {props.shopProduct.map(data=>(
+                        {props.shopProduct?.map(data=>(
                     <div className="col-lg-3 col-md-4 col-sm-6" key={data.id}>
                         {/* grid view starts here */}
                         <Product isGrid={true} key={data.id} product={data} />
@@ -76,19 +78,14 @@ $('.product-view-mode a').on('click', function(e){
                         <div className="row">
                         <div className="col-sm-6">
                             <div className="pagination-area">
-                            <p>Showing 1 to 9 of 9 (1 Pages)</p>
+                                {props.pages && <p>Showing {props.pages?.current_page} of {props.pages?.last_page} ({props.pages.links?.length} Pages)</p>}
                             </div>
                         </div>
                         <div className="col-sm-6">
                             <ul className="pagination-box pagination-style-2">
-                            <li><a className="Previous" href="/">Previous</a>
-                            </li>
-                            <li className="active"><Link to='/'>1</Link></li>
-                            <li><Link to='/'>2</Link></li>
-                            <li><Link to='/'>3</Link></li>
-                            <li>
-                                <a className="Next" href="/"> Next </a>
-                            </li>
+                            {props.pages?.links?.map((x,id)=>(
+                                <li key={id}><Link to='/' >{renderHTML(x.label)}</Link></li>//onClick={()=>props}
+                            ))}
                             </ul>
                         </div>
                         </div>
@@ -106,6 +103,7 @@ const mapStateToProps=state=>(
     {
         shopProduct:state.shopProducts.shopProduct,
         loading:state.shopProducts.loading,
+        pages:state.shopProducts.shopProductsPages,
     }
 )
 const mapDispatchToProps =dispatch=>({})

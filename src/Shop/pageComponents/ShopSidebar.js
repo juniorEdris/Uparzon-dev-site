@@ -1,23 +1,30 @@
-import React,{useState} from 'react'
+import React,{useState,useEffect} from 'react'
 import { Link } from 'react-router-dom'
 import Slider from '@material-ui/core/Slider';
 import './ShopSidebar.css'
+import { connect } from 'react-redux';
+import { fetchShopProds } from '../../Utility/Redux/Action/ShopProductAction';
 
 
 
 
-export default function Sidebar() {
-
+function Sidebar(props) {
+    // price range function
     const [value, setValue] = useState([70, 500]);
     const handleChange = (event, newValue) =>{
         setValue(newValue)
     }
+    // categories state
+    const [category,setCategory]=useState('')
     // Active shop-sidebar-inner active state
     const [radioActive, setRadioActive] = useState(false);
-    const SelectRadio = (e) =>{
+    const SelectRadio = (name,e) =>{
         e.preventDefault()
-        setRadioActive(!radioActive);
+        
     }
+    useEffect(() => {
+        props.fetchShopProd(category)
+    }, [category])
     return (
         <div className="col-lg-3">
                     <div className="shop-sidebar-inner mb-30">
@@ -59,17 +66,17 @@ export default function Sidebar() {
                         <div className="sidebar-content-box">
                         <div className="filter-attribute-container">
                             <ul>
-                            <li><a className="active" href="/">Categories 1 (05)</a></li>
-                            <li><a href="/">Categories 2 (03)</a></li>
-                            <li><a href="/">Categories 3 (10)</a></li>
-                            <li><a href="/">Categories 4 (02)</a></li>
+                                <li key='all'><Link className={category === '' && `active`} to="#" onClick={()=>setCategory('')}>All</Link></li>
+                                {props.categories?.map((x,id)=>(
+                                    <li key={id}><Link className={category === x.id && `active`} to="#" onClick={()=>setCategory(x.id)}>{x.name}</Link></li>
+                                ))}
                             </ul>
                         </div>
                         </div>
                     </div>
                     {/* categories filter end */}
                     {/* categories filter start */}
-                    <div className="single-sidebar mb-45">
+                    {/* <div className="single-sidebar mb-45">
                         <div className="sidebar-inner-title mb-25">
                         <h3>Manufacturer</h3>
                         </div>
@@ -84,8 +91,6 @@ export default function Sidebar() {
                         </div>
                         </div>
                     </div>
-                    {/* categories filter end */}
-                    {/* categories filter start */}
                     <div className="single-sidebar mb-45">
                         <div className="sidebar-inner-title mb-25">
                         <h3>Select by color</h3>
@@ -100,7 +105,7 @@ export default function Sidebar() {
                             </ul>
                         </div>
                         </div>
-                    </div>
+                    </div> */}
                     </div>
                     {/* sidebar promote picture start */}
                     <div className="single-sidebar mb-30">
@@ -112,3 +117,10 @@ export default function Sidebar() {
                 </div>
     )
 }
+const mapStateToProps = state=>({
+    categories:state.categories.categoryList,
+})
+const mapDispatchToProps = dispatch=>({
+    fetchShopProd:(id)=>dispatch(fetchShopProds(id))
+})
+export default connect(mapStateToProps,mapDispatchToProps)(Sidebar)

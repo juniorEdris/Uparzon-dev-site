@@ -12,7 +12,6 @@ import BusinessAndOffice from './pageComponents/BusinessAndOffice';
 import WideBanner from './pageComponents/LongBanner'
 import BrandArea from './pageComponents/BrandArea';
 import ScrollBar from '../PrimarySections/ScrollBar/ScrollBar'
-import CartIcon from '../PrimarySections/CartIcon.js/CartIcon'
 import './Home.css'
 import Store from './pageComponents/StoreSection'
 import useDocTitle from '../PrimarySections/CustomHooks/DocTitle'
@@ -29,9 +28,8 @@ import { connect } from 'react-redux'
     return (
         <div style={{position:'relative'}}>
             <CartAnimation/>
-            {/* {props.cartState && <CartAnimation/>} */}
             <HomeSlider/>
-            {/* <Store/> */}
+            <Store/>
             <OurProduct/>
             <HomeBanner/>
             <FeaturedCategory/>
@@ -44,7 +42,6 @@ import { connect } from 'react-redux'
             <BrandArea/>
             <FeatureArea/>
             <ScrollBar/>
-            {/* {show && <CartIcon/>} */}
         </div>
     )
 }

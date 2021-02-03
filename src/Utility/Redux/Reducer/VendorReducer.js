@@ -10,7 +10,9 @@ export const VendorReducer = (state=initialState,action)=>{
         case FETCH_VENDOR_PRODUCTS_SUCCESS:
             return{
                 loading:false,
-                vendorProduct:action.product,
+                vendorProduct:action.products,
+                vendorDetails:action.details,
+                vendorCategories:action.categories,
                 error:'',
             }
         case FETCH_VENDOR_PRODUCTS_ERROR:

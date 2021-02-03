@@ -20,13 +20,14 @@ function Product(props) {
             <div className="sinrato-list-item mb-30" id={product.id}>
               
             <div className="sinrato-thumb">
-            {product.photo ? 
+            {product.photo === null ? 
             <Link to={`/productdetails?id=${product.id}`} >
-                <img  src={`https:${product.photo}`} className="pri-img" alt={product.name} />
-                <img  src={`https:${product.thumbnail}`} className="sec-img" alt={product.name} />
-            </Link> :
+              <img  src='./assets/img/uparzon_placeholder.png' className="" alt={product.name} />
+            </Link> 
+            :
             <Link to={`/productdetails?id=${product.id}`} >
-                 <img  src='./assets/img/uparzon_placeholder' className="" alt={product.name} />
+              <img  src={`https:${product.photo}`} className="pri-img" alt={product.name} />
+              <img  src={`https:${product.thumbnail}`} className="sec-img" alt={product.name} />
             </Link>
             }
             <div className="box-label">
@@ -40,7 +41,7 @@ function Product(props) {
             </div>
             <div className="sinrato-list-item-content">
             <div className="manufacture-product">
-                <span><Link to='/'>{product.brand}</Link></span>
+                <span><Link to={`/vendor?id=${product.shop_id}`}>{Truncate(product.shop_name,15)}</Link></span>
             </div>
             <div className="sinrato-product-name">
                 <h4><Link to={`/productdetails?id=${product.id}`} title={product.name}>{Truncate(product.name)}</Link></h4>
@@ -72,13 +73,16 @@ function Product(props) {
             :
             <div className={`product-item ${isGrid && 'mb-30'}`} id={product.id}>
                   <div className="product-thumb product">
-                    {/* <Link to={`/product/${product.id}`} > */}
+                    {product.photo ===null ? 
                     <Link to={`/productdetails?id=${product.id}`} >
-                    <img  src={`https:${product.photo}`} className="pri-img" alt={product.name} />
-                <img  src={`https:${product.thumbnail}`} className="sec-img" alt={product.name} />
-                      {/* <img src={'https://uparzon.com.bd/assets/img/product/product-10.jpg'} className="pri-img" alt={product.name} /> */}
+                      <img  src='./assets/img/uparzon_placeholder.png' className="" alt={product.name} />
+                    </Link> 
+                    :
+                    <Link to={`/productdetails?id=${product.id}`} >
+                      <img  src={`https:${product.photo}`} className="pri-img" alt={product.name} />
+                      <img  src={`https:${product.thumbnail}`} className="sec-img" alt={product.name} />
                     </Link>
-                    
+                    }
                     <div className="box-label">
                       <div className="label-product label_new">
                         <span>{product.latest ? 'new': ''}</span>
@@ -95,7 +99,7 @@ function Product(props) {
                   </div>
                   <div className="product-caption">
                     <div className="manufacture-product">
-                      <p><Link to={`/vendor?id=${product.id}`}>{Truncate(product.shop_name,15)}</Link></p>
+                      <p><Link to={`/vendor?id=${product.shop_id}`}>{Truncate(product.shop_name,15)}</Link></p>
                     </div>
                     <div className="product-name">
                       <h4><Link to={`/productdetails?id=${product.id}`} title={product.name}>{Truncate(product.name,25) }</Link></h4>

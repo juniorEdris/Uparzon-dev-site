@@ -11,8 +11,7 @@ import './VendorSidebar.css'
 
 
 
-export default function VendorSidebar() {
-
+export default function VendorSidebar({categories}) {
     return (
         <div className="col-lg-3">
                     <div className="vendor-sidebar-inner mb-30">
@@ -20,14 +19,9 @@ export default function VendorSidebar() {
                             <h3>Browse More</h3>
                         </div>
                             <ul class="vendor-submenu">
-                                <li><Link to="#">CD Players & Turntables <span class="lnr lnr-chevron-right"/></Link></li>
-                                <li><Link to="#">Home Theater Systems <span class="lnr lnr-chevron-right"/></Link></li>
-                                <li><Link to="#">Receivers & Amplifiers <span class="lnr lnr-chevron-right"/></Link></li>
-                                <li><Link to="#">Speakers <span class="lnr lnr-chevron-right"/></Link></li>
-                                <li><Link to="#">Wireless  Audio <span class="lnr lnr-chevron-right"/></Link></li>
-                                <li><Link to="#">Streaming Media Players <span class="lnr lnr-chevron-right"/></Link></li>
-                                <li><Link to="#">OLED TVs <span class="lnr lnr-chevron-right"/></Link></li>
-                                <li><Link to="#">LED & LCD TVs <span class="lnr lnr-chevron-right"/></Link></li>
+                                {categories?.map((x,id)=>(
+                                    <li key={id}><Link to="#">{x.name} <span class="lnr lnr-chevron-right"/></Link></li>
+                                ))}
                             </ul>
                     </div>
                 </div>

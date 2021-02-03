@@ -3,6 +3,7 @@ import { connect } from 'react-redux'
 import { Link } from 'react-router-dom'
 import { getSubTotal } from '../../Utility/Reducer'
 import { RemoveBasketProd } from '../../Utility/Redux/Action/BasketAction'
+import { LogoutAction } from '../../Utility/Redux/Action/LogoutActions'
 import { currToFixed } from '../Essentials/CurrencyFormat'
 import './HeaderButton.css'
 
@@ -96,7 +97,7 @@ function HeaderButtons(props) {
                     :
                     <ul className={`box-dropdown ha-dropdown ${isAccActive ? 'active':''}`} onPointerLeave={()=>setIsAccActive(false)}>
                         <li><Link to="/register">Register</Link></li>
-                        <li><Link to="/login">Login</Link></li>
+                        <li><Link to="/login" onClick={()=> props.logOut}>Login</Link></li>
                     </ul>
                     
                     }
@@ -107,15 +108,16 @@ function HeaderButtons(props) {
         </div>
     )
 }
-
-const mapDistpatchToProps = dispatch => ({
-    removefromBasket:(prod)=>dispatch(RemoveBasketProd(prod))
-})
-export default connect(state=>(
+const mapStateToProps = state=>(
     {
         basket:state.basketProd.basket,
         compare:state.compareListProd.compareList,
         wishList:state.wishListProd.wishList,
         user:state.Users.user,
     }
-),mapDistpatchToProps)(HeaderButtons)
+)
+const mapDistpatchToProps = dispatch => ({
+    removefromBasket:(prod)=>dispatch(RemoveBasketProd(prod)),
+    logOut:()=>dispatch(LogoutAction())
+})
+export default connect(mapStateToProps,mapDistpatchToProps)(HeaderButtons)

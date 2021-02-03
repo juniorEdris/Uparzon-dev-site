@@ -11,7 +11,8 @@ const fetchShopListRequest= ()=>{
 const fetchShopListSuccess =(list)=>{
     return{
         type: FETCH_SHOP_LIST_SUCCESS,
-        list,
+        list:list.data,
+        pages:list.meta
     }
 }
 
@@ -25,7 +26,7 @@ const fetchShopListErorr =(error)=>{
 
 export const fetchShopList = () => async dispatch=>{
     dispatch(fetchShopListRequest())
-    await Axios.get(Request.StorePage1)
+    await Axios.get(Request.AllShop)
     .then(res=>{
         const lists = res.data
         dispatch(fetchShopListSuccess(lists))

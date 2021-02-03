@@ -8,10 +8,12 @@ const fetchVendorProdRequest = ()=>{
         type: FETCH_VENDOR_PRODUCTS_REQUEST,
     }
 }
-const fetchVendorProdSuccess = (product)=>{
+const fetchVendorProdSuccess = (res)=>{
     return{
         type: FETCH_VENDOR_PRODUCTS_SUCCESS,
-        product,
+        products:res.products.data,
+        categories:res.categories,
+        details:res.vendor
     }
 }
 const fetchVendorProdError = (error)=>{
@@ -24,10 +26,12 @@ const fetchVendorProdError = (error)=>{
 
 export const fetchVendorProds = (id)=>async (dispatch)=>{
     dispatch(fetchVendorProdRequest())
-    // /api/uparzon_store_react/vendordetails/:id
-    await Axios.get(`${Request.VendorProducts}/${id}`)
+    await Axios.get(`${Request.SingleVendor}?vendor_id=${id}&per_page=10`)
     .then(res=>{
         const prod = res.data
+        console.log('=====================Vendor===============');
+        console.log(prod);
+        console.log('====================================');
         dispatch(fetchVendorProdSuccess(prod))
     })
     .catch(err=>{

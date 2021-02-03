@@ -5,6 +5,9 @@ primary: #4f0f40
 light : #fff
 table-border:#dee2e6
 
+Clean cache before build===============
+npm cache Clean
+
 
 HeaderBtn cuts jsx css >
     //mycart menu dropdown

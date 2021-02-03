@@ -1,6 +1,6 @@
 import React,{useState} from 'react'
 import { connect } from 'react-redux'
-import { Link } from 'react-router-dom'
+import { Link, Redirect, useHistory } from 'react-router-dom'
 import { LoginAction } from '../../../Utility/Redux/Action/loginAction'
 
 function LoginBody(props) {
@@ -15,6 +15,7 @@ function LoginBody(props) {
         e.preventDefault()
         setShowValue(!showValue)
     }
+    const history = useHistory()
     const signIn = (e)=>{
 
         e.preventDefault()
@@ -40,9 +41,16 @@ function LoginBody(props) {
             props.login(data)
             setNumber('')
             setPassword('')
+            // if(props.user) {
+            //     history.push("/dashboard");
+            // }
+            props.user && history.push("/dashboard");
+
         }
         
     }
+
+
     return (
         <div>
             {/* Start of Login Wrapper */}
@@ -100,9 +108,11 @@ function LoginBody(props) {
         </div>
     )
 }
-const mapStateToProps = state=>({})
+const mapStateToProps = state=>({
+user:state.Users.user,
+})
 
 const mapDispatchToProps = dispatch=>({
-    login:(data)=>dispatch(LoginAction(data))
+    login:(data)=>dispatch(LoginAction(data)),
 })
 export default  connect(mapStateToProps,mapDispatchToProps)(LoginBody)

@@ -17,6 +17,7 @@ export const LoginAction=(data)=>(dispatch)=>{
             console.log('res',res.data)
             // dispatch(loginSuccess(res.data))
             localStorage.setItem('user',JSON.stringify({user_id:res.data.user_id,status:res.data.status}))
+            localStorage.setItem('user_token',JSON.stringify(res.data.auth_token))
         })
         .catch(err=>{
             console.log('err',err)

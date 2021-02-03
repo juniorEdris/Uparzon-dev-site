@@ -188,7 +188,7 @@ const options = {
 
 
 const mapStateToProps= state=>({
-  brandProducts:state.homeProducts.hotCollection,
+  brandProducts:state.homeProducts.brandProduct,
   loading:state.homeProducts.loading,
 })
 

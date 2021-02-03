@@ -13,6 +13,7 @@ export const ShopListReducer = (state=initialState,action)=>{
                 ...state,
                 loading:false,
                 shopList:action.list,
+                shopListPages:action.pages,
                 error:'',
             }
         case FETCH_SHOP_LIST_ERROR:

@@ -12,6 +12,7 @@ const fetchShopProdSuccess = (res)=>{
     return{
         type: FETCH_SHOP_PRODUCTS_SUCCESS,
         product:res.data,
+        pages:res.meta
         // shopBanner:res.banners[0] //need to be fixed
     }
 }
@@ -22,9 +23,10 @@ const fetchShopProdError = (error)=>{
     }
 }
 
-export const fetchShopProds = ()=>async (dispatch)=>{
+export const fetchShopProds = (id,page=1,)=>async (dispatch)=>{
     dispatch(fetchShopProdRequset())
-    await Axios.get(Request.HotCollection)
+    const Qry = `${Request.ShopProducts}?page=${page}&per_page=20&category_id=${id}`
+    await Axios.get(Qry)
     .then(res=>{
         dispatch(fetchShopProdSuccess(res.data))
     })

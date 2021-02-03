@@ -28,7 +28,10 @@ import './Search.css'
                 id="grouped-select"
                 displayEmpty
                 value={select}
-                onChange={(e)=>setSelect(e.target.value)}
+                onChange={(e)=>{
+                    routeChange()
+                    setSelect(e.target.value)
+                }}
                 >
                     <MenuItem value="">
                         Category

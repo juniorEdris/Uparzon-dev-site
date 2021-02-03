@@ -41,8 +41,9 @@ function ListBody(props) {
 
 const mapStateToProps = state =>(
     {
-        lists:state.storeList.shopList,
-        loading: state.homeProducts.loading //LOADING FROM HOME STATE
+        lists:state.shopList.shopList,
+        loading: state.shopList.loading,
+        pages:state.shopList.shopListPages,
     }
 )
 

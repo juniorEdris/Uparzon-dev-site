@@ -30,16 +30,20 @@ import { DOMAIN } from "./WebDomain";
 const APIKEY = '4e38d8be3269aa17280d0468b89caa4c7d39a699'
 
 export const Request ={
+    Stores:`${DOMAIN}api/uparzonweb/get_shop_list`,
     Sliders:`${DOMAIN}api/uparzonweb/get_home_sliders`,
     OurProducts:`${DOMAIN}api/uparzonweb/get_home_products?our_products=true&per_page=10`,
     HotCollection:`${DOMAIN}api/uparzonweb/get_home_products?hot=true&per_page=10`,
     FeaturedProducts:`${DOMAIN}api/uparzonweb/get_home_products?featured=true&per_page=6`,
+    BrandProducts:`${DOMAIN}api/uparzonweb/get_home_products?sale=true`,
+    ShopProducts:`${DOMAIN}api/uparzonweb/get_shop_products`,
     SearchAPI:`${DOMAIN}api/uparzonweb/search_products`,
     ProductDetails:`${DOMAIN}api/uparzonweb/get_product_details?product_id=`,
     Categories:`${DOMAIN}api/uparzonweb/get_categories`,
     SubCategory:`${DOMAIN}api/uparzonweb/get_categories?category_id=`,
     ChildCategory:`${DOMAIN}api/uparzonweb/get_categories?subcategory_id=`,
     LoginAPI:`https://demopartner.uparzon.com/api/partner/loginRequest?api_key=ge43z0vy480.1hbph09abb50.h7mkj2n6a790.29qzkkkdqqi0.k601sng5h`,
+    SingleVendor:`${DOMAIN}api/uparzonweb/get_vendor_products`,
     // ProductSuggest:`api/uparzon_store/productsuggestions/`,
-    // AllVendors:`api/uparzon_store/allvendors`,
+    AllShop:`${DOMAIN}api/uparzonweb/get_shop_list?per_page=20`,
 }

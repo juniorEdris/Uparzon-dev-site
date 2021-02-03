@@ -12,12 +12,12 @@ export const HomeReducer = (state=initialState,action)=>{
             return{    
                 ...state,
                 loading:false,
-                // categoryList:action.category,
                 homeSliders:action.slider,
-                // homeStores:action.store,
+                homeStores:action.store,
                 ourProduct:action.ourProduct,
                 hotCollection:action.hotCollection,
                 featuredProduct:action.featuredProduct,
+                brandProduct:action.brandProduct,
                 error:'',
             }
         case FETCH_PRODUCTS_ERROR:

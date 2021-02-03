@@ -6,16 +6,20 @@ export const ShopReducer = (state=initialState,action)=>{
         
         case FETCH_SHOP_PRODUCTS_REQUEST:
             return{
+                ...state,
                 loading:true,
             }
-        case FETCH_SHOP_PRODUCTS_SUCCESS:
-            return{
+            case FETCH_SHOP_PRODUCTS_SUCCESS:
+                return{
+                ...state,
                 loading:false,
                 shopProduct:action.product,
+                shopProductsPages:action.pages,
                 error:'',
             }
-        case FETCH_SHOP_PRODUCTS_ERROR:
-            return{
+            case FETCH_SHOP_PRODUCTS_ERROR:
+                return{
+                ...state,
                 loading:true,
                 shopProduct:[],
                 error:action.error,

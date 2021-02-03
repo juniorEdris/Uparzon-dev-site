@@ -28,7 +28,7 @@ function Details(props) {
         <div className="product-details-inner">
           <div className="product-details-contentt">
             <div className="pro-details-name mb-10">
-            <h3>{props.details?.name}</h3>
+            <h3>{props.details?.name || 'Product name'}</h3>
             </div>
             {props.details?.reviews &&
             <div className="pro-details-review mb-20">

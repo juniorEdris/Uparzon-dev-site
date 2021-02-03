@@ -22,7 +22,7 @@ function Index(props) {
     const VendorID = query.get('id')
 
     useEffect(() => {
-        props.VendorDetails(VendorID)
+        // props.VendorDetails(VendorID)
         props.VendorProducts(VendorID)
     }, [])
 
@@ -32,11 +32,11 @@ function Index(props) {
     return (
         <div className="main-wrapper">
             <Banner/>
-            <Profile details={props.details} loading={props.dloading}/>
+            <Profile details={props.details} loading={props.loading}/>
             <Search/>
         <div className="container-fluid">
             <div className="row">
-                <Sidebar/>
+                <Sidebar loading={props.loading} categories={props.categories}/>
                 <div className="col-lg-9 order-first order-lg-last">
                     <div className="product-shop-main-wrapper mb-50">
                         <div className="shop-top-bar mb-30">
@@ -48,7 +48,7 @@ function Index(props) {
                                 </div>
                             </div>
                         </div>
-                        <VendorProducts loading={props.ploading} products={props.products}/>
+                        <VendorProducts loading={props.loading} products={props.products}/>
                         <Pagination/>
                     </div>
                 </div>
@@ -63,13 +63,15 @@ function Index(props) {
 
 const mapStateToProps = state=>(
     {
-        ploading: state.vendorProducts.loading,
+        loading: state.vendorProducts.loading,
         products: state.vendorProducts.vendorProduct,
-        dloading: state.vendorProducts.loading,
-        details: state.vendorDetails.vendorDetail,
+        categories: state.vendorProducts.vendorCategories,
+        details: state.vendorProducts.vendorDetails,
     }
 )
-
+// vendorProduct
+// vendorDetails
+// vendorCategories
 const mapDispatchToProps = dispatch=>(
     {
         VendorProducts:(id)=> dispatch(fetchVendorProds(id)),

@@ -1,8 +1,9 @@
-import React,{useEffect,useState} from 'react';
+import React,{useEffect} from 'react';
 import {
-  BrowserRouter as Router,
+  HashRouter as Router,
   Switch,
   Route,
+  Redirect,
 } from "react-router-dom";
 import Header from './PrimarySections/Header/Header'
 import Home from './Home/HomeMainSection';
@@ -33,19 +34,19 @@ import LoadAllData from './PrimarySections/CustomHooks/DataLoadingHooks';
 
 
 function App(props) {
-  const [show,setShow] = useState(false)
-    useEffect(()=>{
-        window.addEventListener('scroll', () => {
-            if (window.scrollY > 300) {
-              setShow(true)
-            }else {
-                setShow(false)
-            }
-        })
-        return ()=>{
-            window.removeEventListener('scroll',()=>{})
-        }
-    },[])
+  // const [show,setShow] = useState(false)
+  //   useEffect(()=>{
+  //       window.addEventListener('scroll', () => {
+  //           if (window.scrollY > 300) {
+  //             setShow(true)
+  //           }else {
+  //               setShow(false)
+  //           }
+  //       })
+  //       return ()=>{
+  //           window.removeEventListener('scroll',()=>{})
+  //       }
+  //   },[])
     useEffect(()=>{
       props.fetchStroes()
       props.fetchHotCollection()
@@ -63,6 +64,9 @@ function App(props) {
       <Router>
             <Header/>
         <Switch>
+          <Route exact path='/'>
+            <Home/>
+          </Route>
           <Route path='/place'>
             <StoreLoader/>
           </Route>
@@ -73,7 +77,7 @@ function App(props) {
             <VendorPage/>
           </Route>
           <Route path='/dashboard'>
-            <DashBoard/>
+            {props.user ? <DashBoard/> : <Redirect to="/" />}
           </Route>
           <Route path='/contact'>
             <Contact/>
@@ -109,12 +113,9 @@ function App(props) {
             <SearchPage/>
           </Route>
           <Route path='/login'>
-            <Login/>
+          {props.user ? <Redirect to="/dashboard" /> : <Login/>}  
           </Route>
-          <Route exact path='/'>
-            <Home show={show}/>
-          </Route>
-          <Route path='*'>
+          <Route exact path='*'>
             <h1>No Pages Found : ERROR 404</h1>
           </Route>
         </Switch>
@@ -136,4 +137,6 @@ const mapDispatchToProps = dispatch=>(
     fetchCategory:()=>dispatch(fetchCategories())
   }
 )
-export default connect(state=>({}),mapDispatchToProps)(App);
+export default connect(state=>({
+  user:state.Users.user
+}),mapDispatchToProps)(App);

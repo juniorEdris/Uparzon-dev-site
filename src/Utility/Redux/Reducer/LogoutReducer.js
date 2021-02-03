@@ -1,7 +1,7 @@
 import { initialState } from "../../Store/Store";
-import { USER_ACTIVITY_SUCCESS,USER_ACTIVITY_ERROR, USER_LOGOUT_SUCCESS } from "../Types"
+import { USER_ACTIVITY_SUCCESS,USER_ACTIVITY_ERROR } from "../Types"
 
-export const LogInReducer = (state=initialState,action)=>{
+export const LogOutReducer = (state=initialState,action)=>{
     switch(action.type){
         case  USER_ACTIVITY_SUCCESS :
             return{
@@ -12,11 +12,6 @@ export const LogInReducer = (state=initialState,action)=>{
                 return{
                     ...state,
                     error:'No User'
-                }
-            case USER_LOGOUT_SUCCESS :
-                return{
-                    ...state,
-                    user:action.payload,
                 } 
         default :
             return state

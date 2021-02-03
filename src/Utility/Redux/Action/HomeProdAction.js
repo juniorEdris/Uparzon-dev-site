@@ -10,12 +10,12 @@ const fetchHomeProdsRequest = ()=>{
 const fetchHomeProdsSuccess = (res)=>{
     return{
         type: FETCH_PRODUCTS_SUCCESS,
-        // category:res.categories,
         slider:res.sliders,
-        // store:res.store,
+        store:res.stores,
         ourProduct:res.ourProducts,
         hotCollection: res.hotCollection,
         featuredProduct:res.featuredCategories,
+        brandProduct:res.brandProducts,
     }
 }
 
@@ -23,6 +23,13 @@ const fetchHomeProdsSuccess = (res)=>{
 
 export const fetchHomeProds = ()=>async(dispatch)=>{
     dispatch(fetchHomeProdsRequest())
+    // Home Stores
+     const stores = await Axios.get(Request.Stores)
+    .then(res=>{
+        return res.data
+    }).catch(err=>{
+        return err.message
+    })
     // Home Sliders
      const sliders = await Axios.get(Request.Sliders)
     .then(res=>{
@@ -51,12 +58,21 @@ export const fetchHomeProds = ()=>async(dispatch)=>{
     }).catch(err=>{
         return err
     })
+    // Featured Products
+     const BrandProduct = await Axios.get(Request.BrandProducts)
+    .then(res=>{
+        return res.data
+    }).catch(err=>{
+        return err
+    })
     
     const results={
+        stores:stores.data,
         hotCollection: hotCollection.data,
         sliders: sliders.data,
         featuredCategories: featuredProduct.data,
         ourProducts:ourProd.data,
+        brandProducts:BrandProduct.data
     }
     dispatch(fetchHomeProdsSuccess(results)) 
 }
