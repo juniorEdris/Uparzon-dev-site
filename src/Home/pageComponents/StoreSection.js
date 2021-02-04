@@ -38,7 +38,7 @@ function StoreSection(props) {
 <div className="featured-categories-area">
         <div className="container-fluid">
           <div className="section-title hm-12">
-            <h3><span>shop</span> by stores</h3>
+            <h3><span>shop</span></h3>
           </div>
           <div className="row">
               <div className="col-12">

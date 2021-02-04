@@ -21,8 +21,10 @@ function ProductSlider(props) {
         {
          
             <div className='pro-large-img'>
-                {/* <img className='main-img' src={`https://cdn.chaldal.net/_mpimage/meat-fish?src=https%3A%2F%2Feggyolk.chaldal.com%2Fapi%2FPicture%2FRaw%3FpictureId%3D23737&q=low&v=1&m=250&webp=1`} alt={props.details.name} /> */}
-                <img className='main-img' src={`https:${props.product?.photo}`} alt='' />
+              
+                {props.loading ? <img className='main-img' src={`./assets/img/uparzon_placeholder.png`} alt={`${props.details?.name}`} /> :
+                <img className='main-img' src={`https:${props.product?.photo}`} alt={`${props.details?.name}`} />
+                }
             </div>
         }
           

@@ -10,10 +10,10 @@ import Suggestions from './PageComponents/ProductSuggestion'
 function Index(props) {
 
     return (
-        <div>
+        <div className={props.loading && 'loading-opacity'}>
             <Breadcrumb pageName={'Product details'} route={'/shop'} parent={'Shop'}/>
-            <Details/>
-            <Review/>
+              <Details/>
+              <Review/>
             <CartAddanime/>
             <ScrollBar/>
             {props.suggestions?.length > 0 && <Suggestions/>}
@@ -24,6 +24,7 @@ function Index(props) {
 
 
 export default connect(state=>({
+    loading:state.productDetails.loading,
     details:state.productDetails.product,
     suggestions:state.productSuggest.suggestion
   }),dispatch=>({

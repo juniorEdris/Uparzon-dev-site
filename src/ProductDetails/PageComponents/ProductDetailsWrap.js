@@ -1,4 +1,4 @@
-import React from 'react'
+import React,{useEffect} from 'react'
 import Details from './SubFolder/Details'
 import Slider from './SubFolder/ProductSlider'
 import { connect } from 'react-redux'
@@ -11,17 +11,18 @@ function ProductDetailsWrap(props) {
   // getting id from URL
   const query = useQuery()
   const prodID = query.get('id')
-
-  // get on top of the page after page loads
+    // get on top of the page after page loads
   usePageTop()
 
     return (
         <div className="product-details-main-wrapper pb-50">
   <div className="container-fluid">
-    <div className="row">
-        <Slider prod_id={prodID}/>
-        <Details prod_id={prodID}/>
-    </div>
+
+        <div className="row">
+          <Slider prod_id={prodID}/>
+          <Details prod_id={prodID}/>
+        </div>
+    
   </div>
 </div>
 

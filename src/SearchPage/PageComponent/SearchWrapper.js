@@ -11,8 +11,8 @@ function SearchWrapper(props) {
         return (
             <div>
                 
-                <div className="main-wrapper pt-10">
-                    <div className="container-fluid">
+                <div className={`main-wrapper pt-10 ${props.loading && 'loading-opacity'}`}>
+                    <div className={`container-fluid`}>
                         <div className="row">
                     <Sidebar/>
                     <div className="col-lg-9 order-first order-lg-last">
@@ -31,18 +31,14 @@ function SearchWrapper(props) {
                             </div>
                             </div>
                         </div>
-                        {props.loading ?
-                            <div className="shop-product-wrap grid row" >
-                                <ProductLoader/>
-                            </div>
-                        :<div className="shop-product-wrap grid row">
+                        <div className="shop-product-wrap grid row">
                             {props.results?.map(data=>(
                         <div className="col-lg-3 col-md-4 col-sm-6" key={data.id}>
                             {/* grid view starts here */}
                             <Product isGrid={true} key={data.id} product={data} />
                             </div>
                             ))}    
-                        </div>}
+                        </div>
                         <div className="paginatoin-area style-2 pt-35 pb-20">
                             <div className="row">
                             <div className="col-sm-6">
@@ -75,7 +71,7 @@ function SearchWrapper(props) {
     
     const mapStateToProps=state=>(
         {
-            loading:state.loading,
+            loading:state.SearchEngine.loading,
             results: state.SearchEngine.searchedResponse
         }
     )

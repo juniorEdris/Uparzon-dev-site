@@ -25,7 +25,7 @@ export const GetProductDetails = (id) => async dispatch=>{
     dispatch(showProductDetailsRequest())
     const user_id = localStorage.getItem('user_id')
     console.log('====================================');
-    console.log('yser',user_id);
+    console.log('user',user_id);
     console.log(Request.ProductDetails,id,user_id)
     console.log('====================================');
     await Axios.get(`${Request.ProductDetails}${id}${user_id ?`?user_id=${user_id}` :``}`)

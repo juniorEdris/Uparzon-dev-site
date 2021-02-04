@@ -13,6 +13,7 @@ export const SearchReducer = (state=initialState,action)=>{
                 ...state,
                 loading:false,
                 searchedResponse:action.products,
+                searchPages:action.pages,
                 error:'',
             }
         case SEARCH_PRODUCTS_ERROR:

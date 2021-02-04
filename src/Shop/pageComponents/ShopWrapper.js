@@ -1,5 +1,5 @@
 /* eslint-disable no-unused-vars */
-import React,{ useEffect } from 'react'
+import React,{ useState,useEffect } from 'react'
 import $ from 'jquery'
 import { Link } from 'react-router-dom'
 import './ShopWrapper.css'
@@ -9,10 +9,17 @@ import Filter from './RightBarControl'
 import { ProductLoader } from '../../PrimarySections/ReactPlaceHolder/ReactPlaceHolder'
 import { connect } from 'react-redux'
 import { renderHTML } from '../../PrimarySections/Essentials'
+import Pagination  from './Pagination'
+import { fetchShopProds } from '../../Utility/Redux/Action/ShopProductAction'
 
 
 function ShopWrapper(props) {
     // console.log('shop pages',props.pages)
+    const [page, setPage] = useState(1)
+    const [id, setId] = useState(0)
+    useEffect(() => {
+        props.pageDispatch(id,page)
+    }, [page,id])
 useEffect(() => {
 // product view mode change js
 $('.product-view-mode a').on('click', function(e){
@@ -38,7 +45,7 @@ $('.product-view-mode a').on('click', function(e){
                 </div>
                 <div className="container-fluid">
                     <div className="row">
-                <Sidebar/>
+                <Sidebar id={id} setId={setId}/>
                 <div className="col-lg-9 order-first order-lg-last">
                     <div className="product-shop-main-wrapper mb-50">
                     <div className="shop-top-bar mb-30">
@@ -51,7 +58,7 @@ $('.product-view-mode a').on('click', function(e){
                                 <Link to='#' data-target="list"><span>list</span></Link>
                             </div>
                             <div className="product-page">
-                                {props.pages && <p>Showing {props.pages?.current_page} of {props.pages?.last_page} ({props.pages.links?.length} Pages)</p>}
+                                {props.pages && <p>Showing {props.pages?.current_page} of {props.pages?.last_page}</p>}
                             </div>
                             </div>
                         </div>
@@ -74,22 +81,7 @@ $('.product-view-mode a').on('click', function(e){
                         </div>
                         ))}    
                     </div>}
-                    <div className="paginatoin-area style-2 pt-35 pb-20">
-                        <div className="row">
-                        <div className="col-sm-6">
-                            <div className="pagination-area">
-                                {props.pages && <p>Showing {props.pages?.current_page} of {props.pages?.last_page} ({props.pages.links?.length} Pages)</p>}
-                            </div>
-                        </div>
-                        <div className="col-sm-6">
-                            <ul className="pagination-box pagination-style-2">
-                            {props.pages?.links?.map((x,id)=>(
-                                <li key={id}><Link to='/' >{renderHTML(x.label)}</Link></li>//onClick={()=>props}
-                            ))}
-                            </ul>
-                        </div>
-                        </div>
-                    </div> 
+                        <Pagination page={page} setPage={setPage}/>
                     </div>
                 </div>
                 </div>
@@ -106,5 +98,9 @@ const mapStateToProps=state=>(
         pages:state.shopProducts.shopProductsPages,
     }
 )
-const mapDispatchToProps =dispatch=>({})
+const mapDispatchToProps =dispatch=>(
+    {
+        pageDispatch:(id,page)=>dispatch(fetchShopProds(id,page)),
+    }
+    )
 export default  connect(mapStateToProps,mapDispatchToProps)(ShopWrapper)

@@ -17,6 +17,9 @@ export const HomeReducer = (state=initialState,action)=>{
                 ourProduct:action.ourProduct,
                 hotCollection:action.hotCollection,
                 featuredProduct:action.featuredProduct,
+                bigProduct:action.big,
+                latestProduct:action.latest,
+                trendingProduct:action.trending,
                 brandProduct:action.brandProduct,
                 error:'',
             }

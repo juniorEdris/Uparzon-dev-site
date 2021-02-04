@@ -3,10 +3,10 @@ import OwlCarousel from 'react-owl-carousel';
 import 'owl.carousel/dist/assets/owl.carousel.css';
 import 'owl.carousel/dist/assets/owl.theme.default.css';
 import './ElectronicsArea.css'
-import { MobileProducts } from '../../Data';
 import Card from './Subfolder/Card';
+import { connect } from 'react-redux';
 
-export default function ElectronicsArea() {
+function ElectronicsArea(props) {
 
 
   const options = {
@@ -31,27 +31,41 @@ export default function ElectronicsArea() {
 }
     return (
         <div>
-            <div className="home-module-four">
-  <div className="container-fluid">
-    <div className="section-title">
-      <h3><span>Laptop</span> &amp; computer</h3>
-    </div>
-    <div className="pro-module-four-active ">
-      {/* slider starts here */}
-      <OwlCarousel
-        className="owl-theme"
-        {...options}
-      >
+            {props.bigProduct?.length > 0 && <div className="home-module-four">
+                <div className="container-fluid">
+                  <div className="section-title">
+                    <h3><span>Laptop</span> &amp; computer</h3>
+                  </div>
+                  <div className="pro-module-four-active ">
+                    {/* slider starts here */}
+                    <OwlCarousel
+                      className="owl-theme"
+                      {...options}
+                    >
 
-      {MobileProducts.map(product =>(
-      <Card key={product.id} {...product}/>
-      ))}
+                    {props.bigProducts?.map(product =>(
+                    <Card key={product.id} product={product}/>
+                    ))}
 
-      </OwlCarousel>
-    </div>
-  </div>
-</div>
+                    </OwlCarousel>
+                  </div>
+                </div>
+</div>}
 
         </div>
     )
 }
+
+const mapStateToProps = state=>(
+  {
+    loading:state.homeProducts.loading,
+    bigProducts:state.homeProducts.bigProduct,
+  }
+)
+
+const mapDispatchToProps = dispatch=>(
+  {
+
+  }
+)
+export default connect(mapStateToProps,mapDispatchToProps)(ElectronicsArea)

@@ -22,9 +22,9 @@ function Sidebar(props) {
         e.preventDefault()
         
     }
-    useEffect(() => {
-        props.fetchShopProd(category)
-    }, [category])
+    // useEffect(() => {
+    //     props.fetchShopProd(category)
+    // }, [category])
     return (
         <div className="col-lg-3">
                     <div className="shop-sidebar-inner mb-30">
@@ -66,9 +66,9 @@ function Sidebar(props) {
                         <div className="sidebar-content-box">
                         <div className="filter-attribute-container">
                             <ul>
-                                <li key='all'><Link className={category === '' && `active`} to="#" onClick={()=>setCategory('')}>All</Link></li>
+                                <li key='all'><Link className={props.id === '' && `active`} to="#" onClick={()=>props.setId('')}>All</Link></li>
                                 {props.categories?.map((x,id)=>(
-                                    <li key={id}><Link className={category === x.id && `active`} to="#" onClick={()=>setCategory(x.id)}>{x.name}</Link></li>
+                                    <li key={id}><Link className={props.id === x.id && `active`} to="#" onClick={()=>props.setId(x.id)}>{x.name}</Link></li>
                                 ))}
                             </ul>
                         </div>
@@ -123,4 +123,4 @@ const mapStateToProps = state=>({
 const mapDispatchToProps = dispatch=>({
     fetchShopProd:(id)=>dispatch(fetchShopProds(id))
 })
-export default connect(mapStateToProps,mapDispatchToProps)(Sidebar)
+export default connect(mapStateToProps,mapDispatchToProps)(React.memo(Sidebar))

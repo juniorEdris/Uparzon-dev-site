@@ -26,16 +26,29 @@
 //     AllVendors:`api/uparzon_store/allvendors`,
 // }
 
+import Axios from "axios";
 import { DOMAIN } from "./WebDomain";
 const APIKEY = '4e38d8be3269aa17280d0468b89caa4c7d39a699'
 
+export const axios =  Axios.create({
+    baseURL:DOMAIN,
+  })
+  const authToken = localStorage.getItem('user_token')
+
+  if(authToken){
+      console.log('true');
+  }
+
 export const Request ={
-    Stores:`${DOMAIN}api/uparzonweb/get_shop_list`,
-    Sliders:`${DOMAIN}api/uparzonweb/get_home_sliders`,
-    OurProducts:`${DOMAIN}api/uparzonweb/get_home_products?our_products=true&per_page=10`,
-    HotCollection:`${DOMAIN}api/uparzonweb/get_home_products?hot=true&per_page=10`,
-    FeaturedProducts:`${DOMAIN}api/uparzonweb/get_home_products?featured=true&per_page=6`,
-    BrandProducts:`${DOMAIN}api/uparzonweb/get_home_products?sale=true`,
+    Stores:`api/uparzonweb/get_shop_list`,
+    Sliders:`api/uparzonweb/get_home_sliders`,
+    OurProducts:`api/uparzonweb/get_home_products?our_products=true&per_page=10`,
+    HotCollection:`api/uparzonweb/get_home_products?hot=true&per_page=10`,
+    BigProducts:`api/uparzonweb/get_home_products?big=true&per_page=10`,
+    TrendingProducts:`api/uparzonweb/get_home_products?trending=true&per_page=10`,
+    LatestProducts:`api/uparzonweb/get_home_products?latest=true&per_page=10`,
+    FeaturedProducts:`api/uparzonweb/get_home_products?featured=true&per_page=6`,
+    BrandProducts:`api/uparzonweb/get_home_products?sale=true`,
     ShopProducts:`${DOMAIN}api/uparzonweb/get_shop_products`,
     SearchAPI:`${DOMAIN}api/uparzonweb/search_products`,
     ProductDetails:`${DOMAIN}api/uparzonweb/get_product_details?product_id=`,

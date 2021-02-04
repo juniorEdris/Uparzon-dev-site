@@ -19,6 +19,7 @@
     "react": "^16.14.0",
     "react-content-loader": "^5.1.4",
     "react-dom": "^16.14.0",
+    "react-loader-spinner": "^4.0.0",
     "react-modern-drawer": "^0.1.0",
     "react-owl-carousel": "^2.3.1",
     "react-placeholder": "^4.0.3",

@@ -124,7 +124,11 @@ function App(props) {
      </div>
   );
 }
-
+const mapStateToProps= state=>(
+  {
+    user:state.Users.user
+  }
+)
 const mapDispatchToProps = dispatch=>(
   {
     fetchHotCollection:()=>dispatch(fetchHomeProds()),
@@ -137,6 +141,4 @@ const mapDispatchToProps = dispatch=>(
     fetchCategory:()=>dispatch(fetchCategories())
   }
 )
-export default connect(state=>({
-  user:state.Users.user
-}),mapDispatchToProps)(App);
+export default connect(mapStateToProps,mapDispatchToProps)(App);

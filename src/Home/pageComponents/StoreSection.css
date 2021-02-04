@@ -6,21 +6,28 @@
   border: 1px solid #4f0f40;
 }
 .store-thumb {
-  width: 100%;
-  height: 75px;
+  width: 140px;
+  height: 90px;
   position: relative;
   display: block;
-  border-radius: 10px 10px 0px 0px;
+  border-radius: 3px;
   overflow: hidden;
+  margin: 0 auto;
+  padding: 5px;
 }
 .store-thumb img {
   height: 100%;
   width: 100%;
   object-fit: cover;
 }
+.store-info {
+  padding: 2px;
+  text-align: center;
+  font-size: 24px !important;
+}
 .store-name {
-  width: fit-content;
-  margin: 0 auto;
+  font-size: 14px;
+  line-height: 14px;
 }
 .store-name a,
 .store-btn {

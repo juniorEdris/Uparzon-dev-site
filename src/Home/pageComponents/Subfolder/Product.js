@@ -10,6 +10,7 @@ import { AddCompareProd } from '../../../Utility/Redux/Action/CompareListAction'
 import { AddWishProd } from '../../../Utility/Redux/Action/WishListAction';
 import { ShowQuickDes } from '../../../Utility/Redux/Action/QuickViewAction';
 import { productAddAnimation } from '../../../Utility/Redux/Action/ProductAddedAction';
+import { currToFixed } from '../../../PrimarySections/Essentials/CurrencyFormat';
 
 function Product(props) {
   const {isList,product,isGrid} = props
@@ -59,8 +60,8 @@ function Product(props) {
             </div>
             <div className="sinrato-box-action">
             <div className="price-box">
-                <span className="regular-price"><span className={` ${product.special && 'special-price'}`}>&#2547;{product.price.toFixed(2)}</span></span>
-                {product.previous_price && <span className="old-price"><del>&#2547;{product.previous_price.toFixed(2)}</del></span>}
+                <span className="regular-price"><span className={` ${product.special && 'special-price'}`}>&#2547;{currToFixed(product.price)}</span></span>
+                {product.previous_price && <span className="old-price"><del>&#2547;{currToFixed(product.previous_price)}</del></span>}
             </div>
             <button className="btn-cart" type="button" onClick={(e)=> {props.addToBasket(product); props.cartAnimation('basket');}} data-target="#cart_modal" data-toggle="modal">add to cart</button>
             <div className="action-links sinrat-list-icon">

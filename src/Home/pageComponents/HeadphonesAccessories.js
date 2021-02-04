@@ -3,10 +3,10 @@ import OwlCarousel from 'react-owl-carousel';
 import 'owl.carousel/dist/assets/owl.carousel.css';
 import 'owl.carousel/dist/assets/owl.theme.default.css';
 import './HeadphonesAccessories.css'
-import { Electronics } from '../../Data';
 import Card from './Subfolder/Card';
+import { connect } from 'react-redux';
 
-export default function HeadphonesAccessories() {
+function HeadphonesAccessories(props) {
 
   const options = {
     loop: false,
@@ -30,26 +30,39 @@ export default function HeadphonesAccessories() {
 } 
     return (
         <div>
-            <div className="home-module-five">
-  <div className="container-fluid">
-    <div className="section-title">
-      <h3><span>Headphones</span> &amp; Accessories </h3>
-    </div>
-    <div className="pro-module-four-active ">{/* owl-carousel owl-arrow-style*/}
-      {/* slider starts here */}
-      <OwlCarousel
-        className="owl-theme"
-        {...options}
-      >
-        {Electronics.map(product =>(
-          <Card key={product.id} {...product}/>
-        ))}
-        
-      </OwlCarousel>
-    </div>
-  </div>
-</div>
-
+            { props.trendingProduct && <div className="home-module-five">
+              <div className="container-fluid">
+                <div className="section-title">
+                  <h3><span>Headphones</span> &amp; Accessories </h3>
+                </div>
+                <div className="pro-module-four-active ">{/* owl-carousel owl-arrow-style*/}
+                  {/* slider starts here */}
+                  <OwlCarousel
+                    className="owl-theme"
+                    {...options}
+                  >
+                    {props.trendingProducts?.map(product =>(
+                      <Card key={product.id} product={product}/>
+                    ))}
+                    
+                  </OwlCarousel>
+                </div>
+              </div>
+            </div>}
         </div>
     )
 }
+
+const mapStateToProps = state=>(
+  {
+    loading:state.homeProducts.loading,
+    trendingProducts:state.homeProducts.trendingProduct,
+  }
+)
+
+const mapDispatchToProps = dispatch=>(
+  {
+
+  }
+)
+export default connect(mapStateToProps,mapDispatchToProps)(HeadphonesAccessories)

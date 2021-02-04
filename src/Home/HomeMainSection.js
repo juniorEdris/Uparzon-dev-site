@@ -13,7 +13,6 @@ import WideBanner from './pageComponents/LongBanner'
 import BrandArea from './pageComponents/BrandArea';
 import ScrollBar from '../PrimarySections/ScrollBar/ScrollBar'
 import './Home.css'
-import Store from './pageComponents/StoreSection'
 import useDocTitle from '../PrimarySections/CustomHooks/DocTitle'
 import CartAnimation from '../PrimarySections/CartAddAnime/CartAddanime'
 import { connect } from 'react-redux'
@@ -29,16 +28,15 @@ import { connect } from 'react-redux'
         <div style={{position:'relative'}}>
             <CartAnimation/>
             <HomeSlider/>
-            <Store/>
             <OurProduct/>
             <HomeBanner/>
             <FeaturedCategory/>
             <HotCollection/>
-            <StaticsBanner/>
+            {/* <StaticsBanner/> */}
             <ElectronicsArea/>
             <HeadphonesAccessories/>
             <BusinessAndOffice/>
-            <WideBanner/>
+            {/* <WideBanner/> */}
             <BrandArea/>
             <FeatureArea/>
             <ScrollBar/>

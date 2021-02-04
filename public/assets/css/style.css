@@ -359,21 +359,17 @@ input.top-cat-field {
   position: relative;
 }
 
-/* .mini-cart-option li:hover a {
-  color: var(--theme-color);
-} */
-
 .mini-cart-option .count {
   background: var(--theme-color);
   border-radius: 50%;
   color: var(--light-color);
   font-size: 11px;
   height: 20px;
-  left: 20px;
+  left: 18px;
   line-height: 20px;
   position: absolute;
   text-align: center;
-  top: -12px;
+  top: -11px;
   width: 20px;
 }
 
@@ -1553,6 +1549,7 @@ a.shop-btn:hover {
 .pagination-box li a {
   color: #111;
   padding: 10px;
+  margin-right: 10px;
 }
 
 .pagination-box li:hover a {

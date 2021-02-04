@@ -17,7 +17,7 @@ function Details(props) {
         $('.useful-links a').on('click',function( event ) {
           event.preventDefault();
         });
-        props.fetchSuggestions(props.details?.category_id)        
+        // props.fetchSuggestions(props.details?.category_id)        
       },[])
       useEffect(() => {
         document.title = props.details?.name ? `${props.details?.name} | Uparzon E-commerce Store` : 'Uparzon E-commerce Store'
@@ -28,7 +28,7 @@ function Details(props) {
         <div className="product-details-inner">
           <div className="product-details-contentt">
             <div className="pro-details-name mb-10">
-            <h3>{props.details?.name || 'Product name'}</h3>
+            <h3>{props.loading ? '' : props.details?.name }</h3>
             </div>
             {props.details?.reviews &&
             <div className="pro-details-review mb-20">
@@ -45,8 +45,8 @@ function Details(props) {
             </div>
             }
             <div className="price-box mb-15">
-              <span className="regular-price"><span className="special-price">&#2547;{ currToFixed( props.details?.price) || ''}</span></span>
-              {props.details?.previous_price ? <span className="old-price"><del>&#2547;{currToFixed(props.details?.previous_price) || ''}</del></span> : ''}
+              {props.details?.price ? <span className="regular-price"><span className="special-price">&#2547;{ currToFixed( props.details?.price) || ''}</span></span>: ''}
+              {props.details?.previous_price > 0.0 ? <span className="old-price"><del>&#2547;{currToFixed(props.details?.previous_price) || ''}</del></span> : ''}
             </div>
             <div className="product-detail-sort-des pb-20">
               <p>{props.details?.description || ""}</p>
