@@ -1,6 +1,6 @@
 import React,{useState} from 'react'
 import { connect } from 'react-redux'
-import { Link } from 'react-router-dom'
+import { Link, useHistory } from 'react-router-dom'
 import { getSubTotal } from '../../Utility/Reducer'
 import { RemoveBasketProd } from '../../Utility/Redux/Action/BasketAction'
 import { LogoutAction } from '../../Utility/Redux/Action/LogoutActions'
@@ -11,6 +11,7 @@ function HeaderButtons(props) {
     console.log('====================================');
     console.log('user headerbtns',props.user);
     console.log('====================================');
+    const history = useHistory()
     //mycart menu dropdown
     const [isCartActive, setCartActive] = useState(false)
     const showCart = (e)=>{
@@ -29,6 +30,10 @@ function HeaderButtons(props) {
     const eco_tax = getSubTotal(props.basket) / 1.51
     const vat_amount = getSubTotal(props.basket) / 0.20 
     const get_total = getSubTotal(props.basket) + eco_tax + vat_amount
+    const logout = ()=>{
+        props.logOut()
+        // history.push('/')
+    }
     return (
         <div className="col-lg-4 col-md-8 col-12 col-sm-8 order-lg-last">
             <div className="mini-cart-option">
@@ -92,12 +97,12 @@ function HeaderButtons(props) {
                     <ul className={`box-dropdown ha-dropdown ${isAccActive ? 'active':''}`} onPointerLeave={()=>setIsAccActive(false)}>
                         <li><Link to="/dashboard">Dashboard</Link></li>
                         <li><Link to="/vendor">My store</Link></li>
-                        <li><Link to="/">Log out</Link></li>
+                        <li onClick={logout}><Link to="#">Log out</Link></li>
                     </ul>
                     :
                     <ul className={`box-dropdown ha-dropdown ${isAccActive ? 'active':''}`} onPointerLeave={()=>setIsAccActive(false)}>
                         <li><Link to="/register">Register</Link></li>
-                        <li><Link to="/login" onClick={()=> props.logOut}>Login</Link></li>
+                        <li><Link to="/login">Login</Link></li>
                     </ul>
                     
                     }

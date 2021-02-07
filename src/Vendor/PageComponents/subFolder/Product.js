@@ -72,7 +72,7 @@ export default function Product(product) {
                   <div className="product-thumb">
                     <Link to={`/productdetails?id=${product.id}`} >
                       {/* <img src={`https:${product.photo.replace('demostore', 'store')}`} className="pri-img" alt={product.name} /> */}
-                      <img src='https://uparzon.com.bd/assets/img/product/product-2.jpg' className="pri-img" alt={product.name} />
+                      <img src={product.photo} className="pri-img" alt={product.name} />
                     </Link>
                     
                     <div className="box-label">
@@ -107,7 +107,7 @@ export default function Product(product) {
                       <span className="regular-price"><span className={` ${product.special && 'special-price'}`}>£{product.price}</span></span>
                       <span className="old-price"><del>{product.previous_price ? `£${product.previous_price}` : ''}</del></span>
                     </div>
-                    <button className="btn-cart"  type="button">Mark as out of Stock</button>
+                    <button className="btn-cart"  type="button">out of Stock</button>
                   </div>
                 
                 </div>

@@ -12,6 +12,7 @@ const logoutSuccess=()=>(
 //     {type: USER_LOGOUT_ERROR,payload:error,}
 // )
 export const LogoutAction=()=>(dispatch)=>{
-    localStorage.clear()
-   dispatch(logoutSuccess)
+    localStorage.removeItem('user_token')
+    console.log('token',!localStorage.getItem('user_token'))
+    dispatch(logoutSuccess())
 }

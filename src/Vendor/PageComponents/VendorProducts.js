@@ -9,10 +9,10 @@ function VendorProducts(props) {
         {props.loading ?
             <ProductLoader/>
         :
-        <div className="shop-product-wrap column_3 row">
+        <div className="shop-product-wrap row grid">
             {
                 props.products?.map(data=>(
-                    <div className="col-lg-3 col-md-4 col-sm-6" key={data.id}>
+                    <div className="col-md-4 col-lg-3 col-6" key={data.id}>
                     {/* grid view starts here */}
                     <Product isGrid={true} key={data.id} {...data} />
                     {/* List view starts here */}

@@ -13,7 +13,7 @@ function HotCollection(props) {
   
   // Mapping All products in a varriables
  const Card = props.hotCollection?.map(product =>(
-  <div className="col mb-30">
+  <div className="col-md-4 col-lg-3 col-6 mb-30"> {/*col-md-3*/}
    <Product key={product.id} product={product}/>
   </div> /* single item end */
   ))
@@ -43,7 +43,7 @@ function HotCollection(props) {
       <div className={`tab-pane fade ${Tab === 'Featured Products' && "show active"}`} id="module-one">
         <div className="module-four-wrapper custom-seven-column">
 
-          <div className="col col-2 mb-30">
+          <div className="col-md-4 col-lg-3 col-sm-6 col-12 mb-30">
             <div className="product-item">
               <div className="product-thumb">
                 <a href="shop-grid-left-sidebar.html">
@@ -53,18 +53,12 @@ function HotCollection(props) {
             </div>
           </div> {/* single item end */}
           {Card}
-          <div className="col mb-30">
-            <div className="more__btn">
-              <p>1000+ Products Available in Hot Collection</p>
-              <Link to='/shop' className="btn">See More</Link>
-            </div>
-          </div>
         </div>
       </div>
       {/* module-two starts here */}
       <div className={`tab-pane fade ${Tab === 'On sale Products' && "show active"}`} id="module-two">
         <div className="module-four-wrapper custom-seven-column">
-        <div className="col col-2 mb-30">
+        <div className="col-md-4 col-lg-3 col-sm-6 col-12 mb-30">
             <div className="product-item">
               <div className="product-thumb">
                 <a href="shop-grid-left-sidebar.html">
@@ -74,12 +68,6 @@ function HotCollection(props) {
             </div>
           </div> {/* single item end */}
           {Card}
-          <div className="col mb-30">
-            <div className="more__btn">
-              <p>1000+ Products Available in Hot Collection</p>
-              <Link to='/shop' className="btn">See More</Link>
-            </div>
-          </div>
         </div>
       </div>
 
@@ -87,7 +75,7 @@ function HotCollection(props) {
       <div className={`tab-pane fade ${Tab === 'Best sellers Products' && "show active"}`} id="module-three">
         <div className="module-four-wrapper custom-seven-column">
 
-          <div className="col col-2 mb-30">
+          <div className="col-md-4 col-lg-3 col-sm-6 col-12 mb-30">
             <div className="product-item">
               <div className="product-thumb">
                 <a href="shop-grid-left-sidebar.html">
@@ -97,12 +85,6 @@ function HotCollection(props) {
             </div>
           </div> {/* single item end */}
           { Card}
-          <div className="col mb-30">
-            <div className="more__btn">
-              <p>1000+ Products Available in Hot Collection</p>
-              <Link to='/shop' className="btn">See More</Link>
-            </div>
-          </div>
         </div>
       </div>
 

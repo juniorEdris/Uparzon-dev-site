@@ -1,4 +1,6 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
+import { connect } from 'react-redux'
+import { useHistory } from 'react-router-dom'
 import Breadcrumb from '../../PrimarySections/Breadcrumbs/Breadcrumb'
 import useDocTitle from '../../PrimarySections/CustomHooks/DocTitle'
 import ScrollBar from '../../PrimarySections/ScrollBar/ScrollBar'
@@ -6,10 +8,17 @@ import DashTable from './pageComponents/DashTable'
 import UserInfo from './pageComponents/UserInfo'
 
 
-export default function Index() {
+function Index(props) {
+    const history = useHistory()
+    const [user,setUser] = useState(props.user)
+    console.log('user',user);
+    useEffect(() => {
+        !user && history.push('/home')
+    }, [history,user])
 
      // Document Title Update
      useDocTitle('Dashboard')
+
     return (
         <div>
             <Breadcrumb pageName={'Dashboard'} route={'/'} parent={'Home'}/>
@@ -33,3 +42,10 @@ export default function Index() {
         </div>
     )
 }
+
+const mapStateToProps = state=>({
+    user:state.Users.user,
+})
+const mapDispatchToProps = dispatch=>({}) 
+
+export default connect(mapStateToProps,mapDispatchToProps)(Index)

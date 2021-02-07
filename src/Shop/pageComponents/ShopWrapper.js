@@ -73,7 +73,7 @@ $('.product-view-mode a').on('click', function(e){
                         </div>
                     :<div className="shop-product-wrap grid row">
                         {props.shopProduct?.map(data=>(
-                    <div className="col-lg-3 col-md-4 col-sm-6" key={data.id}>
+                    <div className="col-lg-3 col-md-4 col-6" key={data.id}>
                         {/* grid view starts here */}
                         <Product isGrid={true} key={data.id} product={data} />
                         {/* List view starts here */}

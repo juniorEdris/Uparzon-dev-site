@@ -39,12 +39,12 @@ function LoginBody(props) {
                 pass: password,
             }
             props.login(data)
-            setNumber('')
-            setPassword('')
-            // if(props.user) {
-            //     history.push("/dashboard");
-            // }
-            props.user && history.push("/dashboard");
+            if(props.user) {
+                history.push("/dashboard");
+                setNumber('')
+                setPassword('')
+            }
+            // props.user && history.push("/dashboard");
 
         }
         

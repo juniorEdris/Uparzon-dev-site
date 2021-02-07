@@ -1,5 +1,5 @@
 import { initialState } from '../../Store/Store'
-import { USER_ACTIVITY_SUCCESS, USER_ACTIVITY_ERROR } from '../Types'
+import { USER_ACTIVITY_SUCCESS, USER_ACTIVITY_ERROR, USER_LOGOUT_SUCCESS } from '../Types'
 
 export const UserReducer = (state=initialState,action) =>{
     switch(action.type){
@@ -12,6 +12,12 @@ export const UserReducer = (state=initialState,action) =>{
             return {
                 ...state,
                 user:false,
+            }
+            case  USER_LOGOUT_SUCCESS :
+            console.log('logoutaskdjhfskldjn',action.payload);
+            return{
+                ...state,
+                user:action.payload
             }
         default:
             return state

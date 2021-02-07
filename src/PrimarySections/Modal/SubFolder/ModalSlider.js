@@ -17,10 +17,13 @@ function Slider (props) {
                     {
                        
                     <div className='pro-large-img'>
-                        <img className='modal-image' src={`https:${props.modalProd?.photo?.replace('demostore', 'store')}`} alt='' />
+                        {props.modalProd?.photo ? 
+                        <img className='modal-image' src={`https:${props.modalProd?.photo}`} alt='' />
+                        :
+                        <img className='modal-image' src={`./assets/img/uparzon_placeholder.png`} alt='' />
+                        }
                     </div>
-    
-                    }
+                        }
                 </Carousel>
             </div>
         )
