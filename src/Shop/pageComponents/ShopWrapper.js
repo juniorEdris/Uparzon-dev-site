@@ -11,11 +11,15 @@ import { connect } from 'react-redux'
 import { renderHTML } from '../../PrimarySections/Essentials'
 import Pagination  from './Pagination'
 import { fetchShopProds } from '../../Utility/Redux/Action/ShopProductAction'
+import ReactPaginate from 'react-paginate'
 
 
 function ShopWrapper(props) {
     // console.log('shop pages',props.pages)
     const [page, setPage] = useState(1)
+
+
+    console.log('shoppage',page)
     const [id, setId] = useState(0)
     useEffect(() => {
         props.pageDispatch(id,page)
@@ -39,7 +43,7 @@ $('.product-view-mode a').on('click', function(e){
             
             <div className="main-wrapper pt-10">
                 <div className="container-fluid">
-                <div className="shop-baner-img mb-70">
+                <div className="shop-baner-img mb-20">
                     <Link to='/'><img src="https://laz-img-cdn.alicdn.com/images/ims-web/TB1rZbOp3gP7K4jSZFqXXamhVXa.jpg_1200x1200Q100.jpg_.webp" alt="" /></Link>
                 </div>
                 </div>
@@ -69,7 +73,7 @@ $('.product-view-mode a').on('click', function(e){
                     </div>
                     {props.loading ?
                         <div className="shop-product-wrap grid row" >
-                            <ProductLoader/>
+                            {Array(20).fill().map((x,id)=>(<ProductLoader key={id}/>))}
                         </div>
                     :<div className="shop-product-wrap grid row">
                         {props.shopProduct?.map(data=>(
@@ -81,7 +85,7 @@ $('.product-view-mode a').on('click', function(e){
                         </div>
                         ))}    
                     </div>}
-                        <Pagination page={page} setPage={setPage}/>
+                        <Pagination page={page} setPage={setPage} allPages={props.pages}/>
                     </div>
                 </div>
                 </div>

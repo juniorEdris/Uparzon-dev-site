@@ -91,6 +91,16 @@ CSS =========
     > react-image-zoom
     > react-inner-image-zoom
     > react-modal-image
+    
+    "framer-motion": "^2.9.4",
+
+    "medium-zoom": "^1.0.6",
+
+    "react-content-loader": "^5.1.4",
+
+    "react-loader-spinner": "^4.0.0",
+
+    "react-spring": "^8.0.27",
 
 ## File map
 

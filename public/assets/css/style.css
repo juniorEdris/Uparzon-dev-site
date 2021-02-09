@@ -1875,7 +1875,7 @@ a.shop-btn:hover {
 
 .shop-baner-img img {
   width: 100%;
-  height: 100%;
+  height: 250px;
   min-height: 270px;
   max-height: 570px;
   object-fit: contain;

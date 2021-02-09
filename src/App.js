@@ -34,19 +34,7 @@ import LoadAllData from './PrimarySections/CustomHooks/DataLoadingHooks';
 
 
 function App(props) {
-  // const [show,setShow] = useState(false)
-  //   useEffect(()=>{
-  //       window.addEventListener('scroll', () => {
-  //           if (window.scrollY > 300) {
-  //             setShow(true)
-  //           }else {
-  //               setShow(false)
-  //           }
-  //       })
-  //       return ()=>{
-  //           window.removeEventListener('scroll',()=>{})
-  //       }
-  //   },[])
+
     useEffect(()=>{
       props.fetchStroes()
       props.fetchHotCollection()
@@ -68,7 +56,7 @@ function App(props) {
             <Home/>
           </Route>
           <Route path='/place'>
-            <StoreLoader/>
+            <ProductLoader/>
           </Route>
           <Route path='/shop-list'>
             <ShopList/>

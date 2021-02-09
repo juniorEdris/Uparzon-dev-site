@@ -120,7 +120,15 @@ const options = {
           </div>
           <div className="col-12">
           {props.loading ? 
-        <ProductLoader className='product-item'/>:
+        <div className="row">
+            <OwlCarousel
+            className="owl-theme"
+            {...options}
+            >
+            {Array(6).fill().map((x,id)=>(<ProductLoader key={id}/>))}
+            </OwlCarousel>
+        </div>
+            :
             <div className="tab-content">
               <div className={` tab-pane fade ${Tab === 'brand 1' && `show active`}`} id="brand-one">
         <div className="product-gallary-wrapper brand-sale">
@@ -135,7 +143,7 @@ const options = {
                           <Product key={product.id} product={product}/>
                         ))
                   }
-                  <MoreBtn route={'/shop'}/>
+                  
                   </OwlCarousel>
                   </div>
                 </div>
@@ -153,7 +161,7 @@ const options = {
                       <Product key={product.id} product={product}/>
                         ))
                   }
-                  <MoreBtn route={'/shop'}/>
+                
                   </OwlCarousel>
                   </div>
                 </div>
@@ -171,7 +179,7 @@ const options = {
                       <Product key={product.id} product={product}/>
                         ))
                   }
-                  <MoreBtn route={'/shop'}/>
+                  
                   </OwlCarousel>
                   </div>
                 </div>

@@ -7,7 +7,9 @@ function VendorProducts(props) {
     return (
         <>
         {props.loading ?
-            <ProductLoader/>
+            <div className="row">
+            {Array(20).fill().map((x,id)=>(<ProductLoader key={id}/>))}
+        </div>
         :
         <div className="shop-product-wrap row grid">
             {

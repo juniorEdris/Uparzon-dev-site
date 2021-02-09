@@ -13,7 +13,7 @@ const searchProductsRequest = () =>(
         type: SEARCH_PRODUCTS_SUCCESS,
         loading:false,
         products:products.data,
-        pages:products.link,
+        pages:products.meta,
     }
 )
     const searchProductsError = (error) =>(
@@ -26,7 +26,7 @@ const searchProductsRequest = () =>(
 
 export const fetchSearchProducts = (category_id=null,keywords=null,page=1)=> async (dispatch)=>{
     dispatch(searchProductsRequest())
-    const Qry = `${Request.SearchAPI}?page=1&keyword=${keywords}&category_id=${category_id}`
+    const Qry = `${Request.SearchAPI}?per_page=20&page=${page}&keyword=${keywords}&category_id=${category_id}`
     await Axios.get(Qry)
     .then(res=>{
         dispatch(searchProductsSuccess(res.data))

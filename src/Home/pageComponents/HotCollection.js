@@ -35,7 +35,9 @@ function HotCollection(props) {
     
     {
       props.loading ? 
-        <ProductLoader className='product-item'/> 
+      <div className="row">
+        {Array(15).fill().map((x,id)=>(<ProductLoader key={id}/>))}
+    </div>
         :
       <div className="tab-content">
       

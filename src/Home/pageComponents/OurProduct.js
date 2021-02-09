@@ -78,7 +78,14 @@ function OurProduct (props) {
 
   {
     props.loading ?
-      <ProductLoader className=''/>  
+    <div className="row">
+        <OwlCarousel
+        className="owl-theme"
+        {...options}
+        >
+        {Array(6).fill().map((x,id)=>(<ProductLoader key={id}/>))}
+        </OwlCarousel>
+    </div>
       :
   <div className="tab-content">
   <div className={`${Tab === 'Camera, Photo & Video' && 'show active'} tab-pane fade`} id="one">
@@ -93,7 +100,6 @@ function OurProduct (props) {
             <Product key={product.id} product={product}/>
             ))
         }
-        <MoreBtn route={'/shop'}/>
         </OwlCarousel>
       </div>
     </div>
@@ -114,7 +120,6 @@ function OurProduct (props) {
             <Product key={product.id} product={product}/>
           ))
         }
-      <MoreBtn route={'/shop'}/>
     </OwlCarousel>
       </div>
     </div>
@@ -134,7 +139,6 @@ function OurProduct (props) {
         {props.products?.map(product => (
           <Product key={product.id} product={product}/>        
         ))}
-      <MoreBtn route={'/shop'}/>
     </OwlCarousel>
       </div>
     </div>

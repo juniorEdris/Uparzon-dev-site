@@ -9,22 +9,15 @@ import { fetchShopProds } from '../../Utility/Redux/Action/ShopProductAction';
 
 
 function Sidebar(props) {
+    useEffect(()=>{
+
+    },[])
     // price range function
     const [value, setValue] = useState([70, 500]);
     const handleChange = (event, newValue) =>{
         setValue(newValue)
     }
-    // categories state
-    const [category,setCategory]=useState('')
-    // Active shop-sidebar-inner active state
-    const [radioActive, setRadioActive] = useState(false);
-    const SelectRadio = (name,e) =>{
-        e.preventDefault()
-        
-    }
-    // useEffect(() => {
-    //     props.fetchShopProd(category)
-    // }, [category])
+
     return (
         <div className="col-lg-3">
                     <div className="shop-sidebar-inner mb-30">
@@ -36,7 +29,6 @@ function Sidebar(props) {
                         <div className="sidebar-content-box"> 
                         <div className="filter-price-content">
                             <form action="#" method="post">
-                            {/* <div id="price-slider" className="price-slider ui-slider ui-slider-horizontal ui-widget ui-widget-content ui-corner-all"><div className="ui-slider-range ui-widget-header ui-corner-all" style={{left: '16.6667%', width: '79.1667%'}} /><span className="ui-slider-handle ui-state-default ui-corner-all" tabIndex={0} style={{left: '16.6667%'}} /><span className="ui-slider-handle ui-state-default ui-corner-all" tabIndex={0} style={{left: '95.8333%'}} /></div> */}
                             <Slider
                             value={value}
                             onChange={handleChange}

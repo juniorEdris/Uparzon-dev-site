@@ -23,7 +23,7 @@ const fetchShopProdError = (error)=>{
     }
 }
 
-export const fetchShopProds = (id,page=1,)=>async (dispatch)=>{
+export const fetchShopProds = (id,page=1)=>async (dispatch)=>{
     dispatch(fetchShopProdRequset())
     const Qry = `${Request.ShopProducts}?page=${page}&per_page=20&category_id=${id}`
     await Axios.get(Qry)

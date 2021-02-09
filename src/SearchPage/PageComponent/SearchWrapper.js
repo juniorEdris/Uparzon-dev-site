@@ -1,20 +1,28 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import { Link } from 'react-router-dom';
 import Sidebar from '../../Shop/pageComponents/ShopSidebar';
 import Filter from '../../Shop/pageComponents/RightBarControl'
 import { ProductLoader } from '../../PrimarySections/ReactPlaceHolder/ReactPlaceHolder';
 import Product from '../../Home/pageComponents/Subfolder/Product';
 import { connect } from 'react-redux';
+import { fetchSearchProducts } from '../../Utility/Redux/Action/SearchAction';
+import Pagination from '../../Shop/pageComponents/Pagination';
 
 function SearchWrapper(props) {
-   
+    const [input] = useState('')
+    const [id, setId] = useState(0)
+    const [page,setPage] = useState(1)
+    useEffect(() => {
+        props.fetchSearchResult(id,input,page)
+       }, [id,input,page])
+
         return (
             <div>
                 
                 <div className={`main-wrapper pt-10 ${props.loading && 'loading-opacity'}`}>
                     <div className={`container-fluid`}>
                         <div className="row">
-                    <Sidebar/>
+                    <Sidebar id={id} setId={setId}/>
                     <div className="col-lg-9 order-first order-lg-last">
                         <div className="product-shop-main-wrapper mb-50">
                         <div className="shop-top-bar mb-30">
@@ -39,27 +47,7 @@ function SearchWrapper(props) {
                             </div>
                             ))}    
                         </div>
-                        <div className="paginatoin-area style-2 pt-35 pb-20">
-                            <div className="row">
-                            <div className="col-sm-6">
-                                <div className="pagination-area">
-                                <p>Showing 1 to 9 of 9 (1 Pages)</p>
-                                </div>
-                            </div>
-                            <div className="col-sm-6">
-                                <ul className="pagination-box pagination-style-2">
-                                <li><a className="Previous" href="/">Previous</a>
-                                </li>
-                                <li className="active"><Link to='/'>1</Link></li>
-                                <li><Link to='/'>2</Link></li>
-                                <li><Link to='/'>3</Link></li>
-                                <li>
-                                    <a className="Next" href="/"> Next </a>
-                                </li>
-                                </ul>
-                            </div>
-                            </div>
-                        </div> 
+                        <Pagination page={page} setPage={setPage} allPages={props.pages}/>
                         </div>
                     </div>
                     </div>
@@ -72,8 +60,13 @@ function SearchWrapper(props) {
     const mapStateToProps=state=>(
         {
             loading:state.SearchEngine.loading,
-            results: state.SearchEngine.searchedResponse
+            results: state.SearchEngine.searchedResponse,
+            pages: state.SearchEngine.searchPages,
         }
     )
-    const mapDispatchToProps =dispatch=>({})
+    const mapDispatchToProps =dispatch=>(
+        {
+            fetchSearchResult:(select,keywords,page)=>dispatch(fetchSearchProducts(select,keywords,page))
+        }
+    )
     export default  connect(mapStateToProps,mapDispatchToProps)(SearchWrapper)
