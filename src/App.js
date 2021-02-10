@@ -15,7 +15,9 @@ import Compare from './Compare/Compare';
 import WishList from './WishList/WishList';
 import Cart from './ProductCart/ProductCart';
 import Checkout from './Checkout/Index';
-import Register from './MyAccount/Register/Register';
+import UpdateInfo from './MyAccount/UpdateInfo/UpdateInfo';
+import OneTimePass from './MyAccount/OTP/OTP';
+import Register from './MyAccount/RegisterNumber/Register';
 import Login from './MyAccount/Login/Login';
 import Details from './ProductDetails'
 import './App.css';
@@ -40,7 +42,7 @@ function App(props) {
       props.fetchHotCollection()
       props.fetchOurProds()
       props.fetchBrandProd()
-      props.fetchShopProds()
+      // props.fetchShopProds()
       props.fetchProdSuggestions()
       props.fetchShopList()
       props.fetchCategory()
@@ -93,6 +95,12 @@ function App(props) {
           </Route>
           <Route path='/checkout'>
             <Checkout/>
+          </Route>
+          <Route path='/onetimepassword'>
+            <OneTimePass/>
+          </Route>
+          <Route path='/registerinfo'>
+            <UpdateInfo/>
           </Route>
           <Route path='/register'>
             <Register/>

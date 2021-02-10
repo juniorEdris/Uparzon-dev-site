@@ -34,6 +34,7 @@ export const initialState={
     vendorProduct:[],
     vendorDetails:[],
     vendorCategories:[],
+    vendorPages:[],
     shopList:[],
     shopListPages:[],
     categoryList:[],

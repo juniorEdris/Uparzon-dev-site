@@ -2,7 +2,7 @@ import React from 'react'
 import ReactPaginate from 'react-paginate'
 import { connect } from 'react-redux'
 import { Link } from 'react-router-dom'
-import { renderSpan } from '../../PrimarySections/Essentials'
+import { renderSpan } from './Essentials'
 
 function Pagination(props) {
     const changePage = ({selected})=>{
@@ -22,18 +22,17 @@ function Pagination(props) {
                 <li key={id}><Link to='#'  onClick={()=>props.setPage(x.label)}>{renderSpan(x.label)}</Link></li>//onClick={()=>props}
             ))}
             </ul> */}
-            <ReactPaginate
+            {props.allPages ? <ReactPaginate
             previousLabel={<span class="lnr lnr-chevron-left"></span>}
             nextLabel={<span class="lnr lnr-chevron-right"></span>}
             breakLabel={'...'}
-            breakClassName={'break-me'}
             pageCount={props.allPages?.last_page}
             marginPagesDisplayed={0}
             pageRangeDisplayed={3}
             containerClassName={'pagination-box pagination-style-2'}
             activeClassName={'active'}
             onPageChange={changePage}
-            />
+            />: ''}
         </div>
         </div>
     </div>

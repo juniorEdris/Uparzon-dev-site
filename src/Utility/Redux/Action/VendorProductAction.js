@@ -13,7 +13,8 @@ const fetchVendorProdSuccess = (res)=>{
         type: FETCH_VENDOR_PRODUCTS_SUCCESS,
         products:res.products.data,
         categories:res.categories,
-        details:res.vendor
+        details:res.vendor,
+        pages:res.meta,
     }
 }
 const fetchVendorProdError = (error)=>{
@@ -24,9 +25,12 @@ const fetchVendorProdError = (error)=>{
 }
 
 
-export const fetchVendorProds = (id)=>async (dispatch)=>{
+export const fetchVendorProds = (id,page,cat_id,subcat_id,childcat_id)=>async (dispatch)=>{
+    console.log('=====================Vendor===============');
+    console.log(id,page,cat_id,subcat_id,childcat_id);
+    console.log('====================================');
     dispatch(fetchVendorProdRequest())
-    await Axios.get(`${Request.SingleVendor}?vendor_id=${id}&per_page=10`)
+    await Axios.get(`${Request.SingleVendor}?page=${page}&per_page=10&category_id=${cat_id}&subcategory_id=${subcat_id}&childcategory_id=${childcat_id}&vendor_id=${id}`)
     .then(res=>{
         const prod = res.data
         console.log('=====================Vendor===============');

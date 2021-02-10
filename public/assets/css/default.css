@@ -621,6 +621,9 @@
 .red {
   color: rgba(235, 10, 10, 0.808);
 }
+[data-disable] {
+  pointer-events: none;
+}
 /* black overlay */
 
 [data-overlay] {

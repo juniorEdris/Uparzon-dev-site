@@ -1,5 +1,5 @@
 import React from 'react'
-import Product from './subFolder/Product'
+import Product from '../../Home/pageComponents/Subfolder/Product'
 import { ProductLoader } from '../../PrimarySections/ReactPlaceHolder/ReactPlaceHolder';
 
 function VendorProducts(props) {
@@ -16,9 +16,9 @@ function VendorProducts(props) {
                 props.products?.map(data=>(
                     <div className="col-md-4 col-lg-3 col-6" key={data.id}>
                     {/* grid view starts here */}
-                    <Product isGrid={true} key={data.id} {...data} />
+                    <Product isGrid={true} key={data.id} product={data} />
                     {/* List view starts here */}
-                    <Product key={data.id} {...data} isList={true}/>
+                    <Product key={data.id} product={data} isList={true}/>
                     </div>))
             }
         </div>}

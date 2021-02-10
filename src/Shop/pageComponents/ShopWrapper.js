@@ -9,17 +9,14 @@ import Filter from './RightBarControl'
 import { ProductLoader } from '../../PrimarySections/ReactPlaceHolder/ReactPlaceHolder'
 import { connect } from 'react-redux'
 import { renderHTML } from '../../PrimarySections/Essentials'
-import Pagination  from './Pagination'
 import { fetchShopProds } from '../../Utility/Redux/Action/ShopProductAction'
 import ReactPaginate from 'react-paginate'
+import Pagination from '../../PrimarySections/Pagination'
 
 
 function ShopWrapper(props) {
     // console.log('shop pages',props.pages)
     const [page, setPage] = useState(1)
-
-
-    console.log('shoppage',page)
     const [id, setId] = useState(0)
     useEffect(() => {
         props.pageDispatch(id,page)
@@ -49,7 +46,7 @@ $('.product-view-mode a').on('click', function(e){
                 </div>
                 <div className="container-fluid">
                     <div className="row">
-                <Sidebar id={id} setId={setId}/>
+                <Sidebar id={id} setId={setId} categories={props.categories}/>
                 <div className="col-lg-9 order-first order-lg-last">
                     <div className="product-shop-main-wrapper mb-50">
                     <div className="shop-top-bar mb-30">
@@ -100,6 +97,8 @@ const mapStateToProps=state=>(
         shopProduct:state.shopProducts.shopProduct,
         loading:state.shopProducts.loading,
         pages:state.shopProducts.shopProductsPages,
+        categories:state.categories.categoryList,
+
     }
 )
 const mapDispatchToProps =dispatch=>(

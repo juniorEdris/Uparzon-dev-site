@@ -6,7 +6,7 @@ import { ProductLoader } from '../../PrimarySections/ReactPlaceHolder/ReactPlace
 import Product from '../../Home/pageComponents/Subfolder/Product';
 import { connect } from 'react-redux';
 import { fetchSearchProducts } from '../../Utility/Redux/Action/SearchAction';
-import Pagination from '../../Shop/pageComponents/Pagination';
+import Pagination from '../../PrimarySections/Pagination';
 
 function SearchWrapper(props) {
     const [input] = useState('')
@@ -22,7 +22,7 @@ function SearchWrapper(props) {
                 <div className={`main-wrapper pt-10 ${props.loading && 'loading-opacity'}`}>
                     <div className={`container-fluid`}>
                         <div className="row">
-                    <Sidebar id={id} setId={setId}/>
+                    <Sidebar id={id} setId={setId} categories={props.categories}/>
                     <div className="col-lg-9 order-first order-lg-last">
                         <div className="product-shop-main-wrapper mb-50">
                         <div className="shop-top-bar mb-30">
@@ -62,6 +62,8 @@ function SearchWrapper(props) {
             loading:state.SearchEngine.loading,
             results: state.SearchEngine.searchedResponse,
             pages: state.SearchEngine.searchPages,
+            categories:state.categories.categoryList,
+
         }
     )
     const mapDispatchToProps =dispatch=>(

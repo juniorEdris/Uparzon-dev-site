@@ -1,5 +1,4 @@
-/* eslint-disable jsx-a11y/anchor-is-valid */
-import React,{useState} from 'react'
+import React from 'react'
 import { Link } from 'react-router-dom'
 import './VendorSidebar.css'
 
@@ -11,7 +10,7 @@ import './VendorSidebar.css'
 
 
 
-export default function VendorSidebar({categories}) {
+export default function VendorSidebar(props) {
     return (
         <div className="col-lg-3">
                     <div className="vendor-sidebar-inner mb-30">
@@ -19,8 +18,8 @@ export default function VendorSidebar({categories}) {
                             <h3>Browse More</h3>
                         </div>
                             <ul class="vendor-submenu">
-                                {categories?.map((x,id)=>(
-                                    <li key={id}><Link to="#">{x.name} <span class="lnr lnr-chevron-right"/></Link></li>
+                                {props.categories?.map((x,id)=>(
+                                    <li key={id}><Link to="#" onClick={()=>props.setCategory(x.id)}>{x.name} <span class="lnr lnr-chevron-right"/></Link></li>
                                 ))}
                             </ul>
                     </div>

@@ -4,7 +4,7 @@ export default function VendorCard(props) {
     console.log(props)
     return (
             <div className='container-fluid mb-20 '>
-                <div className="vendor__card col-md-12 col-12" key={props.details?.id}>
+                <div className="vendor__card col-md-12 col-12" key={props.details?.id} style={{background:`url('https://laz-img-cdn.alicdn.com/images/ims-web/TB1rZbOp3gP7K4jSZFqXXamhVXa.jpg_1200x1200Q100.jpg_.webp')`}}>
                     <div className="row">
                         <div className="vendor__img p-3">
                             <img className="" src={props.details?.logo} alt={`${props.details?.shop_name}`} />

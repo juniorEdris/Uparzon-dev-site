@@ -1,15 +1,17 @@
 .vendor__card {
   width: 100%;
-  border: 1px solid #f0f0f0;
-  padding: 1rem;
+  padding: 0.4rem;
   border-radius: 6px;
+  color: var(--light-color);
 }
 .vendor__card p {
+  color: var(--light-color);
   font-size: 15px;
   line-height: 30px;
 }
 .vendor__img img {
   width: 150px;
+  border-radius: 50%;
 }
 .vendor__identity .followers {
   width: fit-content;

@@ -58,9 +58,9 @@ function Sidebar(props) {
                         <div className="sidebar-content-box">
                         <div className="filter-attribute-container">
                             <ul>
-                                <li key='all'><Link className={props.id === '' && `active`} to="#" onClick={()=>props.setId('')}>All</Link></li>
+                                <li key='all'><Link className={props.id === '' && `active`} to="#" onClick={(e)=>{e.preventDefault(); props.setId('')}}>All</Link></li>
                                 {props.categories?.map((x,id)=>(
-                                    <li key={id}><Link className={props.id === x.id && `active`} to="#" onClick={()=>props.setId(x.id)}>{x.name}</Link></li>
+                                    <li key={id}><Link className={props.id === x.id && `active`} to="#" onClick={(e)=>{e.preventDefault(); props.setId(x.id)}}>{x.name}</Link></li>
                                 ))}
                             </ul>
                         </div>
@@ -110,7 +110,7 @@ function Sidebar(props) {
     )
 }
 const mapStateToProps = state=>({
-    categories:state.categories.categoryList,
+    // categories:state.categories.categoryList,
 })
 const mapDispatchToProps = dispatch=>({
     fetchShopProd:(id)=>dispatch(fetchShopProds(id))

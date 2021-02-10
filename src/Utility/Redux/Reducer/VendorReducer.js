@@ -13,6 +13,7 @@ export const VendorReducer = (state=initialState,action)=>{
                 vendorProduct:action.products,
                 vendorDetails:action.details,
                 vendorCategories:action.categories,
+                vendorPages:action.pages,
                 error:'',
             }
         case FETCH_VENDOR_PRODUCTS_ERROR:
