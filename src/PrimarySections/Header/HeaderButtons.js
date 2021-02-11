@@ -8,9 +8,7 @@ import { currToFixed } from '../Essentials/CurrencyFormat'
 import './HeaderButton.css'
 
 function HeaderButtons(props) {
-    console.log('====================================');
-    console.log('user headerbtns',props.user);
-    console.log('====================================');
+
     const history = useHistory()
     //mycart menu dropdown
     const [isCartActive, setCartActive] = useState(false)

@@ -1,5 +1,4 @@
-import Axios from "axios";
-import {Request} from '../../../PrimarySections/Connections/APILink'
+import {API, Request} from '../../../PrimarySections/Connections/APILink'
 import { FETCH_VENDOR_DETAILS_ERROR, FETCH_VENDOR_DETAILS_REQUEST, FETCH_VENDOR_DETAILS_SUCCESS } from "../Types";
 
 
@@ -25,7 +24,7 @@ const fetchVendorDetailsError = (error)=>{
 
 export const fetchVendorDetails =(id)=>async dispatch=>{
     dispatch(fetchVendorProdRequest())
-    await Axios.get(`${Request.VendorDetails}/${id}`)
+    await API.get(`${Request.VendorDetails}/${id}`)
     .then(res=>{
         const details = res.data[0]
         dispatch(fetchVendorDetailsSuccess(details))

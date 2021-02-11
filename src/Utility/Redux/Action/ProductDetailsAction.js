@@ -1,6 +1,5 @@
-import Axios from "axios";
 import { FETCH_PRODUCT_DETAILS_ERROR, FETCH_PRODUCT_DETAILS_REQUEST, FETCH_PRODUCT_DETAILS_SUCCESS } from "../Types";
-import {Request} from '../../../PrimarySections/Connections/APILink'
+import {API, Request} from '../../../PrimarySections/Connections/APILink'
 
 const showProductDetailsRequest = ()=>(
     {
@@ -23,12 +22,7 @@ const showProductDetailsError = (error)=>(
 
 export const GetProductDetails = (id) => async dispatch=>{
     dispatch(showProductDetailsRequest())
-    const user_id = localStorage.getItem('user_id')
-    console.log('====================================');
-    console.log('user',user_id);
-    console.log(Request.ProductDetails,id,user_id)
-    console.log('====================================');
-    await Axios.get(`${Request.ProductDetails}${id}${user_id ?`?user_id=${user_id}` :``}`)
+    await API().get(`${Request.ProductDetails}${id}`)
     .then(res=>{
         dispatch(showProductDetailsSuccess(res.data))
     })

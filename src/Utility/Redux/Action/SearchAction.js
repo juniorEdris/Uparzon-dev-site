@@ -1,5 +1,4 @@
-import Axios from 'axios';
-import {Request} from '../../../PrimarySections/Connections/APILink'
+import {API, Request} from '../../../PrimarySections/Connections/APILink'
 import { SEARCH_PRODUCTS_REQUEST, SEARCH_PRODUCTS_SUCCESS,SEARCH_PRODUCTS_ERROR } from '../Types';
 
 const searchProductsRequest = () =>(
@@ -27,7 +26,7 @@ const searchProductsRequest = () =>(
 export const fetchSearchProducts = (category_id=null,keywords=null,page=1)=> async (dispatch)=>{
     dispatch(searchProductsRequest())
     const Qry = `${Request.SearchAPI}?per_page=20&page=${page}&keyword=${keywords}&category_id=${category_id}`
-    await Axios.get(Qry)
+    await API().get(Qry)
     .then(res=>{
         dispatch(searchProductsSuccess(res.data))
     }).catch((error)=>{

@@ -1,5 +1,3 @@
-import Axios from "axios";
-import {Request} from '../../../PrimarySections/Connections/APILink'
 import { USER_LOGOUT_SUCCESS,USER_LOGOUT_REQUEST,USER_LOGOUT_ERROR} from "../Types"
 
 // const logoutRequest=()=>(
@@ -13,6 +11,6 @@ const logoutSuccess=()=>(
 // )
 export const LogoutAction=()=>(dispatch)=>{
     localStorage.removeItem('user_token')
-    console.log('token',!localStorage.getItem('user_token'))
+    localStorage.removeItem('user_id')
     dispatch(logoutSuccess())
 }

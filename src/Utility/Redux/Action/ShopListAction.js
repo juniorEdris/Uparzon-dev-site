@@ -1,5 +1,4 @@
-import Axios from 'axios'
-import {Request} from '../../../PrimarySections/Connections/APILink'
+import {API, Request} from '../../../PrimarySections/Connections/APILink'
 import { FETCH_SHOP_LIST_REQUEST, FETCH_SHOP_LIST_SUCCESS, FETCH_SHOP_LIST_ERROR} from '../Types'
 
 const fetchShopListRequest= ()=>{
@@ -26,7 +25,7 @@ const fetchShopListErorr =(error)=>{
 
 export const fetchShopList = () => async dispatch=>{
     dispatch(fetchShopListRequest())
-    await Axios.get(Request.AllShop)
+    await API().get(Request.AllShop)
     .then(res=>{
         const lists = res.data
         dispatch(fetchShopListSuccess(lists))

@@ -22,7 +22,7 @@ function ProductSlider(props) {
          
             <div className='pro-large-img'>
               
-                {props.loading ? <img className='main-img' src={`./assets/img/uparzon_placeholder.png`} alt={`${props.details?.name}`} /> :
+                {props.loading ? <img className='main-img' src={`./assets/img/uparzon_placeholder.jpg`} alt={`${props.details?.name}`} /> :
                 <img className='main-img' src={`https:${props.product?.photo}`} alt={`${props.details?.name}`} />
                 }
             </div>

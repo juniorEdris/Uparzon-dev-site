@@ -1,7 +1,7 @@
 import { initialState } from '../../Store/Store'
 import { NUMBER_AVAILABLE_ERROR, NUMBER_AVAILABLE_REQUEST, NUMBER_AVAILABLE_SUCCESS } from '../Types';
 
-export const HomeReducer = (state=initialState,action)=>{
+export const AvailableNumberReducer = (state=initialState,action)=>{
     switch(action.type){
         case NUMBER_AVAILABLE_REQUEST:
             return{    
@@ -12,7 +12,8 @@ export const HomeReducer = (state=initialState,action)=>{
             return{    
                 ...state,
                 loading:false,
-
+                userNumber:action.number,
+                numberCheckStatus:action.status,
             }
         case NUMBER_AVAILABLE_ERROR:
             return{    
@@ -23,4 +24,4 @@ export const HomeReducer = (state=initialState,action)=>{
             default:
                 return state
     }
-}
+} 

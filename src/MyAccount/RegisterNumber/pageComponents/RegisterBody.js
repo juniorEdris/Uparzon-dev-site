@@ -5,11 +5,12 @@ import { connect } from 'react-redux'
 import { Link, useHistory } from 'react-router-dom'
 import { SignUpAction } from '../../../Utility/Redux/Action/SignUpAction'
 import { Request } from '../../../PrimarySections/Connections/APILink'
+import { numberAvailableAction } from '../../../Utility/Redux/Action/AvailableNumberAction';
 
 function RegisterBody(props) {
-
+    
     const history = useHistory()
-
+    
     const { register, handleSubmit } = useForm()
     const numberPattern = new RegExp(/^[0-9\b]+$/)
 
@@ -34,16 +35,17 @@ function RegisterBody(props) {
             Axios.post(`${Request.RegisterNumber}?mobile=${number}&type=1`)
             .then(res=>{
                 console.log('phone register',res);
+                props.registerNumber(number)
                 res.data.status === true && history.push('/onetimepassword')
             }).catch(err=>{
                 console.log(err);
             })
-            console.log('phone',value,typeof(number));
-            }else{
-                setError({message:'Invalid number'})
-            }
+           
+        }else{
+            setError({message:'Invalid number'})
         }
-
+    }
+    
 
         // if (!pattern.test(input["phone"])) {
 
@@ -110,9 +112,13 @@ function RegisterBody(props) {
     )
 }
 
-const mapStateToProps = state=>({})
+const mapStateToProps = state=>({
+    loading:state.AvailableNumber.loading,
+    // status:state.AvailableNumber.numberCheckStatus,
+    number:state.AvailableNumber.userNumber,
+})
 const mapDispatchToProps = dispatch=>({
-    registerUser:(user)=>dispatch(SignUpAction(user)),
+    registerNumber:(number)=>dispatch(numberAvailableAction(number)),
 })
 
 export default connect(mapStateToProps,mapDispatchToProps)(RegisterBody)

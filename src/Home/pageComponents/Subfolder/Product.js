@@ -23,7 +23,7 @@ function Product(props) {
             <div className="sinrato-thumb">
             {product.photo === null ? 
             <Link to={`/productdetails?id=${product.id}`} >
-              <img  src='./assets/img/uparzon_placeholder.png' className="" alt={product.name} />
+              <img  src='./assets/img/uparzon_placeholder.jpg' className="" alt={product.name} />
             </Link> 
             :
             <Link to={`/productdetails?id=${product.id}`} >
@@ -76,7 +76,7 @@ function Product(props) {
                   <div className="product-thumb product">
                     {product.photo ===null ? 
                     <Link to={`/productdetails?id=${product.id}`} >
-                      <img  src='./assets/img/uparzon_placeholder.png' className="" alt={product.name} />
+                      <img  src='./assets/img/uparzon_placeholder.jpg' className="" alt={product.name} />
                     </Link> 
                     :
                     <Link to={`/productdetails?id=${product.id}`} >

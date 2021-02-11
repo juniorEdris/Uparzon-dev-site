@@ -1,6 +1,5 @@
-import Axios from 'axios'
 import { FETCH_SHOP_PRODUCTS_ERROR, FETCH_SHOP_PRODUCTS_REQUEST, FETCH_SHOP_PRODUCTS_SUCCESS } from '../Types'
-import {Request} from '../../../PrimarySections/Connections/APILink'
+import {API, Request} from '../../../PrimarySections/Connections/APILink'
 
 
 const fetchShopProdRequset = ()=>{
@@ -26,7 +25,7 @@ const fetchShopProdError = (error)=>{
 export const fetchShopProds = (id,page=1)=>async (dispatch)=>{
     dispatch(fetchShopProdRequset())
     const Qry = `${Request.ShopProducts}?page=${page}&per_page=20&category_id=${id}`
-    await Axios.get(Qry)
+    await API().get(Qry)
     .then(res=>{
         dispatch(fetchShopProdSuccess(res.data))
     })

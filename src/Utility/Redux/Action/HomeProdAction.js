@@ -1,5 +1,6 @@
 import { FETCH_PRODUCTS_ERROR, FETCH_PRODUCTS_REQUEST, FETCH_PRODUCTS_SUCCESS } from '../Types'
-import {axios, Request} from '../../../PrimarySections/Connections/APILink'
+import {API, Request} from '../../../PrimarySections/Connections/APILink'
+import Axios from 'axios'
 
 const fetchHomeProdsRequest = ()=>{
     return{
@@ -27,63 +28,63 @@ export const fetchHomeProds = ()=>async(dispatch)=>{
     dispatch(fetchHomeProdsRequest())
     
     // Home Stores
-     const stores = await axios.get(Request.Stores)
+     const stores = await API().get(Request.Stores)
     .then(res=>{
         return res.data
     }).catch(err=>{
         return err.message
     })
     // Home Sliders
-     const sliders = await axios.get(Request.Sliders)
+     const sliders = await API().get(Request.Sliders)
     .then(res=>{
         return res.data
     }).catch(err=>{
         return err.message
     })
     // Our Products
-     const ourProd = await axios.get(Request.OurProducts)
+     const ourProd = await API().get(Request.OurProducts)
     .then(res=>{
         return res.data
     }).catch(err=>{
         return err
     })
     // Hot collections
-     const hotCollection = await axios.get(Request.HotCollection)
+     const hotCollection = await API().get(Request.HotCollection)
     .then(res=>{
         return res.data
     }).catch(err=>{
         return err
     })
     // Featured Products
-     const featuredProduct = await axios.get(Request.FeaturedProducts)
+     const featuredProduct = await API().get(Request.FeaturedProducts)
     .then(res=>{
         return res.data
     }).catch(err=>{
         return err
     })
     // Brand Products
-     const BrandProduct = await axios.get(Request.BrandProducts)
+     const BrandProduct = await API().get(Request.BrandProducts)
     .then(res=>{
         return res.data
     }).catch(err=>{
         return err
     })
     // Big Products
-     const BigProduct = await axios.get(Request.BigProducts)
+     const BigProduct = await API().get(Request.BigProducts)
     .then(res=>{
         return res.data
     }).catch(err=>{
         return err
     })
     // Latest Products
-     const LatestProduct = await axios.get(Request.LatestProducts)
+     const LatestProduct = await API().get(Request.LatestProducts)
     .then(res=>{
         return res.data
     }).catch(err=>{
         return err
     })
     // Trending Products
-     const TrendingProduct = await axios.get(Request.TrendingProducts)
+     const TrendingProduct = await API().get(Request.TrendingProducts)
     .then(res=>{
         return res.data
     }).catch(err=>{

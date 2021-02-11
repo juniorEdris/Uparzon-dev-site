@@ -1,6 +1,5 @@
-import Axios from "axios";
 import { FAILED_PRODUCT_SUGGETIONS, GET_PRODUCT_SUGGETIONS } from "../Types";
-import {Request} from '../../../PrimarySections/Connections/APILink'
+import {API, Request} from '../../../PrimarySections/Connections/APILink'
 
 const getProductSuggest=(suggestions)=>({
     type: GET_PRODUCT_SUGGETIONS,
@@ -13,7 +12,7 @@ const getProductSuggestfailed=(error)=>({
 })
 
 export const FetchProductSuggetions=(id)=>dispatch=>{
-    Axios.get(`${Request.ProductSuggest}${id}`)
+    API().get(`${Request.ProductSuggest}${id}`)
         .then(res=>{
             dispatch(getProductSuggest(res.data.data))
         })

@@ -8,26 +8,27 @@ const numberAvailableRequest = (res)=>{
         
     }
 }
-const numberAvailableSuccess = (res)=>{
+const numberAvailableSuccess = (number)=>{
     return{
         type: NUMBER_AVAILABLE_SUCCESS,
-        
+        number:number,
+        // status:res.status,
     }
 }
-const numberAvailableError = ()=>{
+const numberAvailableError = (error)=>{
     return{
         type: NUMBER_AVAILABLE_ERROR,
-        
+        error,
     }
 }
-export const numberAvailableAction = (otp,number)=>async(dispatch)=>{
+export const numberAvailableAction = (number)=>async(dispatch)=>{
     dispatch(numberAvailableRequest())
-    Axios.post(`${Request.OTPRegister}otp=${otp}&mobile=${number}`)
-    .then(res=>{
-        console.log('otp',res);
-        dispatch(numberAvailableSuccess(res))
-    }).catch((error)=>{
-        console.log(error);
-        dispatch(numberAvailableError(error))
-    })
+    dispatch(numberAvailableSuccess(number))
+    // await Axios.post(`${Request.RegisterNumber}?mobile=${number}&type=1`)
+    // .then(res=>{
+    //     console.log('otp',res);
+    // }).catch((error)=>{
+    //     console.log(error);
+    //     dispatch(numberAvailableError(error))
+    // })
 }

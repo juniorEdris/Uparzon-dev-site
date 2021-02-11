@@ -1,10 +1,12 @@
 import {createStore,applyMiddleware ,combineReducers,compose} from 'redux'
 import thunk from 'redux-thunk'
+import { AvailableNumberReducer } from '../Redux/Reducer/AvailableNumberReducer';
 import { AddBasketReducer } from '../Redux/Reducer/BasketReducer';
 import { CategoriesReducer } from '../Redux/Reducer/CategoriesReducer';
 import { childCategoryReducer } from '../Redux/Reducer/ChildCategoryReducer';
 import { AddCompareReducer } from '../Redux/Reducer/CompareReducer';
 import { HomeReducer } from '../Redux/Reducer/HomeReducer'
+import { OTPReducer } from '../Redux/Reducer/OTPReducer';
 import { ProdSuggestionReducer } from '../Redux/Reducer/ProdSuggestionReducer';
 import { CartAnimationReducer } from '../Redux/Reducer/ProductAddedReducer';
 import { ProductDetailsReducer } from '../Redux/Reducer/ProductsDetailsReducer';
@@ -48,9 +50,12 @@ export const initialState={
     wishList:localStorage.getItem('Wish List') ? JSON.parse(localStorage.getItem('Wish List')) :[],
     compareList:localStorage.getItem('Compare List') ? JSON.parse(localStorage.getItem('Compare List')) :[],
     error:'',
-    user:null,
+    user: (localStorage.getItem('user_id') && JSON.parse(localStorage.getItem('user_id'))) || null,
     productAdded:false,
-    tab:'', //connected to the addition animation
+    tab:'', //connected to the product addition animation
+    userNumber:'',
+    numberCheckStatus:'',
+    OTPConfirmedstatus:'',
 }
 
 const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
@@ -74,6 +79,8 @@ const store = createStore(
         SearchEngine: SearchReducer,
         Users: UserReducer,
         CartAnimation: CartAnimationReducer,
+        AvailableNumber: AvailableNumberReducer,
+        OTPReducer: OTPReducer,
     }),
     initialState,
     composeEnhancers(applyMiddleware(thunk))
