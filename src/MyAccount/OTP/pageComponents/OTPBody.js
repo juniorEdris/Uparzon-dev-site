@@ -6,6 +6,7 @@ import { Link, useHistory } from 'react-router-dom'
 import { Request } from '../../../PrimarySections/Connections/APILink'
 import { numberAvailableAction } from '../../../Utility/Redux/Action/AvailableNumberAction';
 import { oneTimePassAction } from '../../../Utility/Redux/Action/OTPAction';
+import './otp.css'
 
 function RegisterBody(props) {
 
@@ -58,7 +59,7 @@ function RegisterBody(props) {
                         <div className="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-8 offset-xl-2">
                             <div className="registration-form login-form">
                             <form action="#" onSubmit={signUp}>
-                                <div className="login-info mb-20">
+                                <div className="login-info mb-20 text-center">
                                 <p>Already have an account? <Link to="/login">Log in instead!</Link></p>
                                 </div>
                                 <div className="form-group row">

@@ -29,21 +29,25 @@ function RegisterBody(props) {
     const signUp = (e)=>{
         e.preventDefault()
         // let isValid;
-        if(value.phone !== '' && value.phone.length >= 11){
-            if(numberPattern.test(value.phone)){
-            const number = parseInt(value.phone)
-            Axios.post(`${Request.RegisterNumber}?mobile=${number}`)
-            .then(res=>{
-                console.log('phone register',res);
-                props.registerNumber(number)
-                res.data.status === true && history.push('/onetimepassword')
-            }).catch(err=>{
-                console.log(err);
-            })
-           
-        }else{
-            setError({message:'Invalid number'})
-        }
+        if(value.phone !== ''){
+            if(value.phone.length >= 11){
+                setError({message:'Phone number is incorrect.'})
+            }else{
+                        const number = parseInt(value.phone)
+                    if(!numberPattern.test(number)){
+                        setError({message:'Invalid number'})
+                    }else{
+                        Axios.post(`${Request.RegisterNumber}?mobile=${number}`)
+                        .then(res=>{
+                            console.log('phone register',res);
+                            props.registerNumber(number)
+                            res.data.status === true && history.push('/onetimepassword')
+                        }).catch(err=>{
+                            console.log(err);
+                        })
+                }
+            }
+            
     }
     
 
@@ -81,7 +85,7 @@ function RegisterBody(props) {
                         <div className="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-8 offset-xl-2">
                             <div className="registration-form login-form">
                             <form action="#" onSubmit={signUp}>
-                                <div className="login-info mb-20">
+                                <div className="login-info mb-20 text-center">
                                 <p>Already have an account? <Link to="/login">Log in instead!</Link></p>
                                 </div>
                                 <div className="form-group row">

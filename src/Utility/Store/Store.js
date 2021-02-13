@@ -56,6 +56,7 @@ export const initialState={
     userNumber:'',
     numberCheckStatus:'',
     OTPConfirmedstatus:'',
+    UserRegisterstatus:false,
 }
 
 const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;

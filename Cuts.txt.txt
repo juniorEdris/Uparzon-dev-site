@@ -5,6 +5,11 @@ primary: #4f0f40
 light : #fff
 table-border:#dee2e6
 
+
+    const emailPattern = /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/
+
+
+
 Clean cache before build===============
 npm cache Clean
 install before start===============

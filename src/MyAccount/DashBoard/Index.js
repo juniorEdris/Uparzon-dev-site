@@ -9,12 +9,12 @@ import UserInfo from './pageComponents/UserInfo'
 
 
 function Index(props) {
-    const history = useHistory()
-    const [user,setUser] = useState(props.user)
-    console.log('user',user);
-    useEffect(() => {
-        !user && history.push('/home')
-    }, [history,user])
+    // const history = useHistory()
+    // const [user,setUser] = useState(props.user)
+    // console.log('user',user);
+    // useEffect(() => {
+    //     !user && history.push('/home')
+    // }, [history,user])
 
      // Document Title Update
      useDocTitle('Dashboard')

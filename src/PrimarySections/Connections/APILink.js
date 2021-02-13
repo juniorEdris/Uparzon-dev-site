@@ -36,4 +36,5 @@ export const Request ={
     AllShop:`api/uparzonweb/get_shop_list?per_page=20`,
     RegisterNumber:`https://demopartner.uparzon.com/api/partner/send-otp`,
     OTPRegister:`https://demopartner.uparzon.com/api/partner/check-otp?`,
+    UserRegister:`https://demopartner.uparzon.com/api/partner/store/register`,
 } 

@@ -946,7 +946,7 @@ ul.dropdown li span {
   color: #111;
   display: inline-block;
   font-size: 26px;
-  padding-right: 30px;
+  /* padding-right: 30px; */
   position: relative;
   text-transform: capitalize;
 }

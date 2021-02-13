@@ -1,6 +1,6 @@
 import React,{useEffect} from 'react';
 import {
-  HashRouter as Router,
+  BrowserRouter as Router,
   Switch,
   Route,
   Redirect,
@@ -15,9 +15,9 @@ import Compare from './Compare/Compare';
 import WishList from './WishList/WishList';
 import Cart from './ProductCart/ProductCart';
 import Checkout from './Checkout/Index';
-import UpdateInfo from './MyAccount/UpdateInfo/UpdateInfo';
+import UserRegister from './MyAccount/UserRegister/UserRegister';
 import OneTimePass from './MyAccount/OTP/OTP';
-import Register from './MyAccount/RegisterNumber/Register';
+import Register from './MyAccount/RegisterNumber/NumberRegister';
 import Login from './MyAccount/Login/Login';
 import Details from './ProductDetails'
 import './App.css';
@@ -75,9 +75,6 @@ function App(props) {
           <Route path='/productdetails'>
             <Details/>
           </Route>
-          {/* <Route path='/product/:id'>
-            <Details/>
-          </Route> */}
           <Route path='/blog'>
             <Blog/>
           </Route>
@@ -100,16 +97,16 @@ function App(props) {
             <OneTimePass/>
           </Route>
           <Route path='/registerinfo'>
-            <UpdateInfo/>
+            {!props.user ? <UserRegister/> : <Redirect to="/dashboard" />}
           </Route>
           <Route path='/register'>
-            <Register/>
+             {!props.user ? <Register/> : <Redirect to="/dashboard" />}
           </Route>
           <Route path='/search'>
             <SearchPage/>
           </Route>
           <Route path='/login'>
-          {props.user ? <Redirect to="/dashboard" /> : <Login/>}  
+          {!props.user ? <Login/> : <Redirect to="/dashboard" />}  
           </Route>
           <Route exact path='*'>
             <h1>No Pages Found : ERROR 404</h1>

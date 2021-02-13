@@ -5,11 +5,12 @@ import CartAccordion from './CartAccordion';
 import CartForm from './CartForm';
 import {currToFixed} from '../../PrimarySections/Essentials/CurrencyFormat'
 import { connect } from 'react-redux';
+import Saparate  from './Saparate';
 
 function CartBody(props) {
     const deef = useHistory()
     console.log('====================================');
-    console.log('deef',deef);
+    console.log('cart parent',deef);
     console.log('====================================');
     return (
         <div>
@@ -58,6 +59,7 @@ function CartBody(props) {
             </div> {/* end of container */}
             </div>
             {/* End cart Wrapper */}
+            <Saparate/>
 
         </div>
     )

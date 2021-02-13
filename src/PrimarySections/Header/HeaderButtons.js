@@ -94,7 +94,7 @@ function HeaderButtons(props) {
                         props.user ?
                     <ul className={`box-dropdown ha-dropdown ${isAccActive ? 'active':''}`} onPointerLeave={()=>setIsAccActive(false)}>
                         <li><Link to="/dashboard">Dashboard</Link></li>
-                        <li><Link to="/vendor">My store</Link></li>
+                        {/* <li><Link to="/vendor">My store</Link></li> */}
                         <li onClick={logout}><Link to="#">Log out</Link></li>
                     </ul>
                     :
