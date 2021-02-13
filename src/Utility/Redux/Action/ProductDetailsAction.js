@@ -21,9 +21,12 @@ const showProductDetailsError = (error)=>(
 )
 
 export const GetProductDetails = (id) => async dispatch=>{
+    const user_id = localStorage.getItem('user_id')
+    console.log('>>>> details user',user_id)
     dispatch(showProductDetailsRequest())
-    await API().get(`${Request.ProductDetails}${id}`)
+    await API().get(`${Request.ProductDetails}${id}&user_id=${user_id}`)
     .then(res=>{
+        console.log('>>>> details',res,user_id)
         dispatch(showProductDetailsSuccess(res.data))
     })
     .catch(error=> dispatch(showProductDetailsError(error)))

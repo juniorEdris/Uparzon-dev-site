@@ -44,7 +44,6 @@ function LoginBody(props) {
                 setNumber('')
                 setPassword('')
             }
-            // props.user && history.push("/dashboard");
 
         }
         

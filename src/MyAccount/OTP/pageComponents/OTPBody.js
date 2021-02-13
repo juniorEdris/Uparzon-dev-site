@@ -23,22 +23,18 @@ function RegisterBody(props) {
             [e.target.name]:e.target.value
         })
     }
-    console.log(props.number)
 
     const signUp =(e)=>{
         e.preventDefault()
         if(value.oneTimePass !== '' && value.oneTimePass.length === 4){
             if(numberPattern.test(value.oneTimePass)){
-            const number = parseInt(value.oneTimePass)
-            Axios.post(`${Request.OTPRegister}otp=${number}&mobile=0${props.number}`)
+            const OTP = parseInt(value.oneTimePass)
+            Axios.post(`${Request.OTPRegister}otp=${OTP}&mobile=${props.number}`)
             .then((res)=>{
-                console.log('====================================');
-                console.log('OTPBODy',res);
-                console.log('====================================');
                 res.data.status === true && history.push('/registerinfo')
             })
             }else{
-                setError({message:'invalid OTP'})
+                setError({message:'Input invalid'})
             }
         }
     }
@@ -71,9 +67,10 @@ function RegisterBody(props) {
                                     <input type="text" className="form-control" id="f-name" name='oneTimePass' value={value.oneTimePass} autoFocus placeholder='OTP code here' onChange={handleChange}/>
                                 </div>
                                 <div className="col-12">{props.reponseMsg}</div>
+                                <div className="col-12">{error.message}</div>
                                 </div>
-                                <div className="register-box d-flex justify-content-end mt-20">
-                                <button type="button" className="btn btn-secondary" onClick={signUp}>Verify</button> {''}
+                                <div className="register-box otp-box d-flex justify-content-end mt-20">
+                                <button type="button" className="btn btn-secondary" onClick={signUp}>Verify</button>
                                 <button type="button" className="btn btn-secondary" onClick={()=>props.resendOTP(props.number)}>Resend</button>
                                 </div>
                             </form>

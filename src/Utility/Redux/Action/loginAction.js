@@ -13,8 +13,6 @@ const loginError=(error)=>(
 export const LoginAction=(data)=>(dispatch)=>{
     API().post(`${Request.LoginAPI}&mobile=${data.phone}&password=${data.pass}`)
         .then(res=>{
-            console.log('res',res.data)
-            // dispatch(loginSuccess(res.data))
             res.data.user_id && localStorage.setItem('user_id',JSON.stringify(res.data.user_id))
             res.data.auth_token && localStorage.setItem('user_token',JSON.stringify(res.data.auth_token))
             const active = localStorage.getItem('user_id')

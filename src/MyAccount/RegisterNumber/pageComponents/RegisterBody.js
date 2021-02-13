@@ -32,7 +32,7 @@ function RegisterBody(props) {
         if(value.phone !== '' && value.phone.length >= 11){
             if(numberPattern.test(value.phone)){
             const number = parseInt(value.phone)
-            Axios.post(`${Request.RegisterNumber}?mobile=${number}&type=1`)
+            Axios.post(`${Request.RegisterNumber}?mobile=${number}`)
             .then(res=>{
                 console.log('phone register',res);
                 props.registerNumber(number)

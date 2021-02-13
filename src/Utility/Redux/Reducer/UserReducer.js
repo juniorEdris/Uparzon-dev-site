@@ -14,7 +14,6 @@ export const UserReducer = (state=initialState,action) =>{
                 user:false,
             }
             case  USER_LOGOUT_SUCCESS :
-            console.log('logoutaskdjhfskldjn',action.payload);
             return{
                 ...state,
                 user:action.payload

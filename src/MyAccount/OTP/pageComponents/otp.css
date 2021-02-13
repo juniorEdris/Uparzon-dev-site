@@ -1,0 +1,6 @@
+.otp-box button {
+  margin-left: 0.6rem;
+}
+.otp-box button:hover {
+  color: var(--light-color);
+}

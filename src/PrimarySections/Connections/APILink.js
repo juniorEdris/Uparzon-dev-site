@@ -7,9 +7,8 @@ let BaseApi =  Axios.create({
 })
 
 export const API = () => {
-    const authToken = localStorage.getItem('user_token1')
+    const authToken = localStorage.getItem('user_token')
     if(authToken){
-        console.log('true');
         BaseApi.defaults.headers.common['Authorization'] = `Bearer ${authToken}`;
     }
     return BaseApi

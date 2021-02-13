@@ -23,7 +23,9 @@ const oneTimePassError = (error)=>{
 }
 export const oneTimePassAction = (otp,number)=>async(dispatch)=>{
     dispatch(oneTimePassRequest())
-    API.post(`${Request.OTPRegister}otp=${otp}&mobile=0${number}`)
+    const url = `${Request.OTPRegister}otp=${otp}&mobile=${0 + number}`
+    console.log(url);
+    API.post(url)
     .then(res=>{
         console.log('otp',res);
         dispatch(oneTimePassSuccess(res.data))
