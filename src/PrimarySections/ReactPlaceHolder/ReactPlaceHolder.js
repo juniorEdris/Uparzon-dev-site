@@ -1,6 +1,5 @@
 import React from 'react'
 import ContentLoader from 'react-content-loader'
-
 import './PlaceHolder.css'
 
 export const ProductLoader=()=>{

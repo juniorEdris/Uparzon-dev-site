@@ -37,4 +37,5 @@ export const Request ={
     RegisterNumber:`https://demopartner.uparzon.com/api/partner/send-otp`,
     OTPRegister:`https://demopartner.uparzon.com/api/partner/check-otp?`,
     UserRegister:`https://demopartner.uparzon.com/api/partner/store/register`,
+    Dashboard:`api/uparzonweb/get_userdetails`,
 } 

@@ -30,17 +30,16 @@ function RegisterBody(props) {
         e.preventDefault()
         // let isValid;
         if(value.phone !== ''){
-            if(value.phone.length >= 11){
+            if(!value.phone.length >= 12){
                 setError({message:'Phone number is incorrect.'})
             }else{
-                        const number = parseInt(value.phone)
-                    if(!numberPattern.test(number)){
+                    if(!value.phone){
                         setError({message:'Invalid number'})
                     }else{
-                        Axios.post(`${Request.RegisterNumber}?mobile=${number}`)
+                        Axios.post(`${Request.RegisterNumber}?mobile=${value.phone}`)
                         .then(res=>{
                             console.log('phone register',res);
-                            props.registerNumber(number)
+                            props.registerNumber(value.phone)
                             res.data.status === true && history.push('/onetimepassword')
                         }).catch(err=>{
                             console.log(err);

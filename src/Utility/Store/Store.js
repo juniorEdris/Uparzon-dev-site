@@ -5,6 +5,7 @@ import { AddBasketReducer } from '../Redux/Reducer/BasketReducer';
 import { CategoriesReducer } from '../Redux/Reducer/CategoriesReducer';
 import { childCategoryReducer } from '../Redux/Reducer/ChildCategoryReducer';
 import { AddCompareReducer } from '../Redux/Reducer/CompareReducer';
+import { DashboardReducer } from '../Redux/Reducer/DashboardReducer';
 import { HomeReducer } from '../Redux/Reducer/HomeReducer'
 import { OTPReducer } from '../Redux/Reducer/OTPReducer';
 import { ProdSuggestionReducer } from '../Redux/Reducer/ProdSuggestionReducer';
@@ -57,6 +58,7 @@ export const initialState={
     numberCheckStatus:'',
     OTPConfirmedstatus:'',
     UserRegisterstatus:false,
+    DashBoardData:[],
 }
 
 const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
@@ -82,6 +84,7 @@ const store = createStore(
         CartAnimation: CartAnimationReducer,
         AvailableNumber: AvailableNumberReducer,
         OTPReducer: OTPReducer,
+        Dashboard: DashboardReducer,
     }),
     initialState,
     composeEnhancers(applyMiddleware(thunk))

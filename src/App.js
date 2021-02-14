@@ -24,12 +24,8 @@ import './App.css';
 import DashBoard from './MyAccount/DashBoard/Index';
 import VendorPage from './Vendor/Index';
 import ShopList from './Shop/ShopList/ShopList';
-import {Loader, ProductLoader, StoreLoader} from './PrimarySections/ReactPlaceHolder/ReactPlaceHolder';
 import { connect } from 'react-redux';
 import { fetchHomeProds } from './Utility/Redux/Action/HomeProdAction';
-import { fetchShopProds } from './Utility/Redux/Action/ShopProductAction';
-import { FetchProductSuggetions } from './Utility/Redux/Action/ProdSuggestionAction';
-import { fetchShopList } from './Utility/Redux/Action/ShopListAction';
 import { fetchCategories } from './Utility/Redux/Action/CategoriesAction';
 import SearchPage from './SearchPage/SearchPage';
 import LoadAllData from './PrimarySections/CustomHooks/DataLoadingHooks';
@@ -38,13 +34,8 @@ import LoadAllData from './PrimarySections/CustomHooks/DataLoadingHooks';
 function App(props) {
 
     useEffect(()=>{
-      props.fetchStroes()
-      props.fetchHotCollection()
-      props.fetchOurProds()
-      props.fetchBrandProd()
-      // props.fetchShopProds()
-      props.fetchProdSuggestions()
-      props.fetchShopList()
+      props.fetchHome()
+      props.fetchSlider()
       props.fetchCategory()
     },[])
     // LoadAllData()   
@@ -56,9 +47,6 @@ function App(props) {
         <Switch>
           <Route exact path='/'>
             <Home/>
-          </Route>
-          <Route path='/place'>
-            <ProductLoader/>
           </Route>
           <Route path='/shop-list'>
             <ShopList/>
@@ -124,13 +112,8 @@ const mapStateToProps= state=>(
 )
 const mapDispatchToProps = dispatch=>(
   {
-    fetchHotCollection:()=>dispatch(fetchHomeProds()),
-    fetchOurProds:()=> dispatch(fetchHomeProds()),
-    fetchBrandProd:()=>dispatch(fetchHomeProds()),
-    fetchStroes:()=>dispatch(fetchHomeProds()),
-    fetchShopProds:()=>dispatch(fetchShopProds()),
-    fetchProdSuggestions:()=>dispatch(FetchProductSuggetions()),
-    fetchShopList:()=>dispatch(fetchShopList()),
+    fetchHome:()=>dispatch(fetchHomeProds()),
+    fetchSlider:()=> dispatch(fetchHomeProds()),
     fetchCategory:()=>dispatch(fetchCategories())
   }
 )

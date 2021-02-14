@@ -4,17 +4,20 @@ import { useHistory } from 'react-router-dom'
 import Breadcrumb from '../../PrimarySections/Breadcrumbs/Breadcrumb'
 import useDocTitle from '../../PrimarySections/CustomHooks/DocTitle'
 import ScrollBar from '../../PrimarySections/ScrollBar/ScrollBar'
+import { DashboardAction } from '../../Utility/Redux/Action/DashboardAction'
 import DashTable from './pageComponents/DashTable'
 import UserInfo from './pageComponents/UserInfo'
 
 
 function Index(props) {
-    // const history = useHistory()
-    // const [user,setUser] = useState(props.user)
-    // console.log('user',user);
-    // useEffect(() => {
-    //     !user && history.push('/home')
-    // }, [history,user])
+    const history = useHistory()
+    const [user,setUser] = useState()
+    useEffect(() => {
+       props.fetchDashboard()
+    }, [])
+
+    console.log(props.data,'dashboard');
+
 
      // Document Title Update
      useDocTitle('Dashboard')
@@ -45,7 +48,10 @@ function Index(props) {
 
 const mapStateToProps = state=>({
     user:state.Users.user,
+    data:state.Dashboard.DashBoardData,
 })
-const mapDispatchToProps = dispatch=>({}) 
+const mapDispatchToProps = dispatch=>({
+    fetchDashboard:()=>dispatch(DashboardAction())
+}) 
 
 export default connect(mapStateToProps,mapDispatchToProps)(Index)
