@@ -38,4 +38,5 @@ export const Request ={
     OTPRegister:`https://demopartner.uparzon.com/api/partner/check-otp?`,
     UserRegister:`https://demopartner.uparzon.com/api/partner/store/register`,
     Dashboard:`api/uparzonweb/get_userdetails`,
+    PlaceOrder:`api/uparzonapp/make_order?cart[72][product_id]=781& cart[72][color]=& total_price=10& shipping_city=Chattogram& shipping_phone=01867301260& total_delivery_charge=120& cart[72][vendor_price]=10& cart[72][size]=& cart[72][price]=10& cart[72][size_qty]=& cart[72][qty]=1& api_key=4e38d8be3269aa17280d0468b89caa4c7d39a699& user_id=1025& packing_cost=0& shipping_email=& cart[72][size_key]=0& rc_adjusted_amount=0.0& shipping_address=kgjcj& shipping_name=Sharif Noor Zisad& payment_method=ssl`,
 } 

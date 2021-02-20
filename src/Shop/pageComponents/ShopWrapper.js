@@ -12,15 +12,20 @@ import { renderHTML } from '../../PrimarySections/Essentials'
 import { fetchShopProds } from '../../Utility/Redux/Action/ShopProductAction'
 import ReactPaginate from 'react-paginate'
 import Pagination from '../../PrimarySections/Pagination'
+import { priceRangeProducts } from '../../Utility/Redux/Action/FilterProdsAction'
 
 
 function ShopWrapper(props) {
     // console.log('shop pages',props.pages)
     const [page, setPage] = useState(1)
     const [id, setId] = useState(0)
+    const [value, setValue] = useState([70, 500]);
     useEffect(() => {
         props.pageDispatch(id,page)
     }, [page,id])
+    useEffect(() => {
+        props.priceFilterDispatch(props.shopProduct,value)
+    }, [value])
 useEffect(() => {
 // product view mode change js
 $('.product-view-mode a').on('click', function(e){
@@ -46,7 +51,7 @@ $('.product-view-mode a').on('click', function(e){
                 </div>
                 <div className="container-fluid">
                     <div className="row">
-                <Sidebar id={id} setId={setId} categories={props.categories}/>
+                <Sidebar value={value} setValue={setValue} id={id} setId={setId} categories={props.categories}/>
                 <div className="col-lg-9 order-first order-lg-last">
                     <div className="product-shop-main-wrapper mb-50">
                     <div className="shop-top-bar mb-30">
@@ -104,6 +109,7 @@ const mapStateToProps=state=>(
 const mapDispatchToProps =dispatch=>(
     {
         pageDispatch:(id,page)=>dispatch(fetchShopProds(id,page)),
+        priceFilterDispatch:(products,value)=>dispatch(priceRangeProducts(products,value)),
     }
     )
 export default  connect(mapStateToProps,mapDispatchToProps)(ShopWrapper)

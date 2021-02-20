@@ -4,18 +4,16 @@ import Slider from '@material-ui/core/Slider';
 import './ShopSidebar.css'
 import { connect } from 'react-redux';
 import { fetchShopProds } from '../../Utility/Redux/Action/ShopProductAction';
+import { priceRangeProducts } from '../../Utility/Redux/Action/FilterProdsAction';
 
 
 
 
 function Sidebar(props) {
-    useEffect(()=>{
 
-    },[])
     // price range function
-    const [value, setValue] = useState([70, 500]);
     const handleChange = (event, newValue) =>{
-        setValue(newValue)
+        props.setValue(newValue)
     }
 
     return (
@@ -30,18 +28,18 @@ function Sidebar(props) {
                         <div className="filter-price-content">
                             <form action="#" method="post">
                             <Slider
-                            value={value}
+                            value={props.value}
                             onChange={handleChange}
                             max={500}
                             />
                             <div className="filter-price-wapper">
                                 <div className="filter-price-cont">
                                 <div className="input-type">
-                                    <input id="min-price" readOnly type="text" value={`$${value[0]}`} />
+                                    <input id="min-price" readOnly type="text" value={`$${props.value[0]}`} />
                                     
                                 </div>
                                 <div className="input-type">
-                                    <input id="max-price" readOnly type="text" value={`$${value[1]}`} />
+                                    <input id="max-price" readOnly type="text" value={`$${props.value[1]}`} />
                                 </div>
                                 </div>
                             </div>
@@ -110,9 +108,9 @@ function Sidebar(props) {
     )
 }
 const mapStateToProps = state=>({
-    // categories:state.categories.categoryList,
+    shopProduct:state.shopProducts.shopProduct,
 })
 const mapDispatchToProps = dispatch=>({
-    fetchShopProd:(id)=>dispatch(fetchShopProds(id))
+    priceFilterDispatch:(products,value)=>dispatch(fetchShopProds(products,value)),
 })
 export default connect(mapStateToProps,mapDispatchToProps)(React.memo(Sidebar))

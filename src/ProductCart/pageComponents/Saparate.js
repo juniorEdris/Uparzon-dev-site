@@ -1,7 +1,8 @@
 import React from 'react'
 import { connect } from 'react-redux'
 
-export const Saparate = (props) => {
+
+const Saparate = (props) => {
 
       // Accepts the array and key
       const groupBy = (array, key) => {
@@ -13,18 +14,25 @@ export const Saparate = (props) => {
           );
           // Return the current iteration `result` value, this will be taken as next iteration `result` value and accumulate
           return result;
-        }, {}); // empty object is the initial value for result object
+        }, []); // empty object is the initial value for result object
       };
-      
       // Group by color as key to the person array
-      const personGroupedByColor = groupBy(props.basket, 'shop_name');
-      console.log('sap',personGroupedByColor);
-      const descriptors1 = Object.getOwnPropertyDescriptors(personGroupedByColor);
-      console.log('sap2',descriptors1);
+      const cart = groupBy(props.basket, 'shop_name');
+
+      const shopName = Object.keys(cart).forEach(function(shopName){
+            return shopName })
+      
+      console.log('saparate',Object.keys(cart).map(name=>{
+        return cart[name];
+    }))
+      // const result = Object.keys(cart).map(e => cart[e].map(x=>x));
+      // console.log('console shopname',log(cart))
+      
+     
       
     return (
         <div>
-            Saparate
+            {/* {cart[log(cart)]} */}
         </div>
     )
 }

@@ -13,7 +13,7 @@ function RightBarControl(props) {
         variant="outlined"
         id="grouped-select"
         value={props.limit}
-        onChange={(e)=>props.FilterLimit(props.products,e.target.value)}
+        onChange={(e)=>props.FilterLimit(props.products,e.target.value,props.products)}
         >
             <MenuItem value={0}>All</MenuItem>
             <MenuItem value={5}>5</MenuItem>
@@ -46,7 +46,7 @@ function RightBarControl(props) {
 const mapDispatchToProps = dispatch=>(
     {
         FilterPrice:(prod,price)=>dispatch(sortProdsByPrice(prod,price)),
-        FilterLimit:(prod,limit)=>dispatch(limitedProducts(prod,limit)),
+        FilterLimit:(prod,limit,initial)=>dispatch(limitedProducts(prod,limit,initial)),
     }
 )
 

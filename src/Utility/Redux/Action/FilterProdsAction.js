@@ -25,8 +25,8 @@ const SortProductsByPrice = (product,price) => {
 export const FilterProducts = (products, size) => (dispatch) => {
     dispatch(filterProductsBySize(products,size))
 }
-export const limitedProducts = (products, count) => (dispatch) => {
-    console.log('limit action',products,count);
+export const limitedProducts = (products, count,initial) => (dispatch) => {
+    console.log('limit action',products,count,initial);
     let slicedProds 
         if(count === 5){
             slicedProds = products.slice(0,count)
@@ -43,6 +43,20 @@ export const limitedProducts = (products, count) => (dispatch) => {
             return slicedProds = products.slice(0,count)
         }
     dispatch(limitProducts(slicedProds,count))
+}
+export const priceRangeProducts = (products, count) => (dispatch) => {
+    console.log('between action',products,count);
+    let slicedProds 
+    let slicedProdstwo 
+            // slicedProds = products.slice(count[0],count[1])
+            slicedProds = products.filter(person => person.price < count[1])
+            slicedProdstwo = products.filter((person,i,arr) => {
+                console.log('>>>>>',i,arr);
+               return person.price > count[0]
+            })
+
+            console.log('values',count,slicedProds,slicedProdstwo);
+    // dispatch(limitProducts(slicedProds,count))
 }
  
 export const sortProdsByPrice = (products, sort) => dispatch => {
