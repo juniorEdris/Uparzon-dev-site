@@ -1,5 +1,5 @@
 import { FormControl, ListSubheader, MenuItem, Select } from '@material-ui/core'
-import React,{useState,useEffect} from 'react'
+import React,{useState} from 'react'
 import { connect } from 'react-redux'
 import { useHistory } from 'react-router-dom'
 import { fetchSearchProducts } from '../../Utility/Redux/Action/SearchAction'
@@ -8,12 +8,12 @@ import './Search.css'
  function Search(props) {
      const [input, setInput] = useState('')
      const [select,setSelect] = useState('')
-     useEffect(() => {
-         props.fetchSearchResult(select,input)
-        }, [select,input])
         const history = useHistory()
     const routeChange = (e)=>{
-        history.push("/search");
+        if(history.location.pathname !== '/search') {
+            history.push('/search')
+        }
+        props.fetchSearchResult(select,input)
     }
     return (
         <div className="col-lg-6 col-md-12 col-12 order-sm-last">

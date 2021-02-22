@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react'
-import { Link } from 'react-router-dom';
+import { Link, useHistory } from 'react-router-dom';
 import Sidebar from '../../Shop/pageComponents/ShopSidebar';
 import Filter from '../../Shop/pageComponents/RightBarControl'
 import { ProductLoader } from '../../PrimarySections/ReactPlaceHolder/ReactPlaceHolder';
@@ -12,17 +12,21 @@ function SearchWrapper(props) {
     const [input] = useState('')
     const [id, setId] = useState(0)
     const [page,setPage] = useState(1)
+    const history = useHistory()
     useEffect(() => {
+        !(props.results.length > 1) && history.push('/')  
+       }, [])
+    const sidebarClick = (id) =>{
+        setId(id)
         props.fetchSearchResult(id,input,page)
-       }, [id,input,page])
-
+       }
         return (
             <div>
                 
                 <div className={`main-wrapper pt-10 ${props.loading && 'loading-opacity'}`}>
                     <div className={`container-fluid`}>
                         <div className="row">
-                    <Sidebar id={id} setId={setId} categories={props.categories}/>
+                    <Sidebar id={id} sidebarClick={sidebarClick} categories={props.categories}/>
                     <div className="col-lg-9 order-first order-lg-last">
                         <div className="product-shop-main-wrapper mb-50">
                         <div className="shop-top-bar mb-30">

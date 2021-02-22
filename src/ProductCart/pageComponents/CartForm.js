@@ -1,70 +1,53 @@
-import React,{useEffect} from 'react'
+import React,{useEffect, useState} from 'react'
 import { Link } from 'react-router-dom';
 import $ from 'jquery'
 import './CartForm.css'
 import { connect } from 'react-redux';
-import { RemoveBasketProd } from '../../Utility/Redux/Action/BasketAction';
+import { AddBasketProd, RemoveBasketProd, RemoveSingleBasketProd } from '../../Utility/Redux/Action/BasketAction';
 import {currToFixed} from '../../PrimarySections/Essentials/CurrencyFormat'
 import Saparate  from './Saparate';
 
 function CartForm(props) {
-
-    useEffect(() => {
-        //Product Quantity 
-		$('.product-qty').append(`<span class="dec qtybtn"><i class="fa fa-minus"></i></span><span class="inc qtybtn"><i class="fa fa-plus"></i></span>`);
-		$('.qtybtn').on('click', function() {
-            var $button = $(this);
-            var oldValue = $button.parent().find('input').val();
-            let newVal;
-		    if ($button.hasClass('inc')) {
-                newVal = parseFloat(oldValue) + 1;
-		    } else {
-                // Don't allow decrementing below zero
-		        if (oldValue > 0) {
-                    newVal = parseFloat(oldValue) - 1;
-		        } else {
-                    newVal = 0;
-		        }
-		    }
-            $button.parent().find('input').val(newVal);
-		});
-    }, [])
-
+    // const [value,setValue] = useState(1)
+    // useEffect(() => {
+    //     //Product Quantity 
+	// 	$('.product-qty').append(`<span class="dec qtybtn"><i class="fa fa-minus"></i></span><span class="inc qtybtn"><i class="fa fa-plus"></i></span>`);
+	// 	$('.qtybtn').on('click', function() {
+    //         var $button = $(this);
+    //         var oldValue = $button.parent().find('input').val();
+    //         let newVal;
+	// 	    if ($button.hasClass('inc')) {
+    //             newVal = parseFloat(oldValue) + 1;
+	// 	    } else {
+    //             // Don't allow decrementing below zero
+	// 	        if (oldValue > 0) {
+    //                 newVal = parseFloat(oldValue) - 1;
+	// 	        } else {
+    //                 newVal = 0;
+	// 	        }
+	// 	    }
+    //         $button.parent().find('input').val(newVal);
+	// 	});
+    // }, [])
+    console.log('inc',props);
     // >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
-          // Accepts the array and key
-          const groupBy = (array, key) => {
-            // Return the end result
-            return array.reduce((result, currentValue) => {
-              // If an array already present for key, push it to the array. Else create an array and push the object
-              (result[currentValue[key]] = result[currentValue[key]] || []).push(
-                currentValue
-              );
-              // Return the current iteration `result` value, this will be taken as next iteration `result` value and accumulate
-              return result;
-            }, {}); // empty object is the initial value for result object
-          };
-          // Group by color as key to the person array
-          const cart = groupBy(props.basket, 'shop_name');
-        //   const result = Object.keys(cart).map(e => cart[e].map(x=>x));
-        //   console.log('sap',cart);
-        const res= Object.keys(cart).map(name=>{
-            return cart[name];
-        })
-        const result = res.map(x=>{
-            return x
-        })
-        let prod;
-        for(const item of result){
-            prod= item
-        }
-        // const prod= res.map(x=>x.name)
-        console.log('form',result);
+    // const IncNum =()=>{
+    //     setValue(value=> value+1)
+    //     console.log('inc',value);
+    // }
+    const DecNum =()=>{
+        window.alert('yoho')
+    }
+    const alert=()=>{
+        window.alert('reached min value')
+    }
+    
 
 
     return (
         <div className="">
-            {result.length>0 ?        
-                prod.map(prod=>(
+            {props.basket.length>0 ?        
+                props.basket.map(prod=>(
                 <form action="#">
                 <div className="table-responsive mb-1">
                     <div className="col-12 d-flex flex-column flex-md-row justify-content-between align-items-center vendor__row">
@@ -104,6 +87,7 @@ function CartForm(props) {
                                 <div className="input-group btn-block">
                                 <div className="product-qty mr-3">
                                     <input type="text" defaultValue={prod.count} />
+                                    <span class="dec qtybtn" onClick={prod.count >0 ? ()=>props.removesinglefromBasket(prod): alert}><i className="fa fa-minus"></i></span><span className="inc qtybtn" onClick={()=>props.addToBasket(prod)}><i class="fa fa-plus"></i></span>
                                 </div>
                                 <span className="input-group-btn">
                                     <button type="submit" className="btn btn-primary"><i className="fa fa-refresh" /></button>
@@ -136,7 +120,9 @@ const mapStateToProps = state => (
 
 const mapDispatchToProps = dispatch => (
     {
+        addToBasket:(prod)=>dispatch(AddBasketProd(prod)),
         removefromBasket:(prod)=>dispatch(RemoveBasketProd(prod)),
+        removesinglefromBasket:(prod)=>dispatch(RemoveSingleBasketProd(prod)),
     }
 )
 

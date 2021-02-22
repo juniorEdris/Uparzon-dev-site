@@ -23,9 +23,9 @@ const searchProductsRequest = () =>(
     }
 )
 
-export const fetchSearchProducts = (category_id=null,keywords=null,page=1)=> async (dispatch)=>{
+export const fetchSearchProducts = (category_id='',keywords='',page=1,subcategory_id='',childcategory_id='')=> async (dispatch)=>{
     dispatch(searchProductsRequest())
-    const Qry = `${Request.SearchAPI}?per_page=20&page=${page}&keyword=${keywords}&category_id=${category_id}`
+    const Qry = `${Request.SearchAPI}?per_page=20&page=${page}&keyword=${keywords}&category_id=${category_id}&subcategory_id=${subcategory_id}&childcategory_id=${childcategory_id}`
     await API().get(Qry)
     .then(res=>{
         dispatch(searchProductsSuccess(res.data))

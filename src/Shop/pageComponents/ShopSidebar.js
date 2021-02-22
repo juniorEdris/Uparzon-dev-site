@@ -4,16 +4,15 @@ import Slider from '@material-ui/core/Slider';
 import './ShopSidebar.css'
 import { connect } from 'react-redux';
 import { fetchShopProds } from '../../Utility/Redux/Action/ShopProductAction';
-import { priceRangeProducts } from '../../Utility/Redux/Action/FilterProdsAction';
 
 
 
 
 function Sidebar(props) {
-
+    const [value, setValue] = useState([70, 500]);
     // price range function
     const handleChange = (event, newValue) =>{
-        props.setValue(newValue)
+        setValue(newValue)
     }
 
     return (
@@ -28,18 +27,18 @@ function Sidebar(props) {
                         <div className="filter-price-content">
                             <form action="#" method="post">
                             <Slider
-                            value={props.value}
+                            value={value}
                             onChange={handleChange}
                             max={500}
                             />
                             <div className="filter-price-wapper">
                                 <div className="filter-price-cont">
                                 <div className="input-type">
-                                    <input id="min-price" readOnly type="text" value={`$${props.value[0]}`} />
+                                    <input id="min-price" readOnly type="text" value={`$${value[0]}`} />
                                     
                                 </div>
                                 <div className="input-type">
-                                    <input id="max-price" readOnly type="text" value={`$${props.value[1]}`} />
+                                    <input id="max-price" readOnly type="text" value={`$${value[1]}`} />
                                 </div>
                                 </div>
                             </div>
@@ -56,9 +55,9 @@ function Sidebar(props) {
                         <div className="sidebar-content-box">
                         <div className="filter-attribute-container">
                             <ul>
-                                <li key='all'><Link className={props.id === '' && `active`} to="#" onClick={(e)=>{e.preventDefault(); props.setId('')}}>All</Link></li>
+                                <li key='all'><Link className={props.id === '' && `active`} to="#" onClick={(e)=>{e.preventDefault(); props.sidebarClick('')}}>All</Link></li>
                                 {props.categories?.map((x,id)=>(
-                                    <li key={id}><Link className={props.id === x.id && `active`} to="#" onClick={(e)=>{e.preventDefault(); props.setId(x.id)}}>{x.name}</Link></li>
+                                    <li key={id}><Link className={props.id === x.id && `active`} to="#" onClick={(e)=>{e.preventDefault(); props.sidebarClick(x.id)}}>{x.name}</Link></li>
                                 ))}
                             </ul>
                         </div>

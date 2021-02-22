@@ -1,6 +1,6 @@
 import React, { useState,useEffect } from 'react'
 import { connect } from 'react-redux';
-import { Link } from 'react-router-dom';
+import { Link, useHistory } from 'react-router-dom';
 import { fetchCategories} from '../../Utility/Redux/Action/CategoriesAction';
 import { GetSubCategory } from '../../Utility/Redux/Action/GetSubCategoryAction';
 import { GetChildCategory } from '../../Utility/Redux/Action/GetChildCategoriesAction';
@@ -8,10 +8,15 @@ import MainMenu from './MainMenu';
 // import MenuSidebar from './MenuSidebar';
 import './Navigation.css'
 import SideBarMenu from './SideBarMenu';
+import { fetchSearchProducts } from '../../Utility/Redux/Action/SearchAction';
 
 function Navigation(props) {
     //Stciky nav trigger
     const [stickyNav,setStickyNav] = useState(false)
+    const [category, setCategory] = useState(0)
+    const [subcategory, setSubcategory] = useState(0)
+    const [childcategory, setChildcategory] = useState(0)
+    const history = useHistory()
 
     useEffect(() => {
         window.addEventListener('scroll', () => {
@@ -25,24 +30,35 @@ function Navigation(props) {
             window.removeEventListener('scroll',()=>{})
         }
     }, [stickyNav])
-
-
-        //catagories menu dropdown
-        const[isBrowsing,setBrowsing] = useState(false)
-        const browseCatalog = (e)=>{
-            e.preventDefault();
-            setBrowsing(!isBrowsing)
-            
-        }
-        //catagories menu more catagories
-        const [menuShow, setMenuShow] = useState(false)
-        //Conditional more-btn name
-        const btnName =  menuShow ? 'Hide Categories' : 'More Categories';
-        const moreMenu = (e) =>{
-            e.preventDefault();
-            setMenuShow(!menuShow)
-        }
-
+     
+    
+    //catagories menu dropdown
+    const[isBrowsing,setBrowsing] = useState(false)
+    const browseCatalog = (e)=>{
+        e.preventDefault();
+        setBrowsing(!isBrowsing)
+        
+    }
+    //catagories menu more catagories
+    const [menuShow, setMenuShow] = useState(false)
+    //Conditional more-btn name
+    const btnName =  menuShow ? 'Hide Categories' : 'More Categories';
+    const moreMenu = (e) =>{
+        e.preventDefault();
+        setMenuShow(!menuShow)
+    }
+    // explore category,subcategory,childcategory products
+    const exploreCategories=(category,subcategory,childcategory)=>{
+        console.log('before browse categories',history,history.location.pathname,category,subcategory,childcategory);
+        if(history.location.pathname !== '/search') {
+            console.log('browse categories',history,history.location.pathname,category,subcategory,childcategory);
+            history.push('/search')
+            }
+            setCategory(category)
+            setSubcategory(subcategory)
+            setChildcategory(childcategory)
+            props.showBrowseCatagories(category,'',1,subcategory,childcategory)
+    }
     return (
         <div className={`header-top-menu theme-bg sticker ${stickyNav && 'sticky'} `}>
         <div className="container-fluid">
@@ -64,19 +80,19 @@ function Navigation(props) {
                         {
                             props.categories?.map(cat =>(
                                 <li key={cat.id}>
-                                    <Link to="/homeaudio" onMouseOver={()=>props.getSubCat(cat.id)}>{cat.name}{cat.has_subcategory && <span className="lnr lnr-chevron-right" />} </Link> {/**/}
+                                    <Link to="#" onMouseOver={()=>props.getSubCat(cat.id)} onClick={(e)=>{e.preventDefault(); exploreCategories(cat.id,0,0);}}>{cat.name}{cat.has_subcategory && <span className="lnr lnr-chevron-right" />} </Link> {/**/}
                                     {
                                     props.subcategories?.length > 0 ? 
                                         <ul className="cat-submenu">
                                             {
                                             props.subcategories?.map(x=>(
-                                                <li key={x.id}><Link to='#' onMouseOver={()=>props.getChildCat(x.id)}>{x.name}{x.has_childcategory && <span className="lnr lnr-chevron-right" />}</Link>
+                                                <li key={x.id}><Link to='#' onMouseOver={()=>props.getChildCat(x.id)} onClick={(e)=>{ e.preventDefault(); exploreCategories(0,x.id,0)}}>{x.name}{x.has_childcategory && <span className="lnr lnr-chevron-right" />}</Link>
                                                     {
                                                     props.childcategories?.length > 0 ?  
                                                     <ul className="cat-submenu">
                                                         {
                                                         props.childcategories?.map(x=>(
-                                                            <li key={x.id}><Link to="/">{x.name}</Link></li>
+                                                            <li key={x.id}><Link to="/" onClick={(e)=>{ e.preventDefault(); exploreCategories(0,0,x.id)}}>{x.name}</Link></li>
                                                             ))
                                                         }
                                                     </ul>:''
@@ -119,6 +135,8 @@ const mapDispatchToProps = ()=>(dispatch)=>(
         fetchCategory:()=>dispatch(fetchCategories()),
         getSubCat:(id)=>dispatch(GetSubCategory(id)),
         getChildCat:(id)=>dispatch(GetChildCategory(id)),
+        showBrowseCatagories:(select,keywords,page,subcategory_id,childcategory_id)=>dispatch(fetchSearchProducts(select,keywords,page,subcategory_id,childcategory_id)),
+        
     }
 )
 export default connect(mapStateToProps,mapDispatchToProps)(React.memo(Navigation))

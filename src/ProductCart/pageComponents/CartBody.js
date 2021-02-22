@@ -1,5 +1,5 @@
 import React from 'react'
-import { Link, useHistory } from 'react-router-dom'
+import { Link } from 'react-router-dom'
 import { getSubTotal } from '../../Utility/Reducer';
 import CartAccordion from './CartAccordion';
 import CartForm from './CartForm';
@@ -8,10 +8,6 @@ import { connect } from 'react-redux';
 import Saparate  from './Saparate';
 
 function CartBody(props) {
-    const deef = useHistory()
-    console.log('====================================');
-    console.log('cart parent',deef);
-    console.log('====================================');
     return (
         <div>
             {/* Start cart Wrapper */}
@@ -59,7 +55,7 @@ function CartBody(props) {
             </div> {/* end of container */}
             </div>
             {/* End cart Wrapper */}
-            <Saparate/>
+            {/* <Saparate/> */}
 
         </div>
     )
@@ -71,5 +67,7 @@ const mapStateToProps = state => (
     }
 )
 
-const mapDispatchToProps = dispatch => ({})
+const mapDispatchToProps = dispatch => ({
+    getToCheckout:()=>dispatch(),
+})
 export default connect(mapStateToProps,mapDispatchToProps)(CartBody)

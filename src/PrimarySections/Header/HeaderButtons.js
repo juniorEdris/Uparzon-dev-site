@@ -2,7 +2,8 @@ import React,{useState} from 'react'
 import { connect } from 'react-redux'
 import { Link, useHistory } from 'react-router-dom'
 import { getSubTotal } from '../../Utility/Reducer'
-import { RemoveBasketProd } from '../../Utility/Redux/Action/BasketAction'
+// import { RemoveSingleBasketProd } from '../../Utility/Redux/Action/BasketAction'
+import { RemoveSingleBasketProd } from '../../Utility/Redux/Action/BasketAction'
 import { LogoutAction } from '../../Utility/Redux/Action/LogoutActions'
 import { currToFixed } from '../Essentials/CurrencyFormat'
 import './HeaderButton.css'
@@ -120,7 +121,7 @@ const mapStateToProps = state=>(
     }
 )
 const mapDistpatchToProps = dispatch => ({
-    removefromBasket:(prod)=>dispatch(RemoveBasketProd(prod)),
+    removefromBasket:(prod)=>dispatch(RemoveSingleBasketProd(prod)),
     logOut:()=>dispatch(LogoutAction())
 })
 export default connect(mapStateToProps,mapDistpatchToProps)(HeaderButtons)

@@ -28,11 +28,28 @@ export const AddBasketProd = (product) => (dispatch,getState) => {
             cartItems.push({...product,count:1})
         }
         dispatch(addProdBasket(cartItems))
-    localStorage.setItem('Cart List', JSON.stringify(cartItems))
+        localStorage.setItem('Cart List', JSON.stringify(cartItems))
 }
+
 export const RemoveBasketProd = (product) => (dispatch,getState) => {
 
     const cartItems = getState().basketProd.basket.slice().filter(x =>x.id !== product.id)
+    dispatch( removeProdBasket(cartItems) )
+    localStorage.setItem('Cart List', JSON.stringify(cartItems))
+}
+export const RemoveSingleBasketProd = (product) => (dispatch,getState) => {
+
+    let cartItems = getState().basketProd.basket.slice()
+    let exist=false;
+    cartItems.forEach(x => {
+        if (x.id===product.id && product.count > 1) {
+            exist = true
+            x.count--
+        }
+    });
+    if (!exist) {
+        cartItems = getState().basketProd.basket.slice().filter(x =>x.id !== product.id)
+        }
     dispatch( removeProdBasket(cartItems) )
     localStorage.setItem('Cart List', JSON.stringify(cartItems))
 }
