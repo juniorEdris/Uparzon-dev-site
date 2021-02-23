@@ -24,6 +24,7 @@ export const UserReducer = (state=initialState,action) =>{
                 loading:false,
                 user:action.status,
                 UserRegisterstatus:action.status,
+                userRegMsg:action.message,
             } 
         default:
             return state

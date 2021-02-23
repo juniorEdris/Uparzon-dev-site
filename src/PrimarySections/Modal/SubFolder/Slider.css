@@ -1,5 +1,5 @@
 .modal-slider .carousel .carousel-status {
-  color: #4f0f40;
+  color: var(--theme-color);
   right: 40%;
   text-shadow: none;
 }
@@ -13,10 +13,10 @@
   border-radius: 0.3rem;
 }
 .modal-slider .carousel .thumbs-wrapper .control-prev.control-arrow:before {
-  border-right: 8px solid #4f0f40;
+  border-right: 8px solid var(--theme-color);
 }
 .modal-slider .carousel .thumbs-wrapper .control-next.control-arrow:before {
-  border-left: 8px solid #4f0f40;
+  border-left: 8px solid var(--theme-color);
 }
 .modal_image {
   height: 298px;

@@ -60,7 +60,7 @@
 @import url('https://fonts.googleapis.com/css?family=Work+Sans:300,400,500,600,700,800,900');
 
 :root {
-  --theme-color: #4f0f40;
+  --theme-color: #13a7b1;
   --light-color: #fff;
 }
 
@@ -782,6 +782,9 @@ ul.dropdown li span {
 }
 
 /* sticky menus css  */
+.header-top-menu {
+  background: var(--theme-color);
+}
 .header-top-menu.sticker.sticky {
   position: fixed;
   top: 0;
@@ -1254,10 +1257,11 @@ span.purple {
 }
 
 .product-caption .btn-cart {
-  bottom: 37px;
+  bottom: 35px;
   opacity: 0;
   visibility: hidden;
   position: absolute;
+  left: 10px;
 }
 
 .product-item:hover .btn-cart {
@@ -2586,7 +2590,7 @@ label {
 }
 
 .shopping-cart-wrapper .table .input-group {
-  max-width: 200px;
+  max-width: 100%;
   margin-left: auto;
   margin-right: auto;
 }

@@ -1,6 +1,7 @@
 @import url('https://fonts.googleapis.com/css?family=Work+Sans:300,400,500,600,700,800,900');
 :root {
-  --theme-color: #4f0f40;
+  /* --theme-color: #4f0f40; */
+  --theme-color: #13a7b1;
   --light-color: #fff;
 }
 

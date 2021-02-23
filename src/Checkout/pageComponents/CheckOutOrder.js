@@ -2,11 +2,51 @@
 import React from 'react'
 import { connect } from 'react-redux'
 import { Link } from 'react-router-dom'
+import { API } from '../../PrimarySections/Connections/APILink'
 import { getSubTotal } from '../../Utility/Reducer'
 
 
 function CheckOutOrder(props) {
 
+    const placeOrder = (e)=>{
+        e.preventDefault();
+        let arr=[]
+        props.basket.forEach(x => {
+            const prod = {
+                product_id:x.id,
+                color: x.color,
+                vendor_price: x.vendor_price,
+                size : x.size,
+                price : x.price,
+                size_qty: x.size_qty,
+                qty : x.count,
+                size_key : null,
+            }
+            arr.push(prod)
+            let vendor =[]
+            props.basket.forEach(x => {
+                vendor.push(x.shop_id)
+            });
+            console.log(vendor);
+        });
+        const user_id = localStorage.getItem('user_id')
+        API().post(`api/uparzonweb/make_order`,{
+            cart:arr,
+            api_key:`4e38d8be3269aa17280d0468b89caa4c7d39a699`,
+            user_id:user_id,
+        }).then(res=>{
+            console.log('====================================');
+            console.log(res);
+            console.log('====================================');
+        }).catch(err=>{
+            console.log(err.response);
+        })
+    }
+
+    // ajsdhfuehfasdf
+    // const checkout_prod = props.basket.map(x=>{
+    //     return x.shop_id ===
+    // })
 
     return (
         <div className="col-12 col-sm-12 col-md-6 col-lg-5">
@@ -28,8 +68,9 @@ function CheckOutOrder(props) {
                     </div>
                     <div className="media-body">
                     <h5>{product.name}</h5>
-                    <p className="product-quantity">{product.count}</p>
-                    <p className="product-final-price">&#2547; {product.price}</p>
+                    <p className="product-quantity">Qty: {product.count}</p>
+                    <p className="product-final-price">&#2547; {product.vendor_delivery? product.price + product.vendor_delivery.inside_deli_charge : product.price}</p>
+                    {/* <p className="product-final-price">&#2547; {product.price}</p> */}
                     </div>
                 </div>
             </div>))
@@ -56,7 +97,7 @@ function CheckOutOrder(props) {
             </div>
         </div>
         <div className="checkout-payment">
-            <form action="#">
+            <form action="#" onSubmit={placeOrder}>
             <div className="form-row">
                 <div className="custom-radio">
                 <input className="form-check-input" type="radio" name="payment" id="check_payment" defaultValue="check" defaultChecked />
@@ -93,7 +134,7 @@ function CheckOutOrder(props) {
                 </div>
             </div>
             <div className="form-row justify-content-end">
-                <input type="submit" className="btn btn-secondary dark" defaultValue="Continue to Payment" />
+                <button type="submit" className="btn btn-secondary dark" > Continue to Payment</button>
             </div>
             </form>
         </div> {/* end of checkout-payment */}

@@ -13,13 +13,13 @@
 }
 .choose_product a {
   width: 200px;
-  border: 2px solid #4f0f40;
+  border: 2px solid var(--theme-color);
   background-color: transparent;
-  color: #4f0f40;
+  color: var(--theme-color);
   /* border: none; */
 }
 .choose_product a:hover {
-  background-color: #4f0f40;
+  background-color: var(--theme-color);
   color: #fff;
 }
 .loading-opacity {

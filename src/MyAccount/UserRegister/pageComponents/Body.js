@@ -40,6 +40,7 @@ function UpdateBody(props) {
     const signUp = (e)=>{
         e.preventDefault()
         // console.log('signup',value,typeof(value.phone));
+        setError({})
         const firstName = value.first_name
         const lastName = value.last_name
         if(firstName !== '' && lastName !==''){
@@ -71,20 +72,11 @@ function UpdateBody(props) {
                                             new_password:value.new_password,
                                         }
                                         props.registerUser(data)
-                                        props.registrationStatus === true && history.push('/dashboard')
-                                        // ==============
-                                        // API().post(`${Request.UserRegister}?mobile=${data.phone}&password=${data.new_password}&first_name=${data.first_name}&last_name=${data.last_name}`)
-                                        // .then(res=>{
-                                        //     console.log(res)
-                                        //     res.data.user_id && localStorage.setItem('user_id',JSON.stringify(res.data.user_id))
-                                        //     res.data.auth_token && localStorage.setItem('user_token',JSON.stringify(res.data.auth_token))
-                                        // }).then(data=>{
-                                        //     data.data.status === true && history.push('/dashboard')
-                                        // })
-                                        // .catch(err=>{
-                                        //     console.log(err)
-                                        // })
-                                        // ==============
+                                        if(!props.registrationStatus){
+                                            setError({registerError:props.registrationMsg})
+                                        }else{
+                                            history.push('/dashboard')
+                                        } 
 
                                     }
                             }
@@ -228,6 +220,7 @@ function UpdateBody(props) {
 
 const mapStateToProps = state=>({
     registrationStatus:state.Users.UserRegisterstatus,
+    registrationMsg:state.Users.userRegMsg,
 })
 const mapDispatchToProps = dispatch=>({
     registerUser:(user)=>dispatch(SignUpAction(user)),

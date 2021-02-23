@@ -1,8 +1,3 @@
-:root {
-  --theme-color: #4f0f40;
-  --light-color: #fff;
-}
-
 .container {
   width: 100vw !important;
   position: relative;

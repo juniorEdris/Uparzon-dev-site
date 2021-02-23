@@ -2,7 +2,7 @@
   .pro-nav
   .pro-nav-thumb
   img {
-  border: 1px solid #4f0f40 !important;
+  border: 1px solid var(--theme-color) !important;
 }
 .slick-slide.slick-current.slick-active.slick-center .pro-nav {
   /* display: flex !important; */

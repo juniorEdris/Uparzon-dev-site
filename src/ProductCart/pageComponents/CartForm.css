@@ -3,6 +3,33 @@
   border: 1px solid #dee2e6;
   border-bottom: none;
 }
+.vendor__name.left {
+  border: 0px solid #ddd;
+}
+small.minimum_order {
+  font-size: 13px;
+  /* color: indigo; */
+  font-weight: 600;
+}
+.vendor__name,
+.vendor__alt__text {
+  max-width: 29% !important;
+  border: 1px solid var(--theme-color);
+  padding: 13px 12px;
+  box-shadow: 0px 2px 3px var(--theme-color);
+}
+.vendor__name,
+.vendor__alt__text {
+  max-width: 29% !important;
+  border: 1px solid #ddd;
+  padding: 13px 12px;
+  border-radius: 7px;
+}
+.vendor__alt__text.left {
+  position: relative;
+  left: 54px;
+}
+
 .vendor__name a {
   font-weight: 500 !important;
   color: var(--theme-color);

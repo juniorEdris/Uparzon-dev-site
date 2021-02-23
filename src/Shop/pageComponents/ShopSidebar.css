@@ -1,8 +1,8 @@
 span.MuiSlider-thumb.MuiSlider-thumbColorPrimary {
-  color: rgb(79, 15, 64);
+  color: var(--theme-color);
   height: 12px;
   width: 12px;
 }
 .MuiSlider-root.MuiSlider-colorPrimary {
-  color: rgb(79, 15, 64);
+  color: var(--theme-color);
 }

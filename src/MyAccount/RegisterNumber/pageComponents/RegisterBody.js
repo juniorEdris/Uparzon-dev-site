@@ -17,7 +17,7 @@ function RegisterBody(props) {
     const [value, setValue] = useState({
         phone:'',
     })
-    const [error, setError] = useState({})
+    const [message, setMessage] = useState({})
 
     const handleChange = (e)=>{
         setValue({
@@ -28,41 +28,29 @@ function RegisterBody(props) {
 
     const signUp = (e)=>{
         e.preventDefault()
-        // let isValid;
-        if(value.phone !== ''){
-            if(!value.phone.length >= 12){
-                setError({message:'Phone number is incorrect.'})
-            }else{
-                    if(!value.phone){
-                        setError({message:'Invalid number'})
-                    }else{
-                        Axios.post(`${Request.RegisterNumber}?mobile=${value.phone}`)
-                        .then(res=>{
-                            console.log('phone register',res);
-                            props.registerNumber(value.phone)
-                            res.data.status === true && history.push('/onetimepassword')
-                        }).catch(err=>{
-                            console.log(err);
-                        })
+        setMessage({})
+        if(value.phone === ''){
+            setMessage({message:'input is empty'})
+        }else{
+            Axios.post(`${Request.RegisterNumber}?mobile=${value.phone}`)
+            .then(res=>{
+                console.log('phone register',res);
+                props.registerNumber(value.phone)
+                
+                if(res.data.status === true)
+                {
+                    history.push('/onetimepassword')
                 }
-            }
-            
+                else
+                {
+                    setMessage({inputError:res.data.message})
+                }
+
+            }).catch(err=>{
+                console.log(err);
+            })
     }
-    
-
-        // if (!pattern.test(input["phone"])) {
-
-        //     isValid = false;
-        
-        //     errors["phone"] = "Please enter only number.";
-        
-        //   }else if(input["phone"].length != 10){
-        
-        //     isValid = false;
-        
-        //     errors["phone"] = "Please enter valid phone number.";
-        
-        //   }
+            
     }
     return (
         <div>
@@ -92,8 +80,9 @@ function RegisterBody(props) {
                                 <div className="col-12">
                                     <input type="text" className="form-control" name="phone" id="inputnumber" value={value.phone}  onChange={handleChange} placeholder='Type your phone number'/>
                                 </div>
-                                <div className="text-danger">
-                                    {error.message}
+                                <div className="text-danger" style={{padding: '10px 20px'}}>
+                                    {message.inputError}
+                                    {message.message}
                                 </div>
                                 </div>
                                 <div className="register-box d-flex justify-content-end mt-20">

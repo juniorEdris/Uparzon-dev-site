@@ -42,22 +42,32 @@ function CartForm(props) {
         window.alert('reached min value')
     }
     
-
-
+    
+    
     return (
         <div className="">
             {props.basket.length>0 ?        
                 props.basket.map(prod=>(
-                <form action="#">
+                    <form action="#">
                 <div className="table-responsive mb-1">
                     <div className="col-12 d-flex flex-column flex-md-row justify-content-between align-items-center vendor__row">
-                        <div className="vendor__name">
-                           <h3>Shop:  <Link to='/shop'><span>{prod.shop_name}</span></Link></h3>
-                           {/* <p>Phone:  {prod.Vendor.phone || 'none'}</p>
-                           <p>Address:  {prod.Vendor.shop_address || 'none'}</p> */}
+                        <div className="vendor__name left col-6">
+                            <h2><Link to='/shop'><span>{prod.shop_name}</span></Link></h2>
+                            <small className='minimum_order'>Minimum 500tk product purchaseable from single Shop</small>
                         </div>
-                        <div className="vendor__alt__text">
-                            <small className='text-muted'>Minimum 500tk product purchaseable from single Shop</small>
+                        <div className="vendor__alt__text left col-6">
+                           <h3><Link to='/shop'><span>Inside {prod.district?prod.district:'none'}</span></Link></h3>
+                            <div>
+                                    <p>Delivery Charge:  {prod.vendor_delivery? prod.vendor_delivery.inside_deli_charge : 'none'}</p>
+                                    <p>Delivery Time:  {prod.vendor_delivery ?prod.vendor_delivery.inside_deli_time : 'none'}</p>
+                            </div>
+                        </div>
+                        <div className="vendor__alt__text right col-6">
+                           <h3><Link to='/shop'><span>Outside {prod.district?prod.district:'none'}</span></Link></h3>
+                            <div>
+                                    <p>Delivery Charge:  {prod.vendor_delivery ?prod.vendor_delivery.outside_deli_charge+'tk' : 'none'}</p>
+                                    <p>Delivery Time:  {prod.vendor_delivery ?prod.vendor_delivery.outside_deli_time : 'none'}</p>
+                            </div>
                         </div>
                     </div>
                 <table className="table table-bordered">

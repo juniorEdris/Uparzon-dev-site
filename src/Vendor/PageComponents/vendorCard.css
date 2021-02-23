@@ -31,7 +31,7 @@
   line-height: 24px;
 }
 .vendor__btn .btn {
-  border: 1px solid #4f0f40 !important;
+  border: 1px solid var(--theme-color) !important;
   background-color: #fff !important;
   color: #111;
   font-weight: 600;
@@ -39,6 +39,6 @@
 }
 .vendor__btn .btn:hover {
   border: 1px solid #111 !important;
-  background-color: #4f0f40 !important;
+  background-color: var(--theme-color) !important;
   color: #fff;
 }

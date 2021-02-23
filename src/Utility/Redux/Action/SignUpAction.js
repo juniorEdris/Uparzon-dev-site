@@ -1,3 +1,8 @@
+/* 
+
+    CONNECTED TO USERREDUCER.JS FILE
+
+*/
 import { API, Request } from "../../../PrimarySections/Connections/APILink"
 import { SIGN_UP_ERROR, SIGN_UP_REQUEST, SIGN_UP_SUCCESS, USER_REGISTER_SUCCESS } from "../Types"
 
@@ -8,6 +13,7 @@ const SignupSuccess=(res)=>(
     {
         type: USER_REGISTER_SUCCESS,
         status:res.status,
+        message:res.message
     }
 )
 const SignupError=(err)=>(
