@@ -1,6 +1,6 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
-import { getSubTotal } from '../../Utility/Reducer';
+import { getSubTotal } from '../../PrimarySections/Essentials/AllFunctions';
 import CartAccordion from './CartAccordion';
 import CartForm from './CartForm';
 import {currToFixed} from '../../PrimarySections/Essentials/CurrencyFormat'
@@ -8,6 +8,7 @@ import { connect } from 'react-redux';
 import Saparate  from './Saparate';
 
 function CartBody(props) {
+
     return (
         <div>
             {/* Start cart Wrapper */}
@@ -64,6 +65,8 @@ const mapStateToProps = state => (
     {
         basket:state.basketProd.basket,
         user:state.Users.user,
+        loading:state.cart.loading,
+        cart:state.cart.cartProducts,
     }
 )
 

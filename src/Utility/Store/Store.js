@@ -2,6 +2,7 @@ import {createStore,applyMiddleware ,combineReducers,compose} from 'redux'
 import thunk from 'redux-thunk'
 import { AvailableNumberReducer } from '../Redux/Reducer/AvailableNumberReducer';
 import { AddBasketReducer } from '../Redux/Reducer/BasketReducer';
+import { CartCheckReducer } from '../Redux/Reducer/CartProductCheck';
 import { CategoriesReducer } from '../Redux/Reducer/CategoriesReducer';
 import { childCategoryReducer } from '../Redux/Reducer/ChildCategoryReducer';
 import { AddCompareReducer } from '../Redux/Reducer/CompareReducer';
@@ -59,6 +60,7 @@ export const initialState={
     OTPConfirmedstatus:'',
     UserRegisterstatus:false,
     DashBoardData:[],
+    cartProducts:[],
 }
 
 const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
@@ -85,6 +87,7 @@ const store = createStore(
         AvailableNumber: AvailableNumberReducer,
         OTPReducer: OTPReducer,
         Dashboard: DashboardReducer,
+        cart: CartCheckReducer,
     }),
     initialState,
     composeEnhancers(applyMiddleware(thunk))

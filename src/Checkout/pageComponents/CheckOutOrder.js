@@ -3,7 +3,7 @@ import React from 'react'
 import { connect } from 'react-redux'
 import { Link } from 'react-router-dom'
 import { API } from '../../PrimarySections/Connections/APILink'
-import { getSubTotal } from '../../Utility/Reducer'
+import { getSubTotal } from '../../PrimarySections/Essentials/AllFunctions'
 
 
 function CheckOutOrder(props) {

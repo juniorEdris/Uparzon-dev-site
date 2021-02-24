@@ -8,7 +8,7 @@ import ModalSection from '../../PrimarySections/Modal/ModalSection';
 import Product from './Subfolder/Product';
 import { ProductLoader } from '../../PrimarySections/ReactPlaceHolder/ReactPlaceHolder';
 import {connect} from 'react-redux'
-import MoreBtn from '../../PrimarySections/Essentials/MoreBtn';
+import MoreBtn from '../../PrimarySections/Essentials/AllFunctions';
 import { Link } from 'react-router-dom';
 
 function BrandArea(props) {

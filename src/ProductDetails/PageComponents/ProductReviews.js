@@ -21,7 +21,7 @@ function ProductReviews(props) {
           </ul>
           <div className="tab-content">
             <div className="tab-pane fade show active" id="tab_description" role="tabpanel" aria-labelledby="nav_desctiption">
-              {renderHTML(props.details.details)}
+              {renderHTML(props.details?.details)}
             </div>
             <div className="tab-pane fade" id="tab_review" role="tabpanel" aria-labelledby="nav_review">
               <div className="product-review">

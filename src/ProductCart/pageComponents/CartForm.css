@@ -40,3 +40,7 @@ small.minimum_order {
 .vendor__name span:hover {
   color: #111;
 }
+.disabled {
+  pointer-events: none;
+  opacity: 0.4;
+}

@@ -1,16 +1,14 @@
 import React,{useState} from 'react'
 import { connect } from 'react-redux'
 import { Link, useHistory } from 'react-router-dom'
-import { getSubTotal } from '../../Utility/Reducer'
+import { getSubTotal } from '../Essentials/AllFunctions'
 // import { RemoveSingleBasketProd } from '../../Utility/Redux/Action/BasketAction'
-import { RemoveSingleBasketProd } from '../../Utility/Redux/Action/BasketAction'
+import { RemoveSingleHeaderProd } from '../../Utility/Redux/Action/BasketAction'
 import { LogoutAction } from '../../Utility/Redux/Action/LogoutActions'
 import { currToFixed } from '../Essentials/CurrencyFormat'
 import './HeaderButton.css'
 
 function HeaderButtons(props) {
-
-    const history = useHistory()
     //mycart menu dropdown
     const [isCartActive, setCartActive] = useState(false)
     const showCart = (e)=>{
@@ -56,7 +54,7 @@ function HeaderButtons(props) {
                                 </div>
                                 <div className="cart-info">
                                         <h4><Link to={`/productdetails?id=${prod.id}`}>{prod.name} </Link></h4>
-                                        <span> <span>{`${prod.count} x` }</span>&#2547; {currToFixed(prod.price)}</span>
+                                        <span> <span>{`${prod.quantity} x` }</span>&#2547; {currToFixed(prod.price)}</span>
                                 </div>
                                 <div className="del-icon">
                                         <i className="fa fa-times-circle" onClick={()=> props.removefromBasket(prod) }/>
@@ -121,7 +119,7 @@ const mapStateToProps = state=>(
     }
 )
 const mapDistpatchToProps = dispatch => ({
-    removefromBasket:(prod)=>dispatch(RemoveSingleBasketProd(prod)),
+    removefromBasket:(prod)=>dispatch(RemoveSingleHeaderProd(prod)),
     logOut:()=>dispatch(LogoutAction())
 })
 export default connect(mapStateToProps,mapDistpatchToProps)(HeaderButtons)

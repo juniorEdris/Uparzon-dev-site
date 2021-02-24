@@ -2,7 +2,7 @@
 
 import React from 'react'
 import { Link } from 'react-router-dom';
-import {  Truncate } from '../../../Data';
+import {  Truncate } from '../../../PrimarySections/Essentials/AllFunctions';
 import './product.css'
 import { connect } from 'react-redux';
 import {AddBasketProd} from '../../../Utility/Redux/Action/BasketAction'

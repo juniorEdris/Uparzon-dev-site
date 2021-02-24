@@ -19,13 +19,16 @@ export const AddBasketProd = (product) => (dispatch,getState) => {
     const cartItems = getState().basketProd.basket.slice()
     let exist=false;
         cartItems.forEach(x => {
+            if(x.quantity === product.stock){
+                return
+            }
             if (x.id===product.id) {
                 exist = true
-                x.count++
+                x.quantity++
             }
         });
     if (!exist) {
-            cartItems.push({...product,count:1})
+            cartItems.push({...product,quantity:1})
         }
         dispatch(addProdBasket(cartItems))
         localStorage.setItem('Cart List', JSON.stringify(cartItems))
@@ -38,13 +41,29 @@ export const RemoveBasketProd = (product) => (dispatch,getState) => {
     localStorage.setItem('Cart List', JSON.stringify(cartItems))
 }
 export const RemoveSingleBasketProd = (product) => (dispatch,getState) => {
-
+    console.log('removesingleproduct', product);
     let cartItems = getState().basketProd.basket.slice()
     let exist=false;
     cartItems.forEach(x => {
-        if (x.id===product.id && product.count > 1) {
+        if (x.id===product.products.id && product.quantity > 1) {
             exist = true
-            x.count--
+            x.quantity--
+        }
+    });
+    if (!exist) {
+        cartItems = getState().basketProd.basket.slice().filter(x =>x.id !== product.products.id)
+    }
+    dispatch( removeProdBasket(cartItems) )
+    localStorage.setItem('Cart List', JSON.stringify(cartItems))
+}
+export const RemoveSingleHeaderProd = (product) => (dispatch,getState) => {
+    console.log('removesingleproduct header');
+    let cartItems = getState().basketProd.basket.slice()
+    let exist=false;
+    cartItems.forEach(x => {
+        if (x.id===product.id && product.quantity > 1) {
+            exist = true
+            x.quantity--
         }
     });
     if (!exist) {

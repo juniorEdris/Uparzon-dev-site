@@ -1,7 +1,7 @@
 import Axios from "axios";
 import { DOMAIN } from "./WebDomain";
    
-
+const API_KEY = `4e38d8be3269aa17280d0468b89caa4c7d39a699`
 let BaseApi =  Axios.create({
     baseURL:DOMAIN,
 })
@@ -39,4 +39,5 @@ export const Request ={
     UserRegister:`https://demopartner.uparzon.com/api/partner/store/register`,
     Dashboard:`api/uparzonweb/get_userdetails`,
     PlaceOrder:`api/uparzonapp/make_order`,
+    CartAPI:`https://demostore.uparzon.com/api/uparzonweb/cart_update?api_key=${API_KEY}&`
 } 

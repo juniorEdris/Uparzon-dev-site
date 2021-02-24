@@ -1,7 +1,7 @@
 import React,{useEffect} from 'react'
 import './ShopListBody.css'
 import { Link } from 'react-router-dom'
-import { Truncate } from '../../../Data'
+import { Truncate } from '../../../PrimarySections/Essentials/AllFunctions'
 import { StoreLoader } from '../../../PrimarySections/ReactPlaceHolder/ReactPlaceHolder'
 import { connect } from 'react-redux'
 

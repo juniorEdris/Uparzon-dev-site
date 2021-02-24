@@ -1,7 +1,7 @@
 // Laptop & Computer,Headphones & Accessories,Business & Office product component
 import React from 'react'
 import { Link } from 'react-router-dom'
-import { Truncate } from '../../../Data'
+import { Truncate } from '../../../PrimarySections/Essentials/AllFunctions'
 import { currToFixed } from '../../../PrimarySections/Essentials/CurrencyFormat'
 
 export default function Card(props) {
