@@ -44,7 +44,7 @@ function CartBody(props) {
                             </div>
                             </div>
                             <div className="cart-button-wrapper d-flex justify-content-between mt-4">
-                            <Link to="/shop" className="btn btn-secondary">Continue Shopping</Link>
+                            <Link to="/shop" onClick className="btn btn-secondary">Continue Shopping</Link>
                             <Link to={!props.user ? "#": "/checkout"} className="btn btn-secondary dark align-self-end" data-target={!props.user && "#login_modal"} data-toggle={!props.user && "modal"}>Checkout</Link>
                             </div>
                         </div>
@@ -67,6 +67,7 @@ const mapStateToProps = state => (
         user:state.Users.user,
         loading:state.cart.loading,
         cart:state.cart.cartProducts,
+        finalCart:state.FinalCart.finalCart,
     }
 )
 

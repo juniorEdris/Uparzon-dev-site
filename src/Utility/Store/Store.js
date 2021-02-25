@@ -7,6 +7,7 @@ import { CategoriesReducer } from '../Redux/Reducer/CategoriesReducer';
 import { childCategoryReducer } from '../Redux/Reducer/ChildCategoryReducer';
 import { AddCompareReducer } from '../Redux/Reducer/CompareReducer';
 import { DashboardReducer } from '../Redux/Reducer/DashboardReducer';
+import { FinalCartReducer } from '../Redux/Reducer/FinalCartProductReducer';
 import { HomeReducer } from '../Redux/Reducer/HomeReducer'
 import { OTPReducer } from '../Redux/Reducer/OTPReducer';
 import { ProdSuggestionReducer } from '../Redux/Reducer/ProdSuggestionReducer';
@@ -61,6 +62,7 @@ export const initialState={
     UserRegisterstatus:false,
     DashBoardData:[],
     cartProducts:[],
+    finalCart:[],
 }
 
 const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
@@ -88,6 +90,7 @@ const store = createStore(
         OTPReducer: OTPReducer,
         Dashboard: DashboardReducer,
         cart: CartCheckReducer,
+        FinalCart: FinalCartReducer,
     }),
     initialState,
     composeEnhancers(applyMiddleware(thunk))

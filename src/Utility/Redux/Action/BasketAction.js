@@ -57,7 +57,6 @@ export const RemoveSingleBasketProd = (product) => (dispatch,getState) => {
     localStorage.setItem('Cart List', JSON.stringify(cartItems))
 }
 export const RemoveSingleHeaderProd = (product) => (dispatch,getState) => {
-    console.log('removesingleproduct header');
     let cartItems = getState().basketProd.basket.slice()
     let exist=false;
     cartItems.forEach(x => {

@@ -11,19 +11,11 @@ export default function CheckOutForm() {
         <form action="#">
             <div className="form-row mb-3">
             <div className="form-group col-12 col-sm-12 col-md-6">
-                <label htmlFor="first_name">First Name <span className="text-danger">*</span></label>
+                <label htmlFor="first_name">Full Name <span className="text-danger">*</span></label>
                 <input type="text" className="form-control" id="first_name" required />
-            </div>
-            <div className="form-group col-12 col-sm-12 col-md-6">
-                <label htmlFor="last_name">Last Name <span className="text-danger">*</span></label>
-                <input type="text" className="form-control" id="last_name" required />
             </div>
             </div>
             <div className="form-row mb-3">
-            <div className="form-group col-12 col-sm-12 col-md-6">
-                <label htmlFor="company_name">Company</label>
-                <input type="text" className="form-control" id="company_name" />
-            </div>
             <div className="form-group col-12 col-sm-12 col-md-6">
                 <label htmlFor="email_address">Email Address <span className="text-danger">*</span></label>
                 <input type="email" className="form-control" id="email_address" required />

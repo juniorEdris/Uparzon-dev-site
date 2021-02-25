@@ -44,3 +44,23 @@ small.minimum_order {
   pointer-events: none;
   opacity: 0.4;
 }
+.cart_loader {
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.cart_loader {
+  animation: pulse 0.6s ease infinite alternate;
+}
+
+@keyframes pulse {
+  from {
+    opacity: 0.4;
+  }
+
+  to {
+    opacity: 1;
+  }
+}

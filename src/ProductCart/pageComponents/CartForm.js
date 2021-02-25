@@ -5,17 +5,13 @@ import { connect } from 'react-redux';
 import { AddBasketProd, RemoveBasketProd, RemoveSingleBasketProd } from '../../Utility/Redux/Action/BasketAction';
 import {currToFixed} from '../../PrimarySections/Essentials/CurrencyFormat'
 import Saparate  from './Saparate';
-import {API, Request}  from '../../PrimarySections/Connections/APILink';
 import { Truncate } from '../../PrimarySections/Essentials/AllFunctions';
 import { CartProdCheckAction } from '../../Utility/Redux/Action/CartProductCheck';
-import { useCallback } from 'react';
+import { AddFinalProd, RemoveFinalProd } from '../../Utility/Redux/Action/FinalCartProduct';
 
 
 function CartForm(props) {
-    const [count,setCount] = useState(1)
-    const [loading,setLoading] = useState(true)
-    const [data,setData] = useState([])
-
+    
     useEffect(() => {
         let cartProductsId = []
         let cartProductsCount = []
@@ -25,21 +21,33 @@ function CartForm(props) {
         })
         props.cartCheck(cartProductsId,cartProductsCount)
     }, [props.basket])
-
-    const incCount = useCallback(
-        (prod)=>{
+    
+    console.log('finalCart',props.finalCart);
+    const incCount = (prod)=>{
         props.addToBasket(prod)
         console.log('increament',prod)
-    },
-        [props.basKet],
-      );
+    }
     const decCount = (prod)=>{
         props.removesinglefromBasket(prod)
         console.log('decreament',prod)
     }
+    const checkoutProd=(e,prod)=>{
+        const hasAttr = e.target.hasAttribute("data-active")
+        hasAttr ?e.target.removeAttribute("data-active"): e.target.setAttribute("data-active",true)
+        const DataAttr = e.target.hasAttribute("data-active")
+        if(DataAttr){
+            props.finalProdCheck(prod);
+        }else if(!DataAttr){
+            props.finalProdCheckRemove(prod);
+        }
+    }
     return (
         <div className="">
-            {props.loading ? 'loading' :props.cart?.length>0 ?        
+            {props.loading ?
+            <div className="cart_loader">
+                    <div><h1><img src="./assets/img/uparzon_placeholder.jpg" alt=""/></h1></div>
+            </div>
+            :props.cart?.length>0 ?        
                 props.cart?.map(prod=>(
                     <form action="#">
                 <div className="table-responsive mb-1">
@@ -66,6 +74,7 @@ function CartForm(props) {
                 <table className="table table-bordered">
                     <thead>
                         <tr>
+                        <td>Select</td>
                         <td>Image</td>
                         <td>Product Name</td>
                         <td>Model</td>
@@ -77,13 +86,16 @@ function CartForm(props) {
                     <tbody>
                         <tr>
                             <td>
+                                <div><input type='checkbox'  className='cart-select' name="cart-select" onChange={(e)=>checkoutProd(e,prod)}/></div>
+                            </td>
+                            <td>
                                 <Link to={`/productdetails?id=${prod.products.id}`}><img src={`https:${prod.products.photo}`} alt={prod.products.name} title={prod.products.name} className="img-thumbnail" /></Link>
                             </td>
                             <td>
                                 <Link to={`/productdetails?id=${prod.products.id}`} title={prod.products.name}>{Truncate(prod.products.name,40)}</Link>
                                 {/* <span>Delivery Date: 2019-09-22</span>
                                 <span>Color: Brown</span>
-                                <span>Reward Points: 300</span> */}
+                            <span>Reward Points: 300</span> */}
                             </td>
                             <td>3</td>
                             <td>
@@ -128,7 +140,9 @@ const mapDispatchToProps = dispatch => (
         addToBasket:(prod)=>dispatch(AddBasketProd(prod)),
         removefromBasket:(prod)=>dispatch(RemoveBasketProd(prod)),
         removesinglefromBasket:(prod)=>dispatch(RemoveSingleBasketProd(prod)),
-        cartCheck:(cartProductsId,cartProductsCount)=>dispatch(CartProdCheckAction(cartProductsId,cartProductsCount))
+        cartCheck:(cartProductsId,cartProductsCount)=>dispatch(CartProdCheckAction(cartProductsId,cartProductsCount)),
+        finalProdCheck:(product)=>dispatch(AddFinalProd(product)),
+        finalProdCheckRemove:(product)=>dispatch(RemoveFinalProd(product)),
     }
 )
 

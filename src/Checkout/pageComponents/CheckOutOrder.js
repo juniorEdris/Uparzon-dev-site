@@ -3,7 +3,9 @@ import React from 'react'
 import { connect } from 'react-redux'
 import { Link } from 'react-router-dom'
 import { API } from '../../PrimarySections/Connections/APILink'
-import { getSubTotal } from '../../PrimarySections/Essentials/AllFunctions'
+import { getSubTotal, Truncate } from '../../PrimarySections/Essentials/AllFunctions'
+import { RemoveFinalProd } from '../../Utility/Redux/Action/FinalCartProduct'
+import './CheckOut.css'
 
 
 function CheckOutOrder(props) {
@@ -56,26 +58,27 @@ function CheckOutOrder(props) {
         </div>
         <div className="product-container">
             {
-                props.basket.length>0 ? 
+                props.finalCart.length>0 ? 
             
-            props.basket?.map(product =>(
+            props.finalCart?.map(product =>(
             <div className="product-list">
-                <div className="product-inner media align-items-center" id={product.id}>
+                <div className="product-inner media align-items-center" id={product.products.id}>
                     <div className="product-image mr-4 mr-sm-5 mr-md-4 mr-lg-5">
-                    <Link to={`/productdetails?id=${product.id}`}>
-                        <img style={{height:'120px',width:'120px',objectFit:'contain'}} src={`https:${product.photo.replace('demostore', 'store')}`} alt={product.name} title={product.name} />
+                    <Link to={`/productdetails?id=${product.products.id}`}>
+                        <img style={{height:'120px',width:'120px',objectFit:'contain'}} src={`https:${product.products.photo}`} alt={product.products.name} title={product.products.name} />
                     </Link>
                     </div>
                     <div className="media-body">
-                    <h5>{product.name}</h5>
-                    <p className="product-quantity">Qty: {product.count}</p>
-                    <p className="product-final-price">&#2547; {product.vendor_delivery? product.price + product.vendor_delivery.inside_deli_charge : product.price}</p>
+                    <h5>{Truncate(product.products.name,35)}</h5>
+                    <p className="product-quantity">Qty: {product.quantity}</p>
+                    <p className="product-final-price">&#2547; { product.products.price }</p>
                     {/* <p className="product-final-price">&#2547; {product.price}</p> */}
                     </div>
+                    <div className='checkout_x' onClick={()=>props.finalProdCheckRemove(product)}><span class="lnr lnr-cross"></span></div>
                 </div>
             </div>))
         
-        : <div className='choose_product' ><Link to='/' className="btn">Choose Product</Link></div>
+        : <div className='choose_product' ><Link to='/cart' className="btn">Choose Product</Link></div>
 
         }
         </div> {/* end of product-container */}
@@ -143,7 +146,12 @@ function CheckOutOrder(props) {
     )
 }
 
-
-export default connect(state=>({
+const mapStateToProps = state=>({
     basket:state.basketProd.basket,
-}))(CheckOutOrder)
+    finalCart:state.FinalCart.finalCart,
+    
+}) 
+const mapDispatchToProps=dispatch=>({
+    finalProdCheckRemove:(product)=>dispatch(RemoveFinalProd(product)),
+})
+export default connect(mapStateToProps,mapDispatchToProps)(CheckOutOrder)

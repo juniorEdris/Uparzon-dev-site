@@ -1,0 +1,9 @@
+.checkout_x {
+  margin-left: 10px;
+  cursor: pointer;
+}
+
+.checkout_x span {
+  font-size: 1rem;
+  font-weight: bold;
+}
