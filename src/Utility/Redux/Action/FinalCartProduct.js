@@ -21,8 +21,13 @@ export const AddFinalProd = (product) => (dispatch,getState) => {
     }
     dispatch(FinalCart(finalProd))
 }
-export const RemoveFinalProd = (product) => (dispatch,getState) => {
-    const finalProd = getState().FinalCart.finalCart.slice()
-    const final = finalProd.filter(x=>x.products.id !== product.products.id)
+export const RemoveFinalProd = (product) => (dispatch, getState) => {
+    let final
+    if (!product) {
+        final = []
+    } else {
+        const finalProd = getState().FinalCart.finalCart.slice()
+        final = finalProd.filter(x=>x.products.id !== product.products.id)
+    }
     dispatch(FinalCart(final))
 }
