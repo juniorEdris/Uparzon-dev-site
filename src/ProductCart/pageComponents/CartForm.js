@@ -21,6 +21,10 @@ function CartForm(props) {
         })
         props.cartCheck(cartProductsId,cartProductsCount)
     }, [props.basket])
+
+    useEffect(() => {
+        props.finalProdCheckRemove();
+    }, [])
     
     console.log('finalCart',props.finalCart);
     const incCount = (prod)=>{
@@ -131,7 +135,8 @@ const mapStateToProps = state => (
     {
         basket:state.basketProd.basket,
         loading:state.cart.loading,
-        cart:state.cart.cartProducts,
+        cart: state.cart.cartProducts,
+        finalCart:state.FinalCart.finalCart,
     }
 )
 

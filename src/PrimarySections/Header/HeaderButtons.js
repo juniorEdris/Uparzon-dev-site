@@ -2,7 +2,6 @@ import React,{useState} from 'react'
 import { connect } from 'react-redux'
 import { Link, useHistory } from 'react-router-dom'
 import { getSubTotal } from '../Essentials/AllFunctions'
-// import { RemoveSingleBasketProd } from '../../Utility/Redux/Action/BasketAction'
 import { RemoveSingleHeaderProd } from '../../Utility/Redux/Action/BasketAction'
 import { LogoutAction } from '../../Utility/Redux/Action/LogoutActions'
 import { currToFixed } from '../Essentials/CurrencyFormat'
@@ -29,7 +28,6 @@ function HeaderButtons(props) {
     const get_total = getSubTotal(props.basket) + eco_tax + vat_amount
     const logout = ()=>{
         props.logOut()
-        // history.push('/')
     }
     return (
         <div className="col-lg-4 col-md-8 col-12 col-sm-8 order-lg-last">

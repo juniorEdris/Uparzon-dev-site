@@ -1,6 +1,6 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
-import { getSubTotal } from '../../PrimarySections/Essentials/AllFunctions';
+import { getActiveCartProdTotal, getfinalSubTotal, getSubTotal } from '../../PrimarySections/Essentials/AllFunctions';
 import CartAccordion from './CartAccordion';
 import CartForm from './CartForm';
 import {currToFixed} from '../../PrimarySections/Essentials/CurrencyFormat'
@@ -32,11 +32,11 @@ function CartBody(props) {
                                     <tbody>
                                     <tr>
                                         <td><strong>Sub-Total:</strong></td>
-                                        <td>&#2547; {currToFixed(getSubTotal(props.basket))}</td>
+                                        <td>&#2547; {currToFixed(getfinalSubTotal(props.cart))}</td>
                                     </tr>
                                     <tr>
                                         <td><strong>Total:</strong></td>
-                                        <td><span className="color-primary">&#2547; {currToFixed(getSubTotal(props.basket))}</span></td>
+                                        <td><span className="color-primary">&#2547; {currToFixed(getActiveCartProdTotal(props.cart))}</span></td>
                                     </tr>
                                     </tbody>
                                 </table>

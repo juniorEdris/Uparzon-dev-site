@@ -6,7 +6,6 @@ import './HomeSlider.css'
 import { connect } from 'react-redux';
 
 function HomeSlider(props) {
-    console.log('slider home',props.banners?.map(x=>x.image));
     return (
         <div className='home_slider'>
           <OwlCarousel 

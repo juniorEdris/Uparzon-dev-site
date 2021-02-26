@@ -64,7 +64,7 @@ function Product(props) {
                 {product.previous_price && <span className="old-price"><del>&#2547;{currToFixed(product.previous_price)}</del></span>}
             </div>
             {/* <button className="btn-cart" type="button" onClick={(e)=> {props.addToBasket(product); props.cartAnimation('basket');}} data-target="#cart_modal" data-toggle="modal">add to cart</button> */}
-            <Link to={`/productdetails?id=${product.id}`} className="btn-cart" type="button">Product details</Link>
+            <Link to={`/productdetails?id=${product.id}`} className="btn-cart" type="button">Shop now</Link>
             <div className="action-links sinrat-list-icon">
                 <Link to='#' title="Wishlist" onClick={()=> {props.addToWish(product); props.cartAnimation('wish list');}}><i className="lnr lnr-heart" /></Link>
                 <Link to='#' title="Compare" onClick={()=>{props.addToCompare(product); props.cartAnimation('product compare');}}><i className="lnr lnr-sync" /></Link>
@@ -118,7 +118,7 @@ function Product(props) {
                       { product.previous_price && <span className="old-price"><del>&#2547;{product.previous_price.toFixed(2)}</del></span>}
                     </div>
                     {/* <button className="btn-cart" onClick={(e)=> {props.addToBasket(product); props.cartAnimation('basket');}} type="button">add to cart</button> */}
-                    <Link to={`/productdetails?id=${product.id}`} className="btn-cart" type="button">Product details</Link>
+                    <Link to={`/productdetails?id=${product.id}`} className="btn-cart" type="button">Shop now</Link>
                   </div>
                 
                 </div>
