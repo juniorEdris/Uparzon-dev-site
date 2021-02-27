@@ -1,6 +1,6 @@
 import Axios from 'axios';
 import React,{useState} from 'react'
-import { useForm } from "react-hook-form";
+// import { useForm } from "react-hook-form";
 import { connect } from 'react-redux'
 import { Link, useHistory } from 'react-router-dom'
 import { SignUpAction } from '../../../Utility/Redux/Action/SignUpAction'
@@ -11,7 +11,7 @@ function RegisterBody(props) {
     
     const history = useHistory()
     
-    const { register, handleSubmit } = useForm()
+    // const { register, handleSubmit } = useForm()
     const numberPattern = new RegExp(/^[0-9\b]+$/)
 
     const [value, setValue] = useState({

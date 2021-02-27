@@ -1,6 +1,6 @@
 import React,{useEffect} from 'react';
 import {
-  HashRouter as Router,
+  BrowserRouter as Router,
   Switch,
   Route,
   Redirect,
@@ -42,12 +42,10 @@ function App(props) {
     
   return ( 
     <div className="app">
-      <Router>
+      <Router basename='/store'>
             <Header/>
         <Switch>
-          <Route exact path='/'>
-            <Home/>
-          </Route>
+          
           <Route path='/shop-list'>
             <ShopList/>
           </Route>
@@ -96,8 +94,8 @@ function App(props) {
           <Route path='/login'>
           {!props.user ? <Login/> : <Redirect to="/dashboard" />}  
           </Route>
-          <Route exact path='*'>
-            <h1>No Pages Found : ERROR 404</h1>
+          <Route path='/'>
+            <Home/>
           </Route>
         </Switch>
             <Footer/>

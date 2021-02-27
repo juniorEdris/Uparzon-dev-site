@@ -1,3 +1,20 @@
+// Add the following to .htaccess file in the public folder
+// NOTE: This is for Apache servers!
+
+<IfModule mod_rewrite.c>
+  RewriteEngine On
+  RewriteBase /
+  RewriteRule ^index\.html$ - [L]
+  RewriteCond %{REQUEST_FILENAME} !-f
+  RewriteCond %{REQUEST_FILENAME} !-d
+  RewriteCond %{REQUEST_FILENAME} !-l
+  RewriteRule . /index.html [L]
+</IfModule>
+
+https://stackoverflow.com/questions/56825690/route-returning-404-on-apache-server-on-all-routes-except
+
+https://www.andreasreiterer.at/fix-browserrouter-on-apache/
+
 UI Colors >
 
 border: #f0f0f0

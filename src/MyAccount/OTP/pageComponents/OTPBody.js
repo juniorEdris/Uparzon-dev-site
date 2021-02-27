@@ -1,6 +1,6 @@
 import Axios from 'axios';
 import React,{useState} from 'react'
-import { useForm } from "react-hook-form";
+// import { useForm } from "react-hook-form";
 import { connect } from 'react-redux'
 import { Link, useHistory } from 'react-router-dom'
 import { Request } from '../../../PrimarySections/Connections/APILink'
@@ -10,7 +10,7 @@ import './otp.css'
 
 function RegisterBody(props) {
 
-    const { register, handleSubmit } = useForm()
+    // const { register, handleSubmit } = useForm()
     const [error, setError] = useState({})
     const [value, setValue] = useState({
         oneTimePass:'',

@@ -1,5 +1,5 @@
 import React,{useState} from 'react'
-import { useForm } from "react-hook-form";
+// import { useForm } from "react-hook-form";
 import { connect } from 'react-redux'
 import { Link, useHistory } from 'react-router-dom'
 import { API,Request } from '../../../PrimarySections/Connections/APILink';
@@ -7,7 +7,7 @@ import { SignUpAction } from '../../../Utility/Redux/Action/SignUpAction'
 
 function UpdateBody(props) {
 
-    const { register, handleSubmit } = useForm()
+    // const { register, handleSubmit } = useForm()
     const alphabetPattern = /^[A-Za-z]+$/i
     const numberPattern = new RegExp(/^[0-9\b]+$/)
     const [showNewPass, setShowNewPass] = useState(false)
@@ -109,7 +109,7 @@ function UpdateBody(props) {
                         <div className="row">
                         <div className="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-8 offset-xl-2">
                             <div className="registration-form login-form">
-                            <form action="#" onSubmit={handleSubmit(signUp)}>
+                            <form action="#" onSubmit={signUp}>
                                 <div className="login-info mb-20 text-center">
                                 <p>Already have an account? <Link to="/login">Log in instead!</Link></p>
                                 </div>
