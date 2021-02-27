@@ -26,14 +26,11 @@ function CartForm(props) {
         props.finalProdCheckRemove();
     }, [])
     
-    console.log('finalCart',props.finalCart);
     const incCount = (prod)=>{
         props.addToBasket(prod)
-        console.log('increament',prod)
     }
     const decCount = (prod)=>{
         props.removesinglefromBasket(prod)
-        console.log('decreament',prod)
     }
     const checkoutProd=(e,prod)=>{
         const hasAttr = e.target.hasAttribute("data-active")

@@ -31,13 +31,13 @@ function CartBody(props) {
                                 <table className="table table-bordered">
                                     <tbody>
                                     <tr>
-                                        <td><strong>Sub-Total:</strong></td>
+                                        <td><strong>Total:</strong></td>
                                         <td>&#2547; {currToFixed(getfinalSubTotal(props.cart))}</td>
                                     </tr>
-                                    <tr>
+                                    {/* <tr>
                                         <td><strong>Total:</strong></td>
                                         <td><span className="color-primary">&#2547; {currToFixed(getActiveCartProdTotal(props.cart))}</span></td>
-                                    </tr>
+                                    </tr> */}
                                     </tbody>
                                 </table>
                                 </div>

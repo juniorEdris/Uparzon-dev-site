@@ -39,5 +39,6 @@ export const Request ={
     UserRegister:`https://demopartner.uparzon.com/api/partner/store/register`,
     Dashboard:`api/uparzonweb/get_userdetails`,
     PlaceOrder:`api/uparzonapp/make_order`,
-    CartAPI:`api/uparzonweb/cart_update?api_key=${API_KEY}&`
+    CartAPI:`api/uparzonweb/cart_update?api_key=${API_KEY}&`,
+    CityFetch:`https://demostore.uparzon.com/api/uparzonweb/get_districts?api_key=${API_KEY}`,
 } 

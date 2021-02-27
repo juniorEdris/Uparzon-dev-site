@@ -1,5 +1,6 @@
 import {createStore,applyMiddleware ,combineReducers,compose} from 'redux'
 import thunk from 'redux-thunk'
+import { AllCitiesReducer } from '../Redux/Reducer/AllCitiesReducer';
 import { AvailableNumberReducer } from '../Redux/Reducer/AvailableNumberReducer';
 import { AddBasketReducer } from '../Redux/Reducer/BasketReducer';
 import { CartCheckReducer } from '../Redux/Reducer/CartProductCheck';
@@ -63,6 +64,9 @@ export const initialState={
     DashBoardData:[],
     cartProducts:[],
     finalCart:[],
+    allDistricts:[],
+    allThana:[],
+    allUnion:[],
 }
 
 const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
@@ -91,6 +95,7 @@ const store = createStore(
         Dashboard: DashboardReducer,
         cart: CartCheckReducer,
         FinalCart: FinalCartReducer,
+        allCities: AllCitiesReducer,
     }),
     initialState,
     composeEnhancers(applyMiddleware(thunk))

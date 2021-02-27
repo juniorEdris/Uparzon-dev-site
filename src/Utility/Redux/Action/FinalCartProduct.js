@@ -31,3 +31,4 @@ export const RemoveFinalProd = (product) => (dispatch, getState) => {
     }
     dispatch(FinalCart(final))
 }
+

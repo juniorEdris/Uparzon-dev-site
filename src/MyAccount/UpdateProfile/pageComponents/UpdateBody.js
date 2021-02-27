@@ -72,7 +72,7 @@ function UpdateBody(props) {
                                     <div className="form-row">
                                     <div className="col-6 col-sm-3">
                                         <div className="custom-radio">
-                                        <input className="form-check-input" type="radio" name="gender" value='male' id="male" onChange={handleChange}/>{/*e=>setGender('male') */}
+                                        <input className="form-check-input" type="radio" name="gender" value='male' id="male" onChange={handleChange}/>
                                         <span className="checkmark" />
                                         <label className="form-check-label" htmlFor="male">Mr.</label>
                                         </div>

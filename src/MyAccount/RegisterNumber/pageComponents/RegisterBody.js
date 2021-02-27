@@ -39,7 +39,8 @@ function RegisterBody(props) {
                 
                 if(res.data.status === true)
                 {
-                    history.push('/onetimepassword')
+                    setMessage({otp:res.data.otp})
+                    history.push(`/onetimepassword`)
                 }
                 else
                 {
@@ -83,6 +84,7 @@ function RegisterBody(props) {
                                 <div className="text-danger" style={{padding: '10px 20px'}}>
                                     {message.inputError}
                                     {message.message}
+                                    {message.otp && "OTP :" + message.otp}
                                 </div>
                                 </div>
                                 <div className="register-box d-flex justify-content-end mt-20">

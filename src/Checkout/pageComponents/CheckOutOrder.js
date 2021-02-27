@@ -3,7 +3,7 @@ import React from 'react'
 import { connect } from 'react-redux'
 import { Link } from 'react-router-dom'
 import { API } from '../../PrimarySections/Connections/APILink'
-import { getSubTotal, Truncate } from '../../PrimarySections/Essentials/AllFunctions'
+import { getActiveCartProdTotal, getActiveCartProdSubTotal, Truncate } from '../../PrimarySections/Essentials/AllFunctions'
 import { RemoveFinalProd } from '../../Utility/Redux/Action/FinalCartProduct'
 import './CheckOut.css'
 
@@ -13,36 +13,36 @@ function CheckOutOrder(props) {
     const placeOrder = (e)=>{
         e.preventDefault();
         let arr=[]
-        props.basket.forEach(x => {
+        props.finalCart.forEach(x => {
             const prod = {
-                product_id:x.id,
-                color: x.color,
-                vendor_price: x.vendor_price,
-                size : x.size,
-                price : x.price,
-                size_qty: x.size_qty,
-                qty : x.count,
+                product_id:x.products.id,
+                color: x.products.color,
+                vendor_price: x.products.vendor_price,
+                size : x.products.size,
+                price : x.products.price,
+                size_qty: x.products.size_qty,
+                qty : x.quantity,
                 size_key : null,
             }
             arr.push(prod)
             let vendor =[]
-            props.basket.forEach(x => {
-                vendor.push(x.shop_id)
+            props.finalCart.forEach(x => {
+                vendor.push(x.products.shop_id)
             });
-            console.log(vendor);
+            console.log(arr,vendor);
         });
-        const user_id = localStorage.getItem('user_id')
-        API().post(`api/uparzonweb/make_order`,{
-            cart:arr,
-            api_key:`4e38d8be3269aa17280d0468b89caa4c7d39a699`,
-            user_id:user_id,
-        }).then(res=>{
-            console.log('====================================');
-            console.log(res);
-            console.log('====================================');
-        }).catch(err=>{
-            console.log(err.response);
-        })
+        // const user_id = localStorage.getItem('user_id')
+        // API().post(`api/uparzonweb/make_order`,{
+        //     cart:arr,
+        //     api_key:`4e38d8be3269aa17280d0468b89caa4c7d39a699`,
+        //     user_id:user_id,
+        // }).then(res=>{
+        //     console.log('====================================');
+        //     console.log(res);
+        //     console.log('====================================');
+        // }).catch(err=>{
+        //     console.log(err.response);
+        // })
     }
 
     // ajsdhfuehfasdf
@@ -89,11 +89,11 @@ function CheckOutOrder(props) {
                 <tbody>
                 <tr className="cart-subtotal">
                     <th>Subtotal</th>
-                    <td className="text-center">&#2547; {getSubTotal(props.basket).toFixed(2)}</td>
+                    <td className="text-center">&#2547; {getActiveCartProdSubTotal(props.finalCart).toFixed(2)}</td>
                 </tr>            
                 <tr className="order-total">
                     <th>Total</th>
-                    <td className="text-center"><strong>&#2547; {getSubTotal(props.basket).toFixed(2)}</strong></td>
+                    <td className="text-center"><strong>&#2547; {getActiveCartProdTotal(props.finalCart).toFixed(2)}</strong></td>
                 </tr>
                 </tbody>
             </table>

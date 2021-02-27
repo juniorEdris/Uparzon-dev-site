@@ -12,10 +12,7 @@ function SearchWrapper(props) {
     const [input] = useState('')
     const [id, setId] = useState(0)
     const [page,setPage] = useState(1)
-    const history = useHistory()
-    useEffect(() => {
-        !(props.results.length > 1) && history.push('/')  
-       }, [])
+
     const sidebarClick = (id) =>{
         setId(id)
         props.fetchSearchResult(id,input,page)

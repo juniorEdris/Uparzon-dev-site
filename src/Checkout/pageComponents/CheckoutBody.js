@@ -1,10 +1,15 @@
-import React from 'react'
+import React, { useEffect } from 'react'
+import { connect } from 'react-redux'
+import { useHistory } from 'react-router-dom'
 import CheckOutForm from './CheckOutForm'
 import CheckOutOrder from './CheckOutOrder'
 import UserAction from './UserAction'
 
-export default function CheckoutBody() {
-    
+function CheckoutBody(props) {
+    const history = useHistory()
+    useEffect(()=>{
+        props.finalCart.length === 0  && history.push('/cart')
+    },[])
     return (
         <div>
             {/* Start of Checkout Wrapper */}
@@ -30,3 +35,5 @@ export default function CheckoutBody() {
         </div>
     )
 }
+
+export default connect(state=>({finalCart:state.FinalCart.finalCart,}))(CheckoutBody)

@@ -60,7 +60,7 @@ function Navigation(props) {
             props.showBrowseCatagories(category,'',1,subcategory,childcategory)
     }
     return (
-        <div className={`header-top-menu sticker ${stickyNav && 'sticky'} `}>
+        <div className={`header-top-menu theme-bg sticker ${stickyNav && 'sticky'} `}>
         <div className="container-fluid">
             <div className="row">
             <div className="col-lg-12">

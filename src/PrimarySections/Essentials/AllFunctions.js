@@ -1,5 +1,6 @@
 // Total Amount function 
 export const getSubTotal = (basket) => basket?.reduce((amount, item) => item.price*item.quantity + amount,0)
+export const getActiveCartProdSubTotal = (basket) => basket?.reduce((amount, item) => parseInt(item.products.price*item.quantity) + amount,0)
 export const getActiveCartProdTotal = (basket) => basket?.reduce((amount, item) => parseInt(item.products.price*item.quantity) + parseInt(item.vendor_delivery.inside_deli_charge) + amount,0)
 export const getfinalSubTotal = (basket) => basket?.reduce((amount, item) => parseInt(item.products.price*item.quantity) + amount,0)
 
