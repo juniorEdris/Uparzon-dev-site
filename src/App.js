@@ -42,7 +42,7 @@ function App(props) {
     
   return ( 
     <div className="app">
-      <Router basename='/store'>
+      <Router basename='/'>
             <Header/>
         <Switch>
           

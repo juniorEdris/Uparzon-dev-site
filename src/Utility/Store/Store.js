@@ -23,6 +23,7 @@ import { subcategoryReducer } from '../Redux/Reducer/SubCategoryReducer';
 import { UserReducer } from '../Redux/Reducer/UserReducer';
 import { VendorDetailsReducer, VendorReducer } from '../Redux/Reducer/VendorReducer';
 import { AddWishReducer } from '../Redux/Reducer/WishListReducer';
+import { BillingAddressReducer } from '../Redux/Reducer/GetBillingAddressReducer';
 
 export const initialState={
     loading:true,
@@ -67,6 +68,8 @@ export const initialState={
     allDistricts:[],
     allThana:[],
     allUnion:[],
+    shippingAddresses:[],
+    shipping_id:''
 }
 
 const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
@@ -96,6 +99,7 @@ const store = createStore(
         cart: CartCheckReducer,
         FinalCart: FinalCartReducer,
         allCities: AllCitiesReducer,
+        billingAdrress: BillingAddressReducer,
     }),
     initialState,
     composeEnhancers(applyMiddleware(thunk))

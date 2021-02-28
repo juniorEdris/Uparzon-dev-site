@@ -9,7 +9,7 @@ import './CheckOut.css'
 
 
 function CheckOutOrder(props) {
-
+    console.log();
     const placeOrder = (e)=>{
         e.preventDefault();
         let arr=[]
@@ -29,29 +29,12 @@ function CheckOutOrder(props) {
             props.finalCart.forEach(x => {
                 vendor.push(x.products.shop_id)
             });
-            console.log(arr,vendor);
+            console.log(arr,vendor,props.shippingId);
         });
-        // const user_id = localStorage.getItem('user_id')
-        // API().post(`api/uparzonweb/make_order`,{
-        //     cart:arr,
-        //     api_key:`4e38d8be3269aa17280d0468b89caa4c7d39a699`,
-        //     user_id:user_id,
-        // }).then(res=>{
-        //     console.log('====================================');
-        //     console.log(res);
-        //     console.log('====================================');
-        // }).catch(err=>{
-        //     console.log(err.response);
-        // })
-    }
-
-    // ajsdhfuehfasdf
-    // const checkout_prod = props.basket.map(x=>{
-    //     return x.shop_id ===
-    // })
+    } 
 
     return (
-        <div className="col-12 col-sm-12 col-md-6 col-lg-5">
+        <div className="col-12 col-sm-12 col-md-6 col-lg-4">
         <div className="order-summary">
         <div className="section-title left-aligned">
             <h3>Your Order</h3>
@@ -103,28 +86,20 @@ function CheckOutOrder(props) {
             <form action="#" onSubmit={placeOrder}>
             <div className="form-row">
                 <div className="custom-radio">
-                <input className="form-check-input" type="radio" name="payment" id="check_payment" defaultValue="check" defaultChecked />
-                <span className="checkmark" />
-                <label className="form-check-label" htmlFor="check_payment">Check Payments</label>
-                <div className="payment-info" id="check_pay">
-                    <p>Please send a check to Store Name, Store Street, Store Town, Store State / County, Store Postcode.</p>
-                </div>
-                </div>
-                <div className="custom-radio">
-                <input className="form-check-input" type="radio" name="payment" id="cash_delivery_payment" defaultValue="cash" />
-                <span className="checkmark" />
-                <label className="form-check-label" htmlFor="cash_delivery_payment">Cash on Delivery</label>
-                <div className="payment-info" id="cash_pay">
-                    <p>Pay with cash upon delivery.</p>
-                </div>
+                    <input className="form-check-input" type="radio" name="payment" id="check_payment" defaultValue="ssl" defaultChecked />
+                    <span className="checkmark" />
+                    <label className="form-check-label" htmlFor="check_payment">Check Payments</label>
+                    <div className="payment-info" id="check_pay">
+                        <p>Pay with SSL method.</p>
+                    </div>
                 </div>
                 <div className="custom-radio">
-                <input className="form-check-input" type="radio" name="payment" id="paypal_payment" defaultValue="paypal" />
-                <span className="checkmark" />
-                <label className="form-check-label" htmlFor="paypal_payment">PayPal Express Checkout</label>
-                <div className="payment-info" id="paypal_pay">
-                    <p>Pay via PayPal. You can pay with your credit card if you don’t have a PayPal account.</p>
-                </div>
+                    <input className="form-check-input" type="radio" name="payment" id="cash_delivery_payment" defaultValue="ub" />
+                    <span className="checkmark" />
+                    <label className="form-check-label" htmlFor="cash_delivery_payment">Pay with uparzon balance.</label>
+                    <div className="payment-info" id="cash_pay">
+                        <p>Pay with uparzon balance.</p>
+                    </div>
                 </div>
             </div>
             <div className="form-row">
@@ -149,6 +124,7 @@ function CheckOutOrder(props) {
 const mapStateToProps = state=>({
     basket:state.basketProd.basket,
     finalCart:state.FinalCart.finalCart,
+    shippingId:state.billingAdrress.shipping_id,
     
 }) 
 const mapDispatchToProps=dispatch=>({

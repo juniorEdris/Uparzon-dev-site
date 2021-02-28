@@ -37,7 +37,7 @@ const mapStateToProps = state=>(
 
 const mapDispatchToProps = dispatch =>(
   {
-    getProdDetails:(id)=>GetProductDetails(id),
+    getProdDetails:(id)=>dispatch(GetProductDetails(id)),
   }
 )
 

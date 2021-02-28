@@ -8,7 +8,7 @@ import UserAction from './UserAction'
 function CheckoutBody(props) {
     const history = useHistory()
     useEffect(()=>{
-        props.finalCart.length === 0  && history.push('/cart')
+        // props.finalCart.length === 0  && history.push('/cart')
     },[])
     return (
         <div>

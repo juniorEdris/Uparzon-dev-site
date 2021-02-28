@@ -40,5 +40,8 @@ export const Request ={
     Dashboard:`api/uparzonweb/get_userdetails`,
     PlaceOrder:`api/uparzonapp/make_order`,
     CartAPI:`api/uparzonweb/cart_update?api_key=${API_KEY}&`,
-    CityFetch:`https://demostore.uparzon.com/api/uparzonweb/get_districts?api_key=${API_KEY}`,
+    CityFetch:`api/uparzonweb/get_districts?api_key=${API_KEY}`,
+    ShippingAddressStore:`api/uparzonweb/store_billing_address?api_key=${API_KEY}`,
+    GetShippingAddress:`api/uparzonweb/get_billing_address?api_key=${API_KEY}`,
+    GetUserInfo:`api/uparzonweb/get_user_info?api_key=${API_KEY}`,
 } 

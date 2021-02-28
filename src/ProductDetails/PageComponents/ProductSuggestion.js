@@ -1,19 +1,14 @@
-import React,{useEffect} from 'react'
+import React from 'react'
 import OwlCarousel from 'react-owl-carousel';
 import 'owl.carousel/dist/assets/owl.carousel.css';
 import 'owl.carousel/dist/assets/owl.theme.default.css';
 import Product from '../../Home/pageComponents/Subfolder/Product'
 import './ProductSuggestion.css'
-import { useStateValue } from '../../Utility/StateProvider';
 import ModalSection from '../../PrimarySections/Modal/ModalSection';
 import { connect } from 'react-redux';
 import { FetchProductSuggetions } from '../../Utility/Redux/Action/ProdSuggestionAction';
 
 function ProductSuggestion(props) {
-    const [{quickView}] = useStateValue()
-    useEffect(() => {
-      props.fetchSuggestions(props.details?.category_id)
-    }, [])
 
     const options = {
         loop: false,
@@ -52,7 +47,7 @@ function ProductSuggestion(props) {
               {...options}
             >
           {
-              props.suggestions.map(product =>(
+              props.details?.related_products?.map(product =>(
           <div className="product-item mb-30">
                 <Product key={product.id} product={product}/>
           </div>
@@ -62,14 +57,14 @@ function ProductSuggestion(props) {
     </div>
   </div>
 </div>
-<ModalSection product={quickView}/>
+<ModalSection/>
 </>
     )
 }
 
 export default connect(state=>({
+  loading:state.productDetails.loading,
   details:state.productDetails.product,
-  suggestions:state.productSuggest.suggestion
 }),dispatch=>({
   fetchSuggestions:(id)=>dispatch(FetchProductSuggetions(id))
 }))(ProductSuggestion)

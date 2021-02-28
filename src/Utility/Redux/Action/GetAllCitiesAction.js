@@ -23,7 +23,7 @@ const unionFetchSuccess =(union)=>{
 export const fetchAllCities = (thana,union) => async (dispatch,getState) => {
 
     if(!thana && !union){
-       await API().post(Request.CityFetch)
+        await API().post(Request.CityFetch)
         .then(res=>{
             dispatch(districtFetchSuccess(res.data.data))
         })

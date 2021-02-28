@@ -16,7 +16,7 @@ function Index(props) {
               <Review/>
             <CartAddanime/>
             <ScrollBar/>
-            {props.suggestions?.length > 0 && <Suggestions/>}
+            {props.details?.related_products?.length > 0 && <Suggestions/>}
         </div>
         )
 }
@@ -26,7 +26,6 @@ function Index(props) {
 export default connect(state=>({
     loading:state.productDetails.loading,
     details:state.productDetails.product,
-    suggestions:state.productSuggest.suggestion
   }),dispatch=>({
     fetchSuggestions:(id)=>dispatch(FetchProductSuggetions(id))
   }))(Index)

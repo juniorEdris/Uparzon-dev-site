@@ -7,3 +7,60 @@
   font-size: 1rem;
   font-weight: bold;
 }
+.custom_bill_address button {
+  color: var(--light);
+  font-size: 0.7rem;
+}
+.address-select {
+  text-align: center;
+}
+
+.address-select span {
+  color: #444;
+  padding-left: 20px;
+  position: relative;
+  cursor: pointer;
+}
+
+.address-select span::before {
+  content: '\f096';
+  font-family: fontawesome;
+  left: 0;
+  position: absolute;
+}
+
+.address-select span::after {
+  content: '\f046';
+  font-family: fontawesome;
+  left: 0;
+  position: absolute;
+  opacity: 0;
+  visibility: hidden;
+}
+
+.address-select span,
+.address-select span.active {
+  color: var(--theme-color);
+}
+
+.address-select:hover span::after {
+  opacity: 1;
+  visibility: visible;
+}
+
+.address-select span.active::after {
+  opacity: 1;
+  visibility: visible;
+}
+.billing_address_table table thead td {
+  font-weight: 500;
+  text-align: center;
+}
+.billing_address_table table td {
+  padding: 0.35rem !important;
+  text-transform: capitalize;
+}
+.billing_address_table td div {
+  font-size: 0.7rem;
+  text-align: center;
+}

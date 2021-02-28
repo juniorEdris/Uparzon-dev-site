@@ -23,7 +23,7 @@ function SearchWrapper(props) {
                 <div className={`main-wrapper pt-10 ${props.loading && 'loading-opacity'}`}>
                     <div className={`container-fluid`}>
                         <div className="row">
-                    <Sidebar id={id} sidebarClick={sidebarClick} categories={props.categories}/>
+                    <Sidebar id={id} setId={sidebarClick} categories={props.categories}/>
                     <div className="col-lg-9 order-first order-lg-last">
                         <div className="product-shop-main-wrapper mb-50">
                         <div className="shop-top-bar mb-30">
