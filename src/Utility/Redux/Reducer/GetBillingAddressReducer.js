@@ -1,5 +1,5 @@
 import { initialState } from '../../Store/Store'
-import { SHIPPING_ADDRESS_REQUEST,SHIPPING_ADDRESS_SUCCESS,SHIPPING_ADDRESS_EORROR, SET_SHIPPING_ID } from '../Types';
+import { SHIPPING_ADDRESS_REQUEST,SHIPPING_ADDRESS_SUCCESS,SHIPPING_ADDRESS_EORROR, SET_SHIPPING_ID_REQUEST,SET_SHIPPING_ID_SUCCESS } from '../Types';
 
 export const BillingAddressReducer = (state=initialState,action)=>{
     switch(action.type){
@@ -21,8 +21,8 @@ export const BillingAddressReducer = (state=initialState,action)=>{
                 loading:false,
                 error:action.error,
             }
-        case SET_SHIPPING_ID:
-            return{    
+            case SET_SHIPPING_ID_SUCCESS:
+                return{    
                 ...state,
                 shipping_id:action.address,
             }

@@ -1,5 +1,5 @@
 import { API, Request } from "../../../PrimarySections/Connections/APILink";
-import { SHIPPING_ADDRESS_REQUEST,SHIPPING_ADDRESS_SUCCESS,SHIPPING_ADDRESS_EORROR,SET_SHIPPING_ID } from "../Types";
+import { SHIPPING_ADDRESS_REQUEST,SHIPPING_ADDRESS_SUCCESS,SHIPPING_ADDRESS_EORROR,SET_SHIPPING_ID_SUCCESS } from "../Types";
 
 const shippingAddressLoading =()=>{
     return{
@@ -21,14 +21,14 @@ const shippingAddressError =(error)=>{
 
 const setShippingId =(address)=>{
     return{
-        type:SET_SHIPPING_ID,
+        type:SET_SHIPPING_ID_SUCCESS,
         address,
     }
 }
 
+const user_id = localStorage.getItem('user_id')
 export const fetchShippingAddress = () => async (dispatch) => {
     dispatch(shippingAddressLoading())
-    const user_id = localStorage.getItem('user_id')
     await API().get(`${Request.GetShippingAddress}&user_id=${user_id}`)
     .then(res=>{
         dispatch(shippingAddressSuccess(res.data.data))
@@ -40,4 +40,9 @@ export const fetchShippingAddress = () => async (dispatch) => {
 
 export const setShippingAddress = (address) =>(dispatch) => {
     dispatch(setShippingId(address))
+}
+export const deleteAddressItem = (id) =>async (dispatch) => {
+    console.log('delete',id);
+    await API().post(`${Request.DeleteAddress}&billing_address_id=${id}&user_id=${user_id}`)
+
 }

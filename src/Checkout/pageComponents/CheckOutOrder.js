@@ -57,7 +57,7 @@ function CheckOutOrder(props) {
                     <p className="product-final-price">&#2547; { product.products.price }</p>
                     {/* <p className="product-final-price">&#2547; {product.price}</p> */}
                     </div>
-                    <div className='checkout_x' onClick={()=>props.finalProdCheckRemove(product)}><span class="lnr lnr-cross"></span></div>
+                    <div className='checkout_x' onClick={()=>props.finalProdCheckRemove(product)}><span className="lnr lnr-cross"></span></div>
                 </div>
             </div>))
         

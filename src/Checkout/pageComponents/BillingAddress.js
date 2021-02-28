@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import { connect } from 'react-redux'
-import { fetchShippingAddress, setShippingAddress } from '../../Utility/Redux/Action/GetBillingAddressAction'
+import { deleteAddressItem, fetchShippingAddress, setShippingAddress } from '../../Utility/Redux/Action/GetBillingAddressAction'
 
 function AllBillingAddress(props){
     
@@ -10,7 +10,7 @@ function AllBillingAddress(props){
     }, [])
 
     return (
-        <div className='billing_address_table'>
+        <div className='billing_address_table' style={{height:'350px',overflow:'scroll',marginBottom:'0.5rem'}}>
                 { props.billingAddress?.length > 0 &&
                 <table className="table table-bordered">
                     <thead>
@@ -42,6 +42,9 @@ function AllBillingAddress(props){
                                 <td>
                                     <div>{address.phone}</div>
                                 </td>
+                                <td>
+                                    <div><span className='lnr lnr-cross' onClick={()=>props.deleteAddress(address.id)}></span></div>
+                                </td>
                             </tr>
                         ))
                         }
@@ -61,7 +64,8 @@ const mapStateToProps = (state)=>(
 const mapDispatchToProps = dispatch=>(
     {
         getShippingAddress:()=>dispatch(fetchShippingAddress()),
-        setShippingId:(id)=>dispatch(setShippingAddress(id))
+        setShippingId:(id)=>dispatch(setShippingAddress(id)),
+        deleteAddress:(id)=>dispatch(deleteAddressItem(id))
     }
 )
 

@@ -3,6 +3,7 @@ import $ from'jquery'
 import { connect } from 'react-redux';
 import { fetchAllCities } from '../../Utility/Redux/Action/GetAllCitiesAction';
 import { API, Request } from '../../PrimarySections/Connections/APILink';
+import { fetchShippingAddress } from '../../Utility/Redux/Action/GetBillingAddressAction';
 
 function CustomShipping(props) {
 
@@ -40,12 +41,23 @@ function CustomShipping(props) {
     const storeAddress =(e) =>{
         e.preventDefault()
         const user_id = localStorage.getItem('user_id')
-        API().post(`${Request.ShippingAddressStore}&name=${value.fullName}&phone=${value.phoneNumber}&union_id=${value.union_id}&address=${value.address}&user_id=${user_id}`)
+        API().post(`${Request.ShippingAddressStore}&name=${value.fullName}&phone=${value.phoneNumber}&upazila_id=${value.thana_id}&union_id=${value.union_id}&address=${value.address}&user_id=${user_id}`)
         .then(res=>{
             console.log(res);
+            console.log(`${Request.ShippingAddressStore}&name=${value.fullName}&phone=${value.phoneNumber}&upazila_id=${value.thana_id}&union_id=${value.union_id}&address=${value.address}&user_id=${user_id}`);
             if(res.data.status){
                 setMessage({success:res.data.message})
-                setValue({})
+                setValue({
+                    fullName:'',
+                    email:'',
+                    phoneNumber:'',
+                    district_id:'',
+                    thana_id:'',
+                    union_id:'',
+                    address:'',
+                })
+                setValue({address:''})
+                props.getShippingAddress()
             }
         }).catch(err=>{
             console.log(err.response);
@@ -67,24 +79,24 @@ function CustomShipping(props) {
                     <div className="form-row mb-3">
                     <div className="form-group col-12 col-sm-12 col-md-6">
                         <label htmlFor="first_name">Full Name <span className="text-danger">*</span></label>
-                        <input type="text" className="form-control" name='fullName' value={value.fullName} onChange={handleChange} id="first_name"  required/>
+                        <input type="text" className="form-control" name='fullName' value={value.fullName} onChange={handleChange} id="first_name" placeholder='Full name'  required/>
                     </div>
                     <div className="form-group col-12 col-sm-12 col-md-6">
                         <label htmlFor="email_address">Email Address <span className="text-danger">*</span></label>
-                        <input type="email" className="form-control" name='email'value={value.email} onChange={handleChange} id="email_address"  required/>
+                        <input type="email" className="form-control" name='email'value={value.email} onChange={handleChange} id="email_address" placeholder='Email address' required/>
                     </div>
                     </div>
                     <div className="form-row mb-3">
                         <div className="form-group col-12 ">
                             <label htmlFor="email_address">Phone Number <span className="text-danger">*</span></label>
-                            <input type="text" className="form-control" name='phoneNumber' value={value.phoneNumber} onChange={handleChange} id="email_address"  required/>
+                            <input type="text" className="form-control" name='phoneNumber' value={value.phoneNumber} onChange={handleChange} id="email_address" placeholder='Phone number'  required/>
                         </div>
                     </div>
                     {props.city?.length > 0 &&<div className="form-row mb-3">
                         <div className="form-group col-12">
                             <label htmlFor="District_name" className="d-block">District <span className="text-danger">*</span></label>
                             <select name="district_id" id="District_name" className="form-control" value={value.district_id} onChange={handleChange}  required>
-                            <option value=''> --- Select --- </option>
+                            <option value=''> --- Select District --- </option>
                             {
                             props.city?.map(x=>
                                 <option value={x.id}> {x.name} </option>
@@ -97,7 +109,7 @@ function CustomShipping(props) {
                         <div className="form-group col-12">
                             <label htmlFor="Upazila_name" className="d-block">Upazila/Thana <span className="text-danger">*</span></label>
                             <select name="thana_id" id="Upazila_name" className="form-control" value={value.thana_id} onChange={handleChange}  required>
-                            <option value=''> --- Select --- </option>
+                            <option value=''> --- Select Upazila/Thana --- </option>
                             {
                             props.thana?.map(x=>
                                 <option value={x.id}> {x.name} </option>
@@ -110,7 +122,7 @@ function CustomShipping(props) {
                         <div className="form-group col-12">
                             <label htmlFor="Union_name" className="d-block">Union <span className="text-danger">*</span></label>
                             <select name="union_id" id="Union_name" className="form-control" value={value.union_id} onChange={handleChange} required>
-                            <option value=''> --- Select --- </option>
+                            <option value=''> --- Select Union --- </option>
                             {
                             props.union?.map(x=>
                                 <option value={x.id}> {x.name} </option>
@@ -122,7 +134,7 @@ function CustomShipping(props) {
                     <div className="form-row mb-3">
                         <div className="form-group col-12 col-sm-12 col-md-12">
                             <label htmlFor="p_address">Address <span className="text-danger">*</span></label>
-                            <input type="text" className="form-control" id="p_address" name='address' onChange={handleChange} required/>
+                            <input type="text" className="form-control" id="p_address" name='address' onChange={handleChange} placeholder='House no./Area no.' required/>
                         </div>
                     </div>
                     <div className="form-row mb-3">
@@ -160,7 +172,7 @@ const mapStateToProps = (state)=>(
 const mapDispatchToProps = (dispatch)=>(
     {
         getAllCities:(thana,union)=>dispatch(fetchAllCities(thana,union)),
-
+        getShippingAddress:()=>dispatch(fetchShippingAddress()),
     }
 )
 export default connect(mapStateToProps,mapDispatchToProps)(CustomShipping)

@@ -44,4 +44,6 @@ export const Request ={
     ShippingAddressStore:`api/uparzonweb/store_billing_address?api_key=${API_KEY}`,
     GetShippingAddress:`api/uparzonweb/get_billing_address?api_key=${API_KEY}`,
     GetUserInfo:`api/uparzonweb/get_user_info?api_key=${API_KEY}`,
+    GetUserInfo:`api/uparzonweb/get_user_info?api_key=${API_KEY}`,
+    DeleteAddress:`api/uparzonweb/delete_billing_address?api_key=${API_KEY}`,
 } 
