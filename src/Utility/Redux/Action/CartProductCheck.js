@@ -23,7 +23,6 @@ const cartCheckError = (error)=>(
 export const CartProdCheckAction = (cartProductsId,cartProductsCount)=>async dispatch=>{
     dispatch(cartCheckRequest())
     const Url = `${Request.CartAPI}product_ids=${JSON.stringify(cartProductsId)}&product_quantities=${JSON.stringify(cartProductsCount)}`
-    console.log('cart check action',Url,JSON.stringify(cartProductsId),JSON.stringify(cartProductsCount));
     await API().post(Url)
     .then(res=>{
         dispatch(cartCheckSuccess(res.data))

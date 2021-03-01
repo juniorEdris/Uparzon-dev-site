@@ -1,17 +1,25 @@
 // If cart length is greater than 0 then product will display
-import React from 'react'
+import React, { useState } from 'react'
 import { connect } from 'react-redux'
 import { Link } from 'react-router-dom'
-import { API } from '../../PrimarySections/Connections/APILink'
 import { getActiveCartProdTotal, getActiveCartProdSubTotal, Truncate } from '../../PrimarySections/Essentials/AllFunctions'
 import { RemoveFinalProd } from '../../Utility/Redux/Action/FinalCartProduct'
+import { MakeOrderAction } from '../../Utility/Redux/Action/MakeOrderAction'
 import './CheckOut.css'
 
 
 function CheckOutOrder(props) {
-    console.log();
+    const [value,setValue] = useState({
+        payment:'ssl'
+    })
+    
     const placeOrder = (e)=>{
         e.preventDefault();
+        if(!props.shippingId){
+            alert('Select atleast one shipping address.')
+            return // return if shipping address is not selected
+        }
+
         let arr=[]
         props.finalCart.forEach(x => {
             const prod = {
@@ -25,14 +33,32 @@ function CheckOutOrder(props) {
                 size_key : null,
             }
             arr.push(prod)
-            let vendor =[]
+            let vendorID =[]
             props.finalCart.forEach(x => {
-                vendor.push(x.products.shop_id)
+                vendorID.push(x.products.shop_id)
             });
-            console.log(arr,vendor,props.shippingId);
+            let adjusted_amount
+            let rc_adjusted_amount =[]
+            arr.forEach(x => {
+                const amount = x.price - x.vendor_price
+                rc_adjusted_amount.push(amount)
+            });
+            adjusted_amount = rc_adjusted_amount.reduce((a, b) => a + b * 50 /100, 0)
+            if(rc_adjusted_amount.length !== props.finalCart.length){
+                return //return till final cart prices are adjusted
+            }else{
+                props.makeOrder(arr,props.shippingId,vendorID,value.payment,adjusted_amount);
+            }
+
         });
     } 
 
+    const handleChange=(e)=>{
+        setValue({
+            ...value,
+            [e.target.name]:e.target.value
+        })
+    }
     return (
         <div className="col-12 col-sm-12 col-md-6 col-lg-4">
         <div className="order-summary">
@@ -86,15 +112,15 @@ function CheckOutOrder(props) {
             <form action="#" onSubmit={placeOrder}>
             <div className="form-row">
                 <div className="custom-radio">
-                    <input className="form-check-input" type="radio" name="payment" id="check_payment" defaultValue="ssl" defaultChecked />
+                    <input className="form-check-input" type="radio" name="payment" id="check_payment"  value="ssl" defaultChecked onChange={handleChange}/>
                     <span className="checkmark" />
-                    <label className="form-check-label" htmlFor="check_payment">Check Payments</label>
+                    <label className="form-check-label" htmlFor="check_payment">SSL payment.</label>
                     <div className="payment-info" id="check_pay">
                         <p>Pay with SSL method.</p>
                     </div>
                 </div>
                 <div className="custom-radio">
-                    <input className="form-check-input" type="radio" name="payment" id="cash_delivery_payment" defaultValue="ub" />
+                    <input className="form-check-input" type="radio" name="payment" id="cash_delivery_payment" value="ub" onChange={handleChange}/>
                     <span className="checkmark" />
                     <label className="form-check-label" htmlFor="cash_delivery_payment">Pay with uparzon balance.</label>
                     <div className="payment-info" id="cash_pay">
@@ -129,5 +155,6 @@ const mapStateToProps = state=>({
 }) 
 const mapDispatchToProps=dispatch=>({
     finalProdCheckRemove:(product)=>dispatch(RemoveFinalProd(product)),
+    makeOrder:(arr,billId,vendorId,paymentMethod,rc_adjusted_amount)=>dispatch(MakeOrderAction(arr,billId,vendorId,paymentMethod,rc_adjusted_amount)),
 })
 export default connect(mapStateToProps,mapDispatchToProps)(CheckOutOrder)

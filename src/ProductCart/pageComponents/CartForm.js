@@ -25,7 +25,7 @@ function CartForm(props) {
     useEffect(() => {
         props.finalProdCheckRemove();
     }, [])
-    
+
     const incCount = (prod)=>{
         props.addToBasket(prod)
     }

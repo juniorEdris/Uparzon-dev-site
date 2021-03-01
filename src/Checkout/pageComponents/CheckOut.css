@@ -64,3 +64,10 @@
   font-size: 0.7rem;
   text-align: center;
 }
+.billing_address_table span.lnr {
+  cursor: pointer;
+  font-weight: 700;
+}
+.billing_address_table span.lnr:hover {
+  color: var(--theme-color);
+}

@@ -8,9 +8,12 @@ function AllBillingAddress(props){
     useEffect(() => {
         props.getShippingAddress()
     }, [])
-
+    const removeBillAddress = (id)=>{
+        props.deleteAddress(id); 
+        props.getShippingAddress()
+    }
     return (
-        <div className='billing_address_table' style={{height:'350px',overflow:'scroll',marginBottom:'0.5rem'}}>
+        <div className='billing_address_table' >
                 { props.billingAddress?.length > 0 &&
                 <table className="table table-bordered">
                     <thead>
@@ -20,6 +23,7 @@ function AllBillingAddress(props){
                             <td>Address</td>
                             <td>Region</td>
                             <td>Phone Number</td>
+                            <td>Action</td>
                             
                         </tr>
                     </thead>
@@ -43,7 +47,7 @@ function AllBillingAddress(props){
                                     <div>{address.phone}</div>
                                 </td>
                                 <td>
-                                    <div><span className='lnr lnr-cross' onClick={()=>props.deleteAddress(address.id)}></span></div>
+                                    <div><span className='lnr lnr-cross' onClick={()=>removeBillAddress(address.id)}></span></div>
                                 </td>
                             </tr>
                         ))

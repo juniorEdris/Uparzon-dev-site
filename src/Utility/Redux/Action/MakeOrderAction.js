@@ -21,17 +21,33 @@ const MakeOrderError = (error)=>{
         
     }
 }
-export const MakeOrderAction = (data)=>async(dispatch)=>{
+export const MakeOrderAction = (arr,billId,vendorId,paymentMethod,rc_adjusted_amount)=>async(dispatch)=>{
     dispatch(MakeOrderRequest())
-    const url = `${Request.PlaceOrder}`
-    // const url = `api/uparzonapp/make_order?cart[72][product_id]=781& cart[72][color]=& total_price=10& shipping_city=Chattogram& shipping_phone=01867301260& total_delivery_charge=120& cart[72][vendor_price]=10& cart[72][size]=& cart[72][price]=10& cart[72][size_qty]=& cart[72][qty]=1& api_key=4e38d8be3269aa17280d0468b89caa4c7d39a699& user_id=1025& packing_cost=0& shipping_email=& cart[72][size_key]=0& rc_adjusted_amount=0.0& shipping_address=kgjcj& shipping_name=Sharif Noor Zisad& payment_method=ssl`
+    console.log('MakeOrderAction',arr,billId,vendorId,paymentMethod,rc_adjusted_amount);
+    const user_id = localStorage.getItem('user_id')
+    const url = `${Request.MakeOrder} user_id=${user_id}&shipping_name=${billId.name}&shipping_phone=${billId.phone}&shipping_country=${null}&shipping_district_id=${billId.district_id}&shipping_upazilla_id=${billId.upazila_id}&shipping_union_id=${billId.union_id}&shipping_city=${null}&shipping_zip=${null}&billing_address_id=${billId.id}&coupon_discount=${null}&rc_adjusted_amount=${rc_adjusted_amount}&shipping_email=${billId.email}&payment_method=${paymentMethod}&tax=${null}&packing_cost=${null}&coupon_id=${null}&cart=${JSON.stringify(arr)}&total_delivery_charge=${120}`
+    // ========
+    // address: "Talukdar bari,Battali,Maddam Madarsha"
+    // district: "Bogura"
+    // district_id: 14
+    // email: null
+    // id: 7
+    // name: "Rizia Begum"
+    // note: null
+    // phone: "01846029691"
+    // union: "Nasaratpur"
+    // union_id: 1154
+    // upazila: "Adamdighi"
+    // upazila_id: 127
+    // user_id: 6318
+    // =======
     console.log(url);
-    API.post(url)
-    .then(res=>{
-        console.log('otp',res);
-        dispatch(MakeOrderSuccess(res.data))
-    }).catch((error)=>{
-        console.log(error);
-        dispatch(MakeOrderError(error))
-    })
+    // API.post(url)
+    // .then(res=>{
+    //     console.log('otp',res);
+    //     dispatch(MakeOrderSuccess(res.data))
+    // }).catch((error)=>{
+    //     console.log(error);
+    //     dispatch(MakeOrderError(error))
+    // })
 }

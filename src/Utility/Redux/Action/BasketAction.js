@@ -41,7 +41,6 @@ export const RemoveBasketProd = (product) => (dispatch,getState) => {
     localStorage.setItem('Cart List', JSON.stringify(cartItems))
 }
 export const RemoveSingleBasketProd = (product) => (dispatch,getState) => {
-    console.log('removesingleproduct', product);
     let cartItems = getState().basketProd.basket.slice()
     let exist=false;
     cartItems.forEach(x => {
