@@ -23,19 +23,19 @@ function CheckOutOrder(props) {
         let arr=[]
         props.finalCart.forEach(x => {
             const prod = {
-                product_id:x.products.id,
-                color: x.products.color,
-                vendor_price: x.products.vendor_price,
-                size : x.products.size,
-                price : x.products.price,
-                size_qty: x.products.size_qty,
-                qty : x.quantity,
+                product_id:x.id,
+                color: x.color,
+                vendor_price: x.vendor_price,
+                size : x.size,
+                price : x.price,
+                size_qty: x.size_qty,
+                qty : x.qty_request_to_buy,
                 size_key : null,
             }
             arr.push(prod)
             let vendorID =[]
             props.finalCart.forEach(x => {
-                vendorID.push(x.products.shop_id)
+                vendorID.push(x.shop_id)
             });
             let adjusted_amount
             let rc_adjusted_amount =[]
@@ -71,16 +71,16 @@ function CheckOutOrder(props) {
             
             props.finalCart?.map(product =>(
             <div className="product-list">
-                <div className="product-inner media align-items-center" id={product.products.id}>
+                <div className="product-inner media align-items-center" id={product.id}>
                     <div className="product-image mr-4 mr-sm-5 mr-md-4 mr-lg-5">
-                    <Link to={`/productdetails?id=${product.products.id}`}>
-                        <img style={{height:'120px',width:'120px',objectFit:'contain'}} src={`https:${product.products.photo}`} alt={product.products.name} title={product.products.name} />
+                    <Link to={`/productdetails?id=${product.id}`}>
+                        <img style={{height:'120px',width:'120px',objectFit:'contain'}} src={`https:${product.photo}`} alt={product.name} title={product.name} />
                     </Link>
                     </div>
                     <div className="media-body">
-                    <h5>{Truncate(product.products.name,35)}</h5>
+                    <h5>{Truncate(product.name,35)}</h5>
                     <p className="product-quantity">Qty: {product.quantity}</p>
-                    <p className="product-final-price">&#2547; { product.products.price }</p>
+                    <p className="product-final-price">&#2547; { product.price }</p>
                     {/* <p className="product-final-price">&#2547; {product.price}</p> */}
                     </div>
                     <div className='checkout_x' onClick={()=>props.finalProdCheckRemove(product)}><span className="lnr lnr-cross"></span></div>

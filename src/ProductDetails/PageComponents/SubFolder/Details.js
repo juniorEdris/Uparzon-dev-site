@@ -10,9 +10,9 @@ import { GetProductDetails } from '../../../Utility/Redux/Action/ProductDetailsA
 import { currToFixed } from '../../../PrimarySections/Essentials/CurrencyFormat'
 import { FetchProductSuggetions } from '../../../Utility/Redux/Action/ProdSuggestionAction'
 import { productAddAnimation } from '../../../Utility/Redux/Action/ProductAddedAction'
+import { renderHTML } from '../../../PrimarySections/Essentials'
 
 function Details(props) {
-
   useEffect(() => {
         $('.useful-links a').on('click',function( event ) {
           event.preventDefault();
@@ -49,7 +49,7 @@ function Details(props) {
               {props.details?.previous_price > 0.0 ? <span className="old-price"><del>&#2547;{currToFixed(props.details?.previous_price) || ''}</del></span> : ''}
             </div>
             <div className="product-detail-sort-des pb-20">
-              <p>{props.details?.description || ""}</p>
+              <p>{renderHTML(props.details?.details) || ""}</p>
             </div>
             <div className="pro-details-list pt-20">
               <ul>

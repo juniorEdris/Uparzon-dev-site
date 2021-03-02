@@ -2,7 +2,7 @@
 
 import React from 'react'
 import { Link } from 'react-router-dom';
-import {  Truncate } from '../../../PrimarySections/Essentials/AllFunctions';
+import {  imageExists, Truncate } from '../../../PrimarySections/Essentials/AllFunctions';
 import './product.css'
 import { connect } from 'react-redux';
 import {AddBasketProd} from '../../../Utility/Redux/Action/BasketAction'
@@ -12,8 +12,12 @@ import { ShowQuickDes } from '../../../Utility/Redux/Action/QuickViewAction';
 import { productAddAnimation } from '../../../Utility/Redux/Action/ProductAddedAction';
 import { currToFixed } from '../../../PrimarySections/Essentials/CurrencyFormat';
 
+
+
 function Product(props) {
   const {isList,product,isGrid} = props
+  // const response = imageExists('https://demostore.uparzon.com/assets/images/thumbnails/app/1599638057sUFOe0r6.jpg')
+  // console.log('troo',response);
   return (
         <div>
           {

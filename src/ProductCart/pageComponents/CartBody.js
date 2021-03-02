@@ -5,7 +5,7 @@ import CartAccordion from './CartAccordion';
 import CartForm from './CartForm';
 import {currToFixed} from '../../PrimarySections/Essentials/CurrencyFormat'
 import { connect } from 'react-redux';
-import Saparate  from './Saparate';
+
 
 function CartBody(props) {
 

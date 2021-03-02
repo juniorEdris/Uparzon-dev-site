@@ -32,11 +32,11 @@ import { connect } from 'react-redux'
             <HomeBanner/>
             <FeaturedCategory/>
             <HotCollection/>
-            {/* <StaticsBanner/> */}
+            <StaticsBanner/>
             <ElectronicsArea/>
             <HeadphonesAccessories/>
             <BusinessAndOffice/>
-            {/* <WideBanner/> */}
+            <WideBanner/>
             <BrandArea/>
             <FeatureArea/>
             <ScrollBar/>

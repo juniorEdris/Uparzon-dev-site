@@ -11,7 +11,7 @@ export const AddFinalProd = (product) => (dispatch,getState) => {
     const finalProd = getState().FinalCart.finalCart.slice()
     let exist = false
     finalProd.forEach(x => {
-        if (x.products.id===product.products.id) {
+        if (x.id===product.id) {
             exist = true
             return
         }
@@ -27,7 +27,7 @@ export const RemoveFinalProd = (product) => (dispatch, getState) => {
         final = []
     } else {
         const finalProd = getState().FinalCart.finalCart.slice()
-        final = finalProd.filter(x=>x.products.id !== product.products.id)
+        final = finalProd.filter(x=>x.id !== product.id)
     }
     dispatch(FinalCart(final))
 }

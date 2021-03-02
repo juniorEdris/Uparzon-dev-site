@@ -44,13 +44,29 @@ export const RemoveSingleBasketProd = (product) => (dispatch,getState) => {
     let cartItems = getState().basketProd.basket.slice()
     let exist=false;
     cartItems.forEach(x => {
-        if (x.id===product.products.id && product.quantity > 1) {
+        if (x.id===product.id && product.quantity > 1) {
             exist = true
             x.quantity--
         }
     });
     if (!exist) {
-        cartItems = getState().basketProd.basket.slice().filter(x =>x.id !== product.products.id)
+        cartItems = getState().basketProd.basket.slice().filter(x =>x.id !== product.id)
+    }
+    dispatch( removeProdBasket(cartItems) )
+    localStorage.setItem('Cart List', JSON.stringify(cartItems))
+}
+
+export const RemoveSingleCartProd = (product) => (dispatch,getState) => {
+    let cartItems = getState().basketProd.basket.slice()
+    let exist=false;
+    cartItems.forEach(x => {
+        if (x.id===product.id && product.qty_request_to_buy > 1) {
+            exist = true
+            x.quantity--
+        }
+    });
+    if (!exist) {
+        cartItems = getState().basketProd.basket.slice().filter(x =>x.id !== product.id)
     }
     dispatch( removeProdBasket(cartItems) )
     localStorage.setItem('Cart List', JSON.stringify(cartItems))

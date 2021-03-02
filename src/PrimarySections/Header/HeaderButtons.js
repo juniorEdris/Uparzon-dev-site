@@ -81,7 +81,7 @@ function HeaderButtons(props) {
                     <Link className="cart-button" to="/cart">view cart</Link>
                     </li>
                     <li>
-                    <Link className="cart-button" to={!props.user ? "#": "/checkout"} data-target={!props.user && "#login_modal"} data-toggle={!props.user && "modal"}>checkout</Link>
+                    <Link className="cart-button" to={!props.user ? "/login": "/checkout"} >checkout</Link> {/*data-target={!props.user && "#login_modal"} data-toggle={!props.user && "modal"} */}
                     </li>
                 </ul>
                 </li>

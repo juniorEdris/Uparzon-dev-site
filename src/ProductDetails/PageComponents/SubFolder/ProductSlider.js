@@ -1,6 +1,8 @@
 import React,{useEffect} from 'react'
 import "react-responsive-carousel/lib/styles/carousel.min.css";
 import { Carousel } from 'react-responsive-carousel';
+import 'react-inner-image-zoom/lib/InnerImageZoom/styles.min.css';
+import InnerImageZoom from 'react-inner-image-zoom';
 import './ProductSlider.css'
 import { GetProductDetails } from '../../../Utility/Redux/Action/ProductDetailsAction';
 import { connect } from 'react-redux';
@@ -24,6 +26,7 @@ function ProductSlider(props) {
               
                 {props.loading ? <img className='main-img' src={`./assets/img/uparzon_placeholder.jpg`} alt={`${props.details?.name}`} /> :
                 <img className='main-img' src={`https:${props.product?.photo}`} alt={`${props.details?.name}`} />
+                // <InnerImageZoom className='main-img' zoomScale={3} zoomSrc={`https:${props.product?.photo}`} src={`https:${props.product?.photo}`} alt={`${props.details?.name}`} zoomType='hover'/>
                 }
             </div>
         }

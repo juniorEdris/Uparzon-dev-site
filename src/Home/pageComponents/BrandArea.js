@@ -93,7 +93,7 @@ const options = {
 }
     return (
         <div>
-<div className="brand-area pb-70">
+<div className="brand-area">
       <div className="container-fluid">
         <div className="row">
           <div className="col-12">

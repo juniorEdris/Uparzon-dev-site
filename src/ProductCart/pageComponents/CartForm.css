@@ -1,7 +1,17 @@
+.group_name {
+  font-size: 1rem;
+  text-transform: capitalize;
+  font-weight: 500;
+  color: var(--theme-color);
+}
+
 .vendor__row {
   padding: 0.5rem;
   border: 1px solid #dee2e6;
   border-bottom: none;
+}
+.vendor__name h2 {
+  font-size: 28px !important;
 }
 .vendor__name.left {
   border: 0px solid #ddd;
