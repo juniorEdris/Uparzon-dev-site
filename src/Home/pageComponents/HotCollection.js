@@ -49,7 +49,7 @@ function HotCollection(props) {
             <div className="product-item">
               <div className="product-thumb">
                 <a href="shop-grid-left-sidebar.html">
-                  <img src="https://uparzon.com.bd/assets/img/product/img-module1.jpg" alt="" />
+                  <img src="./assets/img/root/img-module1.jpg" alt="" />
                 </a>
               </div>
             </div>
@@ -64,7 +64,7 @@ function HotCollection(props) {
             <div className="product-item">
               <div className="product-thumb">
                 <a href="shop-grid-left-sidebar.html">
-                  <img src="https://uparzon.com.bd/assets/img/product/product-3.jpg" alt="" />
+                  <img src="./assets/img/root/img-module1.jpg" alt="" />
                 </a>
               </div>
             </div>
@@ -81,7 +81,7 @@ function HotCollection(props) {
             <div className="product-item">
               <div className="product-thumb">
                 <a href="shop-grid-left-sidebar.html">
-                  <img src="https://uparzon.com.bd/assets/img/product/product-4.jpg" alt="" />
+                  <img src="./assets/img/root/img-module1.jpg" alt="" />
                 </a>
               </div>
             </div>

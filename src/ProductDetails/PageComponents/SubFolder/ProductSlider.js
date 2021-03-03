@@ -10,7 +10,7 @@ import { connect } from 'react-redux';
 function ProductSlider(props) {
   useEffect(() => {
     props.getProdDetails(props.prod_id)
-  }, [])
+  }, [props.prod_id])
     return (
         <div className="col-lg-5 product-details-slider">
       <Carousel 

@@ -4,7 +4,7 @@ import './CartForm.css'
 import { connect } from 'react-redux';
 import { AddBasketProd, RemoveBasketProd, RemoveSingleCartProd } from '../../Utility/Redux/Action/BasketAction';
 import {currToFixed} from '../../PrimarySections/Essentials/CurrencyFormat'
-import { Truncate } from '../../PrimarySections/Essentials/AllFunctions';
+import { groupBy, Truncate } from '../../PrimarySections/Essentials/AllFunctions';
 import { CartProdCheckAction } from '../../Utility/Redux/Action/CartProductCheck';
 import { AddFinalProd, RemoveFinalProd } from '../../Utility/Redux/Action/FinalCartProduct';
 
@@ -41,12 +41,7 @@ function CartForm(props) {
         }
     }
 
-    var groupBy = function(xs, key) {
-        return xs.reduce(function(rv, x) {
-            (rv[x[key]] = rv[x[key]] || []).push(x);
-            return rv;
-        }, {});
-    };
+
 
     // All the groupby results are stored in a constant below
     const groupedItems=groupBy(props.cart, 'shop_name');

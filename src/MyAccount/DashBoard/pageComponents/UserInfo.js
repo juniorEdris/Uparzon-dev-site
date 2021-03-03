@@ -1,6 +1,7 @@
 import { Link } from 'react-router-dom'
 import React from 'react'
 import { connect } from 'react-redux'
+import { LogoutAction } from '../../../Utility/Redux/Action/LogoutActions'
 
 
 function UserInfo(props) {
@@ -9,7 +10,7 @@ function UserInfo(props) {
         <div className="row align-items-center no-gutters">
           <div className="col-12 col-sm-12 col-md-6 col-lg-3 col-xl-3">
             <div className="single-info">
-              <p className="user-name">Hello <span>John Doe</span> <br />not John Doe? <a className="log-out" href="login.html">Log Out</a></p>
+              <p className="user-name">Hello <span>{`${props.data?.first_name} ${props.data?.last_name}`}</span> <br /><a className="log-out" href='#' onClick={(e)=>{e.preventDefault() ; props.logOut()}}>Log Out</a></p>
             </div>
           </div>
           <div className="col-12 col-sm-12 col-md-6 col-lg-4 col-xl-3">
@@ -33,7 +34,14 @@ function UserInfo(props) {
 }
 const mapStateToProps = state=>(
   {
-    basket:state.basketProd.basket
+    basket:state.basketProd.basket,
+    data:state.Dashboard.DashBoardData,
   }
 )
-export default connect(mapStateToProps)(UserInfo)
+
+const mapDispatchToProps = dispatch=>(
+  {
+    logOut:()=>dispatch(LogoutAction())
+  }
+)
+export default connect(mapStateToProps,mapDispatchToProps)(UserInfo)

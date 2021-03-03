@@ -21,11 +21,11 @@ const MakeOrderError = (error)=>{
         
     }
 }
-export const MakeOrderAction = (arr,billId,vendorId,paymentMethod,rc_adjusted_amount)=>async(dispatch)=>{
+export const MakeOrderAction = (cartArray,billId,vendorId,paymentMethod,rc_adjusted_amount,delivery_charge,totalPrice)=>async(dispatch)=>{
     dispatch(MakeOrderRequest())
-    console.log('MakeOrderAction',arr,billId,vendorId,paymentMethod,rc_adjusted_amount);
+    console.log('MakeOrderAction',cartArray,billId,vendorId,paymentMethod,rc_adjusted_amount,delivery_charge);
     const user_id = localStorage.getItem('user_id')
-    const url = `${Request.MakeOrder} user_id=${user_id}&shipping_name=${billId.name}&shipping_phone=${billId.phone}&shipping_country=${null}&shipping_district_id=${billId.district_id}&shipping_upazilla_id=${billId.upazila_id}&shipping_union_id=${billId.union_id}&shipping_city=${null}&shipping_zip=${null}&billing_address_id=${billId.id}&coupon_discount=${null}&rc_adjusted_amount=${rc_adjusted_amount}&shipping_email=${billId.email}&payment_method=${paymentMethod}&tax=${null}&packing_cost=${null}&coupon_id=${null}&cart=${JSON.stringify(arr)}&total_delivery_charge=${120}`
+    const url = `${Request.MakeOrder}user_id=${user_id}&shipping_name=${billId.name}&shipping_phone=${billId.phone}&shipping_country=${null}&shipping_district_id=${billId.district_id}&shipping_upazilla_id=${billId.upazila_id}&shipping_union_id=${billId.union_id}&shipping_city=${null}&shipping_zip=${null}&billing_address_id=${billId.id}&coupon_discount=${null}&rc_adjusted_amount=${rc_adjusted_amount}&shipping_email=${billId.email}&payment_method=${paymentMethod}&tax=${null}&packing_cost=${null}&coupon_id=${null}&cart=${JSON.stringify(cartArray)}&total_delivery_charge=${delivery_charge}&total_price=${totalPrice}`
     // ========
     // address: "Talukdar bari,Battali,Maddam Madarsha"
     // district: "Bogura"
@@ -42,12 +42,12 @@ export const MakeOrderAction = (arr,billId,vendorId,paymentMethod,rc_adjusted_am
     // user_id: 6318
     // =======
     console.log(url);
-    // API.post(url)
-    // .then(res=>{
-    //     console.log('otp',res);
-    //     dispatch(MakeOrderSuccess(res.data))
-    // }).catch((error)=>{
-    //     console.log(error);
-    //     dispatch(MakeOrderError(error))
-    // })
+    API().post(Request.MakeOrder + url)
+    .then(res=>{
+        console.log('otp',res);
+        // dispatch(MakeOrderSuccess(res.data))
+    }).catch((error)=>{
+        console.log(error.Response);
+        // dispatch(MakeOrderError(error))
+    })
 }

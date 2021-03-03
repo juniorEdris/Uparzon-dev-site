@@ -21,10 +21,10 @@ const DashboardError = (error)=>{
 export const DashboardAction = ()=>async(dispatch)=>{
     dispatch(DashboardRequest())
     const user_id = localStorage.getItem('user_id')
-    await API().post(`${Request.Dashboard}?user_id=${user_id}`)
+    await API().post(`${Request.Dashboard}user_id=${user_id}`)
     .then(res=>{
         console.log('dashboard',res,res.data);
-        dispatch(DashboardSuccess(res.data))
+        dispatch(DashboardSuccess(res.data.data))
     }).catch((error)=>{
         console.log(error);
         dispatch(DashboardError(error))

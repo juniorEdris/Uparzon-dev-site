@@ -18,7 +18,7 @@ function HomeSlider(props) {
           >
               {props.banners?.map(banner=>(
                 <div className="slider-area">
-                        <div className="single-slider d-flex align-items-center" style={{backgroundImage: `url(https:${banner.image})`}}> {/* .replace('demostore', 'store') assets/img/slider/slider1-home1.jpg*/}
+                        <div className="single-slider d-flex align-items-center"> 
                             <img src={`https:${banner.image}`} alt=""/>
                         </div>
                 </div>

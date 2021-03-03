@@ -1,7 +1,7 @@
 import React,{useState} from 'react'
 import { connect } from 'react-redux'
 import { Link, useHistory } from 'react-router-dom'
-import { getSubTotal } from '../Essentials/AllFunctions'
+import { getSubTotal, Truncate } from '../Essentials/AllFunctions'
 import { RemoveSingleHeaderProd } from '../../Utility/Redux/Action/BasketAction'
 import { LogoutAction } from '../../Utility/Redux/Action/LogoutActions'
 import { currToFixed } from '../Essentials/CurrencyFormat'
@@ -51,7 +51,7 @@ function HeaderButtons(props) {
                                     {/* <Link to={`/productdetails?id=${prod.id}`}><img alt="" src={`https://uparzon.com.bd/assets/img/product/product-4.jpg`} /></Link> */}
                                 </div>
                                 <div className="cart-info">
-                                        <h4><Link to={`/productdetails?id=${prod.id}`}>{prod.name} </Link></h4>
+                                        <h4><Link to={`/productdetails?id=${prod.id}`} title={prod.name}>{Truncate(prod.name,20)} </Link></h4>
                                         <span> <span>{`${prod.quantity} x` }</span>&#2547; {currToFixed(prod.price)}</span>
                                 </div>
                                 <div className="del-icon">
@@ -62,10 +62,10 @@ function HeaderButtons(props) {
                         }
 
                     <li>
-                    <div className="subtotal-text">Sub-total: </div>
+                    <div className="subtotal-text">Total: </div>
                     <div className="subtotal-price">&#2547; {currToFixed(getSubTotal(props.basket))}</div>
                     </li>
-                    <li>
+                    {/* <li>
                     <div className="subtotal-text">Eco Tax (-2.00): </div>
                     <div className="subtotal-price">&#2547; {currToFixed(eco_tax)}</div>
                     </li>
@@ -76,7 +76,7 @@ function HeaderButtons(props) {
                     <li>
                     <div className="subtotal-text">Total: </div>
                     <div className="subtotal-price"><span>&#2547; {currToFixed(get_total)}</span></div>
-                    </li>
+                    </li> */}
                     <li className="mt-30">
                     <Link className="cart-button" to="/cart">view cart</Link>
                     </li>

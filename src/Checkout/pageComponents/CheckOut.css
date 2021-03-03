@@ -71,3 +71,13 @@
 .billing_address_table span.lnr:hover {
   color: var(--theme-color);
 }
+.product_box .shop_name {
+  margin: 0.8rem 0;
+  color: var(--theme-color);
+  font-size: 1rem;
+}
+.product_box .price_holder div {
+  display: flex;
+  margin-top: 0.8rem;
+  justify-content: space-between;
+}

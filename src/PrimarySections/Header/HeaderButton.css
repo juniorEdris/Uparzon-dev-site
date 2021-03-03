@@ -1,3 +1,12 @@
+.cart-img {
+  height: 120px;
+  width: 120px;
+}
+.cart-img img {
+  height: 100%;
+  width: 100%;
+}
+
 /*Cart DropDown*/
 .mini-cart-drop-down.active {
   display: block;
